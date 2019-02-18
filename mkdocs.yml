@@ -44,6 +44,10 @@ markdown_extensions:
 
 # Navigation
 nav:
-  - Workshop: 'index.md'
+  - Home: 'index.md'
+  - Build: 'build.md'
+  - Assess: 'assess.md'
+  - Remediate: 'remediate.md'
+  - Verify: 'verify.md'
   - Contributing: 'contribute.md'
   - License: 'license.md'
