@@ -44,11 +44,11 @@ markdown_extensions:
 
 # Navigation
 nav:
-  - Home: './index.md'
+  - Home: 'index.md'
   - Getting Started: 'getting-started.md'
-  - Build Phase: './build.md'
-  - Assess Phase: './assess.md'
-  - Remediate Phase: './remediate.md'
-  - Verify Phase: './verify.md'
-  - Contributing: './contribute.md'
-  - License: './license.md'
+  - Build Phase: 'build.md'
+  - Assess Phase: 'assess.md'
+  - Remediate Phase: 'remediate.md'
+  - Verify Phase: 'verify.md'
+  - Contributing: 'contribute.md'
+  - License: 'license.md'
