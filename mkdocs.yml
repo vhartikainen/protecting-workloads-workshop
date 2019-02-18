@@ -47,9 +47,11 @@ markdown_extensions:
 # Navigation
 nav:
   - Home: './index.md'
-  - Build: './build.md'
-  - Assess: './assess.md'
-  - Remediate: './remediate.md'
-  - Verify: './verify.md'
+  - Getting Started: 'getting-started.md'
+  - Phases:
+    - Build: './build.md'
+    - Assess: './assess.md'
+    - Remediate: './remediate.md'
+    - Verify: './verify.md'
   - Contributing: './contribute.md'
   - License: './license.md'
