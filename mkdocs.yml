@@ -25,6 +25,8 @@ theme:
 # Customization
 extra_css:
   - 'stylesheets/custom.css'
+extra_javascript:
+  - 'javascripts/extra.js'
 extra:
   social:
     - type: 'home'
