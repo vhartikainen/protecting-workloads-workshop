@@ -44,10 +44,10 @@ markdown_extensions:
 
 # Navigation
 nav:
-  - Home: 'docs/index.md'
-  - Build: 'docs/build.md'
-  - Assess: 'docs/assess.md'
-  - Remediate: 'docs/remediate.md'
-  - Verify: 'docs/verify.md'
-  - Contributing: 'docs/contribute.md'
-  - License: 'docs/license.md'
+  - Home: './index.md'
+  - Build: './build.md'
+  - Assess: './assess.md'
+  - Remediate: './remediate.md'
+  - Verify: './verify.md'
+  - Contributing: './contribute.md'
+  - License: './license.md'
