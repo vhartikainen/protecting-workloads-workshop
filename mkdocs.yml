@@ -1,8 +1,7 @@
 # Project information
 
-site_name: Protecting Your Workloads
-site_short_name: Protecting Your Workloads
-site_description: This workshop shows how to implement protection measures for a web site using AWS WAF, AWS Inspector, and AWS Systems Manager.
+site_name: Protecting Your WorkLoads With AWS WAF, Amazon Inspector, and AWS Systems Manger
+site_description: This workshop shows how you can protect a web site using AWS Security Services
 site_author: 'aws-security-workshops@amazon.com'
 site_url: 'https://protecting-workloads.awssecworkshops.com/'
 
@@ -44,11 +43,11 @@ markdown_extensions:
 
 # Navigation
 nav:
-  - Home: 'index.md'
-  - Getting Started: 'getting-started.md'
-  - Build Phase: 'build.md'
-  - Assess Phase: 'assess.md'
-  - Remediate Phase: 'remediate.md'
-  - Verify Phase: 'verify.md'
-  - Contributing: 'contribute.md'
-  - License: 'license.md'
+- Home: 'index.md'
+- Getting Started: 'getting-started.md'
+- Build Phase: 'build.md'
+- Assess Phase: 'assess.md'
+- Remediate Phase: 'remediate.md'
+- Verify Phase: 'verify.md'
+- Contributing: 'contribute.md'
+- License: 'license.md'
