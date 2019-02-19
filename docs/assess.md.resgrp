@@ -30,23 +30,17 @@ following tasks:
 
 1.  Go to the AWS Systems Manager console.
 
-2.  Under the *Actions* menu on the left, click **Run Command**.  You will be taken to the AWS Systems Manager Run Command home screen.  Click the **Run a Command** button and the *Run a Command* screen will appear.
+2.  Under the Resource Groups menu on the left, click **Find Resources**.
 
-3.  In the *Command document* window, page through the available documents until you find the document named *AmazonInspector-ManageAWSAgent*.  Click the radio button to the left of that document as shown in the figure below.
+3.  For resource types, select *AWS::EC2::Instance*. For Tags, use a key of *aws:cloudformation:stack-name* and a value equal to the name of your stack (*pww* in this example).  Click *View query results*.  You should see the two instances that were created by the auto scaling group appear as shown in the figure below.
 
-    ![ssm-run-command](./images/assess-run-command-document.png)
+    ![systems-manager-find-resources](./images/assess-find-resources.png)
 
-4.  Scroll further down until you can see the *Targets* window.  Click the **Specifying a tag** radio button.  For the tag key, enter *aws:cloudformation:stack-name*.  For the value enter the name of the CloudFormation stack you created (*pww* in this example) and click *Add*.  Your screen should be similar to the figure below.
+4.  Click **Create group**.  You will then be taken to the *Create query-based group* screen.
 
-    ![ssm-run-command-targets](./images/assess-run-command-targets.png)
+5.  Click the **Tag based** radio button if it is not already selected.  Scroll to the bottom of the sreen.  In the *Group name* field, enter the name of the Cloudformation stack followed by *-instances*.  In this example, the group name would be *pww-instances*.
 
-5.  Scroll down to the *Output options* window.  Clear the box next to *Enable writing to an S3 bucket* as shown in the figure below.
-
-    ![ssm-run-command-output](./images/assess-run-command-output.png)
-
-6.  Scroll to the bottom of the screen and click the *Run* button.  You will then be be taken to the command status window while the installation of the Amazon Inspector is running.  You can periodically update the command status by clicking on the refresh button within the window.   After the commands finish running, the *Overall status* should be *Success* as shown in the figure below.
-
-    ![ssm-run-command-results](./images/assess-run-command-results.png)
+6.  Click **Create group**.  The group that you just created will enable Systems Manager to select the Amazon EC2 instances regardless of when they were added to the auto scaling group.
 
 Click [here](./remediate.md) to proceed to the Remediate Phase.
 
