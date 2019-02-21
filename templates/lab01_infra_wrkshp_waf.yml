@@ -12,21 +12,13 @@ Description: WAF Workshop Demo
 
 ## Parameters
 Parameters:
-  az1:
-    Type: AWS::EC2::AvailabilityZone::Name
-    Description: The availability zone for the subnets in set 1
-  az2:
-    Type: AWS::EC2::AvailabilityZone::Name
-    Description: The availability zone for the subnets in set 2
   EC2InstanceSize:
     Default: "t3.small"
     Description: Instance size for Web Servers.
     Type: String
     AllowedValues:
-      - "t2.micro"
       - "t2.small"
       - "t2.medium"
-      - "t3.micro"
       - "t3.small"
       - "t3.medium"
   MyTrustedNetwork:
@@ -49,6 +41,7 @@ Parameters:
     Description: Password to add for scanning?
 #    NoEcho: 'True'
     Default: "AWS-SFOLoft187!?"
+    AllowedPattern: ".+"
   ScannerIP01:
     Type: String
     Default: 54.156.237.144/32
@@ -80,11 +73,6 @@ Metadata:
   AWS::CloudFormation::Interface:
     ParameterGroups:
       - Label:
-          default: Availability Zones
-        Parameters:
-          - az1
-          - az2
-      - Label:
           default: Instance Configuration
         Parameters:
         - tagWorkload
@@ -107,11 +95,7 @@ Metadata:
       EC2InstanceSize:
         default: EC2 instance size for Web servers
       MyTrustedNetwork:
-        default: Trusted Network CIDR
-      az1:
-        default: AZ1
-      az2:
-        default: AZ2
+        default: Trusted Network CIDR. Specific CIDR reccommended.
       UserName:
         default: Username to add endpoint for scanning?
       PassWord:
@@ -131,17 +115,17 @@ Metadata:
 Mappings:
   EC2AMI:
     us-east-1:
-      AmznLinux: ami-0d19227302e8e4bb5
+      AmznLinux: ami-0b8d0d6ac70e5750c
     us-east-2:
-      AmznLinux: ami-0ec1948d5caef658a
+      AmznLinux: ami-01aeea5586d1cb5e9
     us-west-1:
-      AmznLinux: ami-0c3ca2c6f4edb5546
+      AmznLinux: ami-01cd822533dfab45e
     us-west-2:
-      AmznLinux: ami-0b5913cdbba67598e
+      AmznLinux: ami-0e07063c9635a53aa
     eu-west-1:
-      AmznLinux: ami-06e710681e5ee07aa
+      AmznLinux: ami-0a166fb5b1a5d9532
     ap-northeast-1:
-      AmznLinux: ami-096629e5eb19568cc
+      AmznLinux: ami-0148288598227344a
 
 ## Resources
 Resources:
@@ -177,7 +161,10 @@ Resources:
     Properties:
       VpcId: !Ref vpc
       CidrBlock: !Sub 10.5.1.0/24
-      AvailabilityZone: !Ref az1
+      AvailabilityZone: !Select 
+        - 0
+        - !GetAZs 
+          Ref: 'AWS::Region'
       MapPublicIpOnLaunch: false
       Tags:
       Tags:
@@ -188,7 +175,10 @@ Resources:
     Properties:
       VpcId: !Ref vpc
       CidrBlock: !Sub 10.5.2.0/24
-      AvailabilityZone: !Ref az2
+      AvailabilityZone: !Select 
+        - 1
+        - !GetAZs 
+          Ref: 'AWS::Region'
       MapPublicIpOnLaunch: false
       Tags:
       Tags:
@@ -227,7 +217,10 @@ Resources:
     Properties:
       VpcId: !Ref vpc
       CidrBlock: !Sub 10.5.11.0/24
-      AvailabilityZone: !Ref az1
+      AvailabilityZone: !Select 
+        - 0
+        - !GetAZs 
+          Ref: 'AWS::Region'
       MapPublicIpOnLaunch: false
       Tags:
         - Key: Name
@@ -237,13 +230,16 @@ Resources:
     Properties:
       VpcId: !Ref vpc
       CidrBlock: !Sub 10.5.12.0/24
-      AvailabilityZone: !Ref az2
+      AvailabilityZone: !Select 
+        - 1
+        - !GetAZs 
+          Ref: 'AWS::Region'
       MapPublicIpOnLaunch: false
       Tags:
         - Key: Name
           Value: !Join ["-" , [!Ref 'AWS::StackName', PrvSub2]]
 
-## Create a NAT Gateway & EIP in each AZ
+## Create a NAT Gateway & EIP
   natEip:
     Type: AWS::EC2::EIP
     Properties:
@@ -304,6 +300,10 @@ Resources:
           FromPort: 80
           ToPort: 80
           CidrIp: !Ref ScannerIP02
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: !Join ["" , [!Ref natEip, "/32"]]
       Tags:
         - Key: Name
           Value: !Join ["-" , [!Ref 'AWS::StackName', AlbSg]]
@@ -381,7 +381,8 @@ Resources:
           yum update -y
           yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
           curl --silent --location https://rpm.nodesource.com/setup_10.x | bash -
-          yum install -y nodejs httpd24 php70 curl git
+          amazon-linux-extras install -y php7.2
+          yum install -y nodejs curl git httpd
           ln -s /usr/bin/node /usr/bin/nodejs
           node -v
           npm install -g bower
@@ -415,7 +416,7 @@ Resources:
                   COMPOSER_HOME: /composer
                   COMPOSER_ALLOW_SUPERUSER: 1
                   PATH: /usr/bin:/usr/local/bin:/sbin:$PATH
-                command: "cd /var/www/; php /usr/local/bin/composer install; bower install --allow-root; /sbin/service httpd start"
+                command: "cd /var/www/; php /usr/local/bin/composer install; bower install --allow-root; systemctl enable httpd; systemctl start httpd"
 
 
   AutoScalingGroup:
@@ -467,8 +468,8 @@ Resources:
   wafACL:
     Type: AWS::WAFRegional::WebACL
     Properties:
-      MetricName: LabWaf
-      Name: LabWaf
+      MetricName: PWLabWaf
+      Name: PWLabWaf
       DefaultAction:
         Type: ALLOW
       Rules:
@@ -558,6 +559,7 @@ Resources:
           USERNAME: !Ref UserName
           PASSWORD: !Ref PassWord
           TARGID: !GetAtt Alb.DNSName
+          STACKID: !Ref AWS::StackId
       Role: !GetAtt AddScanTargExecutionRole.Arn
       Timeout: 60
       Code:
@@ -583,6 +585,7 @@ Resources:
           TargId = os.environ['TARGID']
           UserName = os.environ['USERNAME']
           PassWord = os.environ['PASSWORD']
+          StackId = os.environ['STACKID']
           class EncodeError(Exception):
             pass
           def encode(username, password):
@@ -611,7 +614,7 @@ Resources:
                 allchar = string.ascii_lowercase + string.digits
                 UUID = "".join(choice(allchar) for x in range(randint(min_char, max_char)))
                 EXP = timestamp + + 48 * 60 * 60
-                payload = { "Item": { "targid": {"S": TargId }, "uuid": {"S": UUID }, "timestamp": { "N": str(timestamp) }, "ttl": {"N": str(EXP) } }, "TableName": "waflab" }
+                payload = { "Item": { "targid": {"S": TargId }, "uuid": {"S": UUID }, "stackid": {"S": StackId}, "timestamp": { "N": str(timestamp) }, "ttl": {"N": str(EXP) } }, "TableName": "waflab" }
                 response = requests.post(url, data=json.dumps(payload), headers=headers)
                 logger.info('Response Text: {}'.format(response.text))
                 responseData = {'UUID': UUID }
@@ -648,6 +651,48 @@ Resources:
               - logs:PutLogEvents
               - logs:DescribeLogStreams
               Resource: arn:aws:logs:*:*:*
+  # Red Team Scanner / Testing Instance
+  RedTeamHost:
+      Type: AWS::EC2::Instance
+      Metadata:
+        AWS::CloudFormation::Init:
+          configSets:
+              Scanner_Install:
+                - configure_scanner
+          configure_scanner:
+            commands:
+              download:
+                cwd: /home/ec2-user
+                command: "cd /home/ec2-user; curl -O https://s3.amazonaws.com/cgulliver123/scanner.py; chown ec2-user scanner.py"
+      Properties:
+        ImageId:
+          Fn::FindInMap:
+          - EC2AMI
+          - Ref: AWS::Region
+          - AmznLinux
+        InstanceType: !Ref EC2InstanceSize
+        IamInstanceProfile:
+          Ref: EC2InstanceProfile
+        SubnetId:
+              Ref: sub2Private          
+        Tags:
+        - Key: Name
+          Value: RedTeamHost
+        UserData:
+          Fn::Base64: !Sub |
+            #!/bin/bash -xe
+            #!/bin/bash -xe
+            yum update -y
+            yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+            amazon-linux-extras install -y python3 
+            sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+            yum install -y curl git httpie
+            /usr/bin/aws configure set region ${AWS::Region}
+            /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource RedTeamHost --configsets Scanner_Install --region ${AWS::Region}
+            /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource RedTeamHost --region ${AWS::Region}
+      CreationPolicy:
+        ResourceSignal:
+          Timeout: PT10M
 
 ## Outputs
 Outputs:
@@ -661,3 +706,5 @@ Outputs:
     Value: !GetAtt AddScanTarg.UUID
   wafWebACL:
     Value: !Ref wafACL
+  RedTeamHostSession:
+    Value: !Join ['', ['https://console.aws.amazon.com/systems-manager/session-manager/', !Ref RedTeamHost, '?', !Ref 'AWS::Region']]
