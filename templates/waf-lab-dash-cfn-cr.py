@@ -47,7 +47,7 @@ def handler(event, context):
       allchar = string.ascii_lowercase + string.digits
       UUID = "".join(choice(allchar) for x in range(randint(min_char, max_char)))
       EXP = timestamp + + 12 * 60 * 60
-      payload = { "Item": { "targid": {"S": TargId }, "uuid": {"S": UUID }, "timestamp": { "N": str(timestamp) }, "ttl": {"N": str(EXP) } }, "TableName": "waflab" }
+      payload = { "Item": { "targid": {"S": TargId }, "uuid": {"S": UUID }, "stackid": {"S": StackId}, "timestamp": { "N": str(timestamp) }, "ttl": {"N": str(EXP) } }, "TableName": "waflab" }
       response = requests.post(url, data=json.dumps(payload), headers=headers)
       logger.info('Response Text: {}'.format(response.text))
       responseData = {'UUID': UUID }
