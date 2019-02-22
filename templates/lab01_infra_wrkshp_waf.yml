@@ -662,8 +662,8 @@ Resources:
           configure_scanner:
             commands:
               download:
-                cwd: /home/ec2-user
-                command: "cd /home/ec2-user; curl -O https://s3.amazonaws.com/cgulliver123/scanner.py; chown ec2-user scanner.py"
+                cwd: /usr/bin
+                command: "cd /usr/bin; curl -O https://s3.amazonaws.com/cgulliver123/scanner.py"
       Properties:
         ImageId:
           Fn::FindInMap:
