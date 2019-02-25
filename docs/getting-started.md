@@ -23,15 +23,5 @@ If you are doing this workshop as part of an AWS sponsored event, you will recei
 2.  Enter the **Promo Code** you received (these will be handed out at the beginning of the workshop).
 3.  Enter the **Security Check** and click **Redeem**.
 
-## Create a Cloud9 instance (optional)
-
-If the workshop you are doing requires you to run commands or scripts you will need to launch a an <a href="https://aws.amazon.com/cloud9/" target="_blank">AWS Cloud9</a> instance which will provide you with a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. The workshop instructions will specify if this needed.  Below are the instructions for launching an instance:
-
-1.  Browse to the <a href="https://console.aws.amazon.com/cloud9" target="_blank">AWS Cloud9</a> console.
-2.  Click **Create environment** on the right side.
-3.  Enter a **Name** (security-workshop-ide) and click **Next step**.
-4.  Leave all the defaults and click **Next step**.
-5.  Click **Create environment**.
-6.  The environment will open automatically after it has been provisioned.  Browse back to the <a href="https://console.aws.amazon.com/cloud9" target="_blank">AWS Cloud9</a> console and you can click **Open IDE** on the environment you created to access it at anytime.
 
 You are now setup for the workshops!

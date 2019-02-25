@@ -18,12 +18,14 @@ theme:
   logo: 'assets/images/aws_smile_logo.png'
   favicon: 'assets/images/aws-favicon.ico'
   feature:
-    tabs: true
+    tabs: false
   custom_dir: 'docs/theme'
 
 # Customization
 extra_css:
   - 'stylesheets/custom.css'
+extra_javascript:
+  - 'javascripts/extra.js'
 extra:
   social:
     - type: 'home'
@@ -45,9 +47,20 @@ markdown_extensions:
 nav:
 - Home: 'index.md'
 - Getting Started: 'getting-started.md'
-- Build Phase: 'build.md'
-- Assess Phase: 'assess.md'
-- Remediate Phase: 'remediate.md'
-- Verify Phase: 'verify.md'
+- Scenario: 'index.md'
+- Web Application Firewall:
+  - 'Scenario': 'waf/index.md'
+  - 'Build Phase': 'waf/build.md'
+  - 'Assess Phase': 'waf/assess.md'
+  - 'Remediate Phase': 'waf/remediate.md'
+  - 'Verify Phase': 'waf/verify.md'
+- Inspector and SM:
+  - 'Scenario': 'inspector-sm/index.md'
+  - 'Build Phase': 'inspector-sm/build.md'
+  - 'Assess Phase': 'inspector-sm/assess.md'
+  - 'Remediate Phase': 'inspector-sm/remediate.md'
+  - 'Verify Phase': 'inspector-sm/verify.md'
 - Contributing: 'contribute.md'
 - License: 'license.md'
+
+  

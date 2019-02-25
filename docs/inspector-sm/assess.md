@@ -1,4 +1,4 @@
-# Protecting Your Workloads - Assess Phase
+# Automating Security Assessment and Remediation Using Amazon Inspector and AWS Systems Manager - Assess Phase
 
 In the previous Build Phase, you built a CloudFormation stack that contains
 some Amazon EC2 instances behind an application load balancer.

@@ -1,11 +1,11 @@
 ---
-## Protecting Workloads on AWS - Lab 1 - AWS WAF
+## Protecting Workloads Workshop
 ##
 ## Changelog:
 ##  - Initial release
 ##
 ## Dependencies:
-## none
+## WAF, Inspector, Systems Manager
 
 AWSTemplateFormatVersion: '2010-09-09'
 Description: WAF Workshop Demo
@@ -33,12 +33,12 @@ Parameters:
   UserName:
     Type: String
     AllowedPattern: ".+"
-    Description: Username to add for scanning?
+    Description: Scanner Username
     Default: waflab
   PassWord:
     Type: String
     AllowedPattern: ".+"
-    Description: Password to add for scanning?
+    Description: Scanner Password
 #    NoEcho: 'True'
     Default: "AWS-SFOLoft187!?"
     AllowedPattern: ".+"
@@ -95,7 +95,7 @@ Metadata:
       EC2InstanceSize:
         default: EC2 instance size for Web servers
       MyTrustedNetwork:
-        default: Trusted Network CIDR. Specific CIDR reccommended.
+        default: Trusted Network CIDR.
       UserName:
         default: Username to add endpoint for scanning?
       PassWord:
@@ -399,7 +399,7 @@ Resources:
             commands:
               01getsite_content:
                 cwd: /tmp
-                command: "cd /tmp; curl -O https://s3.amazonaws.com/cgulliver123/archive.zip"
+                command: "cd /tmp; curl -O https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww_site.zip"
               02get_composer:
                 cwd: /tmp
                 env:
@@ -409,7 +409,7 @@ Resources:
                 command: "curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer"
               03putsite_content: 
                 cwd: /tmp
-                command: "unzip -qo /tmp/archive.zip -d /var/www/ && chmod -R 755 /var/www/*"
+                command: "unzip -qo /tmp/pww_site.zip -d /var/www/ && chmod -R 755 /var/www/*"
               04install_frameworks:
                 cwd: /var/www/
                 env:
@@ -468,8 +468,8 @@ Resources:
   wafACL:
     Type: AWS::WAFRegional::WebACL
     Properties:
-      MetricName: PWLabWaf
-      Name: PWLabWaf
+      MetricName: PWWLabWAF
+      Name: PWWLabWAF
       DefaultAction:
         Type: ALLOW
       Rules:
@@ -663,7 +663,7 @@ Resources:
             commands:
               download:
                 cwd: /usr/bin
-                command: "cd /usr/bin; curl -O https://s3.amazonaws.com/cgulliver123/scanner.py"
+                command: "cd /usr/bin; curl -O https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/scanner.py"
       Properties:
         ImageId:
           Fn::FindInMap:
@@ -702,7 +702,7 @@ Outputs:
     Value: !Ref AWS::AccountId
   albEndpoint:
     Value: !Join ['', ['http://', !GetAtt Alb.DNSName]]
-  ScannerUUID:
+  ScannerUID:
     Value: !GetAtt AddScanTarg.UUID
   wafWebACL:
     Value: !Ref wafACL

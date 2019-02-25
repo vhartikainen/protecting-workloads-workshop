@@ -1,8 +1,13 @@
-# AWS Protecting Your Workloads Workshop
+# AWS Protecting Workloads Workshop
 
-Welcome to the AWS Protecting Your Workloads Workshop!
+Welcome to the AWS Protecting Workloads Workshop!
 
-In this workshop, you will build an environment consisting of two Amazon Linux web servers behind an application load balancer.  The web servers will be running a PHP web site that contains several vulnerabilities.  You will then use Amazon Inspector, AWS WAF, and AWS Systems Manager to identify the vulnerabilities and remediate them.
+In this workshop, you will build an environment consisting of two Amazon Linux web servers behind an application load balancer. The web servers will be running a PHP web site that contains several vulnerabilities. You will then use AWS Web Application Firewall (WAF), Amazon Inspector and AWS Systems Manager to identify the vulnerabilities and remediate them. 
+
+## Scenario
+
+Welcome to Widgets LLC! You have just joined the team and your first task is to enhance security for the company website. The site runs on Linux, PHP and Apache and uses an EC2 an autoscaling group behind an Application Load Balancer (ALB). After an initial architecture assessment you have found multiple vulnerabilities and configuration issues. The dev team is swamped and will not be able to remediate code level issues for several weeks. Your mission in this workshop module is to build an effective set of controls that mitigate common attack vectors against web applications, and provide you with the monitoring capabilities needed to react to emerging threats when they occur.
+
 
 * **Level**: Intermediate - Advanced
 * **Duration**: 2 hours
@@ -10,11 +15,14 @@ In this workshop, you will build an environment consisting of two Amazon Linux w
 * **CAF Components**: Preventive
 * **Prerequisites**: AWS Account, Admin IAM User
 
-## Workshop Phases
+---
 
-To begin the workshop, proceed to the Build phase below.
+***To get started, review the architecture diagram below and proceed to module 1.***
 
-1. [Build](./build.md)
-2. [Assess](./assess.md)
-3. [Remediate](./remediate.md)
-4. [Verify](./verify.md)
+## Workshop Modules
+1. [Mitigating Common Web Application Attack Vectors Using AWS Web Application Firewall](./waf/index.md)
+2. [Automating Assessment and Remediation Using Amazon Inspector and AWS Systems Manager](./inspector-sm/index.md)
+
+## Workshop Architecture
+
+![Workshop Architecture](/images/pww-diagram.png)
