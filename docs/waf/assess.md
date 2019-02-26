@@ -14,7 +14,7 @@ You are now going to assess the posture of the site and then add an AWS WAF Web 
 
     ![cloudformation-stack-list](./images/assess-cloudformation-stacks.png)
 
-## Look up the ALB endpoint
+## Look up the Stack Outputs
 
 1.  Go to the stack outputs and look for the website URL stored in the **albEndpoint** output value. Test access to the site by right clicking and opening in a new tab. Note the URL for your site as this will be used throughout this workshoop module.
 
@@ -27,9 +27,47 @@ You are now going to assess the posture of the site and then add an AWS WAF Web 
 
 ## Website Scanning Environment and Tools
 
-In order to test your AWS WAF ruleset, this lab has been configured with two scanning capabilities; a Red Team Host where you can invoke manual scanning and an automated scanner which runs from outside your lab environment. The manual scanner can be invoked on your Red Team Host by typing the following command while in the _/usr/bin_ directory:
+In order to test your AWS WAF ruleset, this lab has been configured with two scanning capabilities; a Red Team Host where you can invoke manual scanning and an automated scanner which runs from outside your lab environment. 
+
+The scanner performs 10 basic tests designed to help simulate and mitigate common web attack vectors. 
+
+1. Canary GET
+2. Canary POST
+3. SQL Injection (SQLi) in Query String
+4. SQL Injection (SQLi) in Cookie
+5. Cross Site Scripting (XSS) in Query String
+6. Cross Site Scripting (XSS) in Body
+7. Inclusion in Modules
+8. Cross Site Request Forgery (CSRF) Token Missing
+9. Cross Site Request Forgery (CSRF) Token Invalid
+10. Path Traversal 
+
+___These basic tests are designed to provide common examples you can use to test AWS WAF functionality. You should perform thorough analysis and testing when implementing rules into your production environments.___
+
+### Website Scanning Environment and Tools - Manual Scanning
+Once you have started a Session Manager connection to your Red Team Host, the scanner script can be invoked by typing the following command while in the _/usr/bin_ directory:
 
 ````
 python3 scanner.py http://your-alb-endpoint
 ````
+![Initial Scan Terminal](./images/initial-scan-term.svg)
 
+The scanner.py script will run each of the tests above and report back the following information:
+
+- __Request__: The HTTP request command used.
+- __Test Name__: The name of the test from list above.
+- __Result__: The HTTP status code returned.
+
+As you can see by running the script there are several vulnerabilities that need to be addressed. In the remnediate phase you will configure an AWS WAF Web ACL to block these requests. When AWS WAF blocks a web request based on the conditions that you specify, it returns HTTP status code 403 (Forbidden). 
+
+!!! info "Note about Testing Tool"
+    The scanner.py script uses an open source <a href="https://ifconfig.co/" target="_blank">HTTP client called httpie</a>. HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.
+
+
+### Website Scanning Environment and Tools - Automated Scanning
+
+In addition to the ad hock scanning, automatied scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop particpants. You can identify the scanning results for your website using the Unique Id in the CloudFormation outputs.
+
+![WAF Lab Centralized Dashboard](./images/waflabdash.png)
+
+Click [here](./remediate.md) to proceed to the Remediate Phase.
