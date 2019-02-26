@@ -13,7 +13,7 @@
         <meta name="description" content="This workshop shows how you can protect a web site using AWS Security Services">
       
       
-        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/verify/">
+        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/waf/assess/">
       
       
         <meta name="author" content="aws-security-workshops@amazon.com">
@@ -37,21 +37,21 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="../assets/images/aws-favicon.ico">
+      <link rel="shortcut icon" href="../../assets/images/aws-favicon.ico">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
     
     
       
-        <title>Verify Phase - Protecting Your WorkLoads With AWS WAF, Amazon Inspector, and AWS Systems Manger</title>
+        <title>Assess Phase - Protecting Your Workloads With AWS WAF, Amazon Inspector, and AWS Systems Manager</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.982221ab.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
       
       
     
     
-      <script src="../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
     
     
       
@@ -60,10 +60,10 @@
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
-      <link rel="stylesheet" href="../stylesheets/custom.css">
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
     
     
       
@@ -102,7 +102,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#protecting-your-workloads-verify-phase" tabindex="1" class="md-skip">
+      <a href="#mitigating-common-web-application-attack-vectors-using-aws-waf-assess-phase" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -139,7 +139,7 @@
               title="Amazon Web Services"
               class="md-header-nav__button md-logo">
             
-              <img src="../assets/images/aws_smile_logo.png" width="40" height="24" />
+              <img src="../../assets/images/aws_smile_logo.png" width="40" height="24" />
             
           </a>
         </div>
@@ -157,10 +157,10 @@
             
               
                 <span class="md-header-nav__topic">
-                  Protecting Your WorkLoads With AWS WAF, Amazon Inspector, and AWS Systems Manger
+                  Protecting Your Workloads With AWS WAF, Amazon Inspector, and AWS Systems Manager
                 </span>
                 <span class="md-header-nav__topic">
-                  Verify Phase
+                  Assess Phase
                 </span>
               
             
@@ -246,40 +246,6 @@
         
       
       
-        
-
-<nav class="md-tabs" data-md-component="tabs">
-  <div class="md-tabs__inner md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  <li class="md-tabs__item">
-    
-      <a href=".." title="Home" class="md-tabs__link md-tabs__link--active">
-        Home
-      </a>
-    
-  </li>
-
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </ul>
-  </div>
-</nav>
-      
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
           
@@ -312,9 +278,9 @@
   <!-- Site title -->
   <label class="md-nav__title md-nav__title--site" for="__drawer">
     <a href="https://protecting-workloads.awssecworkshops.com/"
-        title="Protecting Your WorkLoads With AWS WAF, Amazon Inspector, and AWS Systems Manger" class="md-nav__button md-logo">
+        title="Protecting Your Workloads With AWS WAF, Amazon Inspector, and AWS Systems Manager" class="md-nav__button md-logo">
       
-        <img src="../assets/images/aws_smile_logo.png" width="48" height="48" />
+        <img src="../../assets/images/aws_smile_logo.png" width="48" height="48" />
       
     </a>
     
@@ -352,7 +318,7 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Home" class="md-nav__link">
+    <a href="../.." title="Home" class="md-nav__link">
       Home
     </a>
   </li>
@@ -364,7 +330,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
+    <a href="../../getting-started/" title="Getting Started" class="md-nav__link">
       Getting Started
     </a>
   </li>
@@ -376,32 +342,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../build/" title="Build Phase" class="md-nav__link">
-      Build Phase
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../assess/" title="Assess Phase" class="md-nav__link">
-      Assess Phase
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../remediate/" title="Remediate Phase" class="md-nav__link">
-      Remediate Phase
+    <a href="../.." title="Scenario" class="md-nav__link">
+      Scenario
     </a>
   </li>
 
@@ -413,6 +355,51 @@
   
 
 
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Web Application Firewall
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Web Application Firewall
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Scenario" class="md-nav__link">
+      Scenario
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../build/" title="Build Phase" class="md-nav__link">
+      Build Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
   <li class="md-nav__item md-nav__item--active">
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
@@ -420,10 +407,186 @@
       
     
     
-    <a href="./" title="Verify Phase" class="md-nav__link md-nav__link--active">
-      Verify Phase
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Assess Phase
+      </label>
+    
+    <a href="./" title="Assess Phase" class="md-nav__link md-nav__link--active">
+      Assess Phase
     </a>
     
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#identify-the-stack-that-you-built" title="Identify the stack that you built" class="md-nav__link">
+    Identify the stack that you built
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#look-up-the-stack-outputs" title="Look up the Stack Outputs" class="md-nav__link">
+    Look up the Stack Outputs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#website-scanning-environment-and-tools" title="Website Scanning Environment and Tools" class="md-nav__link">
+    Website Scanning Environment and Tools
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#website-scanning-environment-and-tools-manual-scanning" title="Website Scanning Environment and Tools - Manual Scanning" class="md-nav__link">
+    Website Scanning Environment and Tools - Manual Scanning
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#website-scanning-environment-and-tools-automated-scanning" title="Website Scanning Environment and Tools - Automated Scanning" class="md-nav__link">
+    Website Scanning Environment and Tools - Automated Scanning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../remediate/" title="Remediate Phase" class="md-nav__link">
+      Remediate Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../verify/" title="Verify Phase" class="md-nav__link">
+      Verify Phase
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Inspector and SM
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Inspector and SM
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../inspector-sm/" title="Scenario" class="md-nav__link">
+      Scenario
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../inspector-sm/build/" title="Build Phase" class="md-nav__link">
+      Build Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../inspector-sm/assess/" title="Assess Phase" class="md-nav__link">
+      Assess Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../inspector-sm/remediate/" title="Remediate Phase" class="md-nav__link">
+      Remediate Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../inspector-sm/verify/" title="Verify Phase" class="md-nav__link">
+      Verify Phase
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
   </li>
 
     
@@ -433,7 +596,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../contribute/" title="Contributing" class="md-nav__link">
+    <a href="../../contribute/" title="Contributing" class="md-nav__link">
       Contributing
     </a>
   </li>
@@ -445,7 +608,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../license/" title="License" class="md-nav__link">
+    <a href="../../license/" title="License" class="md-nav__link">
       License
     </a>
   </li>
@@ -468,6 +631,56 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#identify-the-stack-that-you-built" title="Identify the stack that you built" class="md-nav__link">
+    Identify the stack that you built
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#look-up-the-stack-outputs" title="Look up the Stack Outputs" class="md-nav__link">
+    Look up the Stack Outputs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#website-scanning-environment-and-tools" title="Website Scanning Environment and Tools" class="md-nav__link">
+    Website Scanning Environment and Tools
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#website-scanning-environment-and-tools-manual-scanning" title="Website Scanning Environment and Tools - Manual Scanning" class="md-nav__link">
+    Website Scanning Environment and Tools - Manual Scanning
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#website-scanning-environment-and-tools-automated-scanning" title="Website Scanning Environment and Tools - Automated Scanning" class="md-nav__link">
+    Website Scanning Environment and Tools - Automated Scanning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -478,10 +691,79 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/verify.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/waf/assess.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="protecting-your-workloads-verify-phase">Protecting Your Workloads - Verify Phase</h1>
+                <h1 id="mitigating-common-web-application-attack-vectors-using-aws-waf-assess-phase">Mitigating Common Web Application Attack Vectors Using AWS WAF - Assess Phase</h1>
+<p>In the previous Build Phase, you built a CloudFormation stack that contains
+a PHP website on Amazon EC2 instances behind an application load balancer.
+You are now going to assess the posture of the site and then add an AWS WAF Web ACL to your site. In this section you will do the following tasks:</p>
+<ol>
+<li>Identify the stack you built</li>
+<li>Look up the output values for your environment and test access</li>
+<li>Use your Red Team Host to test for website vulnerabilities</li>
+</ol>
+<h2 id="identify-the-stack-that-you-built">Identify the stack that you built</h2>
+<ol>
+<li>
+<p>Go to the CloudFormation console in the same AWS region in which you created the stack in the Build Phase. You should see a list of stacks similar to the figure below. Locate the stack you created. In this documentation, the name of the stack is <em>pww</em>.  Copy this stack name into a scratch file on your workstation in case you need it later.</p>
+<p><img alt="cloudformation-stack-list" src="../images/assess-cloudformation-stacks.png" /></p>
+</li>
+</ol>
+<h2 id="look-up-the-stack-outputs">Look up the Stack Outputs</h2>
+<ol>
+<li>
+<p>Go to the stack outputs and look for the website URL stored in the <strong>albEndpoint</strong> output value. Test access to the site by right clicking and opening in a new tab. Note the URL for your site as this will be used throughout this workshoop module.</p>
+</li>
+<li>
+<p>While in the stack outputs, note the <strong>ScannerUID</strong> value. This Id value will be used to identify the posture of your site within the automated scanner and the associated dashboard.</p>
+</li>
+<li>
+<p>While still in stack outputs, right click the link in <strong>RedTeamHostSession</strong> and open in new tab. This will launch an AWS Systems Manager Session Manager to the host you will use to perform add hock scans against your site URL. </p>
+</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">AWS Systems Manager Session Manager</p>
+<p>Session Manager is a fully managed AWS Systems Manager capability that lets you manage your Amazon EC2 instances through an interactive one-click browser-based shell or through the AWS CLI. Session Manager provides secure and auditable instance management without the need to open inbound ports, maintain bastion hosts, or manage SSH keys. </p>
+</div>
+<h2 id="website-scanning-environment-and-tools">Website Scanning Environment and Tools</h2>
+<p>In order to test your AWS WAF ruleset, this lab has been configured with two scanning capabilities; a Red Team Host where you can invoke manual scanning and an automated scanner which runs from outside your lab environment. </p>
+<p>The scanner performs 10 basic tests designed to help simulate and mitigate common web attack vectors. </p>
+<ol>
+<li>Canary GET</li>
+<li>Canary POST</li>
+<li>SQL Injection (SQLi) in Query String</li>
+<li>SQL Injection (SQLi) in Cookie</li>
+<li>Cross Site Scripting (XSS) in Query String</li>
+<li>Cross Site Scripting (XSS) in Body</li>
+<li>Inclusion in Modules</li>
+<li>Cross Site Request Forgery (CSRF) Token Missing</li>
+<li>Cross Site Request Forgery (CSRF) Token Invalid</li>
+<li>Path Traversal </li>
+</ol>
+<p><strong><em>These basic tests are designed to provide common examples you can use to test AWS WAF functionality. You should perform thorough analysis and testing when implementing rules into your production environments.</em></strong></p>
+<h3 id="website-scanning-environment-and-tools-manual-scanning">Website Scanning Environment and Tools - Manual Scanning</h3>
+<p>Once you have started a Session Manager connection to your Red Team Host, the scanner script can be invoked by typing the following command while in the <em>/usr/bin</em> directory:</p>
+<div class="codehilite"><pre><span></span>python3 scanner.py http://your-alb-endpoint
+</pre></div>
+
+
+<p><img alt="Initial Scan Terminal" src="../images/initial-scan-term.svg" /></p>
+<p>The scanner.py script will run each of the tests above and report back the following information:</p>
+<ul>
+<li><strong>Request</strong>: The HTTP request command used.</li>
+<li><strong>Test Name</strong>: The name of the test from list above.</li>
+<li><strong>Result</strong>: The HTTP status code returned.</li>
+</ul>
+<p>As you can see by running the script there are several vulnerabilities that need to be addressed. In the remnediate phase you will configure an AWS WAF Web ACL to block these requests. When AWS WAF blocks a web request based on the conditions that you specify, it returns HTTP status code 403 (Forbidden). </p>
+<div class="admonition info">
+<p class="admonition-title">Note about Testing Tool</p>
+<p>The scanner.py script uses an open source <a href="https://ifconfig.co/" target="_blank">HTTP client called httpie</a>. HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.</p>
+</div>
+<h3 id="website-scanning-environment-and-tools-automated-scanning">Website Scanning Environment and Tools - Automated Scanning</h3>
+<p>In addition to the ad hock scanning, automatied scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop particpants. You can identify the scanning results for your website using the Unique Id in the CloudFormation outputs.</p>
+<p><img alt="WAF Lab Centralized Dashboard" src="../images/waflabdash.png" /></p>
+<p>Click <a href="../remediate/">here</a> to proceed to the Remediate Phase.</p>
                 
                   
                 
@@ -502,7 +784,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../remediate/" title="Remediate Phase" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../build/" title="Build Phase" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -511,19 +793,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Remediate Phase
+                Build Phase
               </span>
             </div>
           </a>
         
         
-          <a href="../contribute/" title="Contributing" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../remediate/" title="Remediate Phase" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Contributing
+                Remediate Phase
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -550,7 +832,7 @@
       </div>
       
   <div class="md-footer-social">
-    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
     
       <a href="https://awssecworkshops.com" class="md-footer-social__link fa fa-home"></a>
     
@@ -568,9 +850,11 @@
       
     </div>
     
-      <script src="../assets/javascripts/application.b806dc00.js"></script>
+      <script src="../../assets/javascripts/application.b806dc00.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="../../javascripts/extra.js"></script>
       
     
   </body>

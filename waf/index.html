@@ -13,7 +13,7 @@
         <meta name="description" content="This workshop shows how you can protect a web site using AWS Security Services">
       
       
-        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/build/">
+        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/waf/">
       
       
         <meta name="author" content="aws-security-workshops@amazon.com">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Build Phase - Protecting Your WorkLoads With AWS WAF, Amazon Inspector, and AWS Systems Manger</title>
+        <title>Scenario - Protecting Your Workloads With AWS WAF, Amazon Inspector, and AWS Systems Manager</title>
       
     
     
@@ -102,7 +102,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#protecting-your-workloads-build-phase" tabindex="1" class="md-skip">
+      <a href="#mitigating-common-web-application-attack-vectors-using-aws-waf" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -157,10 +157,10 @@
             
               
                 <span class="md-header-nav__topic">
-                  Protecting Your WorkLoads With AWS WAF, Amazon Inspector, and AWS Systems Manger
+                  Protecting Your Workloads With AWS WAF, Amazon Inspector, and AWS Systems Manager
                 </span>
                 <span class="md-header-nav__topic">
-                  Build Phase
+                  Scenario
                 </span>
               
             
@@ -246,40 +246,6 @@
         
       
       
-        
-
-<nav class="md-tabs" data-md-component="tabs">
-  <div class="md-tabs__inner md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  <li class="md-tabs__item">
-    
-      <a href=".." title="Home" class="md-tabs__link md-tabs__link--active">
-        Home
-      </a>
-    
-  </li>
-
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </ul>
-  </div>
-</nav>
-      
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
           
@@ -312,7 +278,7 @@
   <!-- Site title -->
   <label class="md-nav__title md-nav__title--site" for="__drawer">
     <a href="https://protecting-workloads.awssecworkshops.com/"
-        title="Protecting Your WorkLoads With AWS WAF, Amazon Inspector, and AWS Systems Manger" class="md-nav__button md-logo">
+        title="Protecting Your Workloads With AWS WAF, Amazon Inspector, and AWS Systems Manager" class="md-nav__button md-logo">
       
         <img src="../assets/images/aws_smile_logo.png" width="48" height="48" />
       
@@ -374,6 +340,39 @@
       
       
 
+
+  <li class="md-nav__item">
+    <a href=".." title="Scenario" class="md-nav__link">
+      Scenario
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Web Application Firewall
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Web Application Firewall
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
   
 
 
@@ -384,34 +383,92 @@
       
     
     
-    <a href="./" title="Build Phase" class="md-nav__link md-nav__link--active">
-      Build Phase
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Scenario
+      </label>
+    
+    <a href="./" title="Scenario" class="md-nav__link md-nav__link--active">
+      Scenario
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#module-phases" title="Module Phases" class="md-nav__link">
+    Module Phases
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
-    
-      
-      
-      
+        
+          
+          
+          
 
 
   <li class="md-nav__item">
-    <a href="../assess/" title="Assess Phase" class="md-nav__link">
+    <a href="build/" title="Build Phase" class="md-nav__link">
+      Build Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="assess/" title="Assess Phase" class="md-nav__link">
       Assess Phase
     </a>
   </li>
 
-    
-      
-      
-      
+        
+          
+          
+          
 
 
   <li class="md-nav__item">
-    <a href="../remediate/" title="Remediate Phase" class="md-nav__link">
+    <a href="remediate/" title="Remediate Phase" class="md-nav__link">
       Remediate Phase
     </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="verify/" title="Verify Phase" class="md-nav__link">
+      Verify Phase
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
   </li>
 
     
@@ -420,10 +477,82 @@
       
 
 
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Inspector and SM
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Inspector and SM
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
   <li class="md-nav__item">
-    <a href="../verify/" title="Verify Phase" class="md-nav__link">
+    <a href="../inspector-sm/" title="Scenario" class="md-nav__link">
+      Scenario
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../inspector-sm/build/" title="Build Phase" class="md-nav__link">
+      Build Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../inspector-sm/assess/" title="Assess Phase" class="md-nav__link">
+      Assess Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../inspector-sm/remediate/" title="Remediate Phase" class="md-nav__link">
+      Remediate Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../inspector-sm/verify/" title="Verify Phase" class="md-nav__link">
       Verify Phase
     </a>
+  </li>
+
+        
+      </ul>
+    </nav>
   </li>
 
     
@@ -468,6 +597,22 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#module-phases" title="Module Phases" class="md-nav__link">
+    Module Phases
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -478,11 +623,19 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/build.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/waf/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="protecting-your-workloads-build-phase">Protecting Your Workloads - Build Phase</h1>
-<p>Click <a href="../assess/">here</a> to proceed to the Assess Phase.</p>
+                <h1 id="mitigating-common-web-application-attack-vectors-using-aws-waf">Mitigating Common Web Application Attack Vectors Using AWS WAF</h1>
+<p>For your initial task, you will configure AWS WAF to protect your site from common attacks such as SQL injection and cross site scripting. AWS WAF is a web application firewall that helps protect your web applications from common web exploits that could affect application availability, compromise security or consume excessive resources. </p>
+<h2 id="module-phases">Module Phases</h2>
+<p>To begin the module, proceed to the Build phase below.</p>
+<ol>
+<li><a href="build/">Build</a></li>
+<li><a href="assess/">Assess</a></li>
+<li><a href="remediate/">Remediate</a></li>
+<li><a href="verify/">Verify</a></li>
+</ol>
                 
                   
                 
@@ -503,7 +656,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../getting-started/" title="Getting Started" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href=".." title="Scenario" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -512,19 +665,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Getting Started
+                Scenario
               </span>
             </div>
           </a>
         
         
-          <a href="../assess/" title="Assess Phase" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="build/" title="Build Phase" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Assess Phase
+                Build Phase
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -572,6 +725,8 @@
       <script src="../assets/javascripts/application.b806dc00.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+        <script src="../javascripts/extra.js"></script>
       
     
   </body>
