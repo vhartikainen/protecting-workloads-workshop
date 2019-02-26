@@ -1,13 +1,16 @@
-# Automating Assessment and Remediation Using Amazon Inspector and AWS Systems Manager
+# Under Construction! - AWS Protecting Your Workloads Workshop
 
-Now that you have deployed AWS WAF, your next effort will consist of using Amazon inspector and AWS Systems Manager to identify and remediate security issues on yoiur EC2 instances.
+Welcome to the AWS Protecting Your Workloads Workshop!
 
-Amazon Inspector is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS. Amazon Inspector automatically assesses applications for exposure, vulnerabilities, and deviations from best practices. 
+In this workshop, you will build an environment consisting of two Amazon Linux web servers behind an application load balancer.  The web servers will be running a PHP web site that contains several vulnerabilities.  You will then use Amazon Inspector, AWS WAF, and AWS Systems Manager to identify the vulnerabilities and remediate them.
 
-AWS Systems Manager allows you to centralize operational data from multiple AWS services and automate tasks across your AWS resources.
+* **Level**: Intermediate - Advanced
+* **Duration**: 2 hours
+* **CSF Functions**: Protect
+* **CAF Components**: Preventive
+* **Prerequisites**: AWS Account, Admin IAM User
 
-
-## Module Phases
+## Workshop Phases
 
 To begin the workshop, proceed to the Build phase below.
 

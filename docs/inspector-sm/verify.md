@@ -1,1 +1,1 @@
-# Automating Assessment and Remediation Using Amazon Inspector and AWS Systems Manager - Verify Phase
+# Protecting Your Workloads - Verify Phase
