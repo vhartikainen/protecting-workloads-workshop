@@ -5,7 +5,7 @@
 To setup the workshop environment, launch the CloudFormation stack below in the preferred AWS region using the "Deploy to AWS" links below. This will automatically take you to the console to run the template.
 
 !!! info "Note About Workshop and AWS Account"
-    #### _We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account._
+    __We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account.__
 
 ---
 
