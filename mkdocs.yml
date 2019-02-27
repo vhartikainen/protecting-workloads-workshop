@@ -45,8 +45,8 @@ markdown_extensions:
 
 # Navigation
 nav:
-- Getting Started: 'getting-started.md'
 - Scenario: 'index.md'
+- Getting Started: 'getting-started.md'
 - Web Application Firewall:
   - 'Scenario': 'waf/index.md'
   - 'Build Phase': 'waf/build.md'

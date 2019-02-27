@@ -15,13 +15,8 @@ Welcome to Widgets LLC! You have just joined the team and your first task is to 
 * **CAF Components**: Preventive
 * **Prerequisites**: AWS Account, Admin IAM User
 
----
-
-***To get started, review the architecture diagram below and proceed to module 1.***
-
-## Workshop Modules
-1. [Mitigating Common Web Application Attack Vectors Using AWS Web Application Firewall](./waf/index.md)
-2. [Automating Assessment and Remediation Using Amazon Inspector and AWS Systems Manager](./inspector-sm/index.md)
+!!! info "Before you Begin"
+    __Please review the architecture diagram below and [the getting started notes](./getting-started.md) before proceeding.__
 
 ## Workshop Architecture
 
