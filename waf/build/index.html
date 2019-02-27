@@ -42,7 +42,7 @@
     
     
       
-        <title>Build Phase - Protecting Your Workloads With AWS WAF, Amazon Inspector, and AWS Systems Manager</title>
+        <title>Build Phase - Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager</title>
       
     
     
@@ -157,7 +157,7 @@
             
               
                 <span class="md-header-nav__topic">
-                  Protecting Your Workloads With AWS WAF, Amazon Inspector, and AWS Systems Manager
+                  Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager
                 </span>
                 <span class="md-header-nav__topic">
                   Build Phase
@@ -278,7 +278,7 @@
   <!-- Site title -->
   <label class="md-nav__title md-nav__title--site" for="__drawer">
     <a href="https://protecting-workloads.awssecworkshops.com/"
-        title="Protecting Your Workloads With AWS WAF, Amazon Inspector, and AWS Systems Manager" class="md-nav__button md-logo">
+        title="Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager" class="md-nav__button md-logo">
       
         <img src="../../assets/images/aws_smile_logo.png" width="48" height="48" />
       
@@ -318,18 +318,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../.." title="Home" class="md-nav__link">
-      Home
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../../getting-started/" title="Getting Started" class="md-nav__link">
       Getting Started
     </a>
@@ -357,13 +345,13 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
-    <label class="md-nav__link" for="nav-4">
+    <label class="md-nav__link" for="nav-3">
       Web Application Firewall
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
+      <label class="md-nav__title" for="nav-3">
         Web Application Firewall
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -417,6 +405,19 @@
   <a href="#environment-setup" title="Environment setup" class="md-nav__link">
     Environment setup
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#we-stronly-recommend-that-you-use-a-non-production-aws-account-for-this-workshop-such-as-a-training-sandbox-or-personal-account" title="We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account." class="md-nav__link">
+    We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -479,13 +480,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
-    <label class="md-nav__link" for="nav-5">
+    <label class="md-nav__link" for="nav-4">
       Inspector and SM
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-5">
+      <label class="md-nav__title" for="nav-4">
         Inspector and SM
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -562,6 +563,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../cleanup/" title="Cleanup" class="md-nav__link">
+      Cleanup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../../contribute/" title="Contributing" class="md-nav__link">
       Contributing
     </a>
@@ -605,6 +618,19 @@
     Environment setup
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#we-stronly-recommend-that-you-use-a-non-production-aws-account-for-this-workshop-such-as-a-training-sandbox-or-personal-account" title="We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account." class="md-nav__link">
+    We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
       
@@ -629,6 +655,10 @@
                 <h1 id="mitigating-common-web-application-attack-vectors-using-aws-waf-build-phase">Mitigating Common Web Application Attack Vectors Using AWS WAF - Build Phase</h1>
 <h2 id="environment-setup">Environment setup</h2>
 <p>To setup the workshop environment, launch the CloudFormation stack below in the preferred AWS region using the "Deploy to AWS" links below. This will automatically take you to the console to run the template.</p>
+<div class="admonition info">
+<p class="admonition-title">Note About Workshop and AWS Account</p>
+<h4 id="we-stronly-recommend-that-you-use-a-non-production-aws-account-for-this-workshop-such-as-a-training-sandbox-or-personal-account"><em>We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account.</em></h4>
+</div>
 <hr />
 <p><strong>US West 2 (Oregon)</strong> &nbsp; &nbsp; &nbsp; &nbsp; 
 <a href="https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww-workshop-env-build.yml" target="_blank"><img alt="Deploy in us-est-2" src="/images/deploy-to-aws.png" /></a></p>
@@ -641,11 +671,13 @@
 <p>Click <strong><em>Next</em></strong> on the Specify Template section.</p>
 </li>
 <li>
-<p>On the Specify stack details step, update the following Parmeters:</p>
+<p>On the Specify stack details step, update the following parameters:</p>
 <ul>
-<li>Scanner Username: <strong>Enter the username provided by the workshop team.</strong></li>
-<li>Scanner Password: <strong>Enter the password provided by the workshop team.</strong></li>
+<li>Automated Scanner: <strong>Only for AWS sponsored event. Set to true if event is AWS sponsored. Otherwise set to false.</strong></li>
+<li>Scanner Username: <strong>Only for AWS sponsored event. Enter the username provided by the workshop team. Otherwise leave default.</strong></li>
+<li>Scanner Password: <strong>Only for AWS sponsored event. Enter the password provided by the workshop team. Otherwise leave default.</strong></li>
 <li>Trusted Network CIDR: Enter a trusted IP or CIDR range you will access the site from using a web browser. You can optain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host.</li>
+<li>Keep the defaults for the rest of the parameters.</li>
 </ul>
 </li>
 <li>
@@ -659,6 +691,7 @@
 </li>
 </ol>
 <p>This will bring you back to the CloudFormation console. You can refresh the page to see the stack starting to create. Before moving on, make sure the stack is in a <strong>CREATE_COMPLETE</strong> status. This should take ~8 minutes.</p>
+<hr />
 <p>Click <a href="../assess/">here</a> to proceed to the Assess Phase.</p>
                 
                   

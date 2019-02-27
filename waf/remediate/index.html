@@ -42,7 +42,7 @@
     
     
       
-        <title>Remediate Phase - Protecting Your Workloads With AWS WAF, Amazon Inspector, and AWS Systems Manager</title>
+        <title>Remediate Phase - Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager</title>
       
     
     
@@ -157,7 +157,7 @@
             
               
                 <span class="md-header-nav__topic">
-                  Protecting Your Workloads With AWS WAF, Amazon Inspector, and AWS Systems Manager
+                  Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager
                 </span>
                 <span class="md-header-nav__topic">
                   Remediate Phase
@@ -278,7 +278,7 @@
   <!-- Site title -->
   <label class="md-nav__title md-nav__title--site" for="__drawer">
     <a href="https://protecting-workloads.awssecworkshops.com/"
-        title="Protecting Your Workloads With AWS WAF, Amazon Inspector, and AWS Systems Manager" class="md-nav__button md-logo">
+        title="Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager" class="md-nav__button md-logo">
       
         <img src="../../assets/images/aws_smile_logo.png" width="48" height="48" />
       
@@ -318,18 +318,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../.." title="Home" class="md-nav__link">
-      Home
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../../getting-started/" title="Getting Started" class="md-nav__link">
       Getting Started
     </a>
@@ -357,13 +345,13 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
-    <label class="md-nav__link" for="nav-4">
+    <label class="md-nav__link" for="nav-3">
       Web Application Firewall
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
+      <label class="md-nav__title" for="nav-3">
         Web Application Firewall
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -419,9 +407,175 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Remediate Phase
+      </label>
+    
     <a href="./" title="Remediate Phase" class="md-nav__link md-nav__link--active">
       Remediate Phase
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#identify-the-waf-acl-for-your-site" title="Identify the WAF ACL for your Site" class="md-nav__link">
+    Identify the WAF ACL for your Site
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-waf-rule-design-and-considerations" title="AWS WAF rule design and considerations" class="md-nav__link">
+    AWS WAF rule design and considerations
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basics" title="Basics" class="md-nav__link">
+    Basics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rule-design" title="Rule Design" class="md-nav__link">
+    Rule Design
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rule-purpose" title="Rule purpose:" class="md-nav__link">
+    Rule purpose:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-request-components" title="HTTP request components:" class="md-nav__link">
+    HTTP request components:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-the-purpose-of-the-rule-using-boolean-logic" title="Define the purpose of the rule using Boolean logic:" class="md-nav__link">
+    Define the purpose of the rule using Boolean logic:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditions-to-implement" title="Conditions to implement:" class="md-nav__link">
+    Conditions to implement:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relevant-transformations" title="Relevant transformations:" class="md-nav__link">
+    Relevant transformations:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rules-to-implement" title="Rules to implement:" class="md-nav__link">
+    Rules to implement:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#console-walkthrough-creating-a-condition-and-rule" title="Console Walkthrough - Creating a Condition and Rule" class="md-nav__link">
+    Console Walkthrough - Creating a Condition and Rule
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mitigating-common-vulnerabilities-monitoring-for-attacks" title="Mitigating Common Vulnerabilities &amp; Monitoring for Attacks" class="md-nav__link">
+    Mitigating Common Vulnerabilities &amp; Monitoring for Attacks
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-sql-injection-cross-site-scripting-mitigation" title="1. SQL Injection &amp; Cross Site Scripting Mitigation" class="md-nav__link">
+    1. SQL Injection &amp; Cross Site Scripting Mitigation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-limit-attack-footprint" title="2. Limit Attack Footprint" class="md-nav__link">
+    2. Limit Attack Footprint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-enforce-request-hygiene" title="3. Enforce Request Hygiene" class="md-nav__link">
+    3. Enforce Request Hygiene
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-mitigate-file-inclusion-path-traversal" title="4. Mitigate File Inclusion &amp; Path Traversal" class="md-nav__link">
+    4. Mitigate File Inclusion &amp; Path Traversal
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-detect-mitigate-anomalies" title="5. Detect &amp; Mitigate Anomalies" class="md-nav__link">
+    5. Detect &amp; Mitigate Anomalies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-reputation-lists-nuisance-requests-optional" title="6. Reputation Lists, Nuisance Requests (Optional)" class="md-nav__link">
+    6. Reputation Lists, Nuisance Requests (Optional)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -450,13 +604,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
-    <label class="md-nav__link" for="nav-5">
+    <label class="md-nav__link" for="nav-4">
       Inspector and SM
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-5">
+      <label class="md-nav__title" for="nav-4">
         Inspector and SM
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -533,6 +687,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../cleanup/" title="Cleanup" class="md-nav__link">
+      Cleanup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../../contribute/" title="Contributing" class="md-nav__link">
       Contributing
     </a>
@@ -568,6 +734,159 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#identify-the-waf-acl-for-your-site" title="Identify the WAF ACL for your Site" class="md-nav__link">
+    Identify the WAF ACL for your Site
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-waf-rule-design-and-considerations" title="AWS WAF rule design and considerations" class="md-nav__link">
+    AWS WAF rule design and considerations
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basics" title="Basics" class="md-nav__link">
+    Basics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rule-design" title="Rule Design" class="md-nav__link">
+    Rule Design
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rule-purpose" title="Rule purpose:" class="md-nav__link">
+    Rule purpose:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-request-components" title="HTTP request components:" class="md-nav__link">
+    HTTP request components:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-the-purpose-of-the-rule-using-boolean-logic" title="Define the purpose of the rule using Boolean logic:" class="md-nav__link">
+    Define the purpose of the rule using Boolean logic:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditions-to-implement" title="Conditions to implement:" class="md-nav__link">
+    Conditions to implement:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relevant-transformations" title="Relevant transformations:" class="md-nav__link">
+    Relevant transformations:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rules-to-implement" title="Rules to implement:" class="md-nav__link">
+    Rules to implement:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#console-walkthrough-creating-a-condition-and-rule" title="Console Walkthrough - Creating a Condition and Rule" class="md-nav__link">
+    Console Walkthrough - Creating a Condition and Rule
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mitigating-common-vulnerabilities-monitoring-for-attacks" title="Mitigating Common Vulnerabilities &amp; Monitoring for Attacks" class="md-nav__link">
+    Mitigating Common Vulnerabilities &amp; Monitoring for Attacks
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-sql-injection-cross-site-scripting-mitigation" title="1. SQL Injection &amp; Cross Site Scripting Mitigation" class="md-nav__link">
+    1. SQL Injection &amp; Cross Site Scripting Mitigation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-limit-attack-footprint" title="2. Limit Attack Footprint" class="md-nav__link">
+    2. Limit Attack Footprint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-enforce-request-hygiene" title="3. Enforce Request Hygiene" class="md-nav__link">
+    3. Enforce Request Hygiene
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-mitigate-file-inclusion-path-traversal" title="4. Mitigate File Inclusion &amp; Path Traversal" class="md-nav__link">
+    4. Mitigate File Inclusion &amp; Path Traversal
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-detect-mitigate-anomalies" title="5. Detect &amp; Mitigate Anomalies" class="md-nav__link">
+    5. Detect &amp; Mitigate Anomalies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-reputation-lists-nuisance-requests-optional" title="6. Reputation Lists, Nuisance Requests (Optional)" class="md-nav__link">
+    6. Reputation Lists, Nuisance Requests (Optional)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -582,6 +901,238 @@
                 
                 
                 <h1 id="mitigating-common-web-application-attack-vectors-using-aws-waf-remediate-phase">Mitigating Common Web Application Attack Vectors Using AWS WAF - Remediate Phase</h1>
+<p>In the previous Build Phase, you identified several vulnerabilities in your web application.
+You are now going to design and implement an AWS WAF ruleset to help mitigate these vulnerabilities. In this section you will do the following tasks:</p>
+<ol>
+<li>Identify the WAF ACL for your site</li>
+<li>AWS WAF rule design and considerations</li>
+<li>Rule creation walkthrough</li>
+<li>Mitigating Common Vulnerabilities &amp; Monitoring for Attacks</li>
+</ol>
+<h2 id="identify-the-waf-acl-for-your-site">Identify the WAF ACL for your Site</h2>
+<ol>
+<li>
+<p>If needed, go to <a href="https://console.aws.amazon.com/console/home" target="_blank">https://console.aws.amazon.com/console/home</a>. You will be redirected to the AWS Management Console dashboard on successful login:
+<img alt="Console Home" src="../images/console-home.png" />
+Make sure you select the appropriate AWS Region when working in the AWS Management Console (top right corner, on the menu bar).</p>
+</li>
+<li>
+<p>From the Management Console dashboard, navigate to the AWS WAF &amp; Shield service console. You can do that several ways:</p>
+<ul>
+<li>Type “waf” in the AWS services panel search box and select the resulting option</li>
+<li>Expand the Services drop down menu (top left on the menu bar) and choose WAF &amp; Shield</li>
+<li>Expand the All services area of the AWS services panel and choose WAF &amp; Shield
+Once selected, you will be redirected to the AWS WAF &amp; AWS Shield service console. You may see an initial landing page at first. Choose Go to AWS WAF:</li>
+</ul>
+</li>
+</ol>
+<p><img alt="WAF Home" src="../images/waf-home.png" />
+3. In the side bar menu on the right, pick the Web ACLs option under the AWS WAF heading. If the list of Web ACLs appears empty select the correct AWS Region as indicated on your credentials card in the Filter dropdown:</p>
+<p><img alt="WAF ACL Home" src="../images/waf-acl-home.png" />
+4. Click on the WAF Web ACL Name to select the existing Web ACL. Once the detail pane is loaded on the left of your screen, you will see 2 tabs: Requests and Rules. Toggle to Rules:</p>
+<p><img alt="WAF ACL Rules" src="../images/waf-acl-rules.png" />
+Validate that you are able to see a pre-existing rule, configured to block requests, and that your Web ACL is associated with an Application load balancer resource. You can drill down further into the properties of the existing rule, by clicking on the rule name. You should see 2 entries into the associated IP address list for the loopback/localhost IP addresses (127.0.0.0/8, ::1/128).</p>
+<h2 id="aws-waf-rule-design-and-considerations">AWS WAF rule design and considerations</h2>
+<h3 id="basics">Basics</h3>
+<p>Writing rules for AWS WAF involves the creation of conditions. Conditions are lists of specific filters (patterns) that are being matched against the HTTP request components processed by AWS WAF. The filters, including their attributes, are specific to the type of condition supported by AWS WAF. A condition, as a whole, is considered as matched, if any one of the listed filters is matched. Conditions are independent and reusable resources within the regional scope where they are created.</p>
+<p>Rules contain one or more conditions. Each condition attached to a rule is called a predicate. Predicates are evaluated using Boolean logic. A predicate is evaluated as matched or not matched (negated predicted), and multiple predicates are evaluated using Boolean AND – all predicates must match for the rule action to be triggered. Rules are also independent and reusable resources within the regional scope where they are created.</p>
+<p>Web ACLs are ordered lists of rules. They are evaluated in order for each HTTP request and the action of the first matching rule is taken by the WAF engine, whether that is to allow, block or count the request. If no rule matches, the default action of the web ACL prevails. Multiple web ACLs can reuse the same rules, and multiple rules can reuse the same conditions assuming that is desirable from a change management process point of view for your workloads. This creates effectively a dependency tree between these AWS WAF components.</p>
+<h3 id="rule-design">Rule Design</h3>
+<p>To create a rule, you have to create the relevant match conditions first. This process requires planning for effective rule building. Use the following guiding questions:</p>
+<ol>
+<li>What is the intended purpose of the rule?</li>
+<li>What HTTP request components apply to the purpose of the rule?</li>
+<li>Do you already have conditions targeting those request components that you can reuse? Is that desirable?</li>
+<li>How can you define the purpose of the rule in a Boolean logic expression?</li>
+<li>What conditions do you need to create to implement the logic?</li>
+<li>Are any transformations relevant to my input content type?</li>
+</ol>
+<p>For example, we want to build a rule to detect and block SQL Injection in received form input requests. Let’s see how these questions help us plan the implementation of the rule:</p>
+<h4 id="rule-purpose">Rule purpose:</h4>
+<ul>
+<li><strong>Detect SQL Injection in form input HTTP requests, use ‘block’ action in Web ACL</strong></li>
+</ul>
+<h4 id="http-request-components">HTTP request components:</h4>
+<ul>
+<li><strong>Request Method</strong> – form input typically gets submitted using a POST HTTP request method</li>
+<li><strong>Request Body</strong> – form input is typically encoded in the body of the HTTP request </li>
+</ul>
+<h4 id="define-the-purpose-of-the-rule-using-boolean-logic">Define the purpose of the rule using Boolean logic:</h4>
+<ul>
+<li>If <strong>Request Method = POST</strong> and <strong>Request Body contains suspected SQL Injection</strong> then <strong>block</strong></li>
+</ul>
+<h4 id="conditions-to-implement">Conditions to implement:</h4>
+<ul>
+<li><strong>String Match Condition</strong> targeting the request <strong>METHOD</strong> field, expecting the exact value <strong>POST</strong></li>
+<li><strong>SQL Injection Match Condition</strong> targeting the request <strong>BODY</strong> field</li>
+</ul>
+<h4 id="relevant-transformations">Relevant transformations:</h4>
+<ul>
+<li><strong>SQL Injection Match Condition</strong> form input is sometimes HTML encoded, so it’s a good idea to apply the <strong>HTML_ENTITY_DECODE</strong> transformation. Other transformations might also apply, such as <strong>URL_DECODE</strong></li>
+</ul>
+<h4 id="rules-to-implement">Rules to implement:</h4>
+<ul>
+<li>Rule with 2 predicates matching both the string matching condition and SQL injection condition</li>
+</ul>
+<h2 id="console-walkthrough-creating-a-condition-and-rule">Console Walkthrough - Creating a Condition and Rule</h2>
+<ol>
+<li>
+<p>In the AWS WAF console, create a string match condition by selecting <strong>String and regex</strong> matching from the side-bar menu to the left of the console, under the <strong>Conditions</strong> heading.</p>
+</li>
+<li>
+<p>Click on <strong>Create Condition</strong>:</p>
+</li>
+</ol>
+<p><img alt="WAF Condition Home" src="../images/waf-condition-home.png" />
+3.  Provide the name and region. Set the <strong>type</strong> to <strong>String match</strong>.</p>
+<p><img alt="Create String Match" src="../images/create-string-match.png" />
+4.  Add a filter (pattern) to the condition. Set the <strong>Part of the request to filter on</strong> to <strong>HTTP method</strong>, the <strong>match type</strong> to <strong>Exactly matches</strong>, the transformation to <strong>None</strong> and the value to match as <strong>POST</strong>. Click <strong>Add filter</strong>.</p>
+<p><img alt="Filter Settings" src="../images/filter-settings.png" />
+5.  You can add multiple filters to the string match condition. Once you are confident the list is complete, click <strong>Create</strong> at the bottom of the screen.</p>
+<p>6. With the condition created, and any additional conditions created based on need as well, you are ready to create a rule. In the AWS WAF console, select <strong>Rules</strong> from the side-bar menu to the left of the console, under the <strong>AWS WAF</strong> heading.</p>
+<p>7. Click on <strong>Create Rule</strong>:</p>
+<p><img alt="Create Rule" src="../images/waf-rules-home.png" />
+8.  Provide the name, metric name and region. Set the <strong>rule type</strong> to <strong>Regular rule</strong>.</p>
+<p><img alt="Create Rule Detail" src="../images/create-rule-detail.png" />
+9.  Add a condition to the rule. For our rule example, choose “When a request” <strong>does</strong> (no negation) <strong>match at least one of the filters in the string match condition</strong>. Choose the string match condition you have previously created.</p>
+<p><img alt="Add Conditions" src="../images/add-conditions.png" />
+10. Click <strong>Add Condition</strong> and repeat step 9 for any additional conditions you wish to add.</p>
+<p>11. Click <strong>Create</strong> at the bottom of the screen when you have added all relevant conditions.</p>
+<p>12. Follow the steps in the “Identify the WAF ACL for your site” section above to go back to the Rules tab of your web ACL.</p>
+<p>13.    Click <strong>Edit web ACL</strong>.
+<img alt="Edit Web ACL" src="../images/edit-web-acl.png" /></p>
+<p>14. In the <strong>Rules</strong> dropdown, select your rule, and click <strong>Add rule to web ACL</strong>.</p>
+<p>15. Reorder the rules as appropriate for your use case.</p>
+<p>16. Click <strong>Update</strong> to persist the changes.</p>
+<h2 id="mitigating-common-vulnerabilities-monitoring-for-attacks">Mitigating Common Vulnerabilities &amp; Monitoring for Attacks</h2>
+<p>For a more comprehensive discussion of common vulnerabilities for web applications, as well as how to mitigate them using AWS WAF, and other AWS services, please refer to the <a href="https://d0.awsstatic.com/whitepapers/Security/aws-waf-owasp.pdf" target="_blank">Use AWS WAF to Mitigate OWASP’s Top 10 Web Application Vulnerabilities whitepaper</a>.</p>
+<p>In this phase, we will have a set of 6 exercises walking you through the process of building a basic mitigation rule set for common vulnerabilities. We will build these rules from scratch, so you can gain familiarity with the AWS WAF programming model and you can then write rules specific to your applications. </p>
+<div class="admonition info">
+<p class="admonition-title">Note About Excersise Solutions</p>
+<p><strong>We encourage you to attempt to create the rules on your own but have included the solutions as a backup in case you get stuck.</strong> You can test your ACL ruleset at any time using the Red Team Host. For AWS sponsored event, you can also view test results on the <a href="http://waflabdash.awssecworkshops.com/" target="_blank">WAF Lab Dashboard</a>.</p>
+</div>
+<h3 id="1-sql-injection-cross-site-scripting-mitigation">1. SQL Injection &amp; Cross Site Scripting Mitigation</h3>
+<p>Use the SQL injection, cross-site scripting, as well as string and regex matching conditions to build rules that mitigate injection attacks and cross site scripting attacks.</p>
+<p>Consider the following:
+- How does your web application accept end-user input (whether directly or indirectly). Which HTTP request components does that input get inserted into?
+- What kind of content encoding considerations do you need to factor in for the input format?
+- What considerations do you need to account for in regards to false positives? For example, does your application legitimately need to accept SQL statements as input?</p>
+<p>How do the requirements derived from the above questions affect your solution?</p>
+<details class="info"><summary>Solution</summary><ol>
+<li>create SQLi condition named filterSQLi<ol>
+<li>query_string, url decode</li>
+<li>body, html entity decode</li>
+<li>header, cookie, url decode</li>
+</ol>
+</li>
+</ol>
+</details>
+<h3 id="2-limit-attack-footprint">2. Limit Attack Footprint</h3>
+<p>Use the string and regex matching conditions along with geo match and IP address match conditions to build rules that limit the attack footprint against the exposed components of your application.</p>
+<p>Consider the following:
+•   Does your web application have server-side include components in the public web path?
+•   Does your web application have components at exposed paths that are not used (or dependencies have such functions)?
+•   Do you have administrative, management, status or health check paths and components that aren’t meant for end user access?</p>
+<p>You should consider blocking access to such elements, or limiting access to known sources, either whitelisted IP addresses or geographic locations.</p>
+<details class="info"><summary>Solution</summary><ol>
+<li>create XSS condition named filterXSS<ol>
+<li>query_string, url decode</li>
+<li>body, html entity decode</li>
+<li>body, url decode</li>
+<li>header, cookie, url decode</li>
+</ol>
+</li>
+</ol>
+</details>
+<h3 id="3-enforce-request-hygiene">3. Enforce Request Hygiene</h3>
+<p>Use the string and regex matching, size constraints and IP address match conditions to build rules that block non-conforming or low value HTTP requests.</p>
+<p>Consider the following:
+•   Are there limits to the size of the various HTTP request components relevant to your web application? For example, does your application ever use URIs that are longer than 100 characters in size?
+•   Are there specific HTTP request components without which your application cannot operate effectively (e.g. CSRF token header, authorization header, referrer header)?</p>
+<p>Build rules that ensure the requests your application ends up processing are valid, conforming and valuable.</p>
+<details class="info"><summary>Solution</summary><ol>
+<li>create string match condition named filterFormProcessor<ol>
+<li>uri, starts with, no transform, “/form.php”</li>
+</ol>
+</li>
+<li>create string match condition named filterPOSTMethod<ol>
+<li>uri, exactly matches, no transform, “/form.php”</li>
+</ol>
+</li>
+<li>create regex match condition named filterCSRFToken<ol>
+<li>header x-csrf-token, matches pattern: ^[0-9a-f]{40}$</li>
+</ol>
+</li>
+<li>create rule named matchCSRF<ol>
+<li>type regular</li>
+<li>does match string condition: filterFormProcessor</li>
+<li>does match string condition: filterPOSTMethod</li>
+<li>does not match regex match condition: filterCSRFToken</li>
+</ol>
+</li>
+<li>add rules to Web ACL</li>
+</ol>
+</details>
+<h3 id="4-mitigate-file-inclusion-path-traversal">4. Mitigate File Inclusion &amp; Path Traversal</h3>
+<p>Use the string and regex matching conditions to build rules that block specific patterns indicative of unwanted path traversal or file inclusion.</p>
+<p>Consider the following:</p>
+<ul>
+<li>Can end users browse the directory structure of your web folders? Do you have directory indexes enabled?</li>
+<li>Is your application (or any dependency components) use input parameters in filesystem or remote URL references? </li>
+<li>Do you adequately lock down access so input paths cannot be manipulated?</li>
+<li>What considerations do you need to account for in regards to false positives (directory traversal signature patterns)?  </li>
+</ul>
+<p>Build rules that ensure the relevant HTTP request components used for input into paths do not contain known path traversal patterns.</p>
+<details class="info"><summary>Solution</summary><ol>
+<li>create string match condition named filterTraversal<ol>
+<li>uri, starts with, url_decode, /include</li>
+<li>query_string, contains, url_decode, “../“</li>
+<li>query_string, contains, url_decode, “://“</li>
+</ol>
+</li>
+<li>create rule named matchTraversal<ol>
+<li>type regular</li>
+<li>does match string condition: filterTraversal</li>
+</ol>
+</li>
+<li>add rules to Web ACL</li>
+</ol>
+</details>
+<h3 id="5-detect-mitigate-anomalies">5. Detect &amp; Mitigate Anomalies</h3>
+<p>What constitutes an anomaly in regards to your web application? A few common anomaly patterns are:</p>
+<ul>
+<li>Unusually elevated volume of requests in general</li>
+<li>Unusually elevated volumes of requests to specific URI paths</li>
+<li>Unusually elevated levels of requests generating specific non-HTTP status 200 responses</li>
+<li>Unusually elevated volumes from certain sources (IPs, geographies)</li>
+<li>Usual request signatures (referrers, user agent strings, content types, etc)</li>
+</ul>
+<p>Do you have mechanisms in place to detect such patterns? If so, can you build rules to mitigate them?</p>
+<details class="info"><summary>Solution</summary><ol>
+<li>create string match condition named filterLoginProcessor<ol>
+<li>uri, starts with, no transform, “/login.php”</li>
+</ol>
+</li>
+<li>create rule named matchRateLogin<ol>
+<li>type rate-based, 2000</li>
+<li>does match string condition: filterLoginProcessor</li>
+<li>does match string condition: filterPOSTMethod</li>
+</ol>
+</li>
+<li>add rules to Web ACL</li>
+</ol>
+</details>
+<h3 id="6-reputation-lists-nuisance-requests-optional">6. Reputation Lists, Nuisance Requests (Optional)</h3>
+<p>Reputation lists (whitelists or blacklists) are a good way to filter and stop servicing low value requests. This can reduce operating costs, and reduce exposure to attack vectors. Reputation lists can be self-maintained: lists of identifiable actors that you have determined are undesired. They can be identified any number of ways:</p>
+<ul>
+<li>the source IP address</li>
+<li>the user agent string</li>
+<li>reuse of hijacked authorization or session tokens,</li>
+<li>attempting to make requests to paths that clearly do not exist in your application but are well known vulnerable software packages (probing)</li>
+</ul>
+<p>Build blacklists of such actors using the relevant conditions and set up rules to match and block them. An example IP-based blacklist already exists in your sandbox environment.</p>
+<p>Reputation lists can also be maintained by third parties. The AWS WAF Security Automations allow you to implement IP-based reputation lists.</p>
+<hr />
 <p>Click <a href="../verify/">here</a> to proceed to the Verify Phase.</p>
                 
                   

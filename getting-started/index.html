@@ -42,7 +42,7 @@
     
     
       
-        <title>Getting Started - Protecting Your Workloads With AWS WAF, Amazon Inspector, and AWS Systems Manager</title>
+        <title>Getting Started - Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager</title>
       
     
     
@@ -157,7 +157,7 @@
             
               
                 <span class="md-header-nav__topic">
-                  Protecting Your Workloads With AWS WAF, Amazon Inspector, and AWS Systems Manager
+                  Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager
                 </span>
                 <span class="md-header-nav__topic">
                   Getting Started
@@ -278,7 +278,7 @@
   <!-- Site title -->
   <label class="md-nav__title md-nav__title--site" for="__drawer">
     <a href="https://protecting-workloads.awssecworkshops.com/"
-        title="Protecting Your Workloads With AWS WAF, Amazon Inspector, and AWS Systems Manager" class="md-nav__button md-logo">
+        title="Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager" class="md-nav__button md-logo">
       
         <img src="../assets/images/aws_smile_logo.png" width="48" height="48" />
       
@@ -316,18 +316,6 @@
       
       
 
-
-  <li class="md-nav__item">
-    <a href=".." title="Home" class="md-nav__link">
-      Home
-    </a>
-  </li>
-
-    
-      
-      
-      
-
   
 
 
@@ -357,9 +345,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#create-an-aws-account" title="Create an AWS account" class="md-nav__link">
-    Create an AWS account
+  <a href="#create-or-identify-exisitng-aws-account" title="Create or Identify Exisitng AWS account" class="md-nav__link">
+    Create or Identify Exisitng AWS account
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#we-stronly-recommend-that-you-use-a-non-production-aws-account-for-this-workshop-such-as-a-training-sandbox-or-personal-account" title="We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account." class="md-nav__link">
+    We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -407,13 +408,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
-    <label class="md-nav__link" for="nav-4">
+    <label class="md-nav__link" for="nav-3">
       Web Application Firewall
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
+      <label class="md-nav__title" for="nav-3">
         Web Application Firewall
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -491,13 +492,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
-    <label class="md-nav__link" for="nav-5">
+    <label class="md-nav__link" for="nav-4">
       Inspector and SM
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-5">
+      <label class="md-nav__title" for="nav-4">
         Inspector and SM
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -574,6 +575,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../cleanup/" title="Cleanup" class="md-nav__link">
+      Cleanup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../contribute/" title="Contributing" class="md-nav__link">
       Contributing
     </a>
@@ -613,9 +626,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#create-an-aws-account" title="Create an AWS account" class="md-nav__link">
-    Create an AWS account
+  <a href="#create-or-identify-exisitng-aws-account" title="Create or Identify Exisitng AWS account" class="md-nav__link">
+    Create or Identify Exisitng AWS account
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#we-stronly-recommend-that-you-use-a-non-production-aws-account-for-this-workshop-such-as-a-training-sandbox-or-personal-account" title="We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account." class="md-nav__link">
+    We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -653,8 +679,12 @@
                 
                 
                 <h1 id="getting-started">Getting Started</h1>
-<h2 id="create-an-aws-account">Create an AWS account</h2>
+<h2 id="create-or-identify-exisitng-aws-account">Create or Identify Exisitng AWS account</h2>
 <p>In order to complete these workshops, you'll need a valid, usable <a href="https://aws.amazon.com/getting-started/" target="_blank">AWS Account</a>. Use a personal account or create a new AWS account to ensure you have the necessary access and that you do not accidentally modify corporate resources. Do <strong>not</strong> use an AWS account from the company you work for. </p>
+<div class="admonition info">
+<p class="admonition-title">Note About Workshop and AWS Account</p>
+<h4 id="we-stronly-recommend-that-you-use-a-non-production-aws-account-for-this-workshop-such-as-a-training-sandbox-or-personal-account"><em>We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account.</em></h4>
+</div>
 <h2 id="create-an-admin-user">Create an admin user</h2>
 <p>If you don't already have an AWS IAM user with admin permissions, please use the following instructions to create one:</p>
 <ol>
@@ -692,20 +722,6 @@
   
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
-        
-          <a href=".." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Home
-              </span>
-            </div>
-          </a>
         
         
           <a href=".." title="Scenario" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">

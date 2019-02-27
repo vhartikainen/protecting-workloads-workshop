@@ -13,7 +13,7 @@
         <meta name="description" content="This workshop shows how you can protect a web site using AWS Security Services">
       
       
-        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/inspector-sm/remediate/">
+        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/inspector-sm/cleanup/">
       
       
         <meta name="author" content="aws-security-workshops@amazon.com">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Remediate Phase - Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager</title>
+        <title>Protecting Your Workloads - Clean up Phase - Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager</title>
       
     
     
@@ -102,7 +102,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#protecting-your-workloads-remediate-phase" tabindex="1" class="md-skip">
+      <a href="#protecting-your-workloads-clean-up-phase" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -160,7 +160,7 @@
                   Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager
                 </span>
                 <span class="md-header-nav__topic">
-                  Remediate Phase
+                  Protecting Your Workloads - Clean up Phase
                 </span>
               
             
@@ -424,12 +424,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
       Inspector and SM
@@ -481,56 +479,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Remediate Phase
-      </label>
-    
-    <a href="./" title="Remediate Phase" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../remediate/" title="Remediate Phase" class="md-nav__link">
       Remediate Phase
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#use-aws-systems-manager-patch-manager" title="Use AWS Systems Manager Patch Manager" class="md-nav__link">
-    Use AWS Systems Manager Patch Manager
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-the-patching-status" title="Check the patching status" class="md-nav__link">
-    Check the patching status
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -604,29 +557,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#use-aws-systems-manager-patch-manager" title="Use AWS Systems Manager Patch Manager" class="md-nav__link">
-    Use AWS Systems Manager Patch Manager
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-the-patching-status" title="Check the patching status" class="md-nav__link">
-    Check the patching status
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -637,69 +567,40 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/inspector-sm/remediate.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/inspector-sm/cleanup.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="protecting-your-workloads-remediate-phase">Protecting Your Workloads - Remediate Phase</h1>
-<p>In the previous Assess Phase, you installed Amazon Inspector on the instances that were launched as a result of the
-CloudFormation stack.  You will now use AWS Systems Manager Patch Manager to apply patches.
-You will use tags to select the instances as well.</p>
-<p>In this section you will do the following tasks:</p>
-<ol>
-<li>Use AWS Systems Manager Patch Manager to set up patching</li>
-<li>Use AWS Systems Manager Run Command to check the status of the patching</li>
-</ol>
-<h2 id="use-aws-systems-manager-patch-manager">Use AWS Systems Manager Patch Manager</h2>
+                <h1 id="protecting-your-workloads-clean-up-phase">Protecting Your Workloads - Clean up Phase</h1>
+<p>Now that you have completed this workshop, follow the steps below to clean up the artifacts that were created.</p>
 <ol>
 <li>
-<p>Go to the Systems Manager console and select Patch Manager.  If you see the Patch Manager home screen, then click the <strong>default patch baselines</strong> link as shown below:</p>
-<p><img alt="remediate-home-screen" src="../images/remediate-pm-home-screen.png" /></p>
+<p>Go to the Systems Manager Patch Manager console.</p>
 </li>
 <li>
-<p>You will now see a list of default patch baselines that are used to patch each operating system supported by Patch Manager.   The default patch baseline only patches major security issues.  You are going to crate a new Amazon Linux 2 patch baseline that will patch more things and make this new patch baseline the default.  Click <strong>Create patch baseline</strong>.</p>
+<p>Click <strong>Configure patching</strong>.  Click on the <strong>Patch baselines</strong> tab.</p>
 </li>
 <li>
-<p>In the <em>Name</em> field, enter a name to give the new baseline such as <strong>pww</strong>.  In the <em>Operating system</em> field, select <strong>Amazon Linux 2</strong>.  In the <em>Approval rules</em> section, check the box under <em>Include non-security updates</em>.  IMPORTANT NOTE:  Depending on the size of the screen, the box may not align with the title <em>Include non-security updates</em>.  See the figure below.</p>
-<p><img alt="approval-rule" src="../images/remediate-pm-approval-rule.png" /></p>
+<p>Find the Amazon Linux 2 patch baseline that was supplied by AWS.  Click on its radio button.  From the Actions menu, click <em>Set default patch baseline</em>.  This restores the default patch baseline for Amazon Linux 2 to that which was provided by AWS.</p>
 </li>
 <li>
-<p>Click the <strong>Create patch baseline</strong> button at the bottom of the screen.  You should now see the new patch baseline in the list of baselines.  You may need to refresh the browser window to see it.  This new patch baseline includes non-security patches.  Note at the end of the line representing the newly created patch baseine you will see <em>No</em> in the <em>Default Baseline</em> column as shown in the figure below.</p>
-<p><img alt="default-baseline" src="../images/remediate-pm-default-baseline-no.png" /></p>
+<p>Delete the custom patch baseline for Amazon Linux 2.</p>
 </li>
 <li>
-<p>Click the radio button on the line with the newly created patch baseline.  From the <em>Actions</em> menu at the top select <strong>Set default patch baseline</strong>.  You will be asked to confirm this.  You have just set the default patch baseline for Amazon Linux 2 to use the patch baseline you just created that includes non-security patches.  You should now see <em>Yes</em> at the end of the patch baseline as shown below.</p>
-<p><img alt="default-baseline" src="../images/remediate-pm-default-baseline-yes.png" /></p>
+<p>Go to the Amazon Inspector console.</p>
 </li>
 <li>
-<p>Click <strong>Configure patching</strong> In the <em>Configure patching</em> screen, go to the <em>Instances to patch</em> section and click the <strong>Enter instance tags</strong> radio button.  In the <em>Instance tags</em> field, enter <em>aws:cloudformation:stack-name</em> into the <em>Tag key</em> field.  In the <em>Tag value</em> field, enter the stack name that you created earlier.  Click <strong>Add</strong>.</p>
+<p>Click on the <strong>Assessment runs</strong> menu item and delete the runs you created.  You will be prompted for approval to delete the findings associdated with the runs.</p>
 </li>
 <li>
-<p>In the <em>Patching schedule</em> section, click the <em>Skip scheduling and patch instances now</em> radio button.</p>
+<p>Click on the <strong>Assessment templates</strong> menu item and delete the template you created.</p>
 </li>
 <li>
-<p>In the <em>Patching operation</em> section, click the <em>Scan and install</em> radio button if it is not alerady selected.  Your screen should look similar to the image below.</p>
-<p><img alt="configure-patching" src="../images/remediate-pm-configure-patching.png" /></p>
+<p>Click on the <strong>Assessment targets</strong> and delete the assessment target you created.</p>
 </li>
 <li>
-<p>Click the <strong>Configure patching</strong> button at the bottom of the window.  You will see a message at the top of yoru screen saying that <em>Patch Manager</em> will use <em>Run Command</em> to patch the instances.   <em>Run Command</em> is another feature of AWS Systems Manager that runs a command across multiple Amazon EC2 instances.  Patch Manager build the commands necessary to perform the patching and is using Run Command to actually execute the commands.</p>
+<p>Go to the CloudFormation console and delete the stack that you created.</p>
 </li>
 </ol>
-<h2 id="check-the-patching-status">Check the patching status</h2>
-<p>You are now going to examine the status of the patching operation by using AWS Systems Manager Run Command.</p>
-<ol>
-<li>
-<p>Go to the AWS Systems Manager Console and click <strong>Run Command</strong> on the left menu.  If the patching is still running, you will see the entry in the <em>Commands</em> tab.  Wait for the command to finish.  Refresh the screen if necessary to update the display.  Once the command has finished, click on <strong>Command history</strong>.</p>
-</li>
-<li>
-<p>Look for the line containing the document name <strong>AWS-RunPatchBaseline</strong>.  That represents the Patch Manager activity.Your screen should look similar to the image below.</p>
-<p><img alt="command-history" src="../images/remediate-command-history.png" /></p>
-</li>
-<li>
-<p>Click on the <strong>Command ID</strong> link to see more details about the command.  You will see a line for each target with a link referencing the Instance ID.  If you then click on the <strong>Instance ID</strong>, you will see each step of the command that is executed.   Note that some steps are skipped because they do not apply to the operating system of the instance.  Also, you only see the first part of the command output.  If you want to see all of the output you can configure Systems Manager to direct the output into an Amazon S3 bucket.</p>
-<p>You have now completed the patching operation.  In the Verify Phase, you will re-assess the environment with Amazon Inspector.</p>
-</li>
-</ol>
-<p>Click <a href="../verify/">here</a> to proceed to the Verify Phase.</p>
                 
                   
                 
@@ -716,41 +617,6 @@ You will use tags to select the instances as well.</p>
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-          <a href="../assess/" title="Assess Phase" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Assess Phase
-              </span>
-            </div>
-          </a>
-        
-        
-          <a href="../verify/" title="Verify Phase" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Verify Phase
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

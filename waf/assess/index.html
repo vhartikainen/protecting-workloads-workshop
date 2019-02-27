@@ -42,7 +42,7 @@
     
     
       
-        <title>Assess Phase - Protecting Your Workloads With AWS WAF, Amazon Inspector, and AWS Systems Manager</title>
+        <title>Assess Phase - Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager</title>
       
     
     
@@ -157,7 +157,7 @@
             
               
                 <span class="md-header-nav__topic">
-                  Protecting Your Workloads With AWS WAF, Amazon Inspector, and AWS Systems Manager
+                  Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager
                 </span>
                 <span class="md-header-nav__topic">
                   Assess Phase
@@ -278,7 +278,7 @@
   <!-- Site title -->
   <label class="md-nav__title md-nav__title--site" for="__drawer">
     <a href="https://protecting-workloads.awssecworkshops.com/"
-        title="Protecting Your Workloads With AWS WAF, Amazon Inspector, and AWS Systems Manager" class="md-nav__button md-logo">
+        title="Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager" class="md-nav__button md-logo">
       
         <img src="../../assets/images/aws_smile_logo.png" width="48" height="48" />
       
@@ -318,18 +318,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../.." title="Home" class="md-nav__link">
-      Home
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../../getting-started/" title="Getting Started" class="md-nav__link">
       Getting Started
     </a>
@@ -357,13 +345,13 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
-    <label class="md-nav__link" for="nav-4">
+    <label class="md-nav__link" for="nav-3">
       Web Application Firewall
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
+      <label class="md-nav__title" for="nav-3">
         Web Application Firewall
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -513,13 +501,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
-    <label class="md-nav__link" for="nav-5">
+    <label class="md-nav__link" for="nav-4">
       Inspector and SM
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-5">
+      <label class="md-nav__title" for="nav-4">
         Inspector and SM
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -587,6 +575,18 @@
         
       </ul>
     </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../cleanup/" title="Cleanup" class="md-nav__link">
+      Cleanup
+    </a>
   </li>
 
     
@@ -730,8 +730,8 @@ You are now going to assess the posture of the site and then add an AWS WAF Web 
 <p>In order to test your AWS WAF ruleset, this lab has been configured with two scanning capabilities; a Red Team Host where you can invoke manual scanning and an automated scanner which runs from outside your lab environment. </p>
 <p>The scanner performs 10 basic tests designed to help simulate and mitigate common web attack vectors. </p>
 <ol>
-<li>Canary GET</li>
-<li>Canary POST</li>
+<li>Canary GET - Should not be blocked</li>
+<li>Canary POST - Should not be blocked</li>
 <li>SQL Injection (SQLi) in Query String</li>
 <li>SQL Injection (SQLi) in Cookie</li>
 <li>Cross Site Scripting (XSS) in Query String</li>
@@ -755,14 +755,15 @@ You are now going to assess the posture of the site and then add an AWS WAF Web 
 <li><strong>Test Name</strong>: The name of the test from list above.</li>
 <li><strong>Result</strong>: The HTTP status code returned.</li>
 </ul>
-<p>As you can see by running the script there are several vulnerabilities that need to be addressed. In the remnediate phase you will configure an AWS WAF Web ACL to block these requests. When AWS WAF blocks a web request based on the conditions that you specify, it returns HTTP status code 403 (Forbidden). </p>
+<p>As you can see by running the script there are several vulnerabilities that need to be addressed. In the remnediate phase you will configure an AWS WAF Web ACL to block these requests. When AWS WAF blocks a web request based on the conditions that you specify, it returns HTTP status code 403 (Forbidden). For a full view of the request and response information, you can paste the <strong>Request</strong> command directly into the console and add the --debug argument.</p>
 <div class="admonition info">
 <p class="admonition-title">Note about Testing Tool</p>
-<p>The scanner.py script uses an open source <a href="https://ifconfig.co/" target="_blank">HTTP client called httpie</a>. HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.</p>
+<p>The scanner.py script uses an open source <a href="https://httpie.org/" target="_blank">HTTP client called httpie</a>. HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.</p>
 </div>
 <h3 id="website-scanning-environment-and-tools-automated-scanning">Website Scanning Environment and Tools - Automated Scanning</h3>
-<p>In addition to the ad hock scanning, automatied scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop particpants. You can identify the scanning results for your website using the Unique Id in the CloudFormation outputs.</p>
-<p><img alt="WAF Lab Centralized Dashboard" src="../images/waflabdash.png" /></p>
+<p>For an AWS sponsored event, in addition to the ad hock scanning, automatied scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop particpants. You can identify the scanning results for your site using the Unique Id found in the CloudFormation outputs.</p>
+<p><img alt="WAF Lab Centralized Dashboard" src="../images/waflabdash-pre.png" /></p>
+<hr />
 <p>Click <a href="../remediate/">here</a> to proceed to the Remediate Phase.</p>
                 
                   
