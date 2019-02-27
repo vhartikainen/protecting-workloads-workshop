@@ -1,4 +1,4 @@
-# Automating Security Assessment and Remediation Using Amazon Inspector and AWS Systems Manager - Assess Phase
+# Protecting Your Workloads - Assess Phase
 
 In the previous Build Phase, you built a CloudFormation stack that contains
 some Amazon EC2 instances behind an application load balancer.
@@ -17,8 +17,9 @@ In this section you will do the following tasks:
 
 1. Examine the stack you built
 2. Look up the Amazon EC2 instances that were created as a result of the deployhment and understand the tags that are applied by AWS CloudFormation.
-3. Use AWS Systems Manager to install the Amazon Inspector agent on the instances
-4. Use Amazon Inspector to scan the instances
+3. Use AWS Systems Manager to install the Amazon Inspector agent on the instances and run the scan
+5. Learn about Amazon Inspector rules packages
+6. Examine Amazon Inspector findings
 
 ## Examine the stack that you built
 
@@ -62,13 +63,13 @@ Now that you know how to identify the instances in the environment, you need to 
 
     ![ssm-run-command-output](./images/assess-run-command-output.png)
 
-6.  Scroll to the bottom of the screen and click the *Run* button.  You will then be be taken to the command status window while the installation of the Amazon Inspector is running.  You can periodically update the command status by clicking on the refresh button within the window.   After the commands finish running, the *Overall status* should be *Success* as shown in the figure below.
+6.  Scroll to the bottom of the screen and click the *Run* button.  You will then be be taken to the command status window while the installation of the Amazon Inspector is running.  You can periodically update the command status by clicking on the refresh button within the window.   After the commands finish running, the *Overall status* should be *Success* as shown in the figure below.  The number of instances may vary based on the version of the template.
 
     ![ssm-run-command-results](./images/assess-run-command-results.png)
 
     You have now installed the Amazon Inspector agent on the instances in the environment.
 
-## Use Amazon Inspector to Scan the Instances
+## Use Amazon Inspector to scan the instances
 
 ### Configure the Amazon Inspector target
 
@@ -90,11 +91,50 @@ Now that you know how to identify the instances in the environment, you need to 
 
     You have now created an Amazon Inspector target that identifies the instances that would be assessed.  The target selects instances based on tag values.  In this case, the tag you are using is *aws:cloudformation:stack-name* which is set to the name of the CloudFormation stack.  In particular, the tag is added to the auto scaling launch configuration which is configured to propogate the tag to the Amazon EC2 instances that it launches.  Because of this, Amazon Inspector will automatically scan new instances that may appear over the lifetime of the environment.  This is an example of how the elasticity of the AWS cloud when combined with tagging can enable you to support dynamic environments.
 
-### Configure the Amazon Inspector Template
+### Configure the Amazon Inspector template and run the assessment
 
 Now that you have created an Amazon Inspector target, you will now create an Amazon Inspector tepmlate.  You use templates to define the Amazon Inspector targets and rule packages that comprise an assessment run.
 
-### Run the Amazon Inspector Assessment
+1.  Go to the Amazon Inspector console, click **Assessment templates** on the menu, and then click **Create**.
 
-Click [here](./remediate.md) to proceed to the Remediate Phase.
+2.  In the *Name* field, enter a name for the template.
+
+3.  In the *Target name* field, select the target you previously created from the list of options.
+
+4.  In the *Rules packages* field, select **Common Vulnerabilities and Exposures** and **Security Best Practices**.
+
+5.   In the *Duration* field, select **15 minutes**.  Do **not** accept the default value!
+
+6.  In the Assessment Schedule, uncheck (turn off) the *Set up recurring assessment* runs so that the assessment template will only run a one-time assessment.
+
+7.  Scroll to the bottom and click the **Create and run** button to save the template and run the assessment.  Depending on the size of your screen, you may have to scroll down multiple windows.  If you cannot click **Create and run**, make sure you unchecked the box in the previous step and try again.  The assessment will start and will take 15 minutes to compete.
+
+8.  On the Amazon Inspector menu, click **Assessment rus**.  You should see an entry for the assesment you just started.  While the assessment is running, the status will be *Collecting data*.  Periodically refresh the screen to see the current status.  When the assessment run ends, the status will change to *Analysis complete.*  The assessment will run for approximately 15 minutes.   While you are waiting, continue with the steps below.
+
+### Learn more about Amazon Inspector Rules Packages
+
+1.  Amazon Inspector offers a variety of rules packages that can be included in assessments.  The applicable rules packages may vary by operating system.   The Common Vulnerabilities and Exposures assessment is based on the CVE project that is hosted at [cve.mitrei.org](https://cve.mitre.org).  Open a new tab in your browser to [cve.mitre.orf](https://cve.mitre.org).  Click on **Search CVE List**.  Enter **CVE-2018-20169** into the search field and click **Submit**.  This shows you how to research known vulnerabilities.
+
+2.  The Security Best Practices rule package examines some common configuration settings for some of the most commobn Amazon Linux settings.   You can read more about this rule package [here](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_security-best-practices.html).
+
+
+### Examine the findings
+
+1. After the assessment run has completed, go to the Amazon Inspector console and click **Assessment runs**.  The window should be similar to what appears below.
+
+    ![assessment-runs](./images/assess-inspector-runs.png)
+
+2. On the line that represents your most recent run, make note of the number in the *Findings* column (22 in this diagram).  After you perform the remediation later in this workshop, that number should decrease.   Click on the number in the *Findings* column.  The findings associated with the run will appear as shown below.
+
+    ![assessment-findings](./images/assess-inspector-findings.png)
+
+3.  You will see findings for each of the rules packages that you used in the assessment.  The number of findings often varies by the age of the AMI (Amazon Machine Image) because older AMIs typically have more vulnerabilities than newer AMIs.  Choose one of the findings associated with the Common Vulnerabilities and Exposures rule package.  An example appears below.
+
+    ![assessment-cve-example](./images/assess-inspector-cve.png)
+
+    Note that there is a link in the recommendation on which you can click to see the CVE entry.
+
+4.  Now that you have run the assessment and seen the findings you are ready to perform some remediation.
+
+    Click [here](./remediate.md) to proceed to the Remediate Phase.
 
