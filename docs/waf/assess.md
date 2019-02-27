@@ -66,7 +66,7 @@ As you can see by running the script there are several vulnerabilities that need
 
 ### Website Scanning Environment and Tools - Automated Scanning
 
-In addition to the ad hock scanning, automatied scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop particpants. You can identify the scanning results for your site using the Unique Id found in the CloudFormation outputs.
+For an AWS sponsored event, in addition to the ad hock scanning, automatied scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop particpants. You can identify the scanning results for your site using the Unique Id found in the CloudFormation outputs.
 
 ![WAF Lab Centralized Dashboard](./images/waflabdash-pre.png)
 

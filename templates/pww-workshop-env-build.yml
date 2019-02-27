@@ -77,7 +77,7 @@ Metadata:
         - EC2InstanceSize
         - MyTrustedNetwork
       - Label:
-          default: Auromated Scanner Params. Set false if non-AWS sponsored event. (i.e. not using automated scanner)
+          default: Automated Scanner
         Parameters:
         - AutomatedScanner
         - UserName
@@ -96,7 +96,7 @@ Metadata:
       MyTrustedNetwork:
         default: Trusted Network CIDR.
       AutomatedScanner:
-        default: Use automated scanner? Leave true for AWS cponsored event. Otherwise set to false.
+        default: Use automated scanner? Leave true for AWS cponsored event. Set false if non-AWS sponsored event or not using automated scanner.
       UserName:
         default: Username to add endpoint for scanning? *Obtain from workshop team if using automated scanner*.
       PassWord:
