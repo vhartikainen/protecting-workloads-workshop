@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-     <loc>https://protecting-workloads.awssecworkshops.com/getting-started/</loc>
+     <loc>https://protecting-workloads.awssecworkshops.com/</loc>
      <lastmod>2019-02-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://protecting-workloads.awssecworkshops.com/</loc>
+     <loc>https://protecting-workloads.awssecworkshops.com/getting-started/</loc>
      <lastmod>2019-02-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
