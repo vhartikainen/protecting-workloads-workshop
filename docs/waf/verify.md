@@ -1,6 +1,6 @@
 # Mitigating Common Web Application Attack Vectors Using AWS WAF - Verify Phase
 
-In the previous Build Phase, you implemented an AWS WAF ruleset to protect your site from common attack vectors. You are now going to reassess the posture of the site to confirm the rules are performing as intended and blocking the simulated malicious requests.
+In the previous remediation phase, you implemented an AWS WAF ruleset to protect your site from common attack vectors. You are now going to reassess the posture of the site to confirm the rules are performing as intended and blocking the simulated malicious requests.
 
 1. Confirm malicious requests are blocked by WAF policy
 2. Implement WAF monitoring dashboard using Amazon CloudWatch (Optional)

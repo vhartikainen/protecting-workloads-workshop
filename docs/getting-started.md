@@ -1,8 +1,11 @@
 # Getting Started
 
-## Create an AWS account
+## Create or Identify Exisitng AWS account
 
 In order to complete these workshops, you'll need a valid, usable <a href="https://aws.amazon.com/getting-started/" target="_blank">AWS Account</a>. Use a personal account or create a new AWS account to ensure you have the necessary access and that you do not accidentally modify corporate resources. Do **not** use an AWS account from the company you work for. 
+
+!!! info "Note About Workshop and AWS Account"
+    #### _We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account._
 
 ## Create an admin user
 
