@@ -28,15 +28,19 @@ Parameters:
     Default: 0.0.0.0/0
   AutomatedScanner:
     Description: Automated Scanner
-    Default: false
+    Default: true
     Type: String
     AllowedValues: [true, false]
   UserName:
     Type: String
     Description: Scanner Username
+    AllowedPattern: ".+"
+    Default: "null"
   PassWord:
     Type: String
     Description: Scanner Password
+    AllowedPattern: ".+"
+    Default: "null"
   ScannerIP01:
     Type: String
     Default: 54.156.237.144/32
@@ -73,7 +77,7 @@ Metadata:
         - EC2InstanceSize
         - MyTrustedNetwork
       - Label:
-          default: Scanning Credentials (Only complete this section if instructed to.)
+          default: Auromated Scanner Params. Set false if non-AWS sponsored event. (i.e. not using automated scanner)
         Parameters:
         - AutomatedScanner
         - UserName
@@ -92,15 +96,15 @@ Metadata:
       MyTrustedNetwork:
         default: Trusted Network CIDR.
       AutomatedScanner:
-        default: Use automated scanner? Leave false unless instructed otherwise by workshop administrators.
+        default: Use automated scanner? Leave true for AWS cponsored event. Otherwise set to false.
       UserName:
-        default: Username to add endpoint for scanning? Leave blank unless using automated scanner.
+        default: Username to add endpoint for scanning? *Obtain from workshop team if using automated scanner*.
       PassWord:
-        default: Password to add endpoint for scanning? Leave blank unless using automated scanner.
+        default: Password to add endpoint for scanning? *Obtain from workshop team if using automated scanner*.
       ScannerIP01:
-        default: Allow incoming connections from IP of scanner. Leave default.
+        default: Allow incoming connections from IP of scanner. *Leave default*.
       ScannerIP02:
-        default: Allow incoming connections from IP of scanner. Leave default.
+        default: Allow incoming connections from IP of scanner. *Leave default*.
       ArtifactsBucket:
         default: S3 bucket for artifacts
       ArtifactsPrefix:
