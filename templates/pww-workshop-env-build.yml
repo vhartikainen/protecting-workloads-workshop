@@ -34,13 +34,11 @@ Parameters:
     Type: String
     AllowedPattern: ".+"
     Description: Scanner Username
-    Default: waflab
   PassWord:
     Type: String
     AllowedPattern: ".+"
     Description: Scanner Password
-#    NoEcho: 'True'
-    Default: "AWS-SFOLoft187!?"
+    NoEcho: 'True'
     AllowedPattern: ".+"
   ScannerIP01:
     Type: String
