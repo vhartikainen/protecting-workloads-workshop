@@ -26,22 +26,17 @@ Parameters:
     AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
     Type: String
     Default: 0.0.0.0/0
-  tagWorkload:
+  AutomatedScanner:
+    Description: Automated Scanner
+    Default: false
     Type: String
-    Description: What is the workload name?
-    Default: AWS Loft WAF Workshop
+    AllowedValues: [true, false]
   UserName:
     Type: String
-    AllowedPattern: ".+"
     Description: Scanner Username
-    Default: waflab
   PassWord:
     Type: String
-    AllowedPattern: ".+"
     Description: Scanner Password
-#    NoEcho: 'True'
-    Default: "AWS-SFOLoft187!?"
-    AllowedPattern: ".+"
   ScannerIP01:
     Type: String
     Default: 54.156.237.144/32
@@ -58,12 +53,12 @@ Parameters:
     ConstraintDescription: ArtifactsBucket S3 bucket name can include numbers, lowercase letters, uppercase letters, and hyphens (-).
       It cannot start or end with a hyphen (-).
   ArtifactsPrefix:
-    Description: Path in the S3 bucket containing artifact files. Leave default for N. Virginia.
+    Description: Path in the S3 bucket containing artifact files. Leave default.
     Type: String
     Default: public
     AllowedPattern: ^[0-9a-zA-Z-/]*$
     ConstraintDescription: ArtifactsPrefix key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-),
-      and forward slash (/).
+      and forward slash (/). Leave default.
 
 
 ## Metadata
@@ -75,12 +70,12 @@ Metadata:
       - Label:
           default: Instance Configuration
         Parameters:
-        - tagWorkload
         - EC2InstanceSize
         - MyTrustedNetwork
       - Label:
-          default: Scanning Credentials
+          default: Scanning Credentials (Only complete this section if instructed to.)
         Parameters:
+        - AutomatedScanner
         - UserName
         - PassWord
         - ScannerIP01
@@ -96,20 +91,24 @@ Metadata:
         default: EC2 instance size for Web servers
       MyTrustedNetwork:
         default: Trusted Network CIDR.
+      AutomatedScanner:
+        default: Use automated scanner? Leave false unless instructed otherwise by workshop administrators.
       UserName:
-        default: Username to add endpoint for scanning?
+        default: Username to add endpoint for scanning? Leave blank unless using automated scanner.
       PassWord:
-        default: Password to add endpoint for scanning?
+        default: Password to add endpoint for scanning? Leave blank unless using automated scanner.
       ScannerIP01:
         default: Allow incoming connections from IP of scanner. Leave default.
       ScannerIP02:
         default: Allow incoming connections from IP of scanner. Leave default.
-      tagWorkload:
-        default: Name for website
       ArtifactsBucket:
         default: S3 bucket for artifacts
       ArtifactsPrefix:
         default: S3 path to artifacts
+
+Conditions:
+# Register with automated scanner?
+  UseAutomatedScanner: !Equals [!Ref AutomatedScanner, 'true' ]
 
 ## Mappings
 Mappings:
@@ -281,8 +280,27 @@ Resources:
       RouteTableId: !Ref rtbNat
 
 ## Configure ALB: security group, load balancer, route 53 endpoint
+  
+  sgLoadBalancer1:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      VpcId: !Ref vpc
+      GroupDescription: Load Balancer Security Group
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: !Ref MyTrustedNetwork
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: !Join ["" , [!Ref natEip, "/32"]]
+      Tags:
+        - Key: Name
+          Value: !Join ["-" , [!Ref 'AWS::StackName', AlbSg]]
 
-  sgLoadBalancer:
+  sgLoadBalancer2:
+    Condition: UseAutomatedScanner
     Type: AWS::EC2::SecurityGroup
     Properties:
       VpcId: !Ref vpc
@@ -313,7 +331,8 @@ Resources:
     Properties:
       Scheme: internet-facing
       Name: !Join ["-" , [!Ref 'AWS::StackName', Alb]]
-      SecurityGroups: [ !Ref sgLoadBalancer ]
+      SecurityGroups: 
+        - !If [ UseAutomatedScanner, !Ref sgLoadBalancer2, !Ref sgLoadBalancer1 ]
       Subnets: [ !Ref sub1Public, !Ref sub2Public ]
       Tags:
         - Key: Name
@@ -360,7 +379,8 @@ Resources:
         - IpProtocol: tcp
           FromPort: 0
           ToPort: 65535
-          SourceSecurityGroupId: !Ref sgLoadBalancer
+          SourceSecurityGroupId: 
+            !If [ UseAutomatedScanner, !Ref sgLoadBalancer2, !Ref sgLoadBalancer1 ]
 
   LaunchConfiguration:
     Type: AWS::AutoScaling::LaunchConfiguration
@@ -539,6 +559,7 @@ Resources:
       - Ref: EC2InstanceRole
 
   AddScanTarg:
+    Condition: UseAutomatedScanner
     DependsOn:
       - "Alb"
     Type: "Custom::AddScanTarg"
@@ -546,8 +567,8 @@ Resources:
     Properties:
       ServiceToken: !GetAtt AddScanTargFunction.Arn
       Region: !Ref "AWS::Region"
-
   AddScanTargFunction:
+    Condition: UseAutomatedScanner
     Type: AWS::Lambda::Function
     Properties:
       Description: Add ALB endpoint to scanning engine
@@ -630,6 +651,7 @@ Resources:
             # Send result to stack
             cfnresponse.send(event, context, responseStatus, responseData)
   AddScanTargExecutionRole:
+      Condition: UseAutomatedScanner
       Type: AWS::IAM::Role
       Properties:
         AssumeRolePolicyDocument:
@@ -651,6 +673,7 @@ Resources:
               - logs:PutLogEvents
               - logs:DescribeLogStreams
               Resource: arn:aws:logs:*:*:*
+
   # Red Team Scanner / Testing Instance
   RedTeamHost:
       Type: AWS::EC2::Instance
@@ -681,7 +704,6 @@ Resources:
         UserData:
           Fn::Base64: !Sub |
             #!/bin/bash -xe
-            #!/bin/bash -xe
             yum update -y
             yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
             amazon-linux-extras install -y python3 
@@ -692,7 +714,7 @@ Resources:
             /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource RedTeamHost --region ${AWS::Region}
       CreationPolicy:
         ResourceSignal:
-          Timeout: PT10M
+          Timeout: PT15M
 
 ## Outputs
 Outputs:
@@ -703,6 +725,7 @@ Outputs:
   albEndpoint:
     Value: !Join ['', ['http://', !GetAtt Alb.DNSName]]
   ScannerUID:
+    Condition: UseAutomatedScanner
     Value: !GetAtt AddScanTarg.UUID
   wafWebACL:
     Value: !Ref wafACL

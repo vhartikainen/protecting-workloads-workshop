@@ -31,8 +31,8 @@ In order to test your AWS WAF ruleset, this lab has been configured with two sca
 
 The scanner performs 10 basic tests designed to help simulate and mitigate common web attack vectors. 
 
-1. Canary GET
-2. Canary POST
+1. Canary GET - Should not be blocked
+2. Canary POST - Should not be blocked
 3. SQL Injection (SQLi) in Query String
 4. SQL Injection (SQLi) in Cookie
 5. Cross Site Scripting (XSS) in Query String
@@ -58,16 +58,18 @@ The scanner.py script will run each of the tests above and report back the follo
 - __Test Name__: The name of the test from list above.
 - __Result__: The HTTP status code returned.
 
-As you can see by running the script there are several vulnerabilities that need to be addressed. In the remnediate phase you will configure an AWS WAF Web ACL to block these requests. When AWS WAF blocks a web request based on the conditions that you specify, it returns HTTP status code 403 (Forbidden). 
+As you can see by running the script there are several vulnerabilities that need to be addressed. In the remnediate phase you will configure an AWS WAF Web ACL to block these requests. When AWS WAF blocks a web request based on the conditions that you specify, it returns HTTP status code 403 (Forbidden). For a full view of the request and response information, you can paste the **Request** command directly into the console and add the --debug argument.
 
 !!! info "Note about Testing Tool"
-    The scanner.py script uses an open source <a href="https://ifconfig.co/" target="_blank">HTTP client called httpie</a>. HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.
+    The scanner.py script uses an open source <a href="https://httpie.org/" target="_blank">HTTP client called httpie</a>. HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.
 
 
 ### Website Scanning Environment and Tools - Automated Scanning
 
-In addition to the ad hock scanning, automatied scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop particpants. You can identify the scanning results for your website using the Unique Id in the CloudFormation outputs.
+In addition to the ad hock scanning, automatied scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop particpants. You can identify the scanning results for your site using the Unique Id found in the CloudFormation outputs.
 
-![WAF Lab Centralized Dashboard](./images/waflabdash.png)
+![WAF Lab Centralized Dashboard](./images/waflabdash-pre.png)
+
+---
 
 Click [here](./remediate.md) to proceed to the Remediate Phase.

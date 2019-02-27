@@ -4,6 +4,9 @@
 
 To setup the workshop environment, launch the CloudFormation stack below in the preferred AWS region using the "Deploy to AWS" links below. This will automatically take you to the console to run the template.
 
+!!! info "Note About Workshop and AWS Account"
+    #### **We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account.**
+
 ---
 
 **US West 2 (Oregon)** &nbsp; &nbsp; &nbsp; &nbsp; 
@@ -31,5 +34,6 @@ To setup the workshop environment, launch the CloudFormation stack below in the 
 
 This will bring you back to the CloudFormation console. You can refresh the page to see the stack starting to create. Before moving on, make sure the stack is in a __CREATE_COMPLETE__ status. This should take ~8 minutes.
 
+---
 
 Click [here](./assess.md) to proceed to the Assess Phase.
