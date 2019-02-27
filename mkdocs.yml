@@ -45,7 +45,6 @@ markdown_extensions:
 
 # Navigation
 nav:
-- Home: 'index.md'
 - Getting Started: 'getting-started.md'
 - Scenario: 'index.md'
 - Web Application Firewall:
