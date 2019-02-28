@@ -42,7 +42,8 @@ The scanner performs 10 basic tests designed to help simulate and mitigate commo
 9. Cross Site Request Forgery (CSRF) Token Invalid
 10. Path Traversal 
 
-___These basic tests are designed to provide common examples you can use to test AWS WAF functionality. You should perform thorough analysis and testing when implementing rules into your production environments.___
+!!! info "Note about Tests"
+    _These basic tests are designed to provide common examples you can use to test AWS WAF functionality. You should perform thorough analysis and testing when implementing rules into your production environments._
 
 ### Website Scanning Environment and Tools - Manual Scanning
 Once you have started a Session Manager connection to your Red Team Host, the scanner script can be invoked by typing the following command while in the _/usr/bin_ directory:
@@ -66,7 +67,7 @@ As you can see by running the script there are several vulnerabilities that need
 
 ### Website Scanning Environment and Tools - Automated Scanning
 
-For an AWS sponsored event, in addition to the ad hock scanning, automatied scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop particpants. You can identify the scanning results for your site using the Unique Id found in the CloudFormation outputs.
+For an AWS sponsored event, in addition to the ad hock scanning, automated scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop particpants. You can identify the scanning results for your site using the Unique Id found in the CloudFormation outputs.
 
 ![WAF Lab Centralized Dashboard](./images/waflabdash-pre.png)
 
