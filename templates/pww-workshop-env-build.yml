@@ -63,6 +63,10 @@ Parameters:
     AllowedPattern: ^[0-9a-zA-Z-/]*$
     ConstraintDescription: ArtifactsPrefix key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-),
       and forward slash (/). Leave default.
+  AmazonLinux2AmiId:
+    Type : 'AWS::SSM::Parameter::Value<String>'
+    Description: Latest Amazon Linux 2 AMI ID. Leave default.
+    Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
 
 
 ## Metadata
@@ -386,14 +390,16 @@ Resources:
           SourceSecurityGroupId: 
             !If [ UseAutomatedScanner, !Ref sgLoadBalancer2, !Ref sgLoadBalancer1 ]
 
+#        Fn::FindInMap:
+#        - EC2AMI
+#        - !Ref AWS::Region
+#        - AmznLinux
+
   LaunchConfiguration:
     Type: AWS::AutoScaling::LaunchConfiguration
     Properties:
       ImageId:
-        Fn::FindInMap:
-        - EC2AMI
-        - !Ref AWS::Region
-        - AmznLinux
+        !Ref AmazonLinux2AmiId
       SecurityGroups:
       - !GetAtt sgEC2Sg.GroupId
       InstanceType: !Ref EC2InstanceSize
@@ -679,6 +685,12 @@ Resources:
               Resource: arn:aws:logs:*:*:*
 
   # Red Team Scanner / Testing Instance
+
+#          Fn::FindInMap:
+#          - EC2AMI
+#          - Ref: AWS::Region
+#          - AmznLinux
+
   RedTeamHost:
       Type: AWS::EC2::Instance
       Metadata:
@@ -693,10 +705,7 @@ Resources:
                 command: "cd /usr/bin; curl -O https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/scanner.py"
       Properties:
         ImageId:
-          Fn::FindInMap:
-          - EC2AMI
-          - Ref: AWS::Region
-          - AmznLinux
+          !Ref AmazonLinux2AmiId
         InstanceType: !Ref EC2InstanceSize
         IamInstanceProfile:
           Ref: EC2InstanceProfile
