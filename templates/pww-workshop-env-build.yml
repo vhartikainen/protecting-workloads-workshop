@@ -44,13 +44,13 @@ Parameters:
   ScannerIP01:
     Type: String
     Default: 54.156.237.144/32
-    Description: Allow incoming connections from IP of scanner. *Leave default*.
+    Description: Allow incoming connections from IP of scanner. Leave default.
   ScannerIP02:
     Type: String
     Default: 3.208.55.167/32
-    Description: Allow incoming connections from IP of scanner. *Leave default*.
+    Description: Allow incoming connections from IP of scanner. Leave default.
   ArtifactsBucket:
-    Description: S3 bucket with artifact files (Lambda functions, templates, html files, etc.). Leave default for N. Virginia.
+    Description: S3 bucket with artifact files (Lambda functions, templates, html files, etc.). Leave default.
     Type: String
     Default: protecting-workloads-workshop
     AllowedPattern: ^[0-9a-zA-Z]+([0-9a-zA-Z-]*[0-9a-zA-Z])*$
@@ -80,6 +80,7 @@ Metadata:
         Parameters:
         - EC2InstanceSize
         - MyTrustedNetwork
+        - AmazonLinux2AmiId
       - Label:
           default: Automated Scanner
         Parameters:
@@ -113,6 +114,8 @@ Metadata:
         default: S3 artifact bucket
       ArtifactsPrefix:
         default: S3 artifact path
+      AmazonLinux2AmiId:
+        default: Amazon Linux AMI Id
 
 Conditions:
 # Register with automated scanner?
