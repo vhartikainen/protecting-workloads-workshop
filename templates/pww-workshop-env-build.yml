@@ -27,28 +27,28 @@ Parameters:
     Type: String
     Default: 0.0.0.0/0
   AutomatedScanner:
-    Description: Automated Scanner
+    Description: Use automated scanner? Leave true for AWS cponsored event. Set false if non-AWS sponsored event or not using automated scanner.
     Default: true
     Type: String
     AllowedValues: [true, false]
   UserName:
     Type: String
-    Description: Scanner Username
+    Description: Username to add endpoint for scanning? *Obtain from workshop team if using automated scanner*.
     AllowedPattern: ".+"
     Default: "null"
   PassWord:
     Type: String
-    Description: Scanner Password
+    Description: Password to add endpoint for scanning? *Obtain from workshop team if using automated scanner*.
     AllowedPattern: ".+"
     Default: "null"
   ScannerIP01:
     Type: String
     Default: 54.156.237.144/32
-    Description: Leave default
+    Description: Allow incoming connections from IP of scanner. *Leave default*.
   ScannerIP02:
     Type: String
     Default: 3.208.55.167/32
-    Description: Leave default
+    Description: Allow incoming connections from IP of scanner. *Leave default*.
   ArtifactsBucket:
     Description: S3 bucket with artifact files (Lambda functions, templates, html files, etc.). Leave default for N. Virginia.
     Type: String
@@ -96,23 +96,23 @@ Metadata:
 
     ParameterLabels:
       EC2InstanceSize:
-        default: EC2 instance size for Web servers
+        default: EC2 Instance Size
       MyTrustedNetwork:
-        default: Trusted Network CIDR.
+        default: Trusted Network CIDR
       AutomatedScanner:
-        default: Use automated scanner? Leave true for AWS cponsored event. Set false if non-AWS sponsored event or not using automated scanner.
+        default: Automated Scanner
       UserName:
-        default: Username to add endpoint for scanning? *Obtain from workshop team if using automated scanner*.
+        default: Automated Scanner Username
       PassWord:
-        default: Password to add endpoint for scanning? *Obtain from workshop team if using automated scanner*.
+        default: Automated Scanner Password
       ScannerIP01:
-        default: Allow incoming connections from IP of scanner. *Leave default*.
+        default: Scanner IP01
       ScannerIP02:
-        default: Allow incoming connections from IP of scanner. *Leave default*.
+        default: Scanner IP02
       ArtifactsBucket:
-        default: S3 bucket for artifacts
+        default: S3 artifact bucket
       ArtifactsPrefix:
-        default: S3 path to artifacts
+        default: S3 artifact path
 
 Conditions:
 # Register with automated scanner?
