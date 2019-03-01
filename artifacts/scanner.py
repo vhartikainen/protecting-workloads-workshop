@@ -16,7 +16,7 @@ class bcolors:
 
 # validate command line
 if len(sys.argv) != 2:
-	print('Usage: python waf_test.py <target DNS or IP>');
+	print('Usage: scanner.py <target DNS or IP>');
 	exit(1);
 
 # set target dns
