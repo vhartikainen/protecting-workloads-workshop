@@ -1,8 +1,6 @@
-# Under Construction! - AWS Protecting Your Workloads Workshop
+# Identifying and Mitigating Host Vulnerabilities - UNDER CONSTRUCTION!
 
-Welcome to the AWS Protecting Your Workloads Workshop!
-
-In this workshop, you will build an environment consisting of two Amazon Linux web servers behind an application load balancer.  The web servers will be running a PHP web site that contains several vulnerabilities.  You will then use Amazon Inspector, AWS WAF, and AWS Systems Manager to identify the vulnerabilities and remediate them.
+In this workshop, you will start with environment built in the previous AWS WAF round which consists of Amazon Linux 2 web servers behind an application load balancer.  You will then use Amazon Inspector and AWS Systems Manager to identify the vulnerabilities and remediate them.
 
 * **Level**: Intermediate - Advanced
 * **Duration**: 2 hours
