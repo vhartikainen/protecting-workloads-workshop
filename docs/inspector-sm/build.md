@@ -1,4 +1,4 @@
-# Identifying and Remediating Operating System Vulnerabilities with Amazon Inspector and AWS Systems Manager --Build Phase
+# Identifying and Remediating Host Vulnerabilities with Amazon Inspector and AWS Systems Manager - Build Phase
 
 ## Environment setup
 

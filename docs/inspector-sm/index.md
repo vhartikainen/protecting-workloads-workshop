@@ -1,4 +1,4 @@
-# Identifying and Mitigating Host Vulnerabilities - UNDER CONSTRUCTION!
+# Identifying and Remediating Host Vulnerabilities with Amazon Inspector and AWS Systems Manager
 
 In this workshop, you will start with environment built in the previous AWS WAF round which consists of Amazon Linux 2 web servers behind an application load balancer.  You will then use Amazon Inspector and AWS Systems Manager to identify the vulnerabilities and remediate them.
 
