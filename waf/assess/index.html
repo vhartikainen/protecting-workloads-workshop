@@ -741,7 +741,10 @@ You are now going to assess the posture of the site and then add an AWS WAF Web 
 <li>Cross Site Request Forgery (CSRF) Token Invalid</li>
 <li>Path Traversal </li>
 </ol>
-<p><strong><em>These basic tests are designed to provide common examples you can use to test AWS WAF functionality. You should perform thorough analysis and testing when implementing rules into your production environments.</em></strong></p>
+<div class="admonition info">
+<p class="admonition-title">Note about Tests</p>
+<p><em>These basic tests are designed to provide common examples you can use to test AWS WAF functionality. You should perform thorough analysis and testing when implementing rules into your production environments.</em></p>
+</div>
 <h3 id="website-scanning-environment-and-tools-manual-scanning">Website Scanning Environment and Tools - Manual Scanning</h3>
 <p>Once you have started a Session Manager connection to your Red Team Host, the scanner script can be invoked by typing the following command while in the <em>/usr/bin</em> directory:</p>
 <div class="codehilite"><pre><span></span>python3 scanner.py http://your-alb-endpoint
@@ -761,7 +764,7 @@ You are now going to assess the posture of the site and then add an AWS WAF Web 
 <p>The scanner.py script uses an open source <a href="https://httpie.org/" target="_blank">HTTP client called httpie</a>. HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.</p>
 </div>
 <h3 id="website-scanning-environment-and-tools-automated-scanning">Website Scanning Environment and Tools - Automated Scanning</h3>
-<p>For an AWS sponsored event, in addition to the ad hock scanning, automatied scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop particpants. You can identify the scanning results for your site using the Unique Id found in the CloudFormation outputs.</p>
+<p>For an AWS sponsored event, in addition to the ad hock scanning, automated scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop particpants. You can identify the scanning results for your site using the Unique Id found in the CloudFormation outputs.</p>
 <p><img alt="WAF Lab Centralized Dashboard" src="../images/waflabdash-pre.png" /></p>
 <hr />
 <p>Click <a href="../remediate/">here</a> to proceed to the Remediate Phase.</p>
