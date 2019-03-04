@@ -61,6 +61,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://protecting-workloads.awssecworkshops.com/inspector-sm/cleanup/</loc>
+     <lastmod>2019-03-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://protecting-workloads.awssecworkshops.com/cleanup/</loc>
      <lastmod>2019-03-03</lastmod>
      <changefreq>daily</changefreq>

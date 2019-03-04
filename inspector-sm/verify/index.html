@@ -102,7 +102,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#protecting-your-workloads-verify-phase" tabindex="1" class="md-skip">
+      <a href="#identifying-and-remediating-host-vulnerabilities-with-amazon-inspector-and-aws-systems-manager-verify-phase" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -510,6 +510,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cleanup/" title="Cleanup Phase" class="md-nav__link">
+      Cleanup Phase
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -581,8 +593,34 @@
                   <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/inspector-sm/verify.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="protecting-your-workloads-verify-phase">Protecting Your Workloads - Verify Phase</h1>
-<p>Now that you have remediate the environment, you will use Amazon Inspector assess the environment again to see how the patching affected the overall security posture of the environment.</p>
+                <h1 id="identifying-and-remediating-host-vulnerabilities-with-amazon-inspector-and-aws-systems-manager-verify-phase">Identifying and Remediating Host Vulnerabilities with Amazon Inspector and AWS Systems Manager - Verify Phase</h1>
+<p>Now that you have remediate the environment, you will again use Amazon Inspector to assess the environment again to see how the patching affected the overall security posture of the environment.</p>
+<ol>
+<li>
+<p>Go to the Amazon Inspector console, click <strong>Assessment templates</strong> on the menu.</p>
+</li>
+<li>
+<p>Locate the template that you created during the Assess Phase and check the box at the left end of that row.</p>
+</li>
+<li>
+<p>Click <strong>Run</strong>.  This will launch another assessment run. </p>
+</li>
+<li>
+<p>Click <strong>Assessmnet runs</strong> and periodically refresh the screen.  Wait until the status for the run changes to <em>Analysis complete</em>.  The run will take approximately 15 minutes to complete.</p>
+</li>
+<li>
+<p>Compare the number of findings between the two runs.   In most cases, there will be fewer findings in the newer run since patches have been applied.   The change in the number findings may vary based on the age of the AMI used to launch the instances.</p>
+</li>
+<li>
+<p>Click the number of findings for the newest run (after the patches were installed).  You will then see all of the findings that were not patched during the Remediate Phase.</p>
+</li>
+<li>
+<p>Take a look at the entries that were not patchesd.  A common example of a finding is an instance is configured to allow users to log in with root credentials over SSH, without having to use a command authenticated by a public key.  Why would Patch Manager not patch this or the other findings?</p>
+</li>
+<li>
+<p>You have now completed this round.  Click <a href="../cleanup/">here</a> to proceed to the Cleanup Phase.</p>
+</li>
+</ol>
                 
                   
                 
@@ -618,13 +656,13 @@
           </a>
         
         
-          <a href="../../cleanup/" title="Cleanup" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../cleanup/" title="Cleanup Phase" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Cleanup
+                Cleanup Phase
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
