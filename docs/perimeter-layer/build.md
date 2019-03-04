@@ -21,10 +21,21 @@ To setup the workshop environment, launch the CloudFormation stack below in the 
 
 1. Click ***Next*** on the Specify Template section.
 
-2. On the Specify stack details step, update the following parameters:
-    - Automated Scanner: __Only for AWS sponsored event. Set to true if event is AWS sponsored. Otherwise set to false.__
-    - Scanner Username: __Only for AWS sponsored event. Enter the username provided by the workshop team. Otherwise leave default.__
-    - Scanner Password: __Only for AWS sponsored event. Enter the password provided by the workshop team. Otherwise leave default.__
+2. On the Specify stack details step, update the following parameters depending on how you are doing this workshop:
+
+??? info "AWS-sponsored event"
+
+    - Automated Scanner: __Set to true.__
+    - Scanner Username: __Enter the username provided by the workshop team.__
+    - Scanner Password: __Enter the password provided by the workshop team.__
+    - Trusted Network CIDR: Enter a trusted IP or CIDR range you will access the site from using a web browser. You can optain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host.
+    - Keep the defaults for the rest of the parameters.
+
+??? info "Individual or an event not sponsored by AWS"
+
+    - Automated Scanner: __Set to false.__
+    - Scanner Username: __Leave default.__
+    - Scanner Password: __Leave default.__
     - Trusted Network CIDR: Enter a trusted IP or CIDR range you will access the site from using a web browser. You can optain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host.
     - Keep the defaults for the rest of the parameters.
 

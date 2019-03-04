@@ -47,19 +47,20 @@ markdown_extensions:
 nav:
 - Scenario: 'index.md'
 - Getting Started: 'getting-started.md'
-- Web Application Firewall:
-  - 'Scenario': 'waf/index.md'
-  - 'Build Phase': 'waf/build.md'
-  - 'Assess Phase': 'waf/assess.md'
-  - 'Remediate Phase': 'waf/remediate.md'
-  - 'Verify Phase': 'waf/verify.md'
-- Inspector and SM:
-  - 'Scenario': 'inspector-sm/index.md'
-  - 'Build Phase': 'inspector-sm/build.md'
-  - 'Assess Phase': 'inspector-sm/assess.md'
-  - 'Remediate Phase': 'inspector-sm/remediate.md'
-  - 'Verify Phase': 'inspector-sm/verify.md'
-  - 'Cleanup Phase': 'inspector-sm/cleanup.md'
+- Perimeter Layer:
+  - 'Scenario': 'perimeter-layer/index.md'
+  - 'Build Phase': 'perimeter-layer/build.md'
+  - 'Assess Phase': 'perimeter-layer/assess.md'
+  - 'Remediate Phase': 'perimeter-layer/remediate.md'
+  - 'Verify Phase': 'perimeter-layer/verify.md'
+  - 'Cleanup Phase': 'perimeter-layer/cleanup.md'
+- Host Layer:
+  - 'Scenario': 'host-layer/index.md'
+  - 'Build Phase': 'host-layer/build.md'
+  - 'Assess Phase': 'host-layer/assess.md'
+  - 'Remediate Phase': 'host-layer/remediate.md'
+  - 'Verify Phase': 'host-layer/verify.md'
+  - 'Cleanup Phase': 'host-layer/cleanup.md'
 - Cleanup: 'cleanup.md'
 - Contributing: 'contribute.md'
 - License: 'license.md'

@@ -28,7 +28,7 @@ If you are doing this workshop as part of an AWS sponsored event, you will recei
 
 ## Workshop Modules
 
-1. [Mitigating Common Web Application Attack Vectors Using AWS Web Application Firewall](./waf/index.md)
-2. [Automating Assessment and Remediation Using Amazon Inspector and AWS Systems Manager](./inspector-sm/index.md)
+1. [Mitigating Common Web Application Attack Vectors Using AWS Web Application Firewall](./perimeter-layer/index.md)
+2. [Automating Assessment and Remediation Using Amazon Inspector and AWS Systems Manager](./host-layer/index.md)
 
 You are now setup for the workshops!

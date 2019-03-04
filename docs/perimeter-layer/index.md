@@ -3,7 +3,7 @@
 For your initial task, you will configure AWS WAF to protect your site from common attacks such as SQL injection and cross site scripting. AWS WAF is a web application firewall that helps protect your web applications from common web exploits that could affect application availability, compromise security or consume excessive resources. 
 
 
-## Module Phases
+## Phases in the Perimeter Layer round
 
 To begin the module, proceed to the Build phase below.
 

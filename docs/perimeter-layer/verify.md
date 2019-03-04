@@ -45,4 +45,4 @@ Here are some sample of metrics that you can use. Starting from top left side, i
 
 ---
 
-Click [here](/inspector-sm/index.md) to proceed to the next workshop module.
+Click [here](/host-layer/index.md) to proceed to the Host Layer round.

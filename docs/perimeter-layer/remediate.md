@@ -144,6 +144,9 @@ How do the requirements derived from the above questions affect your solution?
         1. query_string, url decode
         2. body, html entity decode
         3. header, cookie, url decode
+    2.  create SQLi rule named matchSQLi
+    	1. type regular
+        2. does match SQLi condition: filterSQLi
 
 ### 2. Limit Attack Footprint
 
@@ -162,6 +165,11 @@ You should consider blocking access to such elements, or limiting access to know
         2.	body, html entity decode
         3.	body, url decode
         4.	header, cookie, url decode
+    2.	create XSS rule named matchXSS
+        1. type regular
+        2. does match XSS condition: filterXSS
+        3. does not match string match condition: filterXSSPathException
+
 
 ### 3. Enforce Request Hygiene
 
