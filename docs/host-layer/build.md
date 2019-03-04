@@ -1,4 +1,4 @@
-# Identifying and Remediating Host Vulnerabilities with Amazon Inspector and AWS Systems Manager - Build Phase
+# Identifying and Remediating Host Vulnerabilities - Host Layer Round - Build Phase
 
 ## Environment setup
 
