@@ -13,7 +13,7 @@
         <meta name="description" content="This workshop shows how you can protect a web site using AWS Security Services">
       
       
-        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/inspector-sm/build/">
+        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/host-layer/verify/">
       
       
         <meta name="author" content="aws-security-workshops@amazon.com">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Build Phase - Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager</title>
+        <title>Verify Phase - Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager</title>
       
     
     
@@ -102,7 +102,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#identifying-and-remediating-host-vulnerabilities-with-amazon-inspector-and-aws-systems-manager-build-phase" tabindex="1" class="md-skip">
+      <a href="#identifying-and-remediating-host-vulnerabilities-host-layer-round-verify-phase" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -160,7 +160,7 @@
                   Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager
                 </span>
                 <span class="md-header-nav__topic">
-                  Build Phase
+                  Verify Phase
                 </span>
               
             
@@ -346,11 +346,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
-      Web Application Firewall
+      Perimeter Layer
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
-        Web Application Firewall
+        Perimeter Layer
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -361,7 +361,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../waf/" title="Scenario" class="md-nav__link">
+    <a href="../../perimeter-layer/" title="Scenario" class="md-nav__link">
       Scenario
     </a>
   </li>
@@ -373,7 +373,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../waf/build/" title="Build Phase" class="md-nav__link">
+    <a href="../../perimeter-layer/build/" title="Build Phase" class="md-nav__link">
       Build Phase
     </a>
   </li>
@@ -385,7 +385,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../waf/assess/" title="Assess Phase" class="md-nav__link">
+    <a href="../../perimeter-layer/assess/" title="Assess Phase" class="md-nav__link">
       Assess Phase
     </a>
   </li>
@@ -397,7 +397,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../waf/remediate/" title="Remediate Phase" class="md-nav__link">
+    <a href="../../perimeter-layer/remediate/" title="Remediate Phase" class="md-nav__link">
       Remediate Phase
     </a>
   </li>
@@ -409,8 +409,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../waf/verify/" title="Verify Phase" class="md-nav__link">
+    <a href="../../perimeter-layer/verify/" title="Verify Phase" class="md-nav__link">
       Verify Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../perimeter-layer/cleanup/" title="Cleanup Phase" class="md-nav__link">
+      Cleanup Phase
     </a>
   </li>
 
@@ -432,11 +444,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     
     <label class="md-nav__link" for="nav-4">
-      Inspector and SM
+      Host Layer
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        Inspector and SM
+        Host Layer
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -457,49 +469,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Build Phase
-      </label>
-    
-    <a href="./" title="Build Phase" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../build/" title="Build Phase" class="md-nav__link">
       Build Phase
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#environment-setup" title="Environment setup" class="md-nav__link">
-    Environment setup
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -531,11 +505,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../verify/" title="Verify Phase" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="Verify Phase" class="md-nav__link md-nav__link--active">
       Verify Phase
     </a>
+    
   </li>
 
         
@@ -609,22 +592,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#environment-setup" title="Environment setup" class="md-nav__link">
-    Environment setup
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -635,66 +602,37 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/inspector-sm/build.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/host-layer/verify.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="identifying-and-remediating-host-vulnerabilities-with-amazon-inspector-and-aws-systems-manager-build-phase">Identifying and Remediating Host Vulnerabilities with Amazon Inspector and AWS Systems Manager - Build Phase</h1>
-<h2 id="environment-setup">Environment setup</h2>
-<div class="admonition info">
-<p class="admonition-title">For those who have completed the Web Application Firewall round</p>
-<p><strong>If you have completed the Web Application Firewall round, this round uses the same environment.  If you have not deleted the AWS CloudFormation stack from the Web Application Firewall round, you can click <a href="../assess/">here</a> to proceed to the Assess Phase.</strong></p>
-</div>
-<hr />
-<div class="admonition info">
-<p class="admonition-title">Note About Workshop and AWS Account</p>
-<p><strong>We strongly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account.</strong></p>
-</div>
-<hr />
-<p>To setup the workshop environment, launch the CloudFormation stack below in the preferred AWS region using the "Deploy to AWS" links below. This will automatically take you to the console to run the template.</p>
-<p><strong>US West 2 (Oregon)</strong> &nbsp; &nbsp; &nbsp; &nbsp; 
-<a href="https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww-workshop-env-build.yml" target="_blank"><img alt="Deploy in us-est-2" src="/images/deploy-to-aws.png" /></a></p>
-<hr />
-<p><strong>US East 2 (Ohio)</strong> &nbsp; &nbsp; &nbsp; &nbsp;
-<a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww-workshop-env-build.yml" target="_blank"><img alt="Deploy in us-east-1" src="/images/deploy-to-aws.png" /></a></p>
-<hr />
+                <h1 id="identifying-and-remediating-host-vulnerabilities-host-layer-round-verify-phase">Identifying and Remediating Host Vulnerabilities - Host Layer Round - Verify Phase</h1>
+<p>Now that you have remediate the environment, you will again use Amazon Inspector to assess the environment again to see how the patching affected the overall security posture of the environment.</p>
 <ol>
 <li>
-<p>Click <strong>Next</strong> on the Specify Template section.</p>
+<p>Go to the Amazon Inspector console, click <strong>Assessment templates</strong> on the menu.</p>
 </li>
 <li>
-<p>On the Specify stack details step, update the following parameters depending on how you are doing this workshop:</p>
+<p>Locate the template that you created during the Assess Phase and check the box at the left end of that row.</p>
+</li>
+<li>
+<p>Click <strong>Run</strong>.  This will launch another assessment run. </p>
+</li>
+<li>
+<p>Click <strong>Assessmnet runs</strong> and periodically refresh the screen.  Wait until the status for the run changes to <em>Analysis complete</em>.  The run will take approximately 15 minutes to complete.</p>
+</li>
+<li>
+<p>Compare the number of findings between the two runs.   In most cases, there will be fewer findings in the newer run since patches have been applied.   The change in the number findings may vary based on the age of the AMI used to launch the instances.</p>
+</li>
+<li>
+<p>Click the number of findings for the newest run (after the patches were installed).  You will then see all of the findings that were not patched during the Remediate Phase.</p>
+</li>
+<li>
+<p>Take a look at the entries that were not patchesd.  A common example of a finding is an instance is configured to allow users to log in with root credentials over SSH, without having to use a command authenticated by a public key.  Why would Patch Manager not patch this or the other findings?</p>
+</li>
+<li>
+<p>You have now completed this round.  Click <a href="../cleanup/">here</a> to proceed to the Cleanup Phase.</p>
 </li>
 </ol>
-<details class="info"><summary>AWS-sponsored event</summary><ul>
-<li>Automated Scanner: <strong>Set to true.</strong></li>
-<li>Scanner Username: <strong>Enter the username provided by the workshop team.</strong></li>
-<li>Scanner Password: <strong>Enter the password provided by the workshop team.</strong></li>
-<li>Trusted Network CIDR: Enter a trusted IP or CIDR range you will access the site from using a web browser. You can optain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host.</li>
-<li>Keep the defaults for the rest of the parameters.</li>
-</ul>
-</details>
-<details class="info"><summary>Individual or an event not sponsored by AWS</summary><ul>
-<li>Automated Scanner: <strong>Set to false.</strong></li>
-<li>Scanner Username: <strong>Leave default.</strong></li>
-<li>Scanner Password: <strong>Leave default.</strong></li>
-<li>Trusted Network CIDR: Enter a trusted IP or CIDR range you will access the site from using a web browser. You can optain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host.</li>
-<li>Keep the defaults for the rest of the parameters.</li>
-</ul>
-</details>
-<ol>
-<li>
-<p>Click <strong>Next</strong>.</p>
-</li>
-<li>
-<p>Click <strong>Next</strong> on the <strong><em>Configure stack options</em></strong> section.</p>
-</li>
-<li>
-<p>Check the box to acknowledge that the template will create IAM roles under Capabilities and click <strong>Create</strong>.</p>
-</li>
-</ol>
-<p>This will bring you back to the CloudFormation console. You can refresh the page to see the stack starting to create. Before moving on, make sure the stack is in a <strong>CREATE_COMPLETE</strong> status. This should take approximately eight minutes.</p>
-<hr />
-<p>Click <a href="../assess/">here</a> to proceed to the Assess Phase.</p>
                 
                   
                 
@@ -715,7 +653,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../" title="Scenario" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../remediate/" title="Remediate Phase" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -724,19 +662,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Scenario
+                Remediate Phase
               </span>
             </div>
           </a>
         
         
-          <a href="../assess/" title="Assess Phase" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../cleanup/" title="Cleanup Phase" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Assess Phase
+                Cleanup Phase
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

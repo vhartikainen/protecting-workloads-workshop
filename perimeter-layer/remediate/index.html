@@ -13,7 +13,7 @@
         <meta name="description" content="This workshop shows how you can protect a web site using AWS Security Services">
       
       
-        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/waf/remediate/">
+        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/perimeter-layer/remediate/">
       
       
         <meta name="author" content="aws-security-workshops@amazon.com">
@@ -348,11 +348,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
-      Web Application Firewall
+      Perimeter Layer
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
-        Web Application Firewall
+        Perimeter Layer
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -592,6 +592,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cleanup/" title="Cleanup Phase" class="md-nav__link">
+      Cleanup Phase
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -607,11 +619,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      Inspector and SM
+      Host Layer
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        Inspector and SM
+        Host Layer
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -622,7 +634,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../inspector-sm/" title="Scenario" class="md-nav__link">
+    <a href="../../host-layer/" title="Scenario" class="md-nav__link">
       Scenario
     </a>
   </li>
@@ -634,7 +646,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../inspector-sm/build/" title="Build Phase" class="md-nav__link">
+    <a href="../../host-layer/build/" title="Build Phase" class="md-nav__link">
       Build Phase
     </a>
   </li>
@@ -646,7 +658,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../inspector-sm/assess/" title="Assess Phase" class="md-nav__link">
+    <a href="../../host-layer/assess/" title="Assess Phase" class="md-nav__link">
       Assess Phase
     </a>
   </li>
@@ -658,7 +670,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../inspector-sm/remediate/" title="Remediate Phase" class="md-nav__link">
+    <a href="../../host-layer/remediate/" title="Remediate Phase" class="md-nav__link">
       Remediate Phase
     </a>
   </li>
@@ -670,7 +682,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../inspector-sm/verify/" title="Verify Phase" class="md-nav__link">
+    <a href="../../host-layer/verify/" title="Verify Phase" class="md-nav__link">
       Verify Phase
     </a>
   </li>
@@ -682,7 +694,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../inspector-sm/cleanup/" title="Cleanup Phase" class="md-nav__link">
+    <a href="../../host-layer/cleanup/" title="Cleanup Phase" class="md-nav__link">
       Cleanup Phase
     </a>
   </li>
@@ -909,7 +921,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/waf/remediate.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/perimeter-layer/remediate.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
                 <h1 id="mitigating-common-web-application-attack-vectors-using-aws-waf-remediate-phase">Mitigating Common Web Application Attack Vectors Using AWS WAF - Remediate Phase</h1>
@@ -1037,6 +1049,11 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <li>header, cookie, url decode</li>
 </ol>
 </li>
+<li>create SQLi rule named matchSQLi<ol>
+<li>type regular</li>
+<li>does match SQLi condition: filterSQLi</li>
+</ol>
+</li>
 </ol>
 </details>
 <h3 id="2-limit-attack-footprint">2. Limit Attack Footprint</h3>
@@ -1052,6 +1069,12 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <li>body, html entity decode</li>
 <li>body, url decode</li>
 <li>header, cookie, url decode</li>
+</ol>
+</li>
+<li>create XSS rule named matchXSS<ol>
+<li>type regular</li>
+<li>does match XSS condition: filterXSS</li>
+<li>does not match string match condition: filterXSSPathException</li>
 </ol>
 </li>
 </ol>

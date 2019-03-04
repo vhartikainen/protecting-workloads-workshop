@@ -13,7 +13,7 @@
         <meta name="description" content="This workshop shows how you can protect a web site using AWS Security Services">
       
       
-        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/waf/build/">
+        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/host-layer/getting-started/">
       
       
         <meta name="author" content="aws-security-workshops@amazon.com">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Build Phase - Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager</title>
+        <title>Getting Started - Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager</title>
       
     
     
@@ -102,7 +102,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#mitigating-common-web-application-attack-vectors-using-aws-waf-build-phase" tabindex="1" class="md-skip">
+      <a href="#getting-started" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -160,7 +160,7 @@
                   Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager
                 </span>
                 <span class="md-header-nav__topic">
-                  Build Phase
+                  Getting Started
                 </span>
               
             
@@ -340,19 +340,113 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
-      Web Application Firewall
+      Perimeter Layer
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
-        Web Application Firewall
+        Perimeter Layer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../perimeter-layer/" title="Scenario" class="md-nav__link">
+      Scenario
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../perimeter-layer/build/" title="Build Phase" class="md-nav__link">
+      Build Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../perimeter-layer/assess/" title="Assess Phase" class="md-nav__link">
+      Assess Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../perimeter-layer/remediate/" title="Remediate Phase" class="md-nav__link">
+      Remediate Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../perimeter-layer/verify/" title="Verify Phase" class="md-nav__link">
+      Verify Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../perimeter-layer/cleanup/" title="Cleanup Phase" class="md-nav__link">
+      Cleanup Phase
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Host Layer
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Host Layer
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -373,49 +467,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Build Phase
-      </label>
-    
-    <a href="./" title="Build Phase" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../build/" title="Build Phase" class="md-nav__link">
       Build Phase
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#environment-setup" title="Environment setup" class="md-nav__link">
-    Environment setup
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -455,97 +511,13 @@
   </li>
 
         
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
-    
-    <label class="md-nav__link" for="nav-4">
-      Inspector and SM
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
-        Inspector and SM
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
           
           
           
 
 
   <li class="md-nav__item">
-    <a href="../../inspector-sm/" title="Scenario" class="md-nav__link">
-      Scenario
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../inspector-sm/build/" title="Build Phase" class="md-nav__link">
-      Build Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../inspector-sm/assess/" title="Assess Phase" class="md-nav__link">
-      Assess Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../inspector-sm/remediate/" title="Remediate Phase" class="md-nav__link">
-      Remediate Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../inspector-sm/verify/" title="Verify Phase" class="md-nav__link">
-      Verify Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../inspector-sm/cleanup/" title="Cleanup Phase" class="md-nav__link">
+    <a href="../cleanup/" title="Cleanup Phase" class="md-nav__link">
       Cleanup Phase
     </a>
   </li>
@@ -613,8 +585,29 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#environment-setup" title="Environment setup" class="md-nav__link">
-    Environment setup
+  <a href="#create-an-aws-account" title="Create an AWS account" class="md-nav__link">
+    Create an AWS account
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-an-admin-user" title="Create an admin user" class="md-nav__link">
+    Create an admin user
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-credits-optional" title="Add credits (optional)" class="md-nav__link">
+    Add credits (optional)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-cloud9-instance-optional" title="Create a Cloud9 instance (optional)" class="md-nav__link">
+    Create a Cloud9 instance (optional)
   </a>
   
 </li>
@@ -635,50 +628,40 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/waf/build.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/host-layer/getting-started.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="mitigating-common-web-application-attack-vectors-using-aws-waf-build-phase">Mitigating Common Web Application Attack Vectors Using AWS WAF - Build Phase</h1>
-<h2 id="environment-setup">Environment setup</h2>
-<p>To setup the workshop environment, launch the CloudFormation stack below in the preferred AWS region using the "Deploy to AWS" links below. This will automatically take you to the console to run the template.</p>
-<div class="admonition info">
-<p class="admonition-title">Note About Workshop and AWS Account</p>
-<p><strong>We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account.</strong></p>
-</div>
-<hr />
-<p><strong>US West 2 (Oregon)</strong> &nbsp; &nbsp; &nbsp; &nbsp; 
-<a href="https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww-workshop-env-build.yml" target="_blank"><img alt="Deploy in us-est-2" src="/images/deploy-to-aws.png" /></a></p>
-<hr />
-<p><strong>US East 2 (Ohio)</strong> &nbsp; &nbsp; &nbsp; &nbsp;
-<a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww-workshop-env-build.yml" target="_blank"><img alt="Deploy in us-east-1" src="/images/deploy-to-aws.png" /></a></p>
-<hr />
+                <h1 id="getting-started">Getting Started</h1>
+<h2 id="create-an-aws-account">Create an AWS account</h2>
+<p>In order to complete these workshops, you'll need a valid, usable <a href="https://aws.amazon.com/getting-started/" target="_blank">AWS Account</a>. Use a personal account or create a new AWS account to ensure you have the necessary access and that you do not accidentally modify corporate resources. Do <strong>not</strong> use an AWS account from the company you work for. </p>
+<h2 id="create-an-admin-user">Create an admin user</h2>
+<p>If you don't already have an AWS IAM user with admin permissions, please use the following instructions to create one:</p>
 <ol>
-<li>
-<p>Click <strong><em>Next</em></strong> on the Specify Template section.</p>
-</li>
-<li>
-<p>On the Specify stack details step, update the following parameters:</p>
-<ul>
-<li>Automated Scanner: <strong>Only for AWS sponsored event. Set to true if event is AWS sponsored. Otherwise set to false.</strong></li>
-<li>Scanner Username: <strong>Only for AWS sponsored event. Enter the username provided by the workshop team. Otherwise leave default.</strong></li>
-<li>Scanner Password: <strong>Only for AWS sponsored event. Enter the password provided by the workshop team. Otherwise leave default.</strong></li>
-<li>Trusted Network CIDR: Enter a trusted IP or CIDR range you will access the site from using a web browser. You can optain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host.</li>
-<li>Keep the defaults for the rest of the parameters.</li>
-</ul>
-</li>
-<li>
-<p>CLick <strong><em>Next</em></strong> </p>
-</li>
-<li>
-<p>Click Next on the <strong><em>Configure stack options</em></strong> section.</p>
-</li>
-<li>
-<p>Finally, acknowledge that the template will create IAM roles under Capabilities and click <strong>Create</strong>.</p>
-</li>
+<li>Browse to the <a href="https://console.aws.amazon.com/iam/" target="_blank">AWS IAM</a> console.</li>
+<li>Click <strong>Users</strong> on the left navigation and then click <strong>Add User</strong>.</li>
+<li>Enter a <strong>User Name</strong>, check the checkbox for <strong>AWS Management Console access</strong>, enter a <strong>Custom Password</strong>, and click <strong>Next:Permissions</strong>.</li>
+<li>Click <strong>Attach existing policies directly</strong>, click the checkbox next to the <strong>AdministratorAccess</strong>, and click <strong>Next:review</strong>.</li>
+<li>Click <strong>Create User</strong></li>
+<li>Click <strong>Dashboard</strong> on the left navigation and use the <strong>IAM users sign-in link</strong> to login as the admin user you just created.</li>
 </ol>
-<p>This will bring you back to the CloudFormation console. You can refresh the page to see the stack starting to create. Before moving on, make sure the stack is in a <strong>CREATE_COMPLETE</strong> status. This should take ~8 minutes.</p>
-<hr />
-<p>Click <a href="../assess/">here</a> to proceed to the Assess Phase.</p>
+<h2 id="add-credits-optional">Add credits (optional)</h2>
+<p>If you are doing this workshop as part of an AWS sponsored event, you will receive credits to cover the costs.  Below are the instructions for entering the credits:</p>
+<ol>
+<li>Browse to the <a href="https://console.aws.amazon.com/billing/home?#/credits" target="_blank">AWS Account Settings</a> console.</li>
+<li>Enter the <strong>Promo Code</strong> you received (these will be handed out at the beginning of the workshop).</li>
+<li>Enter the <strong>Security Check</strong> and click <strong>Redeem</strong>.</li>
+</ol>
+<h2 id="create-a-cloud9-instance-optional">Create a Cloud9 instance (optional)</h2>
+<p>If the workshop you are doing requires you to run commands or scripts you will need to launch a an <a href="https://aws.amazon.com/cloud9/" target="_blank">AWS Cloud9</a> instance which will provide you with a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. The workshop instructions will specify if this needed.  Below are the instructions for launching an instance:</p>
+<ol>
+<li>Browse to the <a href="https://console.aws.amazon.com/cloud9" target="_blank">AWS Cloud9</a> console.</li>
+<li>Click <strong>Create environment</strong> on the right side.</li>
+<li>Enter a <strong>Name</strong> (security-workshop-ide) and click <strong>Next step</strong>.</li>
+<li>Leave all the defaults and click <strong>Next step</strong>.</li>
+<li>Click <strong>Create environment</strong>.</li>
+<li>The environment will open automatically after it has been provisioned.  Browse back to the <a href="https://console.aws.amazon.com/cloud9" target="_blank">AWS Cloud9</a> console and you can click <strong>Open IDE</strong> on the environment you created to access it at anytime.</li>
+</ol>
+<p>You are now setup for the workshops!</p>
                 
                   
                 
@@ -695,41 +678,6 @@
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-          <a href="../" title="Scenario" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Scenario
-              </span>
-            </div>
-          </a>
-        
-        
-          <a href="../assess/" title="Assess Phase" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Assess Phase
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

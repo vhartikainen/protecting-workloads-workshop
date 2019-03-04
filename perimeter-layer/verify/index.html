@@ -13,7 +13,7 @@
         <meta name="description" content="This workshop shows how you can protect a web site using AWS Security Services">
       
       
-        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/inspector-sm/verify/">
+        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/perimeter-layer/verify/">
       
       
         <meta name="author" content="aws-security-workshops@amazon.com">
@@ -102,7 +102,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#identifying-and-remediating-host-vulnerabilities-with-amazon-inspector-and-aws-systems-manager-verify-phase" tabindex="1" class="md-skip">
+      <a href="#mitigating-common-web-application-attack-vectors-using-aws-waf-verify-phase" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -340,103 +340,19 @@
       
       
 
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
-    
-    <label class="md-nav__link" for="nav-3">
-      Web Application Firewall
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
-        Web Application Firewall
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../waf/" title="Scenario" class="md-nav__link">
-      Scenario
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../waf/build/" title="Build Phase" class="md-nav__link">
-      Build Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../waf/assess/" title="Assess Phase" class="md-nav__link">
-      Assess Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../waf/remediate/" title="Remediate Phase" class="md-nav__link">
-      Remediate Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../waf/verify/" title="Verify Phase" class="md-nav__link">
-      Verify Phase
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
   
 
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
-    <label class="md-nav__link" for="nav-4">
-      Inspector and SM
+    <label class="md-nav__link" for="nav-3">
+      Perimeter Layer
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
-        Inspector and SM
+      <label class="md-nav__title" for="nav-3">
+        Perimeter Layer
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -503,9 +419,45 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Verify Phase
+      </label>
+    
     <a href="./" title="Verify Phase" class="md-nav__link md-nav__link--active">
       Verify Phase
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#confirm-malicious-requests-are-blocked-by-waf-policy" title="Confirm malicious requests are blocked by WAF policy" class="md-nav__link">
+    Confirm malicious requests are blocked by WAF policy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implement-waf-monitoring-dashboard-using-amazon-cloudwatch-optional" title="Implement WAF monitoring dashboard using Amazon CloudWatch (Optional)" class="md-nav__link">
+    Implement WAF monitoring dashboard using Amazon CloudWatch (Optional)
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -517,6 +469,102 @@
 
   <li class="md-nav__item">
     <a href="../cleanup/" title="Cleanup Phase" class="md-nav__link">
+      Cleanup Phase
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Host Layer
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Host Layer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../host-layer/" title="Scenario" class="md-nav__link">
+      Scenario
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../host-layer/build/" title="Build Phase" class="md-nav__link">
+      Build Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../host-layer/assess/" title="Assess Phase" class="md-nav__link">
+      Assess Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../host-layer/remediate/" title="Remediate Phase" class="md-nav__link">
+      Remediate Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../host-layer/verify/" title="Verify Phase" class="md-nav__link">
+      Verify Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../host-layer/cleanup/" title="Cleanup Phase" class="md-nav__link">
       Cleanup Phase
     </a>
   </li>
@@ -580,6 +628,29 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#confirm-malicious-requests-are-blocked-by-waf-policy" title="Confirm malicious requests are blocked by WAF policy" class="md-nav__link">
+    Confirm malicious requests are blocked by WAF policy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implement-waf-monitoring-dashboard-using-amazon-cloudwatch-optional" title="Implement WAF monitoring dashboard using Amazon CloudWatch (Optional)" class="md-nav__link">
+    Implement WAF monitoring dashboard using Amazon CloudWatch (Optional)
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -590,37 +661,52 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/inspector-sm/verify.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/perimeter-layer/verify.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="identifying-and-remediating-host-vulnerabilities-with-amazon-inspector-and-aws-systems-manager-verify-phase">Identifying and Remediating Host Vulnerabilities with Amazon Inspector and AWS Systems Manager - Verify Phase</h1>
-<p>Now that you have remediate the environment, you will again use Amazon Inspector to assess the environment again to see how the patching affected the overall security posture of the environment.</p>
+                <h1 id="mitigating-common-web-application-attack-vectors-using-aws-waf-verify-phase">Mitigating Common Web Application Attack Vectors Using AWS WAF - Verify Phase</h1>
+<p>In the previous remediation phase, you implemented an AWS WAF ruleset to protect your site from common attack vectors. You are now going to reassess the posture of the site to confirm the rules are performing as intended and blocking the simulated malicious requests.</p>
 <ol>
-<li>
-<p>Go to the Amazon Inspector console, click <strong>Assessment templates</strong> on the menu.</p>
-</li>
-<li>
-<p>Locate the template that you created during the Assess Phase and check the box at the left end of that row.</p>
-</li>
-<li>
-<p>Click <strong>Run</strong>.  This will launch another assessment run. </p>
-</li>
-<li>
-<p>Click <strong>Assessmnet runs</strong> and periodically refresh the screen.  Wait until the status for the run changes to <em>Analysis complete</em>.  The run will take approximately 15 minutes to complete.</p>
-</li>
-<li>
-<p>Compare the number of findings between the two runs.   In most cases, there will be fewer findings in the newer run since patches have been applied.   The change in the number findings may vary based on the age of the AMI used to launch the instances.</p>
-</li>
-<li>
-<p>Click the number of findings for the newest run (after the patches were installed).  You will then see all of the findings that were not patched during the Remediate Phase.</p>
-</li>
-<li>
-<p>Take a look at the entries that were not patchesd.  A common example of a finding is an instance is configured to allow users to log in with root credentials over SSH, without having to use a command authenticated by a public key.  Why would Patch Manager not patch this or the other findings?</p>
-</li>
-<li>
-<p>You have now completed this round.  Click <a href="../cleanup/">here</a> to proceed to the Cleanup Phase.</p>
-</li>
+<li>Confirm malicious requests are blocked by WAF policy</li>
+<li>Implement WAF monitoring dashboard using Amazon CloudWatch (Optional)</li>
 </ol>
+<h2 id="confirm-malicious-requests-are-blocked-by-waf-policy">Confirm malicious requests are blocked by WAF policy</h2>
+<p>If needed, start a Session Manager connection to your Red Team Host, the scanner script can be invoked by typing the following command while in the <em>/usr/bin</em> directory:</p>
+<div class="codehilite"><pre><span></span>python3 scanner.py http://your-alb-endpoint
+</pre></div>
+
+
+<p>Confirm that all of the tests in the script pass. If requests (other than canary) are not being blocked, go back to the remediate phase and confirm your conditions and rules are properly configured.</p>
+<p><img alt="Final Scan Terminal" src="../images/final-scan-term.svg" /></p>
+<p>If the the auomated scanner is being used for your event (AWS sponsored), you should also see green for your unique Id <a href="http://waflabdash.awssecworkshops.com/" target="_blank">on the WAF scanning results dashboard</a>.</p>
+<p><img alt="WAF Lab Centralized Dashboard" src="../images/waflabdash-post.png" /></p>
+<h2 id="implement-waf-monitoring-dashboard-using-amazon-cloudwatch-optional">Implement WAF monitoring dashboard using Amazon CloudWatch (Optional)</h2>
+<p>Use CloudWatch Dashboards to create a monitoring system for your protection layer. The following AWS article details this process: 
+https://aws.amazon.com/blogs/aws/cloudwatch-dashboards-create-use-customized-metrics-views/</p>
+<p>Here are some sample of metrics that you can use. Starting from top left side, in clockwise order, we have:</p>
+<p><img alt="CloudWatch WAF Dasboard" src="../images/waf-cw-dash.png" /></p>
+<ul>
+<li>
+<p><strong>Allowed vs Blocked Requests</strong>: if you receive a surge in allowed access (2 times normal peak access) or blocked access (any period that identifies more than 1,000 blocked requests), you can configure CloudWatch to send an alert. The idea here is to track known DDoS (when blocked requests increase) or new version of attack (when the requests are allowed to access the system);</p>
+</li>
+<li>
+<p><strong>BytesDownloaded vs. Uploaded</strong>: help you identify when DDoS attack targets a service that doesn't need to receive a huge amount of access in order to exhaust resources (ex: search engine component sending MBs of information for one specific request parameters set);</p>
+</li>
+<li>
+<p><strong>ELB Spillover and Queue length</strong>: use these metrics to verify if the attack is already causing damage to the infrastructure and/or for some reason, the attacker is bypassing protection layer and attacking directly unprotected resources;</p>
+</li>
+<li>
+<p><strong>ELB Request Count</strong>: same as above, helps you identify damage by checking if the attacker is bypassing protection layer and/or CloudFront cache; review rules to increase cache hit rate;</p>
+</li>
+<li>
+<p><strong>ELB Healthy Host</strong>: another system health check metric;</p>
+</li>
+<li>
+<p><strong>ASG CPU Utilization</strong>: identify if the attacker is not only bypassing the CloudFront/WAF but also the ELB layer, also use to identify the damage impact of an attack;</p>
+</li>
+</ul>
+<hr />
+<p>Click <a href="/host-layer/index.md">here</a> to proceed to the Host Layer round.</p>
                 
                   
                 

@@ -13,7 +13,7 @@
         <meta name="description" content="This workshop shows how you can protect a web site using AWS Security Services">
       
       
-        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/inspector-sm/">
+        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/perimeter-layer/cleanup/">
       
       
         <meta name="author" content="aws-security-workshops@amazon.com">
@@ -37,21 +37,21 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="../assets/images/aws-favicon.ico">
+      <link rel="shortcut icon" href="../../assets/images/aws-favicon.ico">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
     
     
       
-        <title>Scenario - Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager</title>
+        <title>Cleanup Phase - Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.982221ab.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
       
       
     
     
-      <script src="../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
     
     
       
@@ -60,10 +60,10 @@
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
-      <link rel="stylesheet" href="../stylesheets/custom.css">
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
     
     
       
@@ -102,7 +102,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#identifying-and-remediating-host-vulnerabilities-with-amazon-inspector-and-aws-systems-manager" tabindex="1" class="md-skip">
+      <a href="#mitigating-common-web-application-attack-vectors-using-aws-waf-cleanup-phase" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -139,7 +139,7 @@
               title="Amazon Web Services"
               class="md-header-nav__button md-logo">
             
-              <img src="../assets/images/aws_smile_logo.png" width="40" height="24" />
+              <img src="../../assets/images/aws_smile_logo.png" width="40" height="24" />
             
           </a>
         </div>
@@ -160,7 +160,7 @@
                   Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager
                 </span>
                 <span class="md-header-nav__topic">
-                  Scenario
+                  Cleanup Phase
                 </span>
               
             
@@ -280,7 +280,7 @@
     <a href="https://protecting-workloads.awssecworkshops.com/"
         title="Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager" class="md-nav__button md-logo">
       
-        <img src="../assets/images/aws_smile_logo.png" width="48" height="48" />
+        <img src="../../assets/images/aws_smile_logo.png" width="48" height="48" />
       
     </a>
     
@@ -318,7 +318,7 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Scenario" class="md-nav__link">
+    <a href="../.." title="Scenario" class="md-nav__link">
       Scenario
     </a>
   </li>
@@ -330,93 +330,9 @@
 
 
   <li class="md-nav__item">
-    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
+    <a href="../../getting-started/" title="Getting Started" class="md-nav__link">
       Getting Started
     </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
-    
-    <label class="md-nav__link" for="nav-3">
-      Web Application Firewall
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
-        Web Application Firewall
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../waf/" title="Scenario" class="md-nav__link">
-      Scenario
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../waf/build/" title="Build Phase" class="md-nav__link">
-      Build Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../waf/assess/" title="Assess Phase" class="md-nav__link">
-      Assess Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../waf/remediate/" title="Remediate Phase" class="md-nav__link">
-      Remediate Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../waf/verify/" title="Verify Phase" class="md-nav__link">
-      Verify Phase
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
   </li>
 
     
@@ -429,17 +345,77 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
-    <label class="md-nav__link" for="nav-4">
-      Inspector and SM
+    <label class="md-nav__link" for="nav-3">
+      Perimeter Layer
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
-        Inspector and SM
+      <label class="md-nav__title" for="nav-3">
+        Perimeter Layer
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Scenario" class="md-nav__link">
+      Scenario
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../build/" title="Build Phase" class="md-nav__link">
+      Build Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../assess/" title="Assess Phase" class="md-nav__link">
+      Assess Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../remediate/" title="Remediate Phase" class="md-nav__link">
+      Remediate Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../verify/" title="Verify Phase" class="md-nav__link">
+      Verify Phase
+    </a>
+  </li>
+
         
           
           
@@ -455,39 +431,46 @@
       
     
     
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Scenario
-      </label>
-    
-    <a href="./" title="Scenario" class="md-nav__link md-nav__link--active">
-      Scenario
+    <a href="./" title="Cleanup Phase" class="md-nav__link md-nav__link--active">
+      Cleanup Phase
     </a>
     
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
     
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#workshop-phases" title="Workshop Phases" class="md-nav__link">
-    Workshop Phases
-  </a>
-  
-</li>
       
       
       
-      
-      
-    </ul>
-  
-</nav>
+
+
+  <li class="md-nav__item md-nav__item--nested">
     
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Host Layer
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Host Layer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../host-layer/" title="Scenario" class="md-nav__link">
+      Scenario
+    </a>
   </li>
 
         
@@ -497,7 +480,7 @@
 
 
   <li class="md-nav__item">
-    <a href="build/" title="Build Phase" class="md-nav__link">
+    <a href="../../host-layer/build/" title="Build Phase" class="md-nav__link">
       Build Phase
     </a>
   </li>
@@ -509,7 +492,7 @@
 
 
   <li class="md-nav__item">
-    <a href="assess/" title="Assess Phase" class="md-nav__link">
+    <a href="../../host-layer/assess/" title="Assess Phase" class="md-nav__link">
       Assess Phase
     </a>
   </li>
@@ -521,7 +504,7 @@
 
 
   <li class="md-nav__item">
-    <a href="remediate/" title="Remediate Phase" class="md-nav__link">
+    <a href="../../host-layer/remediate/" title="Remediate Phase" class="md-nav__link">
       Remediate Phase
     </a>
   </li>
@@ -533,7 +516,7 @@
 
 
   <li class="md-nav__item">
-    <a href="verify/" title="Verify Phase" class="md-nav__link">
+    <a href="../../host-layer/verify/" title="Verify Phase" class="md-nav__link">
       Verify Phase
     </a>
   </li>
@@ -545,7 +528,7 @@
 
 
   <li class="md-nav__item">
-    <a href="cleanup/" title="Cleanup Phase" class="md-nav__link">
+    <a href="../../host-layer/cleanup/" title="Cleanup Phase" class="md-nav__link">
       Cleanup Phase
     </a>
   </li>
@@ -562,7 +545,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../cleanup/" title="Cleanup" class="md-nav__link">
+    <a href="../../cleanup/" title="Cleanup" class="md-nav__link">
       Cleanup
     </a>
   </li>
@@ -574,7 +557,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../contribute/" title="Contributing" class="md-nav__link">
+    <a href="../../contribute/" title="Contributing" class="md-nav__link">
       Contributing
     </a>
   </li>
@@ -586,7 +569,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../license/" title="License" class="md-nav__link">
+    <a href="../../license/" title="License" class="md-nav__link">
       License
     </a>
   </li>
@@ -609,22 +592,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#workshop-phases" title="Workshop Phases" class="md-nav__link">
-    Workshop Phases
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -635,25 +602,18 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/inspector-sm/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/perimeter-layer/cleanup.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="identifying-and-remediating-host-vulnerabilities-with-amazon-inspector-and-aws-systems-manager">Identifying and Remediating Host Vulnerabilities with Amazon Inspector and AWS Systems Manager</h1>
-<p>In this workshop, you will start with environment built in the previous AWS WAF round which consists of Amazon Linux 2 web servers behind an application load balancer.  You will then use Amazon Inspector and AWS Systems Manager to identify the vulnerabilities and remediate them.</p>
-<ul>
-<li><strong>Level</strong>: Intermediate - Advanced</li>
-<li><strong>Duration</strong>: 2 hours</li>
-<li><strong>CSF Functions</strong>: Protect</li>
-<li><strong>CAF Components</strong>: Preventive</li>
-<li><strong>Prerequisites</strong>: AWS Account, Admin IAM User</li>
-</ul>
-<h2 id="workshop-phases">Workshop Phases</h2>
-<p>To begin the workshop, proceed to the Build phase below.</p>
+                <h1 id="mitigating-common-web-application-attack-vectors-using-aws-waf-cleanup-phase">Mitigating Common Web Application Attack Vectors Using AWS WAF - Cleanup Phase</h1>
+<div class="admonition info">
+<p class="admonition-title">For those who are continuing to the Host Layer round</p>
+<p><strong>If you are only going to complete the Perimeter Layer round, do not delete any resources yet. <a href="/host-layer/">Continue the workshop with the Host Layer round</a>. You will perform cleanup at the end of the workshop.</strong></p>
+</div>
+<hr />
+<p>If you are not moving on to the next round, follow the steps below to clean up the artifacts that were created.</p>
 <ol>
-<li><a href="build/">Build</a></li>
-<li><a href="assess/">Assess</a></li>
-<li><a href="remediate/">Remediate</a></li>
-<li><a href="verify/">Verify</a></li>
+<li>Go to the CloudFormation console and delete the stack that you created.</li>
 </ol>
                 
                   
@@ -675,7 +635,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../waf/verify/" title="Verify Phase" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../verify/" title="Verify Phase" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -690,13 +650,13 @@
           </a>
         
         
-          <a href="build/" title="Build Phase" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../host-layer/" title="Scenario" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Build Phase
+                Scenario
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -723,7 +683,7 @@
       </div>
       
   <div class="md-footer-social">
-    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
     
       <a href="https://awssecworkshops.com" class="md-footer-social__link fa fa-home"></a>
     
@@ -741,11 +701,11 @@
       
     </div>
     
-      <script src="../assets/javascripts/application.b806dc00.js"></script>
+      <script src="../../assets/javascripts/application.b806dc00.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
-        <script src="../javascripts/extra.js"></script>
+        <script src="../../javascripts/extra.js"></script>
       
     
   </body>

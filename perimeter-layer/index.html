@@ -13,7 +13,7 @@
         <meta name="description" content="This workshop shows how you can protect a web site using AWS Security Services">
       
       
-        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/waf/">
+        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/perimeter-layer/">
       
       
         <meta name="author" content="aws-security-workshops@amazon.com">
@@ -348,11 +348,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
-      Web Application Firewall
+      Perimeter Layer
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
-        Web Application Firewall
+        Perimeter Layer
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -390,8 +390,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#module-phases" title="Module Phases" class="md-nav__link">
-    Module Phases
+  <a href="#phases-in-the-perimeter-layer-round" title="Phases in the Perimeter Layer round" class="md-nav__link">
+    Phases in the Perimeter Layer round
   </a>
   
 </li>
@@ -455,6 +455,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="cleanup/" title="Cleanup Phase" class="md-nav__link">
+      Cleanup Phase
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -470,11 +482,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      Inspector and SM
+      Host Layer
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        Inspector and SM
+        Host Layer
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -485,7 +497,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../inspector-sm/" title="Scenario" class="md-nav__link">
+    <a href="../host-layer/" title="Scenario" class="md-nav__link">
       Scenario
     </a>
   </li>
@@ -497,7 +509,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../inspector-sm/build/" title="Build Phase" class="md-nav__link">
+    <a href="../host-layer/build/" title="Build Phase" class="md-nav__link">
       Build Phase
     </a>
   </li>
@@ -509,7 +521,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../inspector-sm/assess/" title="Assess Phase" class="md-nav__link">
+    <a href="../host-layer/assess/" title="Assess Phase" class="md-nav__link">
       Assess Phase
     </a>
   </li>
@@ -521,7 +533,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../inspector-sm/remediate/" title="Remediate Phase" class="md-nav__link">
+    <a href="../host-layer/remediate/" title="Remediate Phase" class="md-nav__link">
       Remediate Phase
     </a>
   </li>
@@ -533,7 +545,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../inspector-sm/verify/" title="Verify Phase" class="md-nav__link">
+    <a href="../host-layer/verify/" title="Verify Phase" class="md-nav__link">
       Verify Phase
     </a>
   </li>
@@ -545,7 +557,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../inspector-sm/cleanup/" title="Cleanup Phase" class="md-nav__link">
+    <a href="../host-layer/cleanup/" title="Cleanup Phase" class="md-nav__link">
       Cleanup Phase
     </a>
   </li>
@@ -613,8 +625,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#module-phases" title="Module Phases" class="md-nav__link">
-    Module Phases
+  <a href="#phases-in-the-perimeter-layer-round" title="Phases in the Perimeter Layer round" class="md-nav__link">
+    Phases in the Perimeter Layer round
   </a>
   
 </li>
@@ -635,12 +647,12 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/waf/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/perimeter-layer/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
                 <h1 id="mitigating-common-web-application-attack-vectors-using-aws-waf">Mitigating Common Web Application Attack Vectors Using AWS WAF</h1>
 <p>For your initial task, you will configure AWS WAF to protect your site from common attacks such as SQL injection and cross site scripting. AWS WAF is a web application firewall that helps protect your web applications from common web exploits that could affect application availability, compromise security or consume excessive resources. </p>
-<h2 id="module-phases">Module Phases</h2>
+<h2 id="phases-in-the-perimeter-layer-round">Phases in the Perimeter Layer round</h2>
 <p>To begin the module, proceed to the Build phase below.</p>
 <ol>
 <li><a href="build/">Build</a></li>
