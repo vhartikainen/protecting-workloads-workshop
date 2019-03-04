@@ -1,6 +1,6 @@
-# Identifying and Remediating Host Vulnerabilities with Amazon Inspector and AWS Systems Manager
+# Identifying and Remediating Host Vulnerabilities - Host Layer Round
 
-In this workshop, you will start with environment built in the previous AWS WAF round which consists of Amazon Linux 2 web servers behind an application load balancer.  You will then use Amazon Inspector and AWS Systems Manager to identify the vulnerabilities and remediate them.
+In this round, you will start with environment built in the Perimeter Round which consists of Amazon Linux 2 web servers behind an application load balancer.  You will then use Amazon Inspector and AWS Systems Manager to identify the host layer vulnerabilities and remediate them.
 
 * **Level**: Intermediate - Advanced
 * **Duration**: 2 hours
@@ -16,3 +16,4 @@ To begin the workshop, proceed to the Build phase below.
 2. [Assess](./assess.md)
 3. [Remediate](./remediate.md)
 4. [Verify](./verify.md)
+4. [CleanIp](./cleanup.md)

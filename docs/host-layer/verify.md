@@ -1,4 +1,4 @@
-# Identifying and Remediating Host Vulnerabilities with Amazon Inspector and AWS Systems Manager - Verify Phase
+# Identifying and Remediating Host Vulnerabilities - Host Layer Round - Verify Phase
 
 Now that you have remediate the environment, you will again use Amazon Inspector to assess the environment again to see how the patching affected the overall security posture of the environment.
 

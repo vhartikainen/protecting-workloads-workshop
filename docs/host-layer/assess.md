@@ -1,4 +1,4 @@
-# Identifying and Remediating Host Vulnerabilities with Amazon Inspector and AWS Systems Manager - Assess Phase
+# Identifying and Remediating Host Vulnerabilities - Host Layer Round - Assess Phase
 
 In the previous Build Phase, you deployed a CloudFormation stack that contains
 some Amazon EC2 instances behind an application load balancer.

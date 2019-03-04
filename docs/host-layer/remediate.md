@@ -1,4 +1,4 @@
-# Identifying and Remediating Host Vulnerabilities with Amazon Inspector and AWS Systems Manager - Remediate Phase
+# Identifying and Remediating Host Vulnerabilities - Host Layer Round - Remediate Phase
 
 In the previous Assess Phase, you installed Amazon Inspector on the instances that were launched as a result of the
 CloudFormation stack.  You will now use AWS Systems Manager Patch Manager to apply patches.
