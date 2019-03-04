@@ -1,7 +1,8 @@
 # Mitigating Common Web Application Attack Vectors Using AWS WAF - Cleanup Phase
 
-!!! info "For those who are completing the 
-    __If you are only going to complete the Perimeter Layer round, do not delete any resources yet. [Continue the workshop with the Host Layer round](host-layer/index.md). You will perform cleanup at the end of the workshop.__
+
+!!! info "For those who are continuing to the Host Layer round"
+    __If you are only going to complete the Perimeter Layer round, do not delete any resources yet. [Continue the workshop with the Host Layer round](/host-layer/). You will perform cleanup at the end of the workshop.__
 
 ---
 
