@@ -498,15 +498,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#examine-the-stack-that-you-built" title="Examine the stack that you built" class="md-nav__link">
-    Examine the stack that you built
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#look-up-the-amazon-ec2-instances" title="Look up the Amazon EC2 instances" class="md-nav__link">
-    Look up the Amazon EC2 instances
+  <a href="#examine-the-stack-that-you-built-and-its-tags" title="Examine the stack that you built and its tags" class="md-nav__link">
+    Examine the stack that you built and its tags
   </a>
   
 </li>
@@ -656,15 +649,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#examine-the-stack-that-you-built" title="Examine the stack that you built" class="md-nav__link">
-    Examine the stack that you built
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#look-up-the-amazon-ec2-instances" title="Look up the Amazon EC2 instances" class="md-nav__link">
-    Look up the Amazon EC2 instances
+  <a href="#examine-the-stack-that-you-built-and-its-tags" title="Examine the stack that you built and its tags" class="md-nav__link">
+    Examine the stack that you built and its tags
   </a>
   
 </li>
@@ -737,26 +723,25 @@
                 
                 
                 <h1 id="protecting-your-workloads-assess-phase">Protecting Your Workloads - Assess Phase</h1>
-<p>In the previous Build Phase, you built a CloudFormation stack that contains
+<p>In the previous Build Phase, you deployed a CloudFormation stack that contains
 some Amazon EC2 instances behind an application load balancer.
 You are now going to use Amazon Inspector to assess the instances and identify
 findings that need to be remediated.</p>
 <p>Before you can assess the instances with Amazon Inspector, you need to identify
 the instances and install the Amazon Inspector agent on them.
-This is easier to do in small environments but the task can becone much more
-complex in organizations with hundreds or even thousands of instances.
-For this reason, you are going to learn how to use <em>tags</em> to select the instances.
+This is easier to do in small environments with only a few instances but can become more
+difficult in organizations with hundreds or even thousands of instances.
+For this reason, you are going to learn how to use <em>tags</em> to select the instances on which you will install the Amazon Inspector agent.
 Tags are labels that can be attached to AWS resources to make it easier to
 act on them collectively.</p>
 <p>In this section you will do the following tasks:</p>
 <ol>
-<li>Examine the stack you built</li>
-<li>Look up the Amazon EC2 instances that were created as a result of the deployhment and understand the tags that are applied by AWS CloudFormation.</li>
+<li>Examine the CloudFormation stack you built to learn about the tags that were applied by AWS CloudFormation.</li>
 <li>Use AWS Systems Manager to install the Amazon Inspector agent on the instances and run the scan</li>
 <li>Learn about Amazon Inspector rules packages</li>
 <li>Examine Amazon Inspector findings</li>
 </ol>
-<h2 id="examine-the-stack-that-you-built">Examine the stack that you built</h2>
+<h2 id="examine-the-stack-that-you-built-and-its-tags">Examine the stack that you built and its tags</h2>
 <ol>
 <li>
 <p>Go to the CloudFormation console in the same AWS region in which you created the stack in the Build Phase.  You should see a list of stacks similar to the figure below. Locate the stack you created.  In this documentation, the name of the stack is <em>pww</em>.  Copy this stack name into a scratch file on your workstation in case you need it later.</p>
@@ -765,13 +750,10 @@ act on them collectively.</p>
 <li>
 <p>Click the <strong>check box</strong> to the left of the stack name and then click the <strong>Resources</strong> tab below.  You will see a list of resources that were deployed by the stack as shown in the figure below.</p>
 <p><img alt="cloudformation-stack-resources" src="../images/assess-cloudformation-resources.png" /></p>
-<p>The <em>Type</em> column lists the type of the resouces.  Notice that you will not see any resources of type AWS::EC2::Instance.  The reason for this is that the CloudFormation stack did not deploy any.  The stack did, however, deploy an auto scaling group with a launch configuration that in turn launched the instances.  The auto scaling group was configured to propogate tags (attributes) to the instances it launches.  In a production environment, you may have a large number of resources that spin up and spin down because of the elastiicity that AWS offers.  You will now learn how to look up the Amazon EC2 instances using tags.</p>
+<p>The <em>Type</em> column lists the type of the resouces.  Notice that you will not see any resources of type AWS::EC2::Instance.  The reason for this is that the CloudFormation stack did not deploy any.  The stack did, however, deploy an auto scaling group with a launch configuration that in turn launched the instances.  The auto scaling group itself has tags and was configured to propogate the same tags (attributes) to the instances it launches.  In a production environment, you may have a large number of resources that spin up and spin down because of the elastiicity that AWS offers.  Knowing that the tags will be the same can make it easier for you to manage the environment regardless of how many instances exist at any point in time. You will now learn how to look up the Amazon EC2 instances using tags.</p>
 </li>
-</ol>
-<h2 id="look-up-the-amazon-ec2-instances">Look up the Amazon EC2 instances</h2>
-<ol>
 <li>
-<p>Go to the Amazon EC2 console and look for instances having a name that begins with the stack name followed by <em>-node</em>, <em>pww-node</em> in this example.  If you cannot see them, type the instance name (<em>pww-node</em>) into the search box.  Copy the two instance ids (they begin with <em>i-</em> and are followed by a series of digits) into your scratch file in case you need them.  Select one of them by checking the box to the left of the instance and then click on the <em>Tags</em> tab.  You should see a table like that in the figure below.</p>
+<p>Go to the Amazon EC2 console and look for instances having a name that begins with the stack name followed by <em>-node</em>, <em>pww-node</em> in this example.  If you cannot see them, type the instance name (<em>pww-node</em> in this case) into the search box.  Select one of them by checking the box to the left of the instance and then click on the <em>Tags</em> tab.  You should see a table like that in the figure below.</p>
 <p><img alt="ec2-instance-list" src="../images/assess-ec2-instance-list.png" /></p>
 </li>
 <li>
