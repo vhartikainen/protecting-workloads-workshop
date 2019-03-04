@@ -716,7 +716,7 @@ Resources:
               Ref: sub2Private          
         Tags:
         - Key: Name
-          Value: RedTeamHost
+          Value: !Join ["-" , [!Ref 'AWS::StackName', RedTeamHost]]
         UserData:
           Fn::Base64: !Sub |
             #!/bin/bash -xe
