@@ -1,27 +1,26 @@
 # Protecting Your Workloads - Assess Phase
 
-In the previous Build Phase, you built a CloudFormation stack that contains
+In the previous Build Phase, you deployed a CloudFormation stack that contains
 some Amazon EC2 instances behind an application load balancer.
 You are now going to use Amazon Inspector to assess the instances and identify
 findings that need to be remediated.
 
 Before you can assess the instances with Amazon Inspector, you need to identify
 the instances and install the Amazon Inspector agent on them.
-This is easier to do in small environments but the task can becone much more
-complex in organizations with hundreds or even thousands of instances.
-For this reason, you are going to learn how to use *tags* to select the instances.
+This is easier to do in small environments with only a few instances but can become more
+difficult in organizations with hundreds or even thousands of instances.
+For this reason, you are going to learn how to use *tags* to select the instances on which you will install the Amazon Inspector agent.
 Tags are labels that can be attached to AWS resources to make it easier to
 act on them collectively.
 
 In this section you will do the following tasks:
 
-1. Examine the stack you built
-2. Look up the Amazon EC2 instances that were created as a result of the deployhment and understand the tags that are applied by AWS CloudFormation.
-3. Use AWS Systems Manager to install the Amazon Inspector agent on the instances and run the scan
-5. Learn about Amazon Inspector rules packages
-6. Examine Amazon Inspector findings
+1. Examine the CloudFormation stack you built to learn about the tags that were applied by AWS CloudFormation.
+2. Use AWS Systems Manager to install the Amazon Inspector agent on the instances and run the scan
+3. Learn about Amazon Inspector rules packages
+4. Examine Amazon Inspector findings
 
-## Examine the stack that you built
+## Examine the stack that you built and its tags
 
 1. Go to the CloudFormation console in the same AWS region in which you created the stack in the Build Phase.  You should see a list of stacks similar to the figure below. Locate the stack you created.  In this documentation, the name of the stack is *pww*.  Copy this stack name into a scratch file on your workstation in case you need it later.
 
@@ -31,15 +30,14 @@ In this section you will do the following tasks:
 
     ![cloudformation-stack-resources](./images/assess-cloudformation-resources.png)
 
-    The *Type* column lists the type of the resouces.  Notice that you will not see any resources of type AWS::EC2::Instance.  The reason for this is that the CloudFormation stack did not deploy any.  The stack did, however, deploy an auto scaling group with a launch configuration that in turn launched the instances.  The auto scaling group was configured to propogate tags (attributes) to the instances it launches.  In a production environment, you may have a large number of resources that spin up and spin down because of the elastiicity that AWS offers.  You will now learn how to look up the Amazon EC2 instances using tags.
+    The *Type* column lists the type of the resouces.  Notice that you will not see any resources of type AWS::EC2::Instance.  The reason for this is that the CloudFormation stack did not deploy any.  The stack did, however, deploy an auto scaling group with a launch configuration that in turn launched the instances.  The auto scaling group itself has tags and was configured to propogate the same tags (attributes) to the instances it launches.  In a production environment, you may have a large number of resources that spin up and spin down because of the elastiicity that AWS offers.  Knowing that the tags will be the same can make it easier for you to manage the environment regardless of how many instances exist at any point in time. You will now learn how to look up the Amazon EC2 instances using tags.
 
-## Look up the Amazon EC2 instances
 
-1.  Go to the Amazon EC2 console and look for instances having a name that begins with the stack name followed by *-node*, *pww-node* in this example.  If you cannot see them, type the instance name (*pww-node*) into the search box.  Copy the two instance ids (they begin with *i-* and are followed by a series of digits) into your scratch file in case you need them.  Select one of them by checking the box to the left of the instance and then click on the *Tags* tab.  You should see a table like that in the figure below.
+3.  Go to the Amazon EC2 console and look for instances having a name that begins with the stack name followed by *-node*, *pww-node* in this example.  If you cannot see them, type the instance name (*pww-node* in this case) into the search box.  Select one of them by checking the box to the left of the instance and then click on the *Tags* tab.  You should see a table like that in the figure below.
 
     ![ec2-instance-list](./images/assess-ec2-instance-list.png)
 
-2.  Notice that the instance has tags reflecting the CloudFormation stack name and stack id.  These tags are added because of settings in the auto scaling group which propogate tags to newly created instances.
+4.  Notice that the instance has tags reflecting the CloudFormation stack name and stack id.  These tags are added because of settings in the auto scaling group which propogate tags to newly created instances.
 
     You have now learned about the tags that you can use to look up AWS resources. You will take advantage of this feature when you set up Amazon Inspector later in this phase.
 
@@ -85,7 +83,7 @@ Now that you know how to identify the instances in the environment, you need to 
 
     ![inspector-targets](./images/assess-inspector-targets.png)
 
-7.  Click the **Save** button to save the target definition.  Inspector may prompt you for permission to create a service linked role to give the Amazon Inspector service permission to retrieve information about your instances.  If you see a prompt like the one in the figure below, click **Ok** to create the role.
+6.  Click the **Save** button to save the target definition.  Inspector may prompt you for permission to create a service linked role to give the Amazon Inspector service permission to retrieve information about your instances.  If you see a prompt like the one in the figure below, click **Ok** to create the role.
 
     ![inspector-service-role](./images/assess-inspector-slr.png)
 
@@ -116,7 +114,6 @@ Now that you have created an Amazon Inspector target, you will now create an Ama
 1.  Amazon Inspector offers a variety of rules packages that can be included in assessments.  The applicable rules packages may vary by operating system.   The Common Vulnerabilities and Exposures assessment is based on the CVE project that is hosted at [cve.mitrei.org](https://cve.mitre.org).  Open a new tab in your browser to [cve.mitre.orf](https://cve.mitre.org).  Click on **Search CVE List**.  Enter **CVE-2018-20169** into the search field and click **Submit**.  This shows you how to research known vulnerabilities.
 
 2.  The Security Best Practices rule package examines some common configuration settings for some of the most commobn Amazon Linux settings.   You can read more about this rule package [here](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_security-best-practices.html).
-
 
 ### Examine the findings
 

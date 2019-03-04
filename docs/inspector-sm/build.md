@@ -3,15 +3,14 @@
 ## Environment setup
 
 !!! info "For those who have completed the Web Application Firewall round"
-    __If you have completed the Web Application Firewall round, this round uses the same environment.  If you have not deleted the AWS CloudFormation stack, you can click [here](./assess.md) to proceed to the Assess Phase.__
+    __If you have completed the Web Application Firewall round, this round uses the same environment.  If you have not deleted the AWS CloudFormation stack from the Web Application Firewall round, you can click [here](./assess.md) to proceed to the Assess Phase.__
+---
+
+!!! info "Note About Workshop and AWS Account"
+    __We strongly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account.__
 ---
 
 To setup the workshop environment, launch the CloudFormation stack below in the preferred AWS region using the "Deploy to AWS" links below. This will automatically take you to the console to run the template.
-
-!!! info "Note About Workshop and AWS Account"
-    __We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account.__
-
----
 
 **US West 2 (Oregon)** &nbsp; &nbsp; &nbsp; &nbsp; 
 <a href="https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww-workshop-env-build.yml" target="_blank">![Deploy in us-est-2](/images/deploy-to-aws.png)</a>
@@ -23,22 +22,33 @@ To setup the workshop environment, launch the CloudFormation stack below in the 
 
 ---
 
-1. Click ***Next*** on the Specify Template section.
+1. Click **Next** on the Specify Template section.
 
-2. On the Specify stack details step, update the following parameters:
-    - Automated Scanner: __Only for AWS sponsored event. Set to true if event is AWS sponsored. Otherwise set to false.__
-    - Scanner Username: __Only for AWS sponsored event. Enter the username provided by the workshop team. Otherwise leave default.__
-    - Scanner Password: __Only for AWS sponsored event. Enter the password provided by the workshop team. Otherwise leave default.__
+2. On the Specify stack details step, update the following parameters depending on how you are doing this workshop:
+
+??? info "AWS-sponsored event"
+
+    - Automated Scanner: __Set to true.__
+    - Scanner Username: __Enter the username provided by the workshop team.__
+    - Scanner Password: __Enter the password provided by the workshop team.__
     - Trusted Network CIDR: Enter a trusted IP or CIDR range you will access the site from using a web browser. You can optain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host.
     - Keep the defaults for the rest of the parameters.
 
-3. CLick ***Next*** 
+??? info "Individual or an event not sponsored by AWS"
 
-4. Click Next on the ***Configure stack options*** section.
+    - Automated Scanner: __Set to false.__
+    - Scanner Username: __Leave default.__
+    - Scanner Password: __Leave default.__
+    - Trusted Network CIDR: Enter a trusted IP or CIDR range you will access the site from using a web browser. You can optain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host.
+    - Keep the defaults for the rest of the parameters.
 
-5. Finally, acknowledge that the template will create IAM roles under Capabilities and click **Create**.
+3. Click **Next**.
 
-This will bring you back to the CloudFormation console. You can refresh the page to see the stack starting to create. Before moving on, make sure the stack is in a __CREATE_COMPLETE__ status. This should take ~8 minutes.
+4. Click **Next** on the ***Configure stack options*** section.
+
+5. Check the box to acknowledge that the template will create IAM roles under Capabilities and click **Create**.
+
+This will bring you back to the CloudFormation console. You can refresh the page to see the stack starting to create. Before moving on, make sure the stack is in a __CREATE_COMPLETE__ status. This should take approximately eight minutes.
 
 ---
 
