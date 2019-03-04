@@ -1,4 +1,4 @@
-# Protecting Your Workloads - Remediate Phase
+# Identifying and Remediating Host Vulnerabilities with Amazon Inspector and AWS Systems Manager - Remediate Phase
 
 In the previous Assess Phase, you installed Amazon Inspector on the instances that were launched as a result of the
 CloudFormation stack.  You will now use AWS Systems Manager Patch Manager to apply patches.
@@ -40,7 +40,7 @@ In this section you will do the following tasks:
 
     ![configure-patching](./images/remediate-pm-configure-patching.png)
 
-9.  Click the **Configure patching** button at the bottom of the window.  You will see a message at the top of yoru screen saying that *Patch Manager* will use *Run Command* to patch the instances.   *Run Command* is another feature of AWS Systems Manager that runs a command across multiple Amazon EC2 instances.  Patch Manager build the commands necessary to perform the patching and is using Run Command to actually execute the commands.
+9.  Click the **Configure patching** button at the bottom of the window.  You will see a message at the top of your screen saying that *Patch Manager* will use *Run Command* to patch the instances.   *Run Command* is another feature of AWS Systems Manager that runs a command across multiple Amazon EC2 instances.  Patch Manager build the commands necessary to perform the patching and is using Run Command to actually execute the commands.
 
 ## Check the patching status
 

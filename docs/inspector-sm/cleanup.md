@@ -1,4 +1,4 @@
-# Protecting Your Workloads - Clean up Phase
+# Identifying and Remediating Host Vulnerabilities with Amazon Inspector and AWS Systems Manager - Cleanup Phase
 
 Now that you have completed this workshop, follow the steps below to clean up the artifacts that were created.
 
