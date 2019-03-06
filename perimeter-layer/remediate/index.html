@@ -1054,16 +1054,6 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <li>does match SQLi condition: filterSQLi</li>
 </ol>
 </li>
-</ol>
-</details>
-<h3 id="2-limit-attack-footprint">2. Limit Attack Footprint</h3>
-<p>Use the string and regex matching conditions along with geo match and IP address match conditions to build rules that limit the attack footprint against the exposed components of your application.</p>
-<p>Consider the following:
-•   Does your web application have server-side include components in the public web path?
-•   Does your web application have components at exposed paths that are not used (or dependencies have such functions)?
-•   Do you have administrative, management, status or health check paths and components that aren’t meant for end user access?</p>
-<p>You should consider blocking access to such elements, or limiting access to known sources, either whitelisted IP addresses or geographic locations.</p>
-<details class="info"><summary>Solution</summary><ol>
 <li>create XSS condition named filterXSS<ol>
 <li>query_string, url decode</li>
 <li>body, html entity decode</li>
@@ -1077,6 +1067,32 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <li>does not match string match condition: filterXSSPathException</li>
 </ol>
 </li>
+<li>add rules to Web ACL</li>
+</ol>
+</details>
+<h3 id="2-limit-attack-footprint">2. Limit Attack Footprint</h3>
+<p>Use the string and regex matching conditions along with geo match and IP address match conditions to build rules that limit the attack footprint against the exposed components of your application.</p>
+<p>Consider the following:
+•   Does your web application have server-side include components in the public web path?
+•   Does your web application have components at exposed paths that are not used (or dependencies have such functions)?
+•   Do you have administrative, management, status or health check paths and components that aren’t meant for end user access?</p>
+<p>You should consider blocking access to such elements, or limiting access to known sources, either whitelisted IP addresses or geographic locations.</p>
+<details class="info"><summary>Solution</summary><ol>
+<li>create geo conditon named filterAffiliates<ol>
+<li>add country US, and RO</li>
+</ol>
+</li>
+<li>create string match condition named filterAdminUI<ol>
+<li>uri, starts with, no transform, “/admin”</li>
+</ol>
+</li>
+<li>create rule named matchAdminNotAffiliate<ol>
+<li>type regular</li>
+<li>does match string condition: filterAdminUI</li>
+<li>does not match geo condition: filterAffiliates</li>
+</ol>
+</li>
+<li>add rule to Web ACL</li>
 </ol>
 </details>
 <h3 id="3-enforce-request-hygiene">3. Enforce Request Hygiene</h3>
