@@ -147,6 +147,16 @@ How do the requirements derived from the above questions affect your solution?
     2.  create SQLi rule named matchSQLi
     	1. type regular
         2. does match SQLi condition: filterSQLi
+    3.	create XSS condition named filterXSS
+        1.	query_string, url decode
+        2.	body, html entity decode
+        3.	body, url decode
+        4.	header, cookie, url decode
+    4.	create XSS rule named matchXSS
+        1. type regular
+        2. does match XSS condition: filterXSS
+        3. does not match string match condition: filterXSSPathException
+    5.	add rules to Web ACL
 
 ### 2. Limit Attack Footprint
 
@@ -160,15 +170,16 @@ Consider the following:
 You should consider blocking access to such elements, or limiting access to known sources, either whitelisted IP addresses or geographic locations.
 
 ??? info "Solution"
-    1.	create XSS condition named filterXSS
-        1.	query_string, url decode
-        2.	body, html entity decode
-        3.	body, url decode
-        4.	header, cookie, url decode
-    2.	create XSS rule named matchXSS
-        1. type regular
-        2. does match XSS condition: filterXSS
-        3. does not match string match condition: filterXSSPathException
+    1.	create geo conditon named filterAffiliates
+        1.	add country US, and RO
+    2.	create string match condition named filterAdminUI
+        1.	uri, starts with, no transform, “/admin”
+    3.	create rule named matchAdminNotAffiliate
+        1.	type regular
+        2.	does match string condition: filterAdminUI
+        3.	does not match geo condition: filterAffiliates
+    4.	add rule to Web ACL
+
 
 
 ### 3. Enforce Request Hygiene
