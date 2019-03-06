@@ -72,7 +72,7 @@ For example, we want to build a rule to detect and block SQL Injection in receiv
 
 ####Relevant transformations:
 
-- **SQL Injection Match Condition** form input is sometimes HTML encoded, so it’s a good idea to apply the **HTML_ENTITY_DECODE** transformation. Other transformations might also apply, such as **URL_DECODE**
+- **SQL Injection Match Condition** form input is sometimes HTML encoded, so it’s a good idea to apply the **HTML_DECODE** transformation. Other transformations might also apply, such as **URL_DECODE**
 
 ####Rules to implement:
 
@@ -142,14 +142,14 @@ How do the requirements derived from the above questions affect your solution?
 ??? info "Solution"
     1.	create SQLi condition named filterSQLi
         1. query_string, url decode
-        2. body, html entity decode
+        2. body, html decode
         3. header, cookie, url decode
     2.  create SQLi rule named matchSQLi
     	1. type regular
         2. does match SQLi condition: filterSQLi
     3.	create XSS condition named filterXSS
         1.	query_string, url decode
-        2.	body, html entity decode
+        2.	body, html decode
         3.	body, url decode
         4.	header, cookie, url decode
     4.	create XSS rule named matchXSS
