@@ -992,7 +992,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 </ul>
 <h4 id="relevant-transformations">Relevant transformations:</h4>
 <ul>
-<li><strong>SQL Injection Match Condition</strong> form input is sometimes HTML encoded, so it’s a good idea to apply the <strong>HTML_ENTITY_DECODE</strong> transformation. Other transformations might also apply, such as <strong>URL_DECODE</strong></li>
+<li><strong>SQL Injection Match Condition</strong> form input is sometimes HTML encoded, so it’s a good idea to apply the <strong>HTML_DECODE</strong> transformation. Other transformations might also apply, such as <strong>URL_DECODE</strong></li>
 </ul>
 <h4 id="rules-to-implement">Rules to implement:</h4>
 <ul>
@@ -1045,7 +1045,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <details class="info"><summary>Solution</summary><ol>
 <li>create SQLi condition named filterSQLi<ol>
 <li>query_string, url decode</li>
-<li>body, html entity decode</li>
+<li>body, html decode</li>
 <li>header, cookie, url decode</li>
 </ol>
 </li>
@@ -1056,7 +1056,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 </li>
 <li>create XSS condition named filterXSS<ol>
 <li>query_string, url decode</li>
-<li>body, html entity decode</li>
+<li>body, html decode</li>
 <li>body, url decode</li>
 <li>header, cookie, url decode</li>
 </ol>
