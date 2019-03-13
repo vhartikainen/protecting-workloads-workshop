@@ -965,7 +965,7 @@ Once selected, you will be redirected to the AWS WAF &amp; AWS Shield service co
 </li>
 </ol>
 <p><img alt="WAF Home" src="../images/waf-home.png" />
-3. In the side bar menu on the right, pick the Web ACLs option under the AWS WAF heading. If the list of Web ACLs appears empty select the correct AWS Region as indicated on your credentials card in the Filter dropdown:</p>
+3. In the side bar menu on the right, pick the Web ACLs option under the AWS WAF heading. If the list of Web ACLs appears empty select the correct AWS Region as indicated on your credentials card in the Filter dropdown. If you are sharing the same account with other participants you can identify your WAF ACL by the Id in the stack outputs.</p>
 <p><img alt="WAF ACL Home" src="../images/waf-acl-home.png" />
 4. Click on the WAF Web ACL Name to select the existing Web ACL. Once the detail pane is loaded on the left of your screen, you will see 2 tabs: Requests and Rules. Toggle to Rules:</p>
 <p><img alt="WAF ACL Rules" src="../images/waf-acl-rules.png" />
@@ -989,7 +989,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <li>What conditions do you need to create to implement the logic?</li>
 <li>Are any transformations relevant to my input content type?</li>
 </ol>
-<p>For example, we want to build a rule to detect and block SQL Injection in received form input requests. Let’s see how these questions help us plan the implementation of the rule. <em>Do not create this rule, just use this to better understand the rule creation process.</em></p>
+<p>For example, we want to build a rule to detect and block SQL Injection in received form input requests. Let’s see how these questions help us plan the implementation of the rule. <em>This is a sample rule that will not be used in the workshop. It's purpose is to help you better understand the rule creation process.</em></p>
 <h3 id="example-rule-design-and-creation">Example Rule Design and Creation:</h3>
 <h4 id="sample-rule-purpose">Sample Rule purpose:</h4>
 <ul>
@@ -1051,12 +1051,15 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <p>14. In the <strong>Rules</strong> dropdown, select your rule, and click <strong>Add rule to web ACL</strong>.</p>
 <p>15. Reorder the rules as appropriate for your use case.</p>
 <p>16. Click <strong>Update</strong> to persist the changes.</p>
-<h2 id="perimeter-layer-round-rule-creation-and-solutions">Perimeter Layer Round - Rule Creation and Solutions</h2>
+<div class="admonition info">
+<p class="admonition-title">Additional Resources</p>
 <p>For a more comprehensive discussion of common vulnerabilities for web applications, as well as how to mitigate them using AWS WAF, and other AWS services, please refer to the <a href="https://d0.awsstatic.com/whitepapers/Security/aws-waf-owasp.pdf" target="_blank">Use AWS WAF to Mitigate OWASP’s Top 10 Web Application Vulnerabilities whitepaper</a>.</p>
+</div>
+<h2 id="perimeter-layer-round-rule-creation-and-solutions">Perimeter Layer Round - Rule Creation and Solutions</h2>
 <p>In this phase, we will have a set of 6 exercises walking you through the process of building a basic mitigation rule set for common vulnerabilities. We will build these rules from scratch, so you can gain familiarity with the AWS WAF programming model and you can then write rules specific to your applications. </p>
 <div class="admonition info">
 <p class="admonition-title">Note About Excersise Solutions</p>
-<p><strong>We encourage you to attempt to create the rules on your own but have included the solutions as a backup in case you get stuck.</strong> You can test your ACL ruleset at any time using the Red Team Host. For AWS sponsored event, you can also view test results on the <a href="http://waflabdash.awssecworkshops.com/" target="_blank">WAF Lab Dashboard</a>.</p>
+<p>We encourage you to attempt to create the rules on your own but have included the solutions as a backup in case you get stuck. You can test your ACL ruleset at any time using the Red Team Host. For AWS sponsored event, you can also view test results on the <a href="http://waflabdash.awssecworkshops.com/" target="_blank">WAF Lab Dashboard</a>.</p>
 </div>
 <h3 id="1-sql-injection-cross-site-scripting-mitigation">1. SQL Injection &amp; Cross Site Scripting Mitigation</h3>
 <p>Use the SQL injection, cross-site scripting, as well as string and regex matching conditions to build rules that mitigate injection attacks and cross site scripting attacks.</p>
@@ -1085,7 +1088,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 </ol>
 </li>
 <li>create string match condition named filterXSSPathException<ol>
-<li>uri, starts with, no transform, /reportBuilder/Editor.aspx</li>
+<li>uri, starts with, no transform, <em>/reportBuilder/Editor.aspx</em></li>
 </ol>
 </li>
 <li>create XSS rule named matchXSS<ol>
@@ -1110,7 +1113,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 </ol>
 </li>
 <li>create string match condition named filterAdminUI<ol>
-<li>uri, starts with, no transform, “/admin”</li>
+<li>uri, starts with, no transform, <em>/admin</em></li>
 </ol>
 </li>
 <li>create rule named matchAdminNotAffiliate<ol>
@@ -1130,15 +1133,15 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <p>Build rules that ensure the requests your application ends up processing are valid, conforming and valuable.</p>
 <details class="info"><summary>Solution</summary><ol>
 <li>create string match condition named filterFormProcessor<ol>
-<li>uri, starts with, no transform, /form.php</li>
+<li>uri, starts with, no transform, <em>/form.php</em></li>
 </ol>
 </li>
 <li>create string match condition named filterPOSTMethod<ol>
-<li>uri, exactly matches, no transform, /form.php</li>
+<li>uri, exactly matches, no transform, <em>/form.php</em></li>
 </ol>
 </li>
 <li>create regex match condition named filterCSRFToken<ol>
-<li>header x-csrf-token, matches pattern: ^[0-9a-f]{40}$</li>
+<li>header x-csrf-token, matches pattern: <em>^[0-9a-f]{40}$</em></li>
 </ol>
 </li>
 <li>create rule named matchCSRF<ol>
@@ -1168,9 +1171,9 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <p>Build rules that ensure the relevant HTTP request components used for input into paths do not contain known path traversal patterns.</p>
 <details class="info"><summary>Solution</summary><ol>
 <li>create string match condition named filterTraversal<ol>
-<li>uri, starts with, url_decode, /include</li>
-<li>query_string, contains, url_decode, ../</li>
-<li>query_string, contains, url_decode, ://</li>
+<li>uri, starts with, url_decode, <em>/include</em></li>
+<li>query_string, contains, url_decode, <em>../</em></li>
+<li>query_string, contains, url_decode, <em>://</em></li>
 </ol>
 </li>
 <li>create rule named matchTraversal<ol>
@@ -1193,7 +1196,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <p>Do you have mechanisms in place to detect such patterns? If so, can you build rules to mitigate them?</p>
 <details class="info"><summary>Solution</summary><ol>
 <li>create string match condition named filterLoginProcessor<ol>
-<li>uri, starts with, no transform, “/login.php”</li>
+<li>uri, starts with, no transform, <em>/login.php</em></li>
 </ol>
 </li>
 <li>create rule named matchRateLogin<ol>
