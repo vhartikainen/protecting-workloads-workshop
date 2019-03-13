@@ -1061,6 +1061,10 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <li>header, cookie, url decode</li>
 </ol>
 </li>
+<li>create string match condition named filterXSSPathException<ol>
+<li>uri, starts with, no transform, “/reportBuilder/Editor.aspx”</li>
+</ol>
+</li>
 <li>create XSS rule named matchXSS<ol>
 <li>type regular</li>
 <li>does match XSS condition: filterXSS</li>
