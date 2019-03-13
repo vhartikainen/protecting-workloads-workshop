@@ -148,15 +148,17 @@ How do the requirements derived from the above questions affect your solution?
     	1. type regular
         2. does match SQLi condition: filterSQLi
     3.	create XSS condition named filterXSS
-        1.	query_string, url decode
-        2.	body, html decode
-        3.	body, url decode
-        4.	header, cookie, url decode
-    4.	create XSS rule named matchXSS
+        1. query_string, url decode
+        2. body, html decode
+        3. body, url decode
+        4. header, cookie, url decode
+    4.	create string match condition named filterXSSPathException
+	    1. uri, starts with, no transform, “/reportBuilder/Editor.aspx”
+    5.	create XSS rule named matchXSS
         1. type regular
         2. does match XSS condition: filterXSS
         3. does not match string match condition: filterXSSPathException
-    5.	add rules to Web ACL
+    6.	add rules to Web ACL
 
 ### 2. Limit Attack Footprint
 
