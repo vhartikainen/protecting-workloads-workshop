@@ -162,7 +162,7 @@ How do the requirements derived from the above questions affect your solution?
         3. body, url decode
         4. header, cookie, url decode
     4.	create string match condition named filterXSSPathException
-	    1. uri, starts with, no transform, “/reportBuilder/Editor.aspx”
+	    1. uri, starts with, no transform, /reportBuilder/Editor.aspx
     5.	create XSS rule named matchXSS
         1. type regular
         2. does match XSS condition: filterXSS
@@ -205,9 +205,9 @@ Build rules that ensure the requests your application ends up processing are val
 
 ??? info "Solution"
     1.	create string match condition named filterFormProcessor
-        1.	uri, starts with, no transform, “/form.php”
+        1.	uri, starts with, no transform, /form.php
     2.	create string match condition named filterPOSTMethod
-        1.	uri, exactly matches, no transform, “/form.php”
+        1.	uri, exactly matches, no transform, /form.php
     3.	create regex match condition named filterCSRFToken
         1.	header x-csrf-token, matches pattern: ^[0-9a-f]{40}$
     4.	create rule named matchCSRF
@@ -236,8 +236,8 @@ Build rules that ensure the relevant HTTP request components used for input into
 ??? info "Solution"
     1.	create string match condition named filterTraversal
         1. uri, starts with, url_decode, /include
-        2. query_string, contains, url_decode, “../“
-        3. query_string, contains, url_decode, “://“
+        2. query_string, contains, url_decode, ../
+        3. query_string, contains, url_decode, ://
     2.	create rule named matchTraversal
         1. type regular
         2. does match string condition: filterTraversal
