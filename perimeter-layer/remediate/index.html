@@ -1085,7 +1085,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 </ol>
 </li>
 <li>create string match condition named filterXSSPathException<ol>
-<li>uri, starts with, no transform, “/reportBuilder/Editor.aspx”</li>
+<li>uri, starts with, no transform, /reportBuilder/Editor.aspx</li>
 </ol>
 </li>
 <li>create XSS rule named matchXSS<ol>
@@ -1130,11 +1130,11 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <p>Build rules that ensure the requests your application ends up processing are valid, conforming and valuable.</p>
 <details class="info"><summary>Solution</summary><ol>
 <li>create string match condition named filterFormProcessor<ol>
-<li>uri, starts with, no transform, “/form.php”</li>
+<li>uri, starts with, no transform, /form.php</li>
 </ol>
 </li>
 <li>create string match condition named filterPOSTMethod<ol>
-<li>uri, exactly matches, no transform, “/form.php”</li>
+<li>uri, exactly matches, no transform, /form.php</li>
 </ol>
 </li>
 <li>create regex match condition named filterCSRFToken<ol>
@@ -1169,8 +1169,8 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <details class="info"><summary>Solution</summary><ol>
 <li>create string match condition named filterTraversal<ol>
 <li>uri, starts with, url_decode, /include</li>
-<li>query_string, contains, url_decode, “../“</li>
-<li>query_string, contains, url_decode, “://“</li>
+<li>query_string, contains, url_decode, ../</li>
+<li>query_string, contains, url_decode, ://</li>
 </ol>
 </li>
 <li>create rule named matchTraversal<ol>
