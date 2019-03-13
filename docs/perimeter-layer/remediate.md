@@ -29,7 +29,7 @@ Once selected, you will be redirected to the AWS WAF & AWS Shield service consol
 ![WAF ACL Rules](./images/waf-acl-rules.png)
 Validate that you are able to see a pre-existing rule, configured to block requests, and that your Web ACL is associated with an Application load balancer resource. You can drill down further into the properties of the existing rule, by clicking on the rule name. You should see 2 entries into the associated IP address list for the loopback/localhost IP addresses (127.0.0.0/8, ::1/128).
 
-##AWS WAF rule design and considerations
+##AWS WAF Rule Design and Considerations
 
 ###Basics
 
@@ -39,7 +39,11 @@ Rules contain one or more conditions. Each condition attached to a rule is calle
 
 Web ACLs are ordered lists of rules. They are evaluated in order for each HTTP request and the action of the first matching rule is taken by the WAF engine, whether that is to allow, block or count the request. If no rule matches, the default action of the web ACL prevails. Multiple web ACLs can reuse the same rules, and multiple rules can reuse the same conditions assuming that is desirable from a change management process point of view for your workloads. This creates effectively a dependency tree between these AWS WAF components.
 
-###Rule Design
+!!! info "Note About This Section"
+    **This section is a sample walkthrough to illistrate the process of creating WAF conditions and rules.** To begin building your WAF ACL for this round, go to the <a href="./#perimeter-layer-round-rule-creation-and-solutions" target="_blank">Perimeter Layer Round - Rule Creation and Solutions</a> section.
+
+
+###Rule Design Considerations:
 
 To create a rule, you have to create the relevant match conditions first. This process requires planning for effective rule building. Use the following guiding questions:
 
@@ -50,9 +54,11 @@ To create a rule, you have to create the relevant match conditions first. This p
 5.	What conditions do you need to create to implement the logic?
 6.	Are any transformations relevant to my input content type?
 
-For example, we want to build a rule to detect and block SQL Injection in received form input requests. Let’s see how these questions help us plan the implementation of the rule:
+For example, we want to build a rule to detect and block SQL Injection in received form input requests. Let’s see how these questions help us plan the implementation of the rule. _Do not create this rule, just use this to better understand the rule creation process._
 
-####Rule purpose:
+###Example Rule Design and Creation:
+
+####Sample Rule purpose:
 
 - **Detect SQL Injection in form input HTTP requests, use ‘block’ action in Web ACL**
 
@@ -65,7 +71,7 @@ For example, we want to build a rule to detect and block SQL Injection in receiv
 
 - If **Request Method = POST** and **Request Body contains suspected SQL Injection** then **block**
 
-####Conditions to implement:
+####Sample Rule - Conditions to implement:
 
 - **String Match Condition** targeting the request **METHOD** field, expecting the exact value **POST**
 - **SQL Injection Match Condition** targeting the request **BODY** field
@@ -78,7 +84,10 @@ For example, we want to build a rule to detect and block SQL Injection in receiv
 
 - Rule with 2 predicates matching both the string matching condition and SQL injection condition
 
-##Console Walkthrough - Creating a Condition and Rule
+##Console Walkthrough Example - Creating a Condition and Rule
+
+!!! info "Note About This Section"
+    **This section is a sample walkthrough to illistrate the process of creating WAF conditions and rules.** To begin building your WAF ACL for this round, go to the <a href="./#perimeter-layer-round-rule-creation-and-solutions" target="_blank">Perimeter Layer Round - Rule Creation and Solutions</a> section.
 
 1. In the AWS WAF console, create a string match condition by selecting **String and regex** matching from the side-bar menu to the left of the console, under the **Conditions** heading.
 
@@ -119,7 +128,7 @@ For example, we want to build a rule to detect and block SQL Injection in receiv
 
 16\. Click **Update** to persist the changes.
 
-## Mitigating Common Vulnerabilities & Monitoring for Attacks
+## Perimeter Layer Round - Rule Creation and Solutions
 
 For a more comprehensive discussion of common vulnerabilities for web applications, as well as how to mitigate them using AWS WAF, and other AWS services, please refer to the <a href="https://d0.awsstatic.com/whitepapers/Security/aws-waf-owasp.pdf" target="_blank">Use AWS WAF to Mitigate OWASP’s Top 10 Web Application Vulnerabilities whitepaper</a>.
 
@@ -206,7 +215,10 @@ Build rules that ensure the requests your application ends up processing are val
         2.	does match string condition: filterFormProcessor
         3.	does match string condition: filterPOSTMethod
         4.	does not match regex match condition: filterCSRFToken
-    5.	add rules to Web ACL
+    5.	create rule named matchfilterCSRFToken
+	    1. type regular
+	    2. does match string condition: filterCSRFToken
+    6.	add rules to Web ACL
 
 ### 4. Mitigate File Inclusion & Path Traversal
 
