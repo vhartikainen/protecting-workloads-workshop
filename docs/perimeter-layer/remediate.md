@@ -21,7 +21,7 @@ Make sure you select the appropriate AWS Region when working in the AWS Manageme
 Once selected, you will be redirected to the AWS WAF & AWS Shield service console. You may see an initial landing page at first. Choose Go to AWS WAF:
 
 ![WAF Home](./images/waf-home.png)
-3. In the side bar menu on the right, pick the Web ACLs option under the AWS WAF heading. If the list of Web ACLs appears empty select the correct AWS Region as indicated on your credentials card in the Filter dropdown:
+3. In the side bar menu on the right, pick the Web ACLs option under the AWS WAF heading. If the list of Web ACLs appears empty select the correct AWS Region as indicated on your credentials card in the Filter dropdown. If you are sharing the same account with other participants you can identify your WAF ACL by the Id in the stack outputs.
 
 ![WAF ACL Home](./images/waf-acl-home.png)
 4. Click on the WAF Web ACL Name to select the existing Web ACL. Once the detail pane is loaded on the left of your screen, you will see 2 tabs: Requests and Rules. Toggle to Rules:
@@ -54,7 +54,7 @@ To create a rule, you have to create the relevant match conditions first. This p
 5.	What conditions do you need to create to implement the logic?
 6.	Are any transformations relevant to my input content type?
 
-For example, we want to build a rule to detect and block SQL Injection in received form input requests. Let’s see how these questions help us plan the implementation of the rule. _Do not create this rule, just use this to better understand the rule creation process._
+For example, we want to build a rule to detect and block SQL Injection in received form input requests. Let’s see how these questions help us plan the implementation of the rule. _This is a sample rule that will not be used in the workshop. It's purpose is to help you better understand the rule creation process._
 
 ###Example Rule Design and Creation:
 
@@ -128,14 +128,15 @@ For example, we want to build a rule to detect and block SQL Injection in receiv
 
 16\. Click **Update** to persist the changes.
 
-## Perimeter Layer Round - Rule Creation and Solutions
+!!! info "Additional Resources"
+    For a more comprehensive discussion of common vulnerabilities for web applications, as well as how to mitigate them using AWS WAF, and other AWS services, please refer to the <a href="https://d0.awsstatic.com/whitepapers/Security/aws-waf-owasp.pdf" target="_blank">Use AWS WAF to Mitigate OWASP’s Top 10 Web Application Vulnerabilities whitepaper</a>.
 
-For a more comprehensive discussion of common vulnerabilities for web applications, as well as how to mitigate them using AWS WAF, and other AWS services, please refer to the <a href="https://d0.awsstatic.com/whitepapers/Security/aws-waf-owasp.pdf" target="_blank">Use AWS WAF to Mitigate OWASP’s Top 10 Web Application Vulnerabilities whitepaper</a>.
+## Perimeter Layer Round - Rule Creation and Solutions
 
 In this phase, we will have a set of 6 exercises walking you through the process of building a basic mitigation rule set for common vulnerabilities. We will build these rules from scratch, so you can gain familiarity with the AWS WAF programming model and you can then write rules specific to your applications. 
 
 !!! info "Note About Excersise Solutions"
-    **We encourage you to attempt to create the rules on your own but have included the solutions as a backup in case you get stuck.** You can test your ACL ruleset at any time using the Red Team Host. For AWS sponsored event, you can also view test results on the <a href="http://waflabdash.awssecworkshops.com/" target="_blank">WAF Lab Dashboard</a>.
+    We encourage you to attempt to create the rules on your own but have included the solutions as a backup in case you get stuck. You can test your ACL ruleset at any time using the Red Team Host. For AWS sponsored event, you can also view test results on the <a href="http://waflabdash.awssecworkshops.com/" target="_blank">WAF Lab Dashboard</a>.
 
 ### 1. SQL Injection & Cross Site Scripting Mitigation
 
@@ -162,7 +163,7 @@ How do the requirements derived from the above questions affect your solution?
         3. body, url decode
         4. header, cookie, url decode
     4.	create string match condition named filterXSSPathException
-	    1. uri, starts with, no transform, /reportBuilder/Editor.aspx
+	    1. uri, starts with, no transform, _/reportBuilder/Editor.aspx_
     5.	create XSS rule named matchXSS
         1. type regular
         2. does match XSS condition: filterXSS
@@ -184,7 +185,7 @@ You should consider blocking access to such elements, or limiting access to know
     1.	create geo conditon named filterAffiliates
         1.	add country US, and RO
     2.	create string match condition named filterAdminUI
-        1.	uri, starts with, no transform, “/admin”
+        1.	uri, starts with, no transform, _/admin_
     3.	create rule named matchAdminNotAffiliate
         1.	type regular
         2.	does match string condition: filterAdminUI
@@ -205,11 +206,11 @@ Build rules that ensure the requests your application ends up processing are val
 
 ??? info "Solution"
     1.	create string match condition named filterFormProcessor
-        1.	uri, starts with, no transform, /form.php
+        1.	uri, starts with, no transform, _/form.php_
     2.	create string match condition named filterPOSTMethod
-        1.	uri, exactly matches, no transform, /form.php
+        1.	uri, exactly matches, no transform, _/form.php_
     3.	create regex match condition named filterCSRFToken
-        1.	header x-csrf-token, matches pattern: ^[0-9a-f]{40}$
+        1.	header x-csrf-token, matches pattern: _^[0-9a-f]{40}$_
     4.	create rule named matchCSRF
         1.	type regular
         2.	does match string condition: filterFormProcessor
@@ -235,9 +236,9 @@ Build rules that ensure the relevant HTTP request components used for input into
 
 ??? info "Solution"
     1.	create string match condition named filterTraversal
-        1. uri, starts with, url_decode, /include
-        2. query_string, contains, url_decode, ../
-        3. query_string, contains, url_decode, ://
+        1. uri, starts with, url_decode, _/include_
+        2. query_string, contains, url_decode, _../_
+        3. query_string, contains, url_decode, _://_
     2.	create rule named matchTraversal
         1. type regular
         2. does match string condition: filterTraversal
@@ -257,7 +258,7 @@ Do you have mechanisms in place to detect such patterns? If so, can you build ru
 
 ??? info "Solution"
     1.	create string match condition named filterLoginProcessor
-        1.	uri, starts with, no transform, “/login.php”
+        1.	uri, starts with, no transform, _/login.php_
     2.	create rule named matchRateLogin
         1.	type rate-based, 2000
         2.	does match string condition: filterLoginProcessor
