@@ -216,10 +216,7 @@ Build rules that ensure the requests your application ends up processing are val
         2.	does match string condition: filterFormProcessor
         3.	does match string condition: filterPOSTMethod
         4.	does not match regex match condition: filterCSRFToken
-    5.	create rule named matchfilterCSRFToken
-	    1. type regular
-	    2. does match string condition: filterCSRFToken
-    6.	add rules to Web ACL
+    5.	add rules to Web ACL
 
 ### 4. Mitigate File Inclusion & Path Traversal
 
