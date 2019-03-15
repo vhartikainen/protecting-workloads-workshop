@@ -49,7 +49,7 @@ tests = [
          {'Name': '#2 Includes Modules' , 'Type': 'Includes' , 'exec_string': "http -v '" + target + "/includes/index.html'"},
 
 		 {'Name': '#3 CSRF Missing' , 'Type': 'CSRF' , 'exec_string': "http -v --form POST " + target + "/form.php" + " orderSubmit=Submit"},
-		 {'Name': '#3 CSRF Invalid' , 'Type': 'CSRF' , 'exec_string': "http -v --form POST " + target + "/form.php" + " orderSubmit=Submit  'x-csrf-token:dfb091f4198f3c998eb4c24cc168fd6b92b8c95a'"},
+		 {'Name': '#3 CSRF Invalid' , 'Type': 'CSRF' , 'exec_string': "http -v --form POST " + target + "/form.php" + " orderSubmit=Submit  'x-csrf-token:b@d+0k3n198f3c998eb4c24cc168fd6b92b8c95a'"},
 
          {'Name': '#4 Path Traversal' , 'Type': 'Traversal' , 'exec_string': "http -v '" + target + "/download.php?form=..%2Fmodules%2Freviews.php'"}
         ]
