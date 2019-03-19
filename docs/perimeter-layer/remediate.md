@@ -140,7 +140,7 @@ How do the requirements derived from the above questions affect your solution?
 
 ??? info "Solution"
     1.	update the SQLi condition named filterSQLi with 2 additional filters
-        1. <s>query_string, url decode</s>
+        1. <s>query_string, url decode</s> _You should have created this filter in <a href="./#console-walkthrough-creating-a-condition-and-rule">the walk through</a>_
         2. body, html decode
         3. header, cookie, url decode
     2.  create SQLi rule named matchSQLi
