@@ -12,3 +12,7 @@ If you are not moving on to the next round, follow the steps below to clean up t
 2. Go to the WAF console and remove the conditions from the rules that you created
 2. Go to the WAF console and delete the conditions you created.
 3. Go to the WAF console and delete the rules you created.
+
+
+!!! info "Note about Automated Scanner"
+    The automated scanner entry for your site will age out of the dashboard after several hours but you can continue to test your WAF rule set with the red team host script.
