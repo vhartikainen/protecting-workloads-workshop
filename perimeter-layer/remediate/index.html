@@ -515,15 +515,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#console-walkthrough-example-creating-a-condition-and-rule" title="Console Walkthrough Example - Creating a Condition and Rule" class="md-nav__link">
-    Console Walkthrough Example - Creating a Condition and Rule
+  <a href="#console-walkthrough-creating-a-condition-and-rule" title="Console Walkthrough - Creating a Condition and Rule" class="md-nav__link">
+    Console Walkthrough - Creating a Condition and Rule
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#perimeter-layer-round-rule-creation-and-solutions" title="Perimeter Layer Round - Rule Creation and Solutions" class="md-nav__link">
-    Perimeter Layer Round - Rule Creation and Solutions
+  <a href="#waf-rule-creation-and-solutions" title="WAF Rule Creation and Solutions" class="md-nav__link">
+    WAF Rule Creation and Solutions
   </a>
   
     <nav class="md-nav">
@@ -558,8 +558,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-detect-mitigate-anomalies" title="5. Detect &amp; Mitigate Anomalies" class="md-nav__link">
-    5. Detect &amp; Mitigate Anomalies
+  <a href="#5-detect-mitigate-anomalies-optional" title="5. Detect &amp; Mitigate Anomalies (Optional)" class="md-nav__link">
+    5. Detect &amp; Mitigate Anomalies (Optional)
   </a>
   
 </li>
@@ -858,15 +858,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#console-walkthrough-example-creating-a-condition-and-rule" title="Console Walkthrough Example - Creating a Condition and Rule" class="md-nav__link">
-    Console Walkthrough Example - Creating a Condition and Rule
+  <a href="#console-walkthrough-creating-a-condition-and-rule" title="Console Walkthrough - Creating a Condition and Rule" class="md-nav__link">
+    Console Walkthrough - Creating a Condition and Rule
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#perimeter-layer-round-rule-creation-and-solutions" title="Perimeter Layer Round - Rule Creation and Solutions" class="md-nav__link">
-    Perimeter Layer Round - Rule Creation and Solutions
+  <a href="#waf-rule-creation-and-solutions" title="WAF Rule Creation and Solutions" class="md-nav__link">
+    WAF Rule Creation and Solutions
   </a>
   
     <nav class="md-nav">
@@ -901,8 +901,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-detect-mitigate-anomalies" title="5. Detect &amp; Mitigate Anomalies" class="md-nav__link">
-    5. Detect &amp; Mitigate Anomalies
+  <a href="#5-detect-mitigate-anomalies-optional" title="5. Detect &amp; Mitigate Anomalies (Optional)" class="md-nav__link">
+    5. Detect &amp; Mitigate Anomalies (Optional)
   </a>
   
 </li>
@@ -943,9 +943,9 @@
 You are now going to design and implement an AWS WAF ruleset to help mitigate these vulnerabilities. In this section you will do the following tasks:</p>
 <ol>
 <li>Identify the WAF ACL for your site</li>
-<li>AWS WAF rule design and considerations</li>
-<li>Rule creation walkthrough</li>
-<li>Mitigating Common Vulnerabilities &amp; Monitoring for Attacks</li>
+<li>AWS WAF Rule design and considerations</li>
+<li>Console Walkthrough - Creating a WAF Condition and Rule</li>
+<li>WAF Rule Creation and Solutions</li>
 </ol>
 <h2 id="identify-the-waf-acl-for-your-site">Identify the WAF ACL for your Site</h2>
 <ol>
@@ -977,7 +977,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <p>Web ACLs are ordered lists of rules. They are evaluated in order for each HTTP request and the action of the first matching rule is taken by the WAF engine, whether that is to allow, block or count the request. If no rule matches, the default action of the web ACL prevails. Multiple web ACLs can reuse the same rules, and multiple rules can reuse the same conditions assuming that is desirable from a change management process point of view for your workloads. This creates effectively a dependency tree between these AWS WAF components.</p>
 <div class="admonition info">
 <p class="admonition-title">Note About This Section</p>
-<p><strong>This section is a sample walkthrough to illistrate the process of creating WAF conditions and rules.</strong> To begin building your WAF ACL for this round, go to the <a href="./#perimeter-layer-round-rule-creation-and-solutions" target="_blank">Perimeter Layer Round - Rule Creation and Solutions</a> section.</p>
+<p><strong>In order to illustrate the process of creating WAF conditions and rules, we will walk through the creation of the first rule in your WAF ACL.</strong> The complete list of threats and solutions is available in the <a href="./#waf-rule-creation-and-solutions">WAF Rule Creation and Solutions</a> section.</p>
 </div>
 <h3 id="rule-design-considerations">Rule Design Considerations:</h3>
 <p>To create a rule, you have to create the relevant match conditions first. This process requires planning for effective rule building. Use the following guiding questions:</p>
@@ -989,73 +989,64 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <li>What conditions do you need to create to implement the logic?</li>
 <li>Are any transformations relevant to my input content type?</li>
 </ol>
-<p>For example, we want to build a rule to detect and block SQL Injection in received form input requests. Let’s see how these questions help us plan the implementation of the rule. <em>This is a sample rule that will not be used in the workshop. It's purpose is to help you better understand the rule creation process.</em></p>
+<p>For example, we want to build a rule to detect and block SQL Injection in received in query strings. Let’s see how these questions help us plan the implementation of the rule. <em>This walkthrough will get you started with the ruleset required to mitigate the simulated threats in the workshop. It's purpose is to help you better understand the rule creation process. You will create the remaining rules from solution hints provided below.</em></p>
 <h3 id="example-rule-design-and-creation">Example Rule Design and Creation:</h3>
 <h4 id="sample-rule-purpose">Sample Rule purpose:</h4>
 <ul>
-<li><strong>Detect SQL Injection in form input HTTP requests, use ‘block’ action in Web ACL</strong></li>
+<li><strong>Detect SQL Injection in query string, use ‘block’ action in Web ACL</strong></li>
 </ul>
 <h4 id="http-request-components">HTTP request components:</h4>
 <ul>
-<li><strong>Request Method</strong> – form input typically gets submitted using a POST HTTP request method</li>
-<li><strong>Request Body</strong> – form input is typically encoded in the body of the HTTP request </li>
+<li><strong>Request Method</strong> – form input typically gets submitted using a GET HTTP request method</li>
+<li><strong>Query String</strong> – the SQL injection attempt is located in the query string </li>
 </ul>
 <h4 id="define-the-purpose-of-the-rule-using-boolean-logic">Define the purpose of the rule using Boolean logic:</h4>
 <ul>
-<li>If <strong>Request Method = POST</strong> and <strong>Request Body contains suspected SQL Injection</strong> then <strong>block</strong></li>
+<li>If <strong>Query String contains suspected SQL Injection</strong> then <strong>block</strong></li>
 </ul>
 <h4 id="sample-rule-conditions-to-implement">Sample Rule - Conditions to implement:</h4>
 <ul>
-<li><strong>String Match Condition</strong> targeting the request <strong>METHOD</strong> field, expecting the exact value <strong>POST</strong></li>
-<li><strong>SQL Injection Match Condition</strong> targeting the request <strong>BODY</strong> field</li>
+<li><strong>SQL injection Match Condition</strong> targeting the request <strong>Query string</strong></li>
 </ul>
 <h4 id="relevant-transformations">Relevant transformations:</h4>
 <ul>
-<li><strong>SQL Injection Match Condition</strong> form input is sometimes HTML encoded, so it’s a good idea to apply the <strong>HTML_DECODE</strong> transformation. Other transformations might also apply, such as <strong>URL_DECODE</strong></li>
+<li><strong>SQL Injection Match Condition</strong> query strinb is URL encoded, so we will apply the <strong>URL_DECODE</strong> transformation.</li>
 </ul>
 <h4 id="rules-to-implement">Rules to implement:</h4>
 <ul>
-<li>Rule with 2 predicates matching both the string matching condition and SQL injection condition</li>
+<li>Rule with 1 predicate matching SQL injection condition</li>
 </ul>
-<h2 id="console-walkthrough-example-creating-a-condition-and-rule">Console Walkthrough Example - Creating a Condition and Rule</h2>
-<div class="admonition info">
-<p class="admonition-title">Note About This Section</p>
-<p><strong>This section is a sample walkthrough to illistrate the process of creating WAF conditions and rules.</strong> To begin building your WAF ACL for this round, go to the <a href="./#perimeter-layer-round-rule-creation-and-solutions" target="_blank">Perimeter Layer Round - Rule Creation and Solutions</a> section.</p>
-</div>
+<h2 id="console-walkthrough-creating-a-condition-and-rule">Console Walkthrough - Creating a Condition and Rule</h2>
 <ol>
 <li>
-<p>In the AWS WAF console, create a string match condition by selecting <strong>String and regex</strong> matching from the side-bar menu to the left of the console, under the <strong>Conditions</strong> heading.</p>
+<p>In the AWS WAF console, create a SQL injection condition by selecting <strong>SQL injection</strong> matching from the side-bar menu to the left of the console, under the <strong>Conditions</strong> heading.</p>
 </li>
 <li>
 <p>Click on <strong>Create Condition</strong>:</p>
 </li>
 </ol>
 <p><img alt="WAF Condition Home" src="../images/waf-condition-home.png" />
-3.  Provide the name and region. Set the <strong>type</strong> to <strong>String match</strong>.</p>
-<p><img alt="Create String Match" src="../images/create-string-match.png" />
-4.  Add a filter (pattern) to the condition. Set the <strong>Part of the request to filter on</strong> to <strong>HTTP method</strong>, the <strong>match type</strong> to <strong>Exactly matches</strong>, the transformation to <strong>None</strong> and the value to match as <strong>POST</strong>. Click <strong>Add filter</strong>.</p>
-<p><img alt="Filter Settings" src="../images/filter-settings.png" />
-5.  You can add multiple filters to the string match condition. Once you are confident the list is complete, click <strong>Create</strong> at the bottom of the screen.</p>
-<p>6. With the condition created, and any additional conditions created based on need as well, you are ready to create a rule. In the AWS WAF console, select <strong>Rules</strong> from the side-bar menu to the left of the console, under the <strong>AWS WAF</strong> heading.</p>
-<p>7. Click on <strong>Create Rule</strong>:</p>
+3.  Provide <strong>filterSQLi</strong> for the <strong>Name</strong> and select the region where you deployed the stack. Add a filter (pattern) to the condition. Set the <strong>Part of the request to filter on</strong> to <strong>Query string</strong> and set the <strong>Transformation</strong> to <strong>URL decode</strong>. Click <strong>Add filter</strong>.</p>
+<p><img alt="Create String Match" src="../images/create-sqli-match.png" />
+4. With the condition created, and any additional conditions created based on need as well, you are ready to create a rule. In the AWS WAF console, select <strong>Rules</strong> from the side-bar menu to the left of the console, under the <strong>AWS WAF</strong> heading.</p>
+<p>5. Click on <strong>Create Rule</strong>:</p>
 <p><img alt="Create Rule" src="../images/waf-rules-home.png" />
-8.  Provide the name, metric name and region. Set the <strong>rule type</strong> to <strong>Regular rule</strong>.</p>
+6.  Provide <strong>matchSQLi</strong> for the name, metric name and sect the region where you deployed the stack. Set the <strong>rule type</strong> to <strong>Regular rule</strong>.</p>
 <p><img alt="Create Rule Detail" src="../images/create-rule-detail.png" />
-9.  Add a condition to the rule. For our rule example, choose “When a request” <strong>does</strong> (no negation) <strong>match at least one of the filters in the string match condition</strong>. Choose the string match condition you have previously created.</p>
+7.  Add a condition to the rule. For our rule example, choose “When a request” <strong>does</strong> (no negation) <strong>match at least one of the filters in the SQL injection match condition</strong>. Choose the SQL injection condition you have previously created.</p>
 <p><img alt="Add Conditions" src="../images/add-conditions.png" />
-10. Click <strong>Add Condition</strong> and repeat step 9 for any additional conditions you wish to add.</p>
-<p>11. Click <strong>Create</strong> at the bottom of the screen when you have added all relevant conditions.</p>
-<p>12. Follow the steps in the “Identify the WAF ACL for your site” section above to go back to the Rules tab of your web ACL.</p>
-<p>13.    Click <strong>Edit web ACL</strong>.
+8.  Click <strong>Add Condition</strong> and click <strong>Create</strong> at the bottom of the screen.</p>
+<p>9. Follow the steps in the “Identify the WAF ACL for your site” section above to go back to the Rules tab of your web ACL.</p>
+<p>10.    Click <strong>Edit web ACL</strong>.
 <img alt="Edit Web ACL" src="../images/edit-web-acl.png" /></p>
-<p>14. In the <strong>Rules</strong> dropdown, select your rule, and click <strong>Add rule to web ACL</strong>.</p>
-<p>15. Reorder the rules as appropriate for your use case.</p>
-<p>16. Click <strong>Update</strong> to persist the changes.</p>
+<p>11. In the <strong>Rules</strong> dropdown, select your rule, and click <strong>Add rule to web ACL</strong>.</p>
+<p>12. Reorder the rules as appropriate for your use case.</p>
+<p>13. Click <strong>Update</strong> to persist the changes.</p>
 <div class="admonition info">
 <p class="admonition-title">Additional Resources</p>
 <p>For a more comprehensive discussion of common vulnerabilities for web applications, as well as how to mitigate them using AWS WAF, and other AWS services, please refer to the <a href="https://d0.awsstatic.com/whitepapers/Security/aws-waf-owasp.pdf" target="_blank">Use AWS WAF to Mitigate OWASP’s Top 10 Web Application Vulnerabilities whitepaper</a>.</p>
 </div>
-<h2 id="perimeter-layer-round-rule-creation-and-solutions">Perimeter Layer Round - Rule Creation and Solutions</h2>
+<h2 id="waf-rule-creation-and-solutions">WAF Rule Creation and Solutions</h2>
 <p>In this phase, we will have a set of 6 exercises walking you through the process of building a basic mitigation rule set for common vulnerabilities. We will build these rules from scratch, so you can gain familiarity with the AWS WAF programming model and you can then write rules specific to your applications. </p>
 <div class="admonition info">
 <p class="admonition-title">Note About Excersise Solutions</p>
@@ -1069,8 +1060,8 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 - What considerations do you need to account for in regards to false positives? For example, does your application legitimately need to accept SQL statements as input?</p>
 <p>How do the requirements derived from the above questions affect your solution?</p>
 <details class="info"><summary>Solution</summary><ol>
-<li>create SQLi condition named filterSQLi<ol>
-<li>query_string, url decode</li>
+<li>update the SQLi condition named filterSQLi with 2 additional filters<ol>
+<li><s>query_string, url decode</s></li>
 <li>body, html decode</li>
 <li>header, cookie, url decode</li>
 </ol>
@@ -1080,14 +1071,14 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <li>does match SQLi condition: filterSQLi</li>
 </ol>
 </li>
-<li>create XSS condition named filterXSS<ol>
+<li>create XSS condition named filterXSS with 4 filters<ol>
 <li>query_string, url decode</li>
 <li>body, html decode</li>
 <li>body, url decode</li>
 <li>header, cookie, url decode</li>
 </ol>
 </li>
-<li>create string match condition named filterXSSPathException<ol>
+<li>create string match condition named filterXSSPathException with 1 filter<ol>
 <li>uri, starts with, no transform, <em>/reportBuilder/Editor.aspx</em></li>
 </ol>
 </li>
@@ -1098,6 +1089,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 </ol>
 </li>
 <li>add rules to Web ACL</li>
+<li>Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked</li>
 </ol>
 </details>
 <h3 id="2-limit-attack-footprint">2. Limit Attack Footprint</h3>
@@ -1108,11 +1100,11 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 •   Do you have administrative, management, status or health check paths and components that aren’t meant for end user access?</p>
 <p>You should consider blocking access to such elements, or limiting access to known sources, either whitelisted IP addresses or geographic locations.</p>
 <details class="info"><summary>Solution</summary><ol>
-<li>create geo conditon named filterAffiliates<ol>
+<li>create geo conditon named filterAffiliates with 1 filter<ol>
 <li>add country US, and RO</li>
 </ol>
 </li>
-<li>create string match condition named filterAdminUI<ol>
+<li>create string match condition named filterAdminUI with 1 filter<ol>
 <li>uri, starts with, no transform, <em>/admin</em></li>
 </ol>
 </li>
@@ -1123,6 +1115,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 </ol>
 </li>
 <li>add rule to Web ACL</li>
+<li>Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked</li>
 </ol>
 </details>
 <h3 id="3-enforce-request-hygiene">3. Enforce Request Hygiene</h3>
@@ -1132,15 +1125,15 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 •   Are there specific HTTP request components without which your application cannot operate effectively (e.g. CSRF token header, authorization header, referrer header)?</p>
 <p>Build rules that ensure the requests your application ends up processing are valid, conforming and valuable.</p>
 <details class="info"><summary>Solution</summary><ol>
-<li>create string match condition named filterFormProcessor<ol>
+<li>create string match condition named filterFormProcessor with 1 filter<ol>
 <li>uri, starts with, no transform, <em>/form.php</em></li>
 </ol>
 </li>
-<li>create string match condition named filterPOSTMethod<ol>
+<li>create string match condition named filterPOSTMethod with 1 filter<ol>
 <li>uri, exactly matches, no transform, <em>/form.php</em></li>
 </ol>
 </li>
-<li>create regex match condition named filterCSRFToken<ol>
+<li>create regex match condition named filterCSRFToken with 1 filter<ol>
 <li>header x-csrf-token, url decode, matches pattern: <em>^[0-9a-f]{40}$</em></li>
 </ol>
 </li>
@@ -1152,6 +1145,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 </ol>
 </li>
 <li>add rules to Web ACL</li>
+<li>Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked</li>
 </ol>
 </details>
 <h3 id="4-mitigate-file-inclusion-path-traversal">4. Mitigate File Inclusion &amp; Path Traversal</h3>
@@ -1165,7 +1159,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 </ul>
 <p>Build rules that ensure the relevant HTTP request components used for input into paths do not contain known path traversal patterns.</p>
 <details class="info"><summary>Solution</summary><ol>
-<li>create string match condition named filterTraversal<ol>
+<li>create string match condition named filterTraversal with 3 filters<ol>
 <li>uri, starts with, url_decode, <em>/include</em></li>
 <li>query_string, contains, url_decode, <em>../</em></li>
 <li>query_string, contains, url_decode, <em>://</em></li>
@@ -1177,9 +1171,10 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 </ol>
 </li>
 <li>add rules to Web ACL</li>
+<li>Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked</li>
 </ol>
 </details>
-<h3 id="5-detect-mitigate-anomalies">5. Detect &amp; Mitigate Anomalies</h3>
+<h3 id="5-detect-mitigate-anomalies-optional">5. Detect &amp; Mitigate Anomalies (Optional)</h3>
 <p>What constitutes an anomaly in regards to your web application? A few common anomaly patterns are:</p>
 <ul>
 <li>Unusually elevated volume of requests in general</li>
@@ -1190,7 +1185,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 </ul>
 <p>Do you have mechanisms in place to detect such patterns? If so, can you build rules to mitigate them?</p>
 <details class="info"><summary>Solution</summary><ol>
-<li>create string match condition named filterLoginProcessor<ol>
+<li>create string match condition named filterLoginProcessor with 1 filter<ol>
 <li>uri, starts with, no transform, <em>/login.php</em></li>
 </ol>
 </li>
