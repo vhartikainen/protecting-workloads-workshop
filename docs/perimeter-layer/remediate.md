@@ -106,7 +106,7 @@ For example, we want to build a rule to detect and block SQL Injection in receiv
 ![Add Conditions](./images/add-conditions.png)
 8.	Click **Add Condition** and click **Create** at the bottom of the screen.
 
-9\. Follow the steps in the “Identify the WAF ACL for your site” section above to go back to the Rules tab of your web ACL.
+9\. Follow the steps in the <a href="./#identify-the-waf-acl-for-your-site">Identify the WAF ACL for your site</a> section above to go back to the Rules tab of your web ACL.
 
 10\.	Click **Edit web ACL**.
 ![Edit Web ACL](./images/edit-web-acl.png)
