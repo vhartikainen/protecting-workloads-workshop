@@ -125,7 +125,7 @@ For example, we want to build a rule to detect and block SQL Injection in receiv
 In this phase, we will have a set of 6 exercises walking you through the process of building a basic mitigation rule set for common vulnerabilities. We will build these rules from scratch, so you can gain familiarity with the AWS WAF programming model and you can then write rules specific to your applications. 
 
 !!! info "Note About Excersise Solutions"
-    We encourage you to attempt to create the rules on your own but have included the solutions as a backup in case you get stuck. You can test your ACL ruleset at any time using the Red Team Host. For AWS sponsored event, you can also view test results on the <a href="http://waflabdash.awssecworkshops.com/" target="_blank">WAF Lab Dashboard</a>.
+    For each of the test threats below you will find the high level description and solution configuration for your web ACL. You can test your ACL ruleset at any time using the Red Team Host. For AWS sponsored event, you can also view test results on the <a href="http://waflabdash.awssecworkshops.com/" target="_blank">WAF Lab Dashboard</a>.
 
 ### 1. SQL Injection & Cross Site Scripting Mitigation
 
