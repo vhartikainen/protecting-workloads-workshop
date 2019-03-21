@@ -125,7 +125,7 @@ For example, we want to build a rule to detect and block SQL Injection in receiv
 In this phase, we will have a set of 6 exercises walking you through the process of building a basic mitigation rule set for common vulnerabilities. We will build these rules from scratch, so you can gain familiarity with the AWS WAF programming model and you can then write rules specific to your applications. 
 
 !!! info "Note About Excersise Solutions"
-    For each of the test threats below you will find the high level description and solution configuration for your web ACL. You can test your ACL ruleset at any time using the Red Team Host. For AWS sponsored event, you can also view test results on the <a href="http://waflabdash.awssecworkshops.com/" target="_blank">WAF Lab Dashboard</a>.
+    For the excercises below, you will find the high level description and solution configuration for your web ACL. You can test your ACL ruleset at any time using the Red Team Host. For AWS sponsored event, you can also view test results on the <a href="http://waflabdash.awssecworkshops.com/" target="_blank">WAF Lab Dashboard</a>.
 
 ### 1. SQL Injection & Cross Site Scripting Mitigation
 
@@ -267,6 +267,13 @@ Reputation lists (whitelists or blacklists) are a good way to filter and stop se
 Build blacklists of such actors using the relevant conditions and set up rules to match and block them. An example IP-based blacklist already exists in your sandbox environment.
 
 Reputation lists can also be maintained by third parties. The AWS WAF Security Automations allow you to implement IP-based reputation lists.
+
+??? info "Solution"
+    1.	edit the IP addresses condition named WafIpBlackList
+        1. add a test IP address _You can optain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host._
+    2.	create string match condition named filterNoPath with 1 filter
+        1.	uri, starts with, no transform, _/phpmyadmin_
+    3.	???
 
 ---
 
