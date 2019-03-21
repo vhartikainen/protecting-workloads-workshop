@@ -1050,7 +1050,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <p>In this phase, we will have a set of 6 exercises walking you through the process of building a basic mitigation rule set for common vulnerabilities. We will build these rules from scratch, so you can gain familiarity with the AWS WAF programming model and you can then write rules specific to your applications. </p>
 <div class="admonition info">
 <p class="admonition-title">Note About Excersise Solutions</p>
-<p>For each of the test threats below you will find the high level description and solution configuration for your web ACL. You can test your ACL ruleset at any time using the Red Team Host. For AWS sponsored event, you can also view test results on the <a href="http://waflabdash.awssecworkshops.com/" target="_blank">WAF Lab Dashboard</a>.</p>
+<p>For the excercises below, you will find the high level description and solution configuration for your web ACL. You can test your ACL ruleset at any time using the Red Team Host. For AWS sponsored event, you can also view test results on the <a href="http://waflabdash.awssecworkshops.com/" target="_blank">WAF Lab Dashboard</a>.</p>
 </div>
 <h3 id="1-sql-injection-cross-site-scripting-mitigation">1. SQL Injection &amp; Cross Site Scripting Mitigation</h3>
 <p>Use the SQL injection, cross-site scripting, as well as string and regex matching conditions to build rules that mitigate injection attacks and cross site scripting attacks.</p>
@@ -1208,6 +1208,18 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 </ul>
 <p>Build blacklists of such actors using the relevant conditions and set up rules to match and block them. An example IP-based blacklist already exists in your sandbox environment.</p>
 <p>Reputation lists can also be maintained by third parties. The AWS WAF Security Automations allow you to implement IP-based reputation lists.</p>
+<details class="info"><summary>Solution</summary><ol>
+<li>edit the IP addresses condition named WafIpBlackList<ol>
+<li>add a test IP address <em>You can optain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host.</em></li>
+</ol>
+</li>
+<li>create string match condition named filterNoPath with 1 filter<ol>
+<li>uri, starts with, no transform, <em>/phpmyadmin</em></li>
+</ol>
+</li>
+<li>???</li>
+</ol>
+</details>
 <hr />
 <p>Click <a href="../verify/">here</a> to proceed to the Verify Phase.</p>
                 
