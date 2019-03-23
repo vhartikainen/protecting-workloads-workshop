@@ -64,7 +64,7 @@ Parameters:
     ConstraintDescription: ArtifactsPrefix key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-),
       and forward slash (/). Leave default.
   AMIPreviousVersionIndex:
-    Description: Number of previous version of AMI to use [0=current AMI through 8]
+    Description: Number of previous version of AMI to use [0=current AMI through 15]
     Type: Number
     Default: 8
     MinValue: 0
