@@ -13,7 +13,7 @@ Description: WAF Workshop Demo
 ## Parameters
 Parameters:
   EC2InstanceSize:
-    Default: "t3.small"
+    Default: "t2.small"
     Description: Instance size for Web Servers.
     Type: String
     AllowedValues:
@@ -63,16 +63,24 @@ Parameters:
     AllowedPattern: ^[0-9a-zA-Z-/]*$
     ConstraintDescription: ArtifactsPrefix key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-),
       and forward slash (/). Leave default.
-  AmazonLinux2AmiId:
-    Type : 'AWS::SSM::Parameter::Value<String>'
-    Description: Latest Amazon Linux 2 AMI ID. Leave default.
-    Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
+  AMIPreviousVersionIndex:
+    Description: Number of previous version of AMI to use [0=current AMI through 15]
+    Type: Number
+    Default: 8
+    MinValue: 0
+    MaxValue: 15
+
+#  AmazonLinux2AmiId:
+#    Type : 'AWS::SSM::Parameter::Value<String>'
+#    Description: Latest Amazon Linux 2 AMI ID. Leave default.
+#    Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
 
 
 ## Metadata
 Metadata:
 
 ## Friendly UI grouping for parameters
+#        - AmazonLinux2AmiId
   AWS::CloudFormation::Interface:
     ParameterGroups:
       - Label:
@@ -80,7 +88,7 @@ Metadata:
         Parameters:
         - EC2InstanceSize
         - MyTrustedNetwork
-        - AmazonLinux2AmiId
+        - AMIPreviousVersionIndex
       - Label:
           default: Automated Scanner
         Parameters:
@@ -114,8 +122,8 @@ Metadata:
         default: S3 artifact bucket
       ArtifactsPrefix:
         default: S3 artifact path
-      AmazonLinux2AmiId:
-        default: Amazon Linux AMI Id
+#      AmazonLinux2AmiId:
+#        default: Amazon Linux AMI Id
 
 Conditions:
 # Register with automated scanner?
@@ -398,11 +406,13 @@ Resources:
 #        - !Ref AWS::Region
 #        - AmznLinux
 
+#        !Ref AmazonLinux2AmiId
+
   LaunchConfiguration:
     Type: AWS::AutoScaling::LaunchConfiguration
     Properties:
       ImageId:
-        !Ref AmazonLinux2AmiId
+        !GetAtt AMIInfo.Id
       SecurityGroups:
       - !GetAtt sgEC2Sg.GroupId
       InstanceType: !Ref EC2InstanceSize
@@ -694,6 +704,107 @@ Resources:
 #          - Ref: AWS::Region
 #          - AmznLinux
 
+
+  AMILambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: "/"
+      Policies:
+      - PolicyName: root
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+            Resource: arn:aws:logs:*:*:*
+          - Effect: Allow
+            Action:
+            - ec2:DescribeImages
+            Resource: "*"
+
+# AMIInfoFunction - Look up an AMI based on a NameFilter
+#
+# This AWS Lambda function is used to look up an Amazon EC2 AMI based
+# on a name filter. An example of a name filter would be:
+#
+# amzn2-ami-hvm\*ebs
+#
+# After looking up the names of all images that satify the filter,
+# they are sorted in reverse by date/time stamp and the first AMI
+# ID (which corresponds to the newest AMI) is returned.
+#
+# Using a Lambda function makes it possible to look up the AMI
+# dynamically.  THe alternative would be to create a static map.
+
+  AMIInfoFunction:
+    Type: AWS::Lambda::Function
+    Properties: 
+      Description: "Look up an AMI based on a filter"
+      Handler: index.handler
+      MemorySize: 128
+      Role: !GetAtt AMILambdaExecutionRole.Arn
+      Runtime: "python3.6"
+      Timeout: 30
+      Code:
+        ZipFile: !Sub |
+          import json
+          import boto3
+          import cfnresponse
+          def handler(event, context):
+            if event['RequestType'] == 'Delete':
+              responseData = {}      
+              cfnresponse.send(event, context, cfnresponse.SUCCESS, responseData)
+              return
+            
+            ec2=boto3.client('ec2')
+            imageDescriptions=ec2.describe_images(
+              Owners=['amazon'],
+              Filters=[
+                {'Name': 'name', 'Values': [event['ResourceProperties']['NameFilter']]}
+              ],
+            )
+            
+            numImageDescriptions = len(imageDescriptions['Images'])
+            if numImageDescriptions < 2:
+              responseData = {}
+              cfnresponse.send(event, context, cfnresponse.FAILED, responseData)
+            else:
+              amiNames = sorted(imageDescriptions['Images'],
+                key=lambda x: x['CreationDate'],
+                reverse=True)
+              responseData = {}
+              responseData['Id'] = amiNames[${AMIPreviousVersionIndex}]['ImageId']
+              cfnresponse.send(event, context, cfnresponse.SUCCESS, responseData)
+            return
+
+# AMIInfo - The AWS Lambda-backed resource for looking up an Amazon EC2 AMI
+#
+# Parameters
+#
+# ServiceToken - a pointer to the AWS Lambda function
+# NameFilter - the name filter to pass to the describe_images API
+
+#            !Ref AmazonLinux2AmiId
+
+
+  AMIInfo:
+    Type: Custom::AMIInfo
+    Properties:
+      ServiceToken: !GetAtt AMIInfoFunction.Arn
+      NameFilter: 'amzn2-ami-hvm*gp2'
+
   RedTeamHost:
       Type: AWS::EC2::Instance
       Metadata:
@@ -708,7 +819,7 @@ Resources:
                 command: "cd /usr/bin; curl -O https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/scanner.py"
       Properties:
         ImageId:
-          !Ref AmazonLinux2AmiId
+          !GetAtt AMIInfo.Id
         InstanceType: !Ref EC2InstanceSize
         IamInstanceProfile:
           Ref: EC2InstanceProfile
