@@ -24,6 +24,11 @@ To setup the workshop environment, launch the CloudFormation stack below in the 
 
 ---
 
+**EU West 1 (Ireland)** &nbsp; &nbsp; &nbsp; &nbsp;
+<a href="https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww-workshop-env-build-host.yml" target="_blank">![Deploy in us-east-1](/images/deploy-to-aws.png)</a>
+
+---
+
 1. Click ***Next*** on the Specify Template section.
 
 2. On the Specify stack details step, update the following parameters depending on how you are doing this workshop:
