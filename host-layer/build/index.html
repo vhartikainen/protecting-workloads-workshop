@@ -654,7 +654,7 @@
 <h2 id="environment-setup">Environment setup</h2>
 <div class="admonition info">
 <p class="admonition-title">For those who have completed the Web Application Firewall round</p>
-<p><strong>If you have completed the Web Application Firewall round, this round uses the same environment.  If you have not deleted the AWS CloudFormation stack from the Web Application Firewall round, you can click <a href="../assess/">here</a> to proceed to the Assess Phase.</strong></p>
+<p><strong>If you have completed the Web Application Firewall round, this round uses the same environment. If you have not deleted the AWS CloudFormation stack from the Web Application Firewall round, you can click <a href="../assess/">here</a> to proceed to the Assess Phase.</strong></p>
 </div>
 <hr />
 <div class="admonition info">
@@ -672,6 +672,9 @@
 <p><strong>US East 1 (N. Virginia)</strong> &nbsp; &nbsp; &nbsp; &nbsp;
 <a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww-workshop-env-build-host.yml" target="_blank"><img alt="Deploy in us-east-1" src="/images/deploy-to-aws.png" /></a></p>
 <hr />
+<p><strong>EU West 1 (Ireland)</strong> &nbsp; &nbsp; &nbsp; &nbsp;
+<a href="https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww-workshop-env-build-host.yml" target="_blank"><img alt="Deploy in us-east-1" src="/images/deploy-to-aws.png" /></a></p>
+<hr />
 <ol>
 <li>
 <p>Click <strong>Next</strong> on the Specify Template section.</p>
@@ -679,22 +682,15 @@
 <li>
 <p>On the Specify stack details step, update the following parameters depending on how you are doing this workshop:</p>
 </li>
-</ol>
-<details class="info"><summary>AWS-sponsored event</summary><ul>
-<li>Automated Scanner: <strong>Set to false.</strong></li>
-<li>Trusted Network CIDR: Enter a trusted IP or CIDR range you will access the site from using a web browser. You can optain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host.</li>
-<li>Keep the defaults for the rest of the parameters.</li>
-</ul>
-</details>
-<details class="info"><summary>Individual or an event not sponsored by AWS</summary><ul>
-<li>Automated Scanner: <strong>Set to false.</strong></li>
+<li>
+<p>Automated Scanner: <strong>Set to false.</strong></p>
+</li>
 <li>Scanner Username: <strong>Leave default.</strong></li>
 <li>Scanner Password: <strong>Leave default.</strong></li>
 <li>Trusted Network CIDR: Enter a trusted IP or CIDR range you will access the site from using a web browser. You can optain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host.</li>
-<li>Keep the defaults for the rest of the parameters.</li>
-</ul>
-</details>
-<ol>
+<li>
+<p>Keep the defaults for the rest of the parameters.</p>
+</li>
 <li>
 <p>Click <strong>Next</strong>.</p>
 </li>
