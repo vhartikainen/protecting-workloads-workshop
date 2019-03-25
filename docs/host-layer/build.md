@@ -36,6 +36,7 @@ To setup the workshop environment, launch the CloudFormation stack below in the 
 
 2. On the Specify stack details step, update the following parameters depending on how you are doing this workshop:
 
+- If you are sharing an AWS account with someone else in the ssame region, change the name of the stack to __pww-yourinitials__
 - Automated Scanner: __Set to false.__
 - Scanner Username: __Leave default.__
 - Scanner Password: __Leave default.__

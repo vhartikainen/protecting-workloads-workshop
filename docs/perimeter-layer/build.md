@@ -35,6 +35,7 @@ To setup the workshop environment, launch the CloudFormation stack below in the 
 
 ??? info "AWS-sponsored event"
 
+    - If you are sharing an AWS account with someone else in the ssame region, change the name of the stack to __pww-yourinitials__
     - Automated Scanner: __Set to true.__
     - Scanner Username: __Enter the username provided by the workshop team.__
     - Scanner Password: __Enter the password provided by the workshop team.__
@@ -43,6 +44,7 @@ To setup the workshop environment, launch the CloudFormation stack below in the 
 
 ??? info "Individual or an event not sponsored by AWS"
 
+    - If you are sharing an AWS account with someone else in the ssame region, change the name of the stack to __pww-yourinitials__
     - Automated Scanner: __Set to false.__
     - Scanner Username: __Leave default.__
     - Scanner Password: __Leave default.__
