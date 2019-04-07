@@ -35,12 +35,11 @@ Parameters:
     Type: String
     Description: Username to add endpoint for scanning? *Obtain from workshop team if using automated scanner*.
     AllowedPattern: ".+"
-    Default: "null"
+    Default: "waflab"
   PassWord:
     Type: String
     Description: Password to add endpoint for scanning? *Obtain from workshop team if using automated scanner*.
     AllowedPattern: ".+"
-    Default: "null"
   ScannerIP01:
     Type: String
     Default: 54.156.237.144/32
