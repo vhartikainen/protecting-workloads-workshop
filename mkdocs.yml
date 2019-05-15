@@ -18,7 +18,7 @@ theme:
   logo: 'assets/images/aws_smile_logo.png'
   favicon: 'assets/images/aws-favicon.ico'
   feature:
-    tabs: false
+    tabs: true
   custom_dir: 'docs/theme'
 
 # Customization
@@ -29,7 +29,7 @@ extra_javascript:
 extra:
   social:
     - type: 'home'
-      link: 'https://awssecworkshops.com'
+      link: 'http://protecting-workloads.awssecworkshops.com/'
     - type: 'shield'
       link: 'https://aws.amazon.com/security/'
     - type: 'twitter'
@@ -45,23 +45,29 @@ markdown_extensions:
 
 # Navigation
 nav:
-- Scenario: 'index.md'
-- Getting Started: 'getting-started.md'
-- Perimeter Layer:
-  - 'Scenario': 'perimeter-layer/index.md'
-  - 'Build Phase': 'perimeter-layer/build.md'
-  - 'Assess Phase': 'perimeter-layer/assess.md'
-  - 'Remediate Phase': 'perimeter-layer/remediate.md'
-  - 'Verify Phase': 'perimeter-layer/verify.md'
-  - 'Cleanup Phase': 'perimeter-layer/cleanup.md'
-- Host Layer:
-  - 'Scenario': 'host-layer/index.md'
-  - 'Build Phase': 'host-layer/build.md'
-  - 'Assess Phase': 'host-layer/assess.md'
-  - 'Remediate Phase': 'host-layer/remediate.md'
-  - 'Verify Phase': 'host-layer/verify.md'
-  - 'Cleanup Phase': 'host-layer/cleanup.md'
-- Cleanup: 'cleanup.md'
-- Contributing: 'contribute.md'
-- License: 'license.md'
-
+  - Home: 'index.md'
+  - Workshop: 'workshop/getting-started.md'
+  - Builder Session: 'builder-session/getting-started.md'
+  - Workshop:
+    - Getting Started: 'workshop/getting-started.md'
+    - Perimeter Layer:
+      - 'Build Phase': 'workshop/perimeter-layer/build.md'
+      - 'Assess Phase': 'workshop/perimeter-layer/assess.md'
+      - 'Remediate Phase': 'workshop/perimeter-layer/remediate.md'
+      - 'Verify Phase': 'workshop/perimeter-layer/verify.md'
+      - 'Cleanup Phase': 'workshop/perimeter-layer/cleanup.md'
+    - Host Layer:
+      - 'Build Phase': 'workshop/host-layer/build.md'
+      - 'Assess Phase': 'workshop/host-layer/assess.md'
+      - 'Remediate Phase': 'workshop/host-layer/remediate.md'
+      - 'Verify Phase': 'workshop/host-layer/verify.md'
+      - 'Cleanup Phase': 'workshop/host-layer/cleanup.md'
+    - Cleanup: 'workshop/cleanup.md'
+  - Builder Session:
+    - Getting Started: 'builder-session/getting-started.md'
+    - Build Phase: 'builder-session/build.md'
+    - Assess Phase: 'builder-session/assess.md'
+    - Verify Phase: 'builder-session/verify.md'
+    - Remediate Phase: 'builder-session/remediate.md'
+  - Contributing: 'contribute.md'
+  - License: 'license.md'
