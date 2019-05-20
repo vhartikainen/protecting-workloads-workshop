@@ -32,7 +32,7 @@ In this section you will do the following tasks:
 
     The *Type* column lists the type of the resouces.  Notice that you will not see any resources of type AWS::EC2::Instance even though there are now EC2 instances running..  The reason for this is that the CloudFormation stack did not deploy any - at least not directly.  The stack did, however, deploy an auto scaling group with a launch configuration that in turn launched the instances.  The auto scaling group itself has tags and was configured to propogate the same tags (attributes) to the instances it launches.
 
-    In a production environment, you may have a large number of resources that spin up and spin down because of the elastiicity that AWS offers.  Knowing that the tags will be the same can make it easier for you to manage the environment regardless of how many instances exist at any point in time. You will now learn how to look up the Amazon EC2 instances using tags.
+    In a production environment, you may have a large number of resources that spin up and spin down because of the elastiicity that AWS offers.  If you understand how tags are applied you can more easily manage the environment regardless of how many instances exist at any point in time. You will now learn how to look up the Amazon EC2 instances using tags.
 
 
 3.  Go to the Amazon EC2 console and look for instances having a name that begins with the stack name followed by *-node*, *pww-node* in this example.  If you cannot see them, type the instance name (*pww-node* in this case) into the search box.  Select one of them by checking the box to the left of the instance and then click on the *Tags* tab.  You should see a table like that in the figure below.
