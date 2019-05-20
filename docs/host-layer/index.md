@@ -16,4 +16,4 @@ To begin the workshop, proceed to the Build phase below.
 2. [Assess](./assess.md)
 3. [Remediate](./remediate.md)
 4. [Verify](./verify.md)
-4. [CleanIp](./cleanup.md)
+5. [CleanUp](./cleanup.md)
