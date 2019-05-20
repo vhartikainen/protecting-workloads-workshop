@@ -28,4 +28,4 @@ If you are doing this workshop as part of an AWS sponsored event, you will recei
 
 ---
 
-Click [here](/builder-session/index.md) to proceed to the Build Phase.
+Click [here](build.md) to proceed to the Build Phase.

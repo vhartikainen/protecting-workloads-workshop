@@ -47,4 +47,4 @@ This will bring you back to the CloudFormation console. You can refresh the page
 
 ---
 
-Click [here](./assess.md) to proceed to the Assess Phase.
+Click [here](assess.md) to proceed to the Assess Phase.

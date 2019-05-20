@@ -66,4 +66,4 @@ Here are some sample of metrics that you can use. Starting from top left side, i
 
 ---
 
-Click [here](/cleanup.md) to proceed to the Cleanup Phase.
+Click [here](cleanup.md) to proceed to the Cleanup Phase.

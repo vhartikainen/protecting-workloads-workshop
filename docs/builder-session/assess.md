@@ -150,4 +150,4 @@ As you can see by running the script there are several vulnerabilities that need
 
 ---
 
-Click [here](./remediate.md) to proceed to the Remediate Phase.
+Click [here](remediate.md) to proceed to the Remediate Phase.

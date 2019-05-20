@@ -280,4 +280,4 @@ You should consider blocking access to such elements, or limiting access to know
 
 ---
 
-Click [here](./verify.md) to proceed to the Verify Phase.
+Click [here](verify.md) to proceed to the Verify Phase.
