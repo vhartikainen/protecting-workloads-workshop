@@ -59,6 +59,13 @@ The scanner.py script will run each of the tests above and report back the follo
 - __Test Name__: The name of the test from list above.
 - __Result__: The HTTP status code returned.
 
+The logic in the scanner script color codes the response as follows:
+
+- __Green__: 403 - Forbidden (_Except for canary GET and POST tests._)
+- __Red__: 200 - OK
+- __Blue__: 404 - Not Found
+- __Yellow__: 500 - Internal Server Error
+
 As you can see by running the script there are several vulnerabilities that need to be addressed. In the remnediate phase you will configure an AWS WAF Web ACL to block these requests. When AWS WAF blocks a web request based on the conditions that you specify, it returns HTTP status code 403 (Forbidden). For a full view of the request and response information, you can paste the **Request** command directly into the console and add the --debug argument.
 
 !!! info "Note about Testing Tool"
