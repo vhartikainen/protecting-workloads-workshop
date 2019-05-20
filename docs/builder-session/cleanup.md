@@ -1,4 +1,4 @@
-# AWS Protecting Workloads Workshop - Cleanup
+# Supercharging your Workload Defenses - Cleanup
 
 Now that you have completed this workshop, follow the steps below to clean up the artifacts that were created.
 
@@ -25,3 +25,4 @@ Now that you have completed this workshop, follow the steps below to clean up th
 11. Go to the WAF console and delete the rules you created.
 
 12.  Go to the CloudFormation console and delete the stack that you created.
+

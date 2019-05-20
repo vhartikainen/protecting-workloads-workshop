@@ -5,7 +5,7 @@ Your mission in this session is to use AWS WAF, Amazon Inspector, and Systems Ma
 
 ---
 
-### [Workshop - Protecting workloads with AWS WAF, Amazon Inspector and AWS Systems Manager](./workshop/getting-started.md)
+### [Workshop - Protecting workloads with AWS WAF, Amazon Inspector and AWS Systems Manager](./workshop/)
 
-### [Builder Session - Supercharging your workload defenses with AWS WAF, Amazon Inspector, and AWS Systems Manager](./builder-session/getting-started.md)
+### [Builder Session - Supercharging your workload defenses with AWS WAF, Amazon Inspector, and AWS Systems Manager](./builder-session/)
 

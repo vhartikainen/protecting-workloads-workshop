@@ -1,24 +1,13 @@
-# Identifying and Remediating Host Vulnerabilities - Host Layer Round - Assess Phase
+# Supercharging your Workload Defenses - Assess Phase
 
-In the previous Build Phase, you deployed a CloudFormation stack that contains
-some Amazon EC2 instances behind an application load balancer.
-You are now going to use Amazon Inspector to assess the instances and identify
-findings that need to be remediated.
+In the previous Build Phase, you built a CloudFormation stack that contains
+a PHP website on Amazon EC2 instances behind an application load balancer.
+You are now going to assess the posture of the site and then add an AWS WAF Web ACL to your site. In this section you will do the following tasks:
 
-Before you can assess the instances with Amazon Inspector, you need to identify
-the instances and install the Amazon Inspector agent on them.
-This is easier to do in small environments with only a few instances but can become more
-difficult in organizations with hundreds or even thousands of instances.
-For this reason, you are going to learn how to use *tags* to select the instances on which you will install the Amazon Inspector agent.
-Tags are labels that can be attached to AWS resources to make it easier to
-act on them collectively.
-
-In this section you will do the following tasks:
-
-1. Examine the CloudFormation stack you built to learn about the tags that were applied by AWS CloudFormation.
-2. Use AWS Systems Manager to install the Amazon Inspector agent on the instances and run the scan
-3. Learn about Amazon Inspector rules packages
-4. Examine Amazon Inspector findings
+1. Examine the stack that you built and its tags
+2. Install the Inspector Agent on the Amazon EC2 instances
+3. Use Amazon Inspector to scan the instances
+4. Use your Red Team Host to test for website vulnerabilities
 
 ## Examine the stack that you built and its tags
 
@@ -107,31 +96,58 @@ Now that you have created an Amazon Inspector target, you will now create an Ama
 
 7.  Scroll to the bottom and click the **Create and run** button to save the template and run the assessment.  Depending on the size of your screen, you may have to scroll down multiple windows.  If you cannot click **Create and run**, make sure you unchecked the box in the previous step and try again.  The assessment will start and will take 15 minutes to compete.
 
-8.  On the Amazon Inspector menu, click **Assessment runs**.  You should see an entry for the assesment you just started.  While the assessment is running, the status will be *Collecting data*.  Periodically refresh the screen to see the current status.  When the assessment run ends, the status will change to *Analysis complete.*  The assessment will run for approximately 15 minutes.   While you are waiting, continue with the steps below.
+8.  On the Amazon Inspector menu, click **Assessment runs**.  You should see an entry for the assesment you just started.  While the assessment is running, the status will be *Collecting data*.  Periodically refresh the screen to see the current status.  When the assessment run ends, the status will change to *Analysis complete.*  The assessment will run for approximately 15 minutes. While you are waiting, continue with the steps below.
 
-### Learn more about Amazon Inspector Rules Packages
+## Look up the Stack Outputs for the Perimeter Layer
 
-1.  Amazon Inspector offers a variety of rules packages that can be included in assessments.  The applicable rules packages may vary by operating system.   The Common Vulnerabilities and Exposures assessment is based on the CVE project that is hosted at [cve.mitrei.org](https://cve.mitre.org).  Open a new tab in your browser to [cve.mitre.orf](https://cve.mitre.org).  Click on **Search CVE List**.  Enter **CVE-2018-20169** into the search field and click **Submit**.  This shows you how to research known vulnerabilities.
+1.  Go to the stack outputs and look for the website URL stored in the **albEndpoint** output value. Test access to the site by right clicking and opening in a new tab. Note the URL for your site as this will be used throughout this workshoop round.
 
-2.  The Security Best Practices rule package examines some common configuration settings for some of the most commobn Amazon Linux settings.   You can read more about this rule package [here](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_security-best-practices.html).
+2. While still in stack outputs, right click the link in **RedTeamHostSession** and open in new tab. This will launch an AWS Systems Manager Session Manager to the host you will use to perform add hock scans against your site URL.
 
-### Examine the findings
+!!! info "AWS Systems Manager Session Manager"
+    Session Manager is a fully managed AWS Systems Manager capability that lets you manage your Amazon EC2 instances through an interactive one-click browser-based shell or through the AWS CLI. Session Manager provides secure and auditable instance management without the need to open inbound ports, maintain bastion hosts, or manage SSH keys. 
 
-1. After the assessment run has completed, go to the Amazon Inspector console and click **Assessment runs**.  The window should be similar to what appears below.
+## Website Scanning Environment and Tools
 
-    ![assessment-runs](./images/assess-inspector-runs.png)
+In order to test your AWS WAF ruleset, this lab has been configured with two scanning capabilities; a Red Team Host where you can invoke manual scanning and an automated scanner which runs from outside your lab environment. 
 
-2. On the line that represents your most recent run, make note of the number in the *Findings* column (22 in this diagram).  After you perform the remediation later in this workshop, that number should decrease.   Click on the number in the *Findings* column.  The findings associated with the run will appear as shown below.
+The scanner performs 10 basic tests designed to help simulate and mitigate common web attack vectors. 
 
-    ![assessment-findings](./images/assess-inspector-findings.png)
+1. Canary GET - Should not be blocked
+2. Canary POST - Should not be blocked
+3. SQL Injection (SQLi) in Query String
+4. SQL Injection (SQLi) in Cookie
+5. Cross Site Scripting (XSS) in Query String
+6. Cross Site Scripting (XSS) in Body
 
-3.  You will see findings for each of the rules packages that you used in the assessment.  The number of findings often varies by the age of the AMI (Amazon Machine Image) because older AMIs typically have more vulnerabilities than newer AMIs.  Choose one of the findings associated with the Common Vulnerabilities and Exposures rule package.  An example appears below.
+!!! info "Note about Tests"
+    _These basic tests are designed to provide common examples you can use to test AWS WAF functionality. You should perform thorough analysis and testing when implementing rules into your production environments._
 
-    ![assessment-cve-example](./images/assess-inspector-cve.png)
+Once you have started a Session Manager connection to your Red Team Host, the scanner script can be invoked by typing the following command while in the _/usr/bin_ directory:
 
-    Note that there is a link in the recommendation on which you can click to see the CVE entry.
+````
+python3 scanner.py http://your-alb-endpoint
+````
+![Initial Scan Terminal](./images/initial-scan-term.svg)
 
-4.  Now that you have run the assessment and seen the findings you are ready to perform some remediation.
+The scanner.py script will run each of the tests above and report back the following information:
 
-    Click [here](./remediate.md) to proceed to the Remediate Phase.
+- __Request__: The HTTP request command used.
+- __Test Name__: The name of the test from list above.
+- __Result__: The HTTP status code returned.
 
+The logic in the scanner script color codes the response as follows:
+
+- __Green__: 403 - Forbidden (_Except for canary GET and POST tests._)
+- __Red__: 200 - OK
+- __Blue__: 404 - Not Found
+- __Yellow__: 500 - Internal Server Error
+
+As you can see by running the script there are several vulnerabilities that need to be addressed. In the remnediate phase you will configure an AWS WAF Web ACL to block these requests. When AWS WAF blocks a web request based on the conditions that you specify, it returns HTTP status code 403 (Forbidden). For a full view of the request and response information, you can paste the **Request** command directly into the console and add the --debug argument.
+
+!!! info "Note about Testing Tool"
+    The scanner.py script uses an open source <a href="https://httpie.org/" target="_blank">HTTP client called httpie</a>. HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.
+
+---
+
+Click [here](./remediate.md) to proceed to the Remediate Phase.

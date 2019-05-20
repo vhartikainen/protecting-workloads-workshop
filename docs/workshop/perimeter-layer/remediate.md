@@ -21,7 +21,7 @@ Make sure you select the appropriate AWS Region when working in the AWS Manageme
 Once selected, you will be redirected to the AWS WAF & AWS Shield service console. You may see an initial landing page at first. Choose Go to AWS WAF:
 
 ![WAF Home](./images/waf-home.png)
-3. In the side bar menu on the right, pick the Web ACLs option under the AWS WAF heading. If the list of Web ACLs appears empty select the correct AWS Region as indicated on your credentials card in the Filter dropdown. If you are sharing the same account with other participants you can identify your WAF ACL by the Id in the stack outputs.
+3. In the side bar menu on the left, pick the Web ACLs option under the AWS WAF heading. If the list of Web ACLs appears empty select the correct AWS Region as indicated on your credentials card in the Filter dropdown. If you are sharing the same account with other participants you can identify your WAF ACL by the Id in the stack outputs.
 
 ![WAF ACL Home](./images/waf-acl-home.png)
 4. Click on the WAF Web ACL Name to select the existing Web ACL. Once the detail pane is loaded on the left of your screen, you will see 2 tabs: Requests and Rules. Toggle to Rules:
@@ -33,15 +33,17 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 
 ###Basics
 
-Writing rules for AWS WAF involves the creation of conditions. Conditions are lists of specific filters (patterns) that are being matched against the HTTP request components processed by AWS WAF. The filters, including their attributes, are specific to the type of condition supported by AWS WAF. A condition, as a whole, is considered as matched, if any one of the listed filters is matched. Conditions are independent and reusable resources within the regional scope where they are created.
+AWS WAF rules consist of conditions. Conditions are lists of specific filters (patterns) that are being matched against the HTTP request components processed by AWS WAF. The filters, including their attributes, are specific to the type of condition supported by AWS WAF. A condition, as a whole, is considered as _matched_, if any one of the listed filters is matched.
 
-Rules contain one or more conditions. Each condition attached to a rule is called a predicate. Predicates are evaluated using Boolean logic. A predicate is evaluated as matched or not matched (negated predicted), and multiple predicates are evaluated using Boolean AND – all predicates must match for the rule action to be triggered. Rules are also independent and reusable resources within the regional scope where they are created.
+Rules contain one or more conditions. Each condition attached to a rule is called a predicate. Predicates are evaluated using Boolean logic. A predicate is evaluated as matched or not matched (negated predicted), and multiple predicates are evaluated using Boolean AND – all predicates must match for the rule action to be triggered.
 
-Web ACLs are ordered lists of rules. They are evaluated in order for each HTTP request and the action of the first matching rule is taken by the WAF engine, whether that is to allow, block or count the request. If no rule matches, the default action of the web ACL prevails. Multiple web ACLs can reuse the same rules, and multiple rules can reuse the same conditions assuming that is desirable from a change management process point of view for your workloads. This creates effectively a dependency tree between these AWS WAF components.
+Web ACLs are ordered lists of rules. They are evaluated in order for each HTTP request and the action of the first matching rule is taken by the WAF engine, whether that is to allow, block or count the request. If no rule matches, the default action of the web ACL prevails.
+
+!!! info "Note About Conditions and Rules"
+    Conditions and rules are reusable resources within the region in which they are created.  You should consider the effects of changes to WAF conditions and rules in your organizations change control procedures.
 
 !!! info "Note About This Section"
     **In order to illustrate the process of creating WAF conditions and rules, we will walk through the creation of the first rule in your WAF ACL.** The complete list of threats and solutions is available in the <a href="./#waf-rule-creation-and-solutions">WAF Rule Creation and Solutions</a> section.
-
 
 ###Rule Design Considerations:
 
@@ -90,7 +92,7 @@ For example, we want to build a rule to detect and block SQL Injection in receiv
 2.	Click on **Create Condition**:
 
 ![WAF Condition Home](./images/waf-condition-home.png)
-3.	Provide **filterSQLi** for the **Name** and select the region where you deployed the stack. Add a filter (pattern) to the condition. Set the **Part of the request to filter on** to **Query string** and set the **Transformation** to **URL decode**. Click **Add filter**.
+3.	Provide **filterSQLi** for the **Name** and select the region where you deployed the stack. Add a filter (pattern) to the condition. Set the **Part of the request to filter on** to **Query string** and set the **Transformation** to **URL decode**. Click **Add filter** and then click **Create**.
 
 ![Create String Match](./images/create-sqli-match.png)
 4. With the condition created, and any additional conditions created based on need as well, you are ready to create a rule. In the AWS WAF console, select **Rules** from the side-bar menu to the left of the console, under the **AWS WAF** heading.
@@ -160,32 +162,7 @@ How do the requirements derived from the above questions affect your solution?
     6.	add rules to Web ACL
     7.  Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked
 
-### 2. Limit Attack Footprint
-
-Use the string and regex matching conditions along with geo match and IP address match conditions to build rules that limit the attack footprint against the exposed components of your application.
-
-Consider the following:
-•	Does your web application have server-side include components in the public web path?
-•	Does your web application have components at exposed paths that are not used (or dependencies have such functions)?
-•	Do you have administrative, management, status or health check paths and components that aren’t meant for end user access?
-
-You should consider blocking access to such elements, or limiting access to known sources, either whitelisted IP addresses or geographic locations.
-
-??? info "Solution"
-    1.	create geo conditon named filterAffiliates with 1 filter
-        1.	add country US, and RO
-    2.	create string match condition named filterAdminUI with 1 filter
-        1.	uri, starts with, no transform, _/admin_
-    3.	create rule named matchAdminNotAffiliate
-        1.	type regular
-        2.	does match string condition: filterAdminUI
-        3.	does not match geo condition: filterAffiliates
-    4.	add rule to Web ACL
-    5.  Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked
-
-
-
-### 3. Enforce Request Hygiene
+### 2. Enforce Request Hygiene
 
 Use the string and regex matching, size constraints and IP address match conditions to build rules that block non-conforming or low value HTTP requests.
 
@@ -210,7 +187,7 @@ Build rules that ensure the requests your application ends up processing are val
     5.	add rules to Web ACL
     6.  Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked
 
-### 4. Mitigate File Inclusion & Path Traversal
+### 3. Mitigate File Inclusion & Path Traversal
 
 Use the string and regex matching conditions to build rules that block specific patterns indicative of unwanted path traversal or file inclusion.
 
@@ -233,6 +210,28 @@ Build rules that ensure the relevant HTTP request components used for input into
         2. does match string condition: filterTraversal
     3.	add rules to Web ACL
     4.  Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked
+
+### 4. Limit Attack Footprint (Optional)
+
+Use the string and regex matching conditions along with geo match and IP address match conditions to build rules that limit the attack footprint against the exposed components of your application.
+
+Consider the following:
+•	Does your web application have server-side include components in the public web path?
+•	Does your web application have components at exposed paths that are not used (or dependencies have such functions)?
+•	Do you have administrative, management, status or health check paths and components that aren’t meant for end user access?
+
+You should consider blocking access to such elements, or limiting access to known sources, either whitelisted IP addresses or geographic locations.
+
+??? info "Solution"
+    1.	create geo conditon named filterAffiliates with 1 filter
+        1.	add country US, and RO
+    2.	create string match condition named filterAdminUI with 1 filter
+        1.	uri, starts with, no transform, _/admin_
+    3.	create rule named matchAdminNotAffiliate
+        1.	type regular
+        2.	does match string condition: filterAdminUI
+        3.	does not match geo condition: filterAffiliates
+    4.	add rule to Web ACL
 
 ### 5. Detect & Mitigate Anomalies (Optional)
 

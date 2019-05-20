@@ -46,9 +46,8 @@ markdown_extensions:
 # Navigation
 nav:
   - Home: 'index.md'
-  - Workshop: 'workshop/getting-started.md'
-  - Builder Session: 'builder-session/getting-started.md'
   - Workshop:
+    - Scenario: 'workshop/index.md'
     - Getting Started: 'workshop/getting-started.md'
     - Perimeter Layer:
       - 'Build Phase': 'workshop/perimeter-layer/build.md'
@@ -64,10 +63,12 @@ nav:
       - 'Cleanup Phase': 'workshop/host-layer/cleanup.md'
     - Cleanup: 'workshop/cleanup.md'
   - Builder Session:
+    - Scenario: 'builder-session/index.md'
     - Getting Started: 'builder-session/getting-started.md'
     - Build Phase: 'builder-session/build.md'
     - Assess Phase: 'builder-session/assess.md'
-    - Verify Phase: 'builder-session/verify.md'
     - Remediate Phase: 'builder-session/remediate.md'
+    - Verify Phase: 'builder-session/verify.md'
+    - Cleanup Phase: 'builder-session/cleanup.md'
   - Contributing: 'contribute.md'
   - License: 'license.md'
