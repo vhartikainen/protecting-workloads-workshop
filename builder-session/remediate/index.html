@@ -38,7 +38,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../assets/images/aws-favicon.ico">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.2.0">
     
     
       
@@ -46,12 +46,12 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.750b69bd.css">
       
       
     
     
-      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
     
     
       
@@ -728,16 +728,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#basics_1" title="Basics" class="md-nav__link">
-    Basics
+  <a href="#rule-design-considerations" title="Rule Design Considerations:" class="md-nav__link">
+    Rule Design Considerations:
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-waf-concepts" title="AWS WAF Concepts:" class="md-nav__link">
+    AWS WAF Concepts:
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#rule-design-considerations" title="Rule Design Considerations:" class="md-nav__link">
-    Rule Design Considerations:
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
@@ -983,16 +989,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#basics_1" title="Basics" class="md-nav__link">
-    Basics
+  <a href="#rule-design-considerations" title="Rule Design Considerations:" class="md-nav__link">
+    Rule Design Considerations:
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-waf-concepts" title="AWS WAF Concepts:" class="md-nav__link">
+    AWS WAF Concepts:
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#rule-design-considerations" title="Rule Design Considerations:" class="md-nav__link">
-    Rule Design Considerations:
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
@@ -1151,7 +1163,7 @@
                 
                 
                 <h1 id="supercharging-your-workload-defenses-remediate-phase">Supercharging your Workload Defenses - Remediate Phase</h1>
-<p>In the previous Build Phase, you identified several vulnerabilities in your web application.
+<p>In the previous Phase, you identified several vulnerabilities in your web application.
 You are now going to design and implement an AWS WAF ruleset to help mitigate these vulnerabilities. In this section you will do the following tasks:</p>
 <ol>
 <li>Identify the WAF ACL for your site</li>
@@ -1177,17 +1189,17 @@ Once selected, you will be redirected to the AWS WAF &amp; AWS Shield service co
 </li>
 </ol>
 <p><img alt="WAF Home" src="../images/waf-home.png" />
-3. In the side bar menu on the right, pick the Web ACLs option under the AWS WAF heading. If the list of Web ACLs appears empty select the correct AWS Region as indicated on your credentials card in the Filter dropdown. If you are sharing the same account with other participants you can identify your WAF ACL by the Id in the stack outputs.</p>
+3. In the side bar menu on the left, pick the Web ACLs option under the AWS WAF heading. If the list of Web ACLs appears empty select the correct AWS Region as indicated on your credentials card in the Filter dropdown. If you are sharing the same account with other participants you can identify your WAF ACL by the Id in the stack outputs.</p>
 <p><img alt="WAF ACL Home" src="../images/waf-acl-home.png" />
 4. Click on the WAF Web ACL Name to select the existing Web ACL. Once the detail pane is loaded on the left of your screen, you will see 2 tabs: Requests and Rules. Toggle to Rules:</p>
 <p><img alt="WAF ACL Rules" src="../images/waf-acl-rules.png" />
 Validate that you are able to see a pre-existing rule, configured to block requests, and that your Web ACL is associated with an Application load balancer resource. You can drill down further into the properties of the existing rule, by clicking on the rule name. You should see 2 entries into the associated IP address list for the loopback/localhost IP addresses (127.0.0.0/8, ::1/128).</p>
 <h2 id="aws-waf-rule-design-and-considerations">AWS WAF Rule Design and Considerations</h2>
 <h3 id="basics">Basics</h3>
-<h3 id="basics_1">Basics</h3>
 <p>AWS WAF rules consist of conditions. Conditions are lists of specific filters (patterns) that are being matched against the HTTP request components processed by AWS WAF. The filters, including their attributes, are specific to the type of condition supported by AWS WAF. A condition, as a whole, is considered as <em>matched</em>, if any one of the listed filters is matched.</p>
 <p>Rules contain one or more conditions. Each condition attached to a rule is called a predicate. Predicates are evaluated using Boolean logic. A predicate is evaluated as matched or not matched (negated predicted), and multiple predicates are evaluated using Boolean AND – all predicates must match for the rule action to be triggered.</p>
 <p>Web ACLs are ordered lists of rules. They are evaluated in order for each HTTP request and the action of the first matching rule is taken by the WAF engine, whether that is to allow, block or count the request. If no rule matches, the default action of the web ACL prevails.</p>
+<p><img alt="How AWS WAF Works" src="./images/how-waf-works.png" /></p>
 <div class="admonition info">
 <p class="admonition-title">Note About Conditions and Rules</p>
 <p>Conditions and rules are reusable resources within the region in which they are created.  You should consider the effects of changes to WAF conditions and rules in your organizations change control procedures.</p>
@@ -1206,6 +1218,8 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <li>What conditions do you need to create to implement the logic?</li>
 <li>Are any transformations relevant to my input content type?</li>
 </ol>
+<h4 id="aws-waf-concepts">AWS WAF Concepts:</h4>
+<p><img alt="AWS WAF Concepts" src="./images/waf-concepts.png" /></p>
 <p>For example, we want to build a rule to detect and block SQL Injection in received in query strings. Let’s see how these questions help us plan the implementation of the rule. <em>This walkthrough will get you started with the ruleset required to mitigate the simulated threats in the workshop. It's purpose is to help you better understand the rule creation process. You will create the remaining rules from solution hints provided below.</em></p>
 <h3 id="example-rule-design-and-creation">Example Rule Design and Creation:</h3>
 <h4 id="sample-rule-purpose">Sample Rule purpose:</h4>
@@ -1522,7 +1536,7 @@ You will use tags to select the instances as well.</p>
       
     </div>
     
-      <script src="../../assets/javascripts/application.b806dc00.js"></script>
+      <script src="../../assets/javascripts/application.39abc4af.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
