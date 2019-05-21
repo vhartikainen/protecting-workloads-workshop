@@ -31,4 +31,4 @@ If you are doing this workshop as part of an AWS sponsored event, you will recei
 1. [Mitigating Common Web Application Attack Vectors Using AWS Web Application Firewall](/workshop/perimeter-layer/)
 2. [Automating Assessment and Remediation Using Amazon Inspector and AWS Systems Manager](/workshop/host-layer/)
 
-You are now setup for the workshops!
+You are now setup for the workshop!
