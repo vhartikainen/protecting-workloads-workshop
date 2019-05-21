@@ -2,7 +2,7 @@
 
 
 !!! info "For those who are continuing to the Host Layer round"
-    __If you are only going to complete the Perimeter Layer round, do not delete any resources yet. [Continue the workshop with the Host Layer round](/workshops/host-layer/). You will perform cleanup at the end of the workshop.__
+    __If you are only going to complete the Perimeter Layer round, do not delete any resources yet. [Continue the workshop with the Host Layer round](/workshops/host-layer/build/). You will perform cleanup at the end of the workshop.__
 
 ---
 
