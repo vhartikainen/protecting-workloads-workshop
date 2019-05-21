@@ -39,6 +39,8 @@ Rules contain one or more conditions. Each condition attached to a rule is calle
 
 Web ACLs are ordered lists of rules. They are evaluated in order for each HTTP request and the action of the first matching rule is taken by the WAF engine, whether that is to allow, block or count the request. If no rule matches, the default action of the web ACL prevails.
 
+![How AWS WAF Works](./images/how-waf-works.png)
+
 !!! info "Note About Conditions and Rules"
     Conditions and rules are reusable resources within the region in which they are created.  You should consider the effects of changes to WAF conditions and rules in your organizations change control procedures.
 
@@ -55,6 +57,9 @@ To create a rule, you have to create the relevant match conditions first. This p
 4.	How can you define the purpose of the rule in a Boolean logic expression?
 5.	What conditions do you need to create to implement the logic?
 6.	Are any transformations relevant to my input content type?
+
+####AWS WAF Concepts:
+![AWS WAF Concepts](./images/waf-concepts.png)
 
 For example, we want to build a rule to detect and block SQL Injection in received in query strings. Let’s see how these questions help us plan the implementation of the rule. _This walkthrough will get you started with the ruleset required to mitigate the simulated threats in the workshop. It's purpose is to help you better understand the rule creation process. You will create the remaining rules from solution hints provided below._
 
@@ -276,4 +281,4 @@ Reputation lists can also be maintained by third parties. The AWS WAF Security A
 
 ---
 
-Click [here](./verify.md) to proceed to the Verify Phase.
+You can now proceed to the [Verify Phase](verify.md).

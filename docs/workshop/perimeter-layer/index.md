@@ -7,7 +7,7 @@ For your initial task, you will configure AWS WAF to protect your site from comm
 
 To begin the module, proceed to the Build phase below.
 
-1. [Build](./build.md)
-2. [Assess](./assess.md)
-3. [Remediate](./remediate.md)
-4. [Verify](./verify.md)
+1. [Build](build.md)
+2. [Assess](assess.md)
+3. [Remediate](remediate.md)
+4. [Verify](verify.md)

@@ -45,4 +45,5 @@ Here are some sample of metrics that you can use. Starting from top left side, i
 
 ---
 
-Click [here](/host-layer/index.md) to proceed to the Host Layer round.
+This concludes the Perimeter Round.
+You can now procede to the [Host Layer round](/host-layer/index.md) or if you are finished, [the Cleanup](cleanup.md)

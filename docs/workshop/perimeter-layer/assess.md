@@ -80,4 +80,4 @@ For an AWS sponsored event, in addition to the ad hock scanning, automated scann
 
 ---
 
-Click [here](./remediate.md) to proceed to the Remediate Phase.
+You can now proceed to the [Remediate Phase](remediate.md).
