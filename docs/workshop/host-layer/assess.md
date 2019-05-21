@@ -34,6 +34,7 @@ In this section you will do the following tasks:
 
 3.  Continue scrolling through the resources shown by CloudFormation and look for a resource named *AutoScalingGroup* as shown in the picture below.
 
+
     ![CloudFormation Auto Scaling Group](./images/assess-cloudformation-asg.png)
 
     Click the hyperlink next to AutoScalingGroup.  This will take you to the Amazon EC2 console and display the auto scaling group.  Click on the *Tags* tab to see how the auto scaling group handles tags.  Your console display should look similar to the picture below.
