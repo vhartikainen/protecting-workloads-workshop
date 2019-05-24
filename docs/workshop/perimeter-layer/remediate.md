@@ -59,9 +59,16 @@ To create a rule, you have to create the relevant match conditions first. This p
 6.	Are any transformations relevant to my input content type?
 
 ####AWS WAF Concepts:
+
+The following illustration shows AWS WAF Conditions, Rules and Web ACL's.
+
 ![AWS WAF Concepts](./images/waf-concepts.png)
 
-For example, we want to build a rule to detect and block SQL Injection in received in query strings. Let’s see how these questions help us plan the implementation of the rule. _This walkthrough will get you started with the ruleset required to mitigate the simulated threats in the workshop. It's purpose is to help you better understand the rule creation process. You will create the remaining rules from solution hints provided below._
+The following illustration shows how AWS WAF checks the rules and performs the actions based on those rules.
+
+![AWS WAF Concepts](./images/web-acl-3a.png)
+
+As an example, lets say we want to build a rule to detect and block SQL Injection in received in query strings. Let’s see how these questions help us plan the implementation of the rule. _This walkthrough will get you started with the ruleset required to mitigate the simulated threats in the workshop. It's purpose is to help you better understand the rule creation process. You will create the remaining rules from solution hints provided below._
 
 ###Example Rule Design and Creation:
 
