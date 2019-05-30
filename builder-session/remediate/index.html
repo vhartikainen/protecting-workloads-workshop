@@ -1294,7 +1294,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 - What considerations do you need to account for in regards to false positives? For example, does your application legitimately need to accept SQL statements as input?</p>
 <p>How do the requirements derived from the above questions affect your solution?</p>
 <details class="info"><summary>Solution</summary><ol>
-<li>update the SQLi condition named filterSQLi with 2 additional filters<ol>
+<li>update the <strong>SQL injection</strong> condition named filterSQLi with 2 additional filters<ol>
 <li><s>query_string, url decode</s> <em>You should have created this filter in <a href="./#console-walkthrough-creating-a-condition-and-rule">the walk through</a></em></li>
 <li>body, html decode</li>
 <li>header, cookie, url decode</li>
@@ -1305,18 +1305,18 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <li>does match SQLi condition: filterSQLi</li>
 </ol>
 </li>
-<li>create XSS condition named filterXSS with 4 filters<ol>
+<li>create <strong>Cross-site scripting</strong> condition named filterXSS with 4 filters<ol>
 <li>query_string, url decode</li>
 <li>body, html decode</li>
 <li>body, url decode</li>
 <li>header, cookie, url decode</li>
 </ol>
 </li>
-<li>create string match condition named filterXSSPathException with 1 filter<ol>
+<li>create a <strong>String and regex matching</strong> <em>String match</em> type condition named filterXSSPathException with 1 filter. <em>This demonstrates how to add an expception for the XSS rule.</em><ol>
 <li>uri, starts with, no transform, <em>/reportBuilder/Editor.aspx</em></li>
 </ol>
 </li>
-<li>create XSS rule named matchXSS<ol>
+<li>create a rule named matchXSS<ol>
 <li>type regular</li>
 <li>does match XSS condition: filterXSS</li>
 <li>does not match string match condition: filterXSSPathException</li>
@@ -1437,7 +1437,7 @@ You will use tags to select the instances as well.</p>
 <li>add country US, and RO</li>
 </ol>
 </li>
-<li>create string match condition named filterAdminUI with 1 filter<ol>
+<li>create a <strong>String and regex matching</strong> <em>String match</em> type named filterAdminUI with 1 filter<ol>
 <li>uri, starts with, no transform, <em>/admin</em></li>
 </ol>
 </li>
@@ -1448,7 +1448,6 @@ You will use tags to select the instances as well.</p>
 </ol>
 </li>
 <li>add rule to Web ACL</li>
-<li>Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked</li>
 </ol>
 </details>
 <hr />

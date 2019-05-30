@@ -1270,7 +1270,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 - What considerations do you need to account for in regards to false positives? For example, does your application legitimately need to accept SQL statements as input?</p>
 <p>How do the requirements derived from the above questions affect your solution?</p>
 <details class="info"><summary>Solution</summary><ol>
-<li>update the SQLi condition named filterSQLi with 2 additional filters<ol>
+<li>update the <strong>SQL injection</strong> condition named filterSQLi with 2 additional filters<ol>
 <li><s>query_string, url decode</s> <em>You should have created this filter in <a href="./#console-walkthrough-creating-a-condition-and-rule">the walk through</a></em></li>
 <li>body, html decode</li>
 <li>header, cookie, url decode</li>
@@ -1281,18 +1281,18 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <li>does match SQLi condition: filterSQLi</li>
 </ol>
 </li>
-<li>create XSS condition named filterXSS with 4 filters<ol>
+<li>create <strong>Cross-site scripting</strong> condition named filterXSS with 4 filters<ol>
 <li>query_string, url decode</li>
 <li>body, html decode</li>
 <li>body, url decode</li>
 <li>header, cookie, url decode</li>
 </ol>
 </li>
-<li>create string match condition named filterXSSPathException with 1 filter<ol>
+<li>create a <strong>String and regex matching</strong> <em>String match</em> condition named filterXSSPathException with 1 filter. <em>This demonstrates how to add an expception for the XSS rule.</em> <ol>
 <li>uri, starts with, no transform, <em>/reportBuilder/Editor.aspx</em></li>
 </ol>
 </li>
-<li>create XSS rule named matchXSS<ol>
+<li>create a rule named matchXSS<ol>
 <li>type regular</li>
 <li>does match XSS condition: filterXSS</li>
 <li>does not match string match condition: filterXSSPathException</li>
@@ -1309,7 +1309,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 •   Are there specific HTTP request components without which your application cannot operate effectively (e.g. CSRF token header, authorization header, referrer header)?</p>
 <p>Build rules that ensure the requests your application ends up processing are valid, conforming and valuable.</p>
 <details class="info"><summary>Solution</summary><ol>
-<li>create string match condition named filterFormProcessor with 1 filter<ol>
+<li>create <strong>String and regex matching</strong> <em>String match</em> type condition named filterFormProcessor with 1 filter<ol>
 <li>uri, starts with, no transform, <em>/form.php</em></li>
 </ol>
 </li>
@@ -1317,7 +1317,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <li>uri, exactly matches, no transform, <em>/form.php</em></li>
 </ol>
 </li>
-<li>create regex match condition named filterCSRFToken with 1 filter<ol>
+<li>create <strong>String and regex matching</strong> <em>Regex match</em> condition named filterCSRFToken with 1 filter<ol>
 <li>header x-csrf-token, url decode, matches pattern: <em>^[0-9a-f]{40}$</em></li>
 </ol>
 </li>
@@ -1343,7 +1343,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 </ul>
 <p>Build rules that ensure the relevant HTTP request components used for input into paths do not contain known path traversal patterns.</p>
 <details class="info"><summary>Solution</summary><ol>
-<li>create string match condition named filterTraversal with 3 filters<ol>
+<li>create a <strong>String and regex matching</strong> <em>String match</em> type condition named filterTraversal with 3 filters<ol>
 <li>uri, starts with, url_decode, <em>/include</em></li>
 <li>query_string, contains, url_decode, <em>../</em></li>
 <li>query_string, contains, url_decode, <em>://</em></li>
@@ -1358,6 +1358,11 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <li>Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked</li>
 </ol>
 </details>
+<div class="admonition info">
+<p class="admonition-title">Note About Remaining</p>
+<p><strong>The remaining excercises below are optional. You should proceed to the <a href="../verify/">Verify Phase</a> and come back to the content below if time permits.</strong></p>
+</div>
+<hr />
 <h3 id="4-limit-attack-footprint-optional">4. Limit Attack Footprint (Optional)</h3>
 <p>Use the string and regex matching conditions along with geo match and IP address match conditions to build rules that limit the attack footprint against the exposed components of your application.</p>
 <p>Consider the following:
@@ -1366,11 +1371,11 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 •   Do you have administrative, management, status or health check paths and components that aren’t meant for end user access?</p>
 <p>You should consider blocking access to such elements, or limiting access to known sources, either whitelisted IP addresses or geographic locations.</p>
 <details class="info"><summary>Solution</summary><ol>
-<li>create geo conditon named filterAffiliates with 1 filter<ol>
+<li>create <strong>Geo match</strong> conditon named filterAffiliates with 1 filter<ol>
 <li>add country US, and RO</li>
 </ol>
 </li>
-<li>create string match condition named filterAdminUI with 1 filter<ol>
+<li>create <strong>String and regex matching</strong> <em>String match</em> type condition named filterAdminUI with 1 filter<ol>
 <li>uri, starts with, no transform, <em>/admin</em></li>
 </ol>
 </li>
@@ -1394,7 +1399,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 </ul>
 <p>Do you have mechanisms in place to detect such patterns? If so, can you build rules to mitigate them?</p>
 <details class="info"><summary>Solution</summary><ol>
-<li>create string match condition named filterLoginProcessor with 1 filter<ol>
+<li>create <strong>String and regex match</strong> condition named filterLoginProcessor with 1 filter<ol>
 <li>uri, starts with, no transform, <em>/login.php</em></li>
 </ol>
 </li>
@@ -1422,11 +1427,11 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <li>add a test IP address <em>You can optain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host.</em></li>
 </ol>
 </li>
-<li>create string match condition named filterNoPath with 1 filter<ol>
+<li>create a <strong>String and regex matching</strong> <em>String match</em> condition named filterNoPath with 1 filter<ol>
 <li>uri, starts with, no transform, <em>/phpmyadmin</em></li>
 </ol>
 </li>
-<li>???</li>
+<li>Use the concepts you learned in the previous exercises to add the <em>filterNoPath</em> condition to your Web ACL.</li>
 </ol>
 </details>
 <hr />
