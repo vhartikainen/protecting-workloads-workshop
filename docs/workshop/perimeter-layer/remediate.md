@@ -153,21 +153,21 @@ Consider the following:
 How do the requirements derived from the above questions affect your solution?
 
 ??? info "Solution"
-    1.	update the SQLi condition named filterSQLi with 2 additional filters
+    1.	update the **SQL injection** condition named filterSQLi with 2 additional filters
         1. <s>query_string, url decode</s> _You should have created this filter in <a href="./#console-walkthrough-creating-a-condition-and-rule">the walk through</a>_
         2. body, html decode
         3. header, cookie, url decode
     2.  create SQLi rule named matchSQLi
     	1. type regular
         2. does match SQLi condition: filterSQLi
-    3.	create XSS condition named filterXSS with 4 filters
+    3.	create **Cross-site scripting** condition named filterXSS with 4 filters
         1. query_string, url decode
         2. body, html decode
         3. body, url decode
         4. header, cookie, url decode
-    4.	create string match condition named filterXSSPathException with 1 filter
+    4.	create a **String and regex matching** _String match_ condition named filterXSSPathException with 1 filter. _This demonstrates how to add an expception for the XSS rule._ 
 	    1. uri, starts with, no transform, _/reportBuilder/Editor.aspx_
-    5.	create XSS rule named matchXSS
+    5.	create a rule named matchXSS
         1. type regular
         2. does match XSS condition: filterXSS
         3. does not match string match condition: filterXSSPathException
@@ -185,11 +185,11 @@ Consider the following:
 Build rules that ensure the requests your application ends up processing are valid, conforming and valuable.
 
 ??? info "Solution"
-    1.	create string match condition named filterFormProcessor with 1 filter
+    1.	create **String and regex matching** _String match_ type condition named filterFormProcessor with 1 filter
         1.	uri, starts with, no transform, _/form.php_
     2.	create string match condition named filterPOSTMethod with 1 filter
         1.	uri, exactly matches, no transform, _/form.php_
-    3.	create regex match condition named filterCSRFToken with 1 filter
+    3.	create **String and regex matching** _Regex match_ condition named filterCSRFToken with 1 filter
         1.	header x-csrf-token, url decode, matches pattern: _^[0-9a-f]{40}$_
     4.	create rule named matchCSRF
         1.	type regular
@@ -213,7 +213,7 @@ Consider the following:
 Build rules that ensure the relevant HTTP request components used for input into paths do not contain known path traversal patterns.
 
 ??? info "Solution"
-    1.	create string match condition named filterTraversal with 3 filters
+    1.	create a **String and regex matching** _String match_ type condition named filterTraversal with 3 filters
         1. uri, starts with, url_decode, _/include_
         2. query_string, contains, url_decode, _../_
         3. query_string, contains, url_decode, _://_
@@ -222,6 +222,11 @@ Build rules that ensure the relevant HTTP request components used for input into
         2. does match string condition: filterTraversal
     3.	add rules to Web ACL
     4.  Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked
+
+!!! info "Note About Remaining"
+    **The remaining excercises below are optional. You should proceed to the [Verify Phase](verify.md) and come back to the content below if time permits.**
+
+---
 
 ### 4. Limit Attack Footprint (Optional)
 
@@ -235,9 +240,9 @@ Consider the following:
 You should consider blocking access to such elements, or limiting access to known sources, either whitelisted IP addresses or geographic locations.
 
 ??? info "Solution"
-    1.	create geo conditon named filterAffiliates with 1 filter
+    1.	create **Geo match** conditon named filterAffiliates with 1 filter
         1.	add country US, and RO
-    2.	create string match condition named filterAdminUI with 1 filter
+    2.	create **String and regex matching** _String match_ type condition named filterAdminUI with 1 filter
         1.	uri, starts with, no transform, _/admin_
     3.	create rule named matchAdminNotAffiliate
         1.	type regular
@@ -258,7 +263,7 @@ What constitutes an anomaly in regards to your web application? A few common ano
 Do you have mechanisms in place to detect such patterns? If so, can you build rules to mitigate them?
 
 ??? info "Solution"
-    1.	create string match condition named filterLoginProcessor with 1 filter
+    1.	create **String and regex match** condition named filterLoginProcessor with 1 filter
         1.	uri, starts with, no transform, _/login.php_
     2.	create rule named matchRateLogin
         1.	type rate-based, 2000
@@ -282,9 +287,9 @@ Reputation lists can also be maintained by third parties. The AWS WAF Security A
 ??? info "Solution"
     1.	edit the IP addresses condition named WafIpBlackList
         1. add a test IP address _You can optain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host._
-    2.	create string match condition named filterNoPath with 1 filter
+    2.	create a **String and regex matching** _String match_ condition named filterNoPath with 1 filter
         1.	uri, starts with, no transform, _/phpmyadmin_
-    3.	???
+    3.	Use the concepts you learned in the previous exercises to add the _filterNoPath_ condition to your Web ACL.
 
 ---
 

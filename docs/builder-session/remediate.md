@@ -153,21 +153,21 @@ Consider the following:
 How do the requirements derived from the above questions affect your solution?
 
 ??? info "Solution"
-    1.	update the SQLi condition named filterSQLi with 2 additional filters
+    1.	update the **SQL injection** condition named filterSQLi with 2 additional filters
         1. <s>query_string, url decode</s> _You should have created this filter in <a href="./#console-walkthrough-creating-a-condition-and-rule">the walk through</a>_
         2. body, html decode
         3. header, cookie, url decode
     2.  create SQLi rule named matchSQLi
     	1. type regular
         2. does match SQLi condition: filterSQLi
-    3.	create XSS condition named filterXSS with 4 filters
+    3.	create **Cross-site scripting** condition named filterXSS with 4 filters
         1. query_string, url decode
         2. body, html decode
         3. body, url decode
         4. header, cookie, url decode
-    4.	create string match condition named filterXSSPathException with 1 filter
+    4.	create a **String and regex matching** _String match_ type condition named filterXSSPathException with 1 filter. _This demonstrates how to add an expception for the XSS rule._
 	    1. uri, starts with, no transform, _/reportBuilder/Editor.aspx_
-    5.	create XSS rule named matchXSS
+    5.	create a rule named matchXSS
         1. type regular
         2. does match XSS condition: filterXSS
         3. does not match string match condition: filterXSSPathException
@@ -279,14 +279,13 @@ You should consider blocking access to such elements, or limiting access to know
 ??? info "Solution"
     1.	create geo conditon named filterAffiliates with 1 filter
         1.	add country US, and RO
-    2.	create string match condition named filterAdminUI with 1 filter
+    2.	create a **String and regex matching** _String match_ type named filterAdminUI with 1 filter
         1.	uri, starts with, no transform, _/admin_
     3.	create rule named matchAdminNotAffiliate
         1.	type regular
         2.	does match string condition: filterAdminUI
         3.	does not match geo condition: filterAffiliates
     4.	add rule to Web ACL
-    5.  Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked
 
 ---
 
