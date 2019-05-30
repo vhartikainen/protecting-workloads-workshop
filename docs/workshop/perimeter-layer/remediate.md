@@ -138,8 +138,8 @@ As an example, lets say we want to build a rule to detect and block SQL Injectio
 
 In this phase, we will have a set of 6 exercises walking you through the process of building a basic mitigation rule set for common vulnerabilities. We will build these rules from scratch, so you can gain familiarity with the AWS WAF programming model and you can then write rules specific to your applications. 
 
-!!! info "Note About Excersise Solutions"
-    For the excercises below, you will find the high level description and solution configuration for your web ACL. You can test your ACL ruleset at any time using the Red Team Host. For AWS sponsored event, you can also view test results on the <a href="http://waflabdash.awssecworkshops.com/" target="_blank">WAF Lab Dashboard</a>.
+!!! info "Note About Exercise Solutions"
+    For the exercises below, you will find the high level description and solution configuration for your web ACL. You can test your ACL ruleset at any time using the Red Team Host. For AWS sponsored event, you can also view test results on the <a href="http://waflabdash.awssecworkshops.com/" target="_blank">WAF Lab Dashboard</a>.
 
 ### 1. SQL Injection & Cross Site Scripting Mitigation
 
@@ -223,8 +223,8 @@ Build rules that ensure the relevant HTTP request components used for input into
     3.	add rules to Web ACL
     4.  Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked
 
-!!! info "Note About Remaining"
-    **The remaining excercises below are optional. You should proceed to the [Verify Phase](verify.md) and come back to the content below if time permits.**
+!!! info "Note About Remaining Exercises"
+    **The remaining exercises below are optional. You should proceed to the [Verify Phase](verify.md) and come back to the content below if time permits.**
 
 ---
 
