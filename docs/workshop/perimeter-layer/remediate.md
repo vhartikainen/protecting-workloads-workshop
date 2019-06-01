@@ -190,7 +190,7 @@ Build rules that ensure the requests your application ends up processing are val
     2.	create string match condition named filterPOSTMethod with 1 filter
         1.	uri, exactly matches, no transform, _/form.php_
     3.	create **String and regex matching** _Regex match_ condition named filterCSRFToken with 1 filter
-        1.	header x-csrf-token, url decode, matches pattern: _^[0-9a-f]{40}$_
+        1.	header x-csrf-token (_type in manually_), url decode, matches pattern: _^[0-9a-f]{40}$_
     4.	create rule named matchCSRF
         1.	type regular
         2.	does match string condition: filterFormProcessor
