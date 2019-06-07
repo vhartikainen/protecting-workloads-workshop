@@ -825,22 +825,39 @@
                 <h1 id="supercharging-your-workload-defenses-build-phase">Supercharging your Workload Defenses - Build Phase</h1>
 <h2 id="environment-setup">Environment setup</h2>
 <p>To setup the workshop environment, launch the CloudFormation stack below in the preferred AWS region using the "Deploy to AWS" links below. This will automatically take you to the console to run the template.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p><p style="font-size:16px;">
+  For participants in the re:Inforce Builder Session, <em>FND305 - Supercharging your workload defenses with AWS WAF, Amazon Inspector, and AWS Systems Manager</em>, <strong>you do not need to deploy the CloudFormation Stack as it has already been created. Follow the instructions in the drop down directly below for <em>Event Engine</em>.</strong>
+</p></p>
+</div>
+<details class="info"><summary>Click here if you're at an <em>AWS event</em> where the <em>Event Engine</em> is being used</summary><ol>
+<li>Navigate to the <a href="https://dashboard.eventengine.run" target="_blank">Event Engine dashboard</a></li>
+<li>Enter your <strong>team hash</strong> code. </li>
+<li>Click <strong>AWS Console</strong></li>
+<li>Connect to the AWS Console via Event Engine and browse to the CloudFormation Console in the N. Virginia region (us-east-1).</li>
+<li>Move on to <strong><a href="../assess/">Assess phase</a></strong>.</li>
+</ol>
+</details>
+<hr />
 <div class="admonition info">
 <p class="admonition-title">Note About Workshop and AWS Account</p>
-<p><strong>We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account. If multiple participants are sharing a single account you should use unique names for the stack set and resources created in the console.</strong></p>
+<p><p style="font-size:16px;">
+<em>If you are not using an AWS account provided by the Workshop Team, we <strong>stronly recommend that you use a non-production AWS account for this workshop</strong> such as a training, sandbox or personal account. If multiple participants are sharing a single account you should use unique names for the stack set and resources created in the console.</em>
+</p></p>
 </div>
-<hr />
+<p>If you are using your own account or an account provided by the Workshop Team, proceed with CloudFormation deployment in the preferred AWS region below:</p>
 <p><strong>US East 2 (Ohio)</strong> &nbsp; &nbsp; &nbsp; &nbsp;
-<a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/new?stackName=pwbs&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww-workshop-env-build-builder.yml" target="_blank"><img alt="Deploy in us-east-2" src="/images/deploy-to-aws.png" /></a></p>
+<a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww-workshop-env-build-builder.yml" target="_blank"><img alt="Deploy in us-east-2" src="/images/deploy-to-aws.png" /></a></p>
 <hr />
 <p><strong>US West 2 (Oregon)</strong> &nbsp; &nbsp; &nbsp; &nbsp; 
-<a href="https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=pwbs&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww-workshop-env-build-builder.yml" target="_blank"><img alt="Deploy in us-west-2" src="/images/deploy-to-aws.png" /></a></p>
+<a href="https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww-workshop-env-build-builder.yml" target="_blank"><img alt="Deploy in us-west-2" src="/images/deploy-to-aws.png" /></a></p>
 <hr />
 <p><strong>US East 1 (N. Virginia)</strong> &nbsp; &nbsp; &nbsp; &nbsp;
-<a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=pwbs&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww-workshop-env-build-builder.yml" target="_blank"><img alt="Deploy in us-east-1" src="/images/deploy-to-aws.png" /></a></p>
+<a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww-workshop-env-build-builder.yml" target="_blank"><img alt="Deploy in us-east-1" src="/images/deploy-to-aws.png" /></a></p>
 <hr />
 <p><strong>EU West 1 (Ireland)</strong> &nbsp; &nbsp; &nbsp; &nbsp;
-<a href="https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/new?stackName=pwbs&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww-workshop-env-build-builder.yml" target="_blank"><img alt="Deploy in us-east-1" src="/images/deploy-to-aws.png" /></a></p>
+<a href="https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww-workshop-env-build-builder.yml" target="_blank"><img alt="Deploy in us-east-1" src="/images/deploy-to-aws.png" /></a></p>
 <hr />
 <ol>
 <li>
