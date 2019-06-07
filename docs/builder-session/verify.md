@@ -39,7 +39,7 @@ Confirm that all of the tests in the script pass. If requests (other than canary
 
 ## Implement WAF monitoring dashboard using Amazon CloudWatch (Optional)
 
-Use CloudWatch Dashboards to create a monitoring system for your protection layer. The following AWS article details this process: 
+If you finish early, use CloudWatch Dashboards to create a monitoring system for your protection layer. The following AWS article details this process: 
 https://aws.amazon.com/blogs/aws/cloudwatch-dashboards-create-use-customized-metrics-views/
 
 Here are some sample of metrics that you can use. Starting from top left side, in clockwise order, we have:

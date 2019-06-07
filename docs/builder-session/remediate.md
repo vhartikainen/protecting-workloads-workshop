@@ -134,16 +134,16 @@ As an example, lets say we want to build a rule to detect and block SQL Injectio
 !!! info "Additional Resources"
     For a more comprehensive discussion of common vulnerabilities for web applications, as well as how to mitigate them using AWS WAF, and other AWS services, please refer to the <a href="https://d0.awsstatic.com/whitepapers/Security/aws-waf-owasp.pdf" target="_blank">Use AWS WAF to Mitigate OWASP’s Top 10 Web Application Vulnerabilities whitepaper</a>.
 
-## WAF Rule Creation and Solutions
+## Perimeter Layer - WAF Rule Creation and Solutions
 
 In this phase, we will have a set of 6 exercises walking you through the process of building a basic mitigation rule set for common vulnerabilities. We will build these rules from scratch, so you can gain familiarity with the AWS WAF programming model and you can then write rules specific to your applications. 
 
 !!! info "Note About Excersise Solutions"
-    For the excercises below, you will find the high level description and solution configuration for your web ACL. You can test your ACL ruleset at any time using the Red Team Host. For AWS sponsored event, you can also view test results on the <a href="http://waflabdash.awssecworkshops.com/" target="_blank">WAF Lab Dashboard</a>.
+    For the excercises below, you will find the high level description and solution configuration for your web ACL. You can test your ACL ruleset at any time using the Red Team Host.</a>.
 
-### 1. SQL Injection & Cross Site Scripting Mitigation
+### 1. SQL Injection Mitigation
 
-Use the SQL injection, cross-site scripting, as well as string and regex matching conditions to build rules that mitigate injection attacks and cross site scripting attacks.
+Use the SQL injection as well as string matching conditions to build rules that mitigate injection attacks.
 
 Consider the following:
 - How does your web application accept end-user input (whether directly or indirectly). Which HTTP request components does that input get inserted into?
@@ -160,19 +160,8 @@ How do the requirements derived from the above questions affect your solution?
     2.  create SQLi rule named matchSQLi
     	1. type regular
         2. does match SQLi condition: filterSQLi
-    3.	create **Cross-site scripting** condition named filterXSS with 4 filters
-        1. query_string, url decode
-        2. body, html decode
-        3. body, url decode
-        4. header, cookie, url decode
-    4.	create a **String and regex matching** _String match_ type condition named filterXSSPathException with 1 filter. _This demonstrates how to add an expception for the XSS rule._
-	    1. uri, starts with, no transform, _/reportBuilder/Editor.aspx_
-    5.	create a rule named matchXSS
-        1. type regular
-        2. does match XSS condition: filterXSS
-        3. does not match string match condition: filterXSSPathException
-    6.	add rules to Web ACL
-    7.  Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked
+
+## Host Layer - Examine the Inspector findings and configure Patch Manager
 
 ### Examine the Inspector findings
 
@@ -192,7 +181,7 @@ How do the requirements derived from the above questions affect your solution?
 
 4.  Now that you have run the assessment and seen the findings you are ready to perform some remediation.
 
-## Identify the stack that you built
+### Identify the stack that you built
 
 1. Go to the CloudFormation console in the same AWS region in which you created the stack in the Build Phase. You should see a list of stacks similar to the figure below. Locate the stack you created. In this documentation, the name of the stack is *pww*.  Copy this stack name into a scratch file on your workstation in case you need it later.
 
@@ -207,7 +196,7 @@ In this section you will do the following tasks:
 1. Use AWS Systems Manager Patch Manager to set up patching
 2. Use AWS Systems Manager Run Command to check the status of the patching
 
-## Use AWS Systems Manager Patch Manager
+### Use AWS Systems Manager Patch Manager
 
 1. Go to the Systems Manager console and select Patch Manager.  If you see the Patch Manager home screen, then click the **default patch baselines** link as shown below:
 
@@ -263,29 +252,28 @@ You are now going to examine the status of the patching operation by using AWS S
 
 3.  Click **Run**.  This will launch another assessment run. 
 
-4.  Click **Assessmnet runs** and periodically refresh the screen.  Wait until the status for the run changes to *Analysis complete*.  The run will take approximately 15 minutes to complete.
+4.  Click **Assessmnet runs** and periodically refresh the screen.  Wait until the status for the run changes to *Analysis complete*.  The run will take approximately 15 minutes to complete. **_While you are waiting, continue with the steps below._**
 
-### 3. Limit Attack Footprint
+## Perimeter Layer - WAF Rule Creation and Solutions (Continued)
 
-Use the string and regex matching conditions along with geo match and IP address match conditions to build rules that limit the attack footprint against the exposed components of your application.
+### 1. Cross Site Scripting Mitigation
 
-Consider the following:
-•	Does your web application have server-side include components in the public web path?
-•	Does your web application have components at exposed paths that are not used (or dependencies have such functions)?
-•	Do you have administrative, management, status or health check paths and components that aren’t meant for end user access?
-
-You should consider blocking access to such elements, or limiting access to known sources, either whitelisted IP addresses or geographic locations.
+Use Cross-site scripting, as well as string matching conditions to build rules that mitigate cross site scripting attacks.
 
 ??? info "Solution"
-    1.	create geo conditon named filterAffiliates with 1 filter
-        1.	add country US, and RO
-    2.	create a **String and regex matching** _String match_ type named filterAdminUI with 1 filter
-        1.	uri, starts with, no transform, _/admin_
-    3.	create rule named matchAdminNotAffiliate
-        1.	type regular
-        2.	does match string condition: filterAdminUI
-        3.	does not match geo condition: filterAffiliates
-    4.	add rule to Web ACL
+    1.	create **Cross-site scripting** condition named filterXSS with 4 filters
+        1. query_string, url decode
+        2. body, html decode
+        3. body, url decode
+        4. header, cookie, url decode
+    2.	create a **String and regex matching** _String match_ type condition named filterXSSPathException with 1 filter. _This demonstrates how to add an expception for the XSS rule._
+	    1. uri, starts with, no transform, _/reportBuilder/Editor.aspx_
+    3.	create a rule named matchXSS
+        1. type regular
+        2. does match XSS condition: filterXSS
+        3. does not match string match condition: filterXSSPathException
+    4.	add rules to Web ACL
+    5.  Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked
 
 ---
 

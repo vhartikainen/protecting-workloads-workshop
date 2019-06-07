@@ -1,5 +1,19 @@
 # Supercharging your Workload Defenses - Getting Started
 
+!!! Attention
+    <p style="font-size:16px;">
+      For participants in the re:Inforce Builder Session, _FND305 - Supercharging your workload defenses with AWS WAF, Amazon Inspector, and AWS Systems Manager_, **you do not need to deploy the CloudFormation Stack as it has already been created. Follow the instructions in the drop down directly below for _Event Engine_.**
+    </p>
+
+??? info  "Click here if you're at an *AWS event* where the *Event Engine* is being used" 
+	1. Navigate to the <a href="https://dashboard.eventengine.run" target="_blank">Event Engine dashboard</a>
+	2. Enter your **team hash** code. 
+	3. Click **AWS Console**
+    4. Connect to the AWS Console via Event Engine and browse to the CloudFormation Console in the N. Virginia region (us-east-1).
+	5. Move on to **[Assess phase](assess.md)**.
+
+---
+
 ## Create or Identify Exisitng AWS account
 
 In order to complete these workshops, you'll need a valid, usable <a href="https://aws.amazon.com/getting-started/" target="_blank">AWS Account</a>. Use a personal account or create a new AWS account to ensure you have the necessary access and that you do not accidentally modify corporate resources. Do **not** use an AWS account from the company you work for. 
