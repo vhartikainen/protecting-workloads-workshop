@@ -39,8 +39,7 @@ Confirm that all of the tests in the script pass. If requests (other than canary
 
 ## Implement WAF monitoring dashboard using Amazon CloudWatch (Optional)
 
-If you finish early, use CloudWatch Dashboards to create a monitoring system for your protection layer. The following AWS article details this process: 
-https://aws.amazon.com/blogs/aws/cloudwatch-dashboards-create-use-customized-metrics-views/
+If you finish early, <a href="https://aws.amazon.com/blogs/aws/cloudwatch-dashboards-create-use-customized-metrics-views/" target="_blank">use CloudWatch Dashboards to create a monitoring system for your protection layer</a>.
 
 Here are some sample of metrics that you can use. Starting from top left side, in clockwise order, we have:
 
@@ -62,7 +61,7 @@ Here are some sample of metrics that you can use. Starting from top left side, i
 
 1.  Amazon Inspector offers a variety of rules packages that can be included in assessments.  The applicable rules packages may vary by operating system.   The Common Vulnerabilities and Exposures assessment is based on the CVE project that is hosted at [cve.mitrei.org](https://cve.mitre.org).  Open a new tab in your browser to [cve.mitre.orf](https://cve.mitre.org).  Click on **Search CVE List**.  Enter **CVE-2018-20169** into the search field and click **Submit**.  This shows you how to research known vulnerabilities.
 
-2.  The Security Best Practices rule package examines some common configuration settings for some of the most commobn Amazon Linux settings.   You can read more about this rule package [here](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_security-best-practices.html).
+2.  The Security Best Practices rule package examines some common configuration settings for some of the most commobn Amazon Linux settings. You can read more about this rule package [here](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_security-best-practices.html).
 
 ---
 
