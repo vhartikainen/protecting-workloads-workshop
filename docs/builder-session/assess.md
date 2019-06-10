@@ -1,8 +1,10 @@
 # Supercharging your Workload Defenses - Assess Phase
 
-In the previous Build Phase, you built a CloudFormation stack that contains
+In the previous Build Phase, you either built a CloudFormation stack or you learned that AWS provided a CloudFormation stack as part of an event.
+The CloudFormation stack contains
 a PHP website on Amazon EC2 instances behind an application load balancer.
-You are now going to assess the posture of the site and then add an AWS WAF Web ACL to your site. In this section you will do the following tasks:
+You are now going to assess the posture of the site and then add an AWS WAF Web ACL to your site.
+In this section you will do the following tasks:
 
 1. Examine the stack that you built and its tags
 2. Install the Inspector Agent on the Amazon EC2 instances
