@@ -13,9 +13,13 @@ In this section you will do the following tasks:
 
 ## Examine the stack that you built and its tags
 
-1. Go to the CloudFormation console in the same AWS region in which you created the stack in the Build Phase.  You should see a list of stacks similar to the figure below. Locate the stack you created. In this documentation, the name of the stack is *pww*.  Copy this stack name into a scratch file on your workstation in case you need it later.
+1. Go to the CloudFormation console in the same AWS region in which you created the stack in the Build Phase.  You should see a list of stacks similar to the figure below.
 
     ![cloudformation-stack-list](./images/assess-cloudformation-stacks.png)
+
+    If the console looks different than this, you may be using a newer version of the console.  In that case, click on the link that has the three horizontal bars on it and then click **Previous Console**.
+
+    Locate the stack you created. In this documentation, the name of the stack is *pww*.  If AWS built the stack for you, it may be a much longer name that stars with "module" with a random string after that.   Regardless, copy this stack name into a scratch file on your workstation in case you need it later.
 
 2. Click the **check box** to the left of the stack name and then click the **Resources** tab below.  You will see a list of resources that were deployed by the stack as shown in the figure below.
 
