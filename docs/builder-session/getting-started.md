@@ -9,10 +9,12 @@
 
 
 	1. Click <a href="https://dashboard.eventengine.run" target="_blank">here</a> to open the Event Engine dashboard in a separate browser tab.
-	2. Enter your **team hash** code. 
+	2. Enter the **team hash** code that you were provided and click **Proceed**.. 
 	3. Click **AWS Console**.
-    4. Connect to the AWS Console via Event Engine and browse to the CloudFormation Console in the N. Virginia region (us-east-1).
-	5. Move on to **[Assess phase](assess.md)**.
+	4. Click **Open Console**.
+	5. Make sure you are in the N. Virginia region (us-east-1).
+	4. Go to the CloudFormation console.
+	5. Proceed to the **[Assess phase](assess.md)**.
 
 ---
 
