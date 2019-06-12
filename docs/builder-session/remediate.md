@@ -165,7 +165,7 @@ As an example, lets say we want to build a rule to detect and block SQL Injectio
     ![default-baseline](./images/remediate-pm-default-baseline-yes.png)
 
 
-6. Click **Configure patching** In the *Configure patching* screen, go to the *Instances to patch* section and click the **Enter instance tags** radio button.  In the *Instance tags* field, enter *aws:cloudformation:stack-name* into the *Tag key* field.  In the *Tag value* field, enter the stack name that you created earlier.  Click **Add tag**.  **If you are using copying & pasting into these fields, be careful to remove any trailing spaces or the instance lookups will not work!**
+6. Click **Configure patching** In the *Configure patching* screen, go to the *Instances to patch* section and click the **Enter instance tags** radio button.  In the *Instance tags* field, enter *aws:cloudformation:stack-name* into the *Tag key* field.  In the *Tag value* field, enter the stack name that you created earlier.  Click **Add**.  **Important: If you are using copying & pasting into these fields, be careful to remove any trailing spaces or the instance lookups will not work!**
 
 
 7. In the *Patching schedule* section, click the *Skip scheduling and patch instances now* radio button.
@@ -191,7 +191,7 @@ You are now going to examine the status of the patching operation by using AWS S
 
     You have now completed the patching operation.  In the Verify Phase, you will re-assess the environment with Amazon Inspector.
 
-### 2. Launch Second Inspector Assessment Run
+### Launch Second Inspector Assessment Run
 
 1.  Go to the Amazon Inspector console, click **Assessment templates** on the menu.
 
@@ -201,9 +201,9 @@ You are now going to examine the status of the patching operation by using AWS S
 
 4.  Click **Assessmnet runs** and periodically refresh the screen.  Wait until the status for the run changes to *Analysis complete*.  The run will take approximately 15 minutes to complete. **_While you are waiting, continue with the steps below._**
 
-## Perimeter Layer - WAF Rule Creation and Solutions (Continued)
+## Additional WAF Rule Creation
 
-### 1. Cross Site Scripting Mitigation
+While you are waiting for the second scan to complete, let's do a few more WAF remediations.
 
 Use Cross-site scripting, as well as string matching conditions to build rules that mitigate cross site scripting attacks.
 
@@ -221,6 +221,13 @@ Use Cross-site scripting, as well as string matching conditions to build rules t
         3. does not match string match condition: filterXSSPathException
     4.	add rules to Web ACL
     5.  Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked
+
+
+## Examine the Second Inspector Scan REsults.
+
+1.  Go to the Inspector and look at the results of the second scan.  Did anything change?
+
+Congratulations! You have completed the Builder Session and learned how to Turbocharge your defenses at the network and host layers!
 
 ---
 
