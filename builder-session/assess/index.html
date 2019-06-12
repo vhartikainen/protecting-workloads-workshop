@@ -701,19 +701,19 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#assess-the-host-layer" title="Assess the Host Layer" class="md-nav__link">
+    Assess the Host Layer
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#install-the-inspector-agent-on-the-amazon-ec2-instances" title="Install the Inspector Agent on the Amazon EC2 instances" class="md-nav__link">
     Install the Inspector Agent on the Amazon EC2 instances
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#use-amazon-inspector-to-scan-the-instances" title="Use Amazon Inspector to scan the instances" class="md-nav__link">
-    Use Amazon Inspector to scan the instances
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#configure-the-amazon-inspector-target" title="Configure the Amazon Inspector target" class="md-nav__link">
@@ -735,16 +735,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#look-up-the-stack-outputs-for-the-perimeter-layer" title="Look up the Stack Outputs for the Perimeter Layer" class="md-nav__link">
-    Look up the Stack Outputs for the Perimeter Layer
+  <a href="#assess-the-network-layer" title="Assess the Network Layer" class="md-nav__link">
+    Assess the Network Layer
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identify-the-application-load-balancer-and-connect-to-the-redteam-host" title="Identify the Application Load Balancer and Connect to the RedTeam Host" class="md-nav__link">
+    Identify the Application Load Balancer and Connect to the RedTeam Host
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#website-scanning-environment-and-tools" title="Website Scanning Environment and Tools" class="md-nav__link">
-    Website Scanning Environment and Tools
+        
+          <li class="md-nav__item">
+  <a href="#using-the-scanner" title="Using the Scanner" class="md-nav__link">
+    Using the Scanner
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -852,19 +865,19 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#assess-the-host-layer" title="Assess the Host Layer" class="md-nav__link">
+    Assess the Host Layer
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#install-the-inspector-agent-on-the-amazon-ec2-instances" title="Install the Inspector Agent on the Amazon EC2 instances" class="md-nav__link">
     Install the Inspector Agent on the Amazon EC2 instances
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#use-amazon-inspector-to-scan-the-instances" title="Use Amazon Inspector to scan the instances" class="md-nav__link">
-    Use Amazon Inspector to scan the instances
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#configure-the-amazon-inspector-target" title="Configure the Amazon Inspector target" class="md-nav__link">
@@ -886,16 +899,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#look-up-the-stack-outputs-for-the-perimeter-layer" title="Look up the Stack Outputs for the Perimeter Layer" class="md-nav__link">
-    Look up the Stack Outputs for the Perimeter Layer
+  <a href="#assess-the-network-layer" title="Assess the Network Layer" class="md-nav__link">
+    Assess the Network Layer
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identify-the-application-load-balancer-and-connect-to-the-redteam-host" title="Identify the Application Load Balancer and Connect to the RedTeam Host" class="md-nav__link">
+    Identify the Application Load Balancer and Connect to the RedTeam Host
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#website-scanning-environment-and-tools" title="Website Scanning Environment and Tools" class="md-nav__link">
-    Website Scanning Environment and Tools
+        
+          <li class="md-nav__item">
+  <a href="#using-the-scanner" title="Using the Scanner" class="md-nav__link">
+    Using the Scanner
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -958,7 +984,8 @@ You are now going to assess the posture of the site at both the host layer and a
 <p>You have now learned about the tags that you can use to look up AWS resources. You will take advantage of this feature when you set up Amazon Inspector later in this phase.</p>
 </li>
 </ol>
-<h2 id="install-the-inspector-agent-on-the-amazon-ec2-instances">Install the Inspector Agent on the Amazon EC2 instances</h2>
+<h2 id="assess-the-host-layer">Assess the Host Layer</h2>
+<h3 id="install-the-inspector-agent-on-the-amazon-ec2-instances">Install the Inspector Agent on the Amazon EC2 instances</h3>
 <p>Now that you know how to identify the instances in the environment, you need to install the Amazon Inspector agent on them.  AWS Systems Manager provides a way for you to run commands across your Amazon EC2 instances.  The commands are defined in <em>documents</em>.  AWS provides a document that you will use to install the Amazon Inspector agent.  You will use tags to identify the instances on which to apply the document. </p>
 <ol>
 <li>
@@ -985,7 +1012,6 @@ You are now going to assess the posture of the site at both the host layer and a
 <p>You have now installed the Amazon Inspector agent on the instances in the environment.</p>
 </li>
 </ol>
-<h2 id="use-amazon-inspector-to-scan-the-instances">Use Amazon Inspector to scan the instances</h2>
 <h3 id="configure-the-amazon-inspector-target">Configure the Amazon Inspector target</h3>
 <ol>
 <li>
@@ -1043,7 +1069,8 @@ You are now going to assess the posture of the site at both the host layer and a
 <ol>
 <li>On the Amazon Inspector menu, click <strong>Assessment runs</strong>.  You should see an entry for the assesment you just started.  While the assessment is running, the status will be <em>Collecting data</em>.  Periodically refresh the screen to see the current status.  When the assessment run ends, the status will change to <em>Analysis complete.</em>  The assessment will run for approximately 15 minutes. <strong><em>While you are waiting, continue with the steps below.</em></strong></li>
 </ol>
-<h2 id="look-up-the-stack-outputs-for-the-perimeter-layer">Look up the Stack Outputs for the Perimeter Layer</h2>
+<h2 id="assess-the-network-layer">Assess the Network Layer</h2>
+<h3 id="identify-the-application-load-balancer-and-connect-to-the-redteam-host">Identify the Application Load Balancer and Connect to the RedTeam Host</h3>
 <ol>
 <li>
 <p>Go to the stack outputs and look for the website URL stored in the <strong>albEndpoint</strong> output value. Test access to the site by right clicking and opening in a new tab. Note the URL for your site as this will be used throughout this workshoop round.</p>
@@ -1056,12 +1083,12 @@ You are now going to assess the posture of the site at both the host layer and a
 <p class="admonition-title">AWS Systems Manager Session Manager</p>
 <p>Session Manager is a fully managed AWS Systems Manager capability that lets you manage your Amazon EC2 instances through an interactive one-click browser-based shell or through the AWS CLI. Session Manager provides secure and auditable instance management without the need to open inbound ports, maintain bastion hosts, or manage SSH keys. </p>
 </div>
-<h2 id="website-scanning-environment-and-tools">Website Scanning Environment and Tools</h2>
+<h3 id="using-the-scanner">Using the Scanner</h3>
 <p>In order to test your AWS WAF ruleset, this lab has been configured with two scanning capabilities; a Red Team Host where you can invoke manual scanning and an automated scanner which runs from outside your lab environment. </p>
 <p>The scanner performs 10 basic tests designed to help simulate and mitigate common web attack vectors. </p>
 <ol>
 <li>Canary GET - This should succeed and shows that the scanner is not being blocked.</li>
-<li>Canary POST - This shoudl success and shows that the scanner is not being blocked.</li>
+<li>Canary POST - This should succeed and shows that the scanner is not being blocked.</li>
 <li>SQL Injection (SQLi) attack in Query String</li>
 <li>SQL Injection (SQLi) attack in Cookie</li>
 <li>Cross Site Scripting (XSS) attack in Query String</li>
