@@ -830,13 +830,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#identify-the-stack-that-you-built" title="Identify the stack that you built" class="md-nav__link">
-    Identify the stack that you built
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#use-aws-systems-manager-patch-manager" title="Use AWS Systems Manager Patch Manager" class="md-nav__link">
     Use AWS Systems Manager Patch Manager
   </a>
@@ -1097,13 +1090,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#identify-the-stack-that-you-built" title="Identify the stack that you built" class="md-nav__link">
-    Identify the stack that you built
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#use-aws-systems-manager-patch-manager" title="Use AWS Systems Manager Patch Manager" class="md-nav__link">
     Use AWS Systems Manager Patch Manager
   </a>
@@ -1298,23 +1284,8 @@ You should be able to see a pre-existing rule configured to block requests and t
 <p>Note that there is a link in the recommendation on which you can click to see the CVE entry.</p>
 </li>
 <li>
-<p>Now that you have run the assessment and seen the findings you are ready to perform some remediation.</p>
+<p>Now that you have run the assessment and seen the findings you are ready to perform some remediation.  You will use AWS Systems Manager to set up patching and then rerun the Inspector scan to see how patching affects the results.</p>
 </li>
-</ol>
-<h3 id="identify-the-stack-that-you-built">Identify the stack that you built</h3>
-<ol>
-<li>
-<p>Go to the CloudFormation console in the same AWS region in which you created the stack in the Build Phase. You should see a list of stacks similar to the figure below. Locate the stack you created. In this documentation, the name of the stack is <em>pww</em>.  Copy this stack name into a scratch file on your workstation in case you need it later.</p>
-<p><img alt="cloudformation-stack-list" src="../images/assess-cloudformation-stacks.png" /></p>
-</li>
-</ol>
-<p>In the previous Assess Phase, you installed Amazon Inspector on the instances that were launched as a result of the
-CloudFormation stack.  You will now use AWS Systems Manager Patch Manager to apply patches.
-You will use tags to select the instances as well.</p>
-<p>In this section you will do the following tasks:</p>
-<ol>
-<li>Use AWS Systems Manager Patch Manager to set up patching</li>
-<li>Use AWS Systems Manager Run Command to check the status of the patching</li>
 </ol>
 <h3 id="use-aws-systems-manager-patch-manager">Use AWS Systems Manager Patch Manager</h3>
 <ol>
