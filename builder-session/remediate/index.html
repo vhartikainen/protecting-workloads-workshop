@@ -706,6 +706,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#remediate-the-network-layer-findings" title="Remediate the Network Layer Findings" class="md-nav__link">
+    Remediate the Network Layer Findings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#identify-the-waf-acl-for-your-site" title="Identify the WAF ACL for your Site" class="md-nav__link">
     Identify the WAF ACL for your Site
   </a>
@@ -993,6 +1000,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#remediate-the-network-layer-findings" title="Remediate the Network Layer Findings" class="md-nav__link">
+    Remediate the Network Layer Findings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#identify-the-waf-acl-for-your-site" title="Identify the WAF ACL for your Site" class="md-nav__link">
     Identify the WAF ACL for your Site
   </a>
@@ -1215,14 +1229,13 @@
                 
                 
                 <h1 id="supercharging-your-workload-defenses-remediate-phase">Supercharging your Workload Defenses - Remediate Phase</h1>
-<p>In the previous Phase, you identified several vulnerabilities in your web application.
-You are now going to design and implement an AWS WAF ruleset to help mitigate these vulnerabilities. In this section you will do the following tasks:</p>
+<p>In the previous phase, you ran a scan for host-layer vulnerabilities and identified several vulnerabilities in the network layer.
+You are now going to remediate the findings. In this section you will do the following tasks:</p>
 <ol>
-<li>Identify the WAF ACL for your site</li>
-<li>AWS WAF Rule design and considerations</li>
-<li>Console Walkthrough - Creating a WAF Condition and Rule</li>
-<li>WAF Rule Creation and Solutions</li>
+<li>Remediate the network findings by implementing WAF conditions and rules.</li>
+<li>Remediate the host layer findings by applying patches to the host operating systems.</li>
 </ol>
+<h2 id="remediate-the-network-layer-findings">Remediate the Network Layer Findings</h2>
 <h2 id="identify-the-waf-acl-for-your-site">Identify the WAF ACL for your Site</h2>
 <ol>
 <li>
@@ -1236,7 +1249,7 @@ Make sure you select the appropriate AWS Region when working in the AWS Manageme
 <li>Type “waf” in the AWS services panel search box and select the resulting option</li>
 <li>Expand the Services drop down menu (top left on the menu bar) and choose WAF &amp; Shield</li>
 <li>Expand the All services area of the AWS services panel and choose WAF &amp; Shield
-Once selected, you will be redirected to the AWS WAF &amp; AWS Shield service console. You may see an initial landing page at first. Choose Go to AWS WAF:</li>
+Once selected, you will be redirected to the AWS WAF &amp; AWS Shield service console. You may see an initial landing page at first. Choose <em>Go to AWS WAF</em>.</li>
 </ul>
 </li>
 </ol>
