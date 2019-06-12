@@ -844,8 +844,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-launch-second-inspector-assessment-run" title="2. Launch Second Inspector Assessment Run" class="md-nav__link">
-    2. Launch Second Inspector Assessment Run
+  <a href="#launch-second-inspector-assessment-run" title="Launch Second Inspector Assessment Run" class="md-nav__link">
+    Launch Second Inspector Assessment Run
   </a>
   
 </li>
@@ -856,22 +856,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#perimeter-layer-waf-rule-creation-and-solutions-continued" title="Perimeter Layer - WAF Rule Creation and Solutions (Continued)" class="md-nav__link">
-    Perimeter Layer - WAF Rule Creation and Solutions (Continued)
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-cross-site-scripting-mitigation" title="1. Cross Site Scripting Mitigation" class="md-nav__link">
-    1. Cross Site Scripting Mitigation
+  <a href="#additional-waf-rule-creation" title="Additional WAF Rule Creation" class="md-nav__link">
+    Additional WAF Rule Creation
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#examine-the-second-inspector-scan-results" title="Examine the Second Inspector Scan REsults." class="md-nav__link">
+    Examine the Second Inspector Scan REsults.
+  </a>
   
 </li>
       
@@ -1098,8 +1092,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-launch-second-inspector-assessment-run" title="2. Launch Second Inspector Assessment Run" class="md-nav__link">
-    2. Launch Second Inspector Assessment Run
+  <a href="#launch-second-inspector-assessment-run" title="Launch Second Inspector Assessment Run" class="md-nav__link">
+    Launch Second Inspector Assessment Run
   </a>
   
 </li>
@@ -1110,22 +1104,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#perimeter-layer-waf-rule-creation-and-solutions-continued" title="Perimeter Layer - WAF Rule Creation and Solutions (Continued)" class="md-nav__link">
-    Perimeter Layer - WAF Rule Creation and Solutions (Continued)
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-cross-site-scripting-mitigation" title="1. Cross Site Scripting Mitigation" class="md-nav__link">
-    1. Cross Site Scripting Mitigation
+  <a href="#additional-waf-rule-creation" title="Additional WAF Rule Creation" class="md-nav__link">
+    Additional WAF Rule Creation
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#examine-the-second-inspector-scan-results" title="Examine the Second Inspector Scan REsults." class="md-nav__link">
+    Examine the Second Inspector Scan REsults.
+  </a>
   
 </li>
       
@@ -1297,7 +1285,7 @@ You should be able to see a pre-existing rule configured to block requests and t
 <p><img alt="default-baseline" src="../images/remediate-pm-default-baseline-yes.png" /></p>
 </li>
 <li>
-<p>Click <strong>Configure patching</strong> In the <em>Configure patching</em> screen, go to the <em>Instances to patch</em> section and click the <strong>Enter instance tags</strong> radio button.  In the <em>Instance tags</em> field, enter <em>aws:cloudformation:stack-name</em> into the <em>Tag key</em> field.  In the <em>Tag value</em> field, enter the stack name that you created earlier.  Click <strong>Add tag</strong>.  <strong>If you are using copying &amp; pasting into these fields, be careful to remove any trailing spaces or the instance lookups will not work!</strong></p>
+<p>Click <strong>Configure patching</strong> In the <em>Configure patching</em> screen, go to the <em>Instances to patch</em> section and click the <strong>Enter instance tags</strong> radio button.  In the <em>Instance tags</em> field, enter <em>aws:cloudformation:stack-name</em> into the <em>Tag key</em> field.  In the <em>Tag value</em> field, enter the stack name that you created earlier.  Click <strong>Add</strong>.  <strong>Important: If you are using copying &amp; pasting into these fields, be careful to remove any trailing spaces or the instance lookups will not work!</strong></p>
 </li>
 <li>
 <p>In the <em>Patching schedule</em> section, click the <em>Skip scheduling and patch instances now</em> radio button.</p>
@@ -1325,7 +1313,7 @@ You should be able to see a pre-existing rule configured to block requests and t
 <p>You have now completed the patching operation.  In the Verify Phase, you will re-assess the environment with Amazon Inspector.</p>
 </li>
 </ol>
-<h3 id="2-launch-second-inspector-assessment-run">2. Launch Second Inspector Assessment Run</h3>
+<h3 id="launch-second-inspector-assessment-run">Launch Second Inspector Assessment Run</h3>
 <ol>
 <li>
 <p>Go to the Amazon Inspector console, click <strong>Assessment templates</strong> on the menu.</p>
@@ -1340,8 +1328,8 @@ You should be able to see a pre-existing rule configured to block requests and t
 <p>Click <strong>Assessmnet runs</strong> and periodically refresh the screen.  Wait until the status for the run changes to <em>Analysis complete</em>.  The run will take approximately 15 minutes to complete. <strong><em>While you are waiting, continue with the steps below.</em></strong></p>
 </li>
 </ol>
-<h2 id="perimeter-layer-waf-rule-creation-and-solutions-continued">Perimeter Layer - WAF Rule Creation and Solutions (Continued)</h2>
-<h3 id="1-cross-site-scripting-mitigation">1. Cross Site Scripting Mitigation</h3>
+<h2 id="additional-waf-rule-creation">Additional WAF Rule Creation</h2>
+<p>While you are waiting for the second scan to complete, let's do a few more WAF remediations.</p>
 <p>Use Cross-site scripting, as well as string matching conditions to build rules that mitigate cross site scripting attacks.</p>
 <details class="info"><summary>Solution</summary><ol>
 <li>create <strong>Cross-site scripting</strong> condition named filterXSS with 4 filters<ol>
@@ -1365,6 +1353,11 @@ You should be able to see a pre-existing rule configured to block requests and t
 <li>Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked</li>
 </ol>
 </details>
+<h2 id="examine-the-second-inspector-scan-results">Examine the Second Inspector Scan REsults.</h2>
+<ol>
+<li>Go to the Inspector and look at the results of the second scan.  Did anything change?</li>
+</ol>
+<p>Congratulations! You have completed the Builder Session and learned how to Turbocharge your defenses at the network and host layers!</p>
 <hr />
 <p>Click <a href="../verify/">here</a> to proceed to the Verify Phase.</p>
                 
