@@ -963,7 +963,7 @@ In this section you will do the following tasks:</p>
 <p>Under the <em>Actions</em> menu on the left, click <strong>Run Command</strong>.  You will be taken to the AWS Systems Manager Run Command home screen.  Click the <strong>Run a Command</strong> button and the <em>Run a Command</em> screen will appear.</p>
 </li>
 <li>
-<p>In the <em>Command document</em> window, enter <em>AmazonInspector</em> (no space betwen the words) into the search box.  You should see a document named <em>AmazonInspector-ManageAWSAgent</em> appear.  Click the radio button to the left of that document as shown in the figure below.</p>
+<p>In the <em>Command document</em> window, enter <em>AmazonInspector</em> (no space betwen the words) into the search box and press Enter.  You should see a document named <em>AmazonInspector-ManageAWSAgent</em> appear.  Click the radio button to the left of that document as shown in the figure below.</p>
 <p><img alt="ssm-run-command" src="../images/assess-run-command-document.png" /></p>
 </li>
 <li>
@@ -1029,9 +1029,14 @@ In this section you will do the following tasks:</p>
 <li>
 <p>Scroll to the bottom and click the <strong>Create and run</strong> button to save the template and run the assessment.  Depending on the size of your screen, you may have to scroll down multiple windows.  If you cannot click <strong>Create and run</strong>, make sure you unchecked the box in the previous step and try again.  The assessment will start and will take 15 minutes to compete.</p>
 </li>
-<li>
-<p>On the Amazon Inspector menu, click <strong>Assessment runs</strong>.  You should see an entry for the assesment you just started.  While the assessment is running, the status will be <em>Collecting data</em>.  Periodically refresh the screen to see the current status.  When the assessment run ends, the status will change to <em>Analysis complete.</em>  The assessment will run for approximately 15 minutes. <strong><em>While you are waiting, continue with the steps below.</em></strong></p>
-</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">If the scan fails to start...</p>
+<p>If the scan fails to start, it may be because the Inspector agents have not finished registering with Inspector.   Wait a few minutes, delete the template, recreate it, and then retry the scan.</p>
+</div>
+<hr />
+<ol>
+<li>On the Amazon Inspector menu, click <strong>Assessment runs</strong>.  You should see an entry for the assesment you just started.  While the assessment is running, the status will be <em>Collecting data</em>.  Periodically refresh the screen to see the current status.  When the assessment run ends, the status will change to <em>Analysis complete.</em>  The assessment will run for approximately 15 minutes. <strong><em>While you are waiting, continue with the steps below.</em></strong></li>
 </ol>
 <h2 id="look-up-the-stack-outputs-for-the-perimeter-layer">Look up the Stack Outputs for the Perimeter Layer</h2>
 <ol>
