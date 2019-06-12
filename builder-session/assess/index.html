@@ -1060,12 +1060,12 @@ You are now going to assess the posture of the site at both the host layer and a
 <p>In order to test your AWS WAF ruleset, this lab has been configured with two scanning capabilities; a Red Team Host where you can invoke manual scanning and an automated scanner which runs from outside your lab environment. </p>
 <p>The scanner performs 10 basic tests designed to help simulate and mitigate common web attack vectors. </p>
 <ol>
-<li>Canary GET - Should not be blocked</li>
-<li>Canary POST - Should not be blocked</li>
-<li>SQL Injection (SQLi) in Query String</li>
-<li>SQL Injection (SQLi) in Cookie</li>
-<li>Cross Site Scripting (XSS) in Query String</li>
-<li>Cross Site Scripting (XSS) in Body</li>
+<li>Canary GET - This should succeed and shows that the scanner is not being blocked.</li>
+<li>Canary POST - This shoudl success and shows that the scanner is not being blocked.</li>
+<li>SQL Injection (SQLi) attack in Query String</li>
+<li>SQL Injection (SQLi) attack in Cookie</li>
+<li>Cross Site Scripting (XSS) attack in Query String</li>
+<li>Cross Site Scripting (XSS) attack in Body</li>
 </ol>
 <div class="admonition info">
 <p class="admonition-title">Note about Tests</p>
