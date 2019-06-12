@@ -2,7 +2,7 @@
 
 !!! Attention
     <p style="font-size:16px;">
-      For participants in the re:Inforce Builder Session, _FND305 - Supercharging your workload defenses with AWS WAF, Amazon Inspector, and AWS Systems Manager_, **you do not need to deploy the CloudFormation Stack as it has already been created. Follow the instructions in the drop down directly below for _Event Engine_.**
+      If you are attending the re:Inforce Builder Session _FND305 - Supercharging your workload defenses with AWS WAF, Amazon Inspector, and AWS Systems Manager_, AWS has already deployed the CloudFormation Stack. Click the drop down directly below for more information about the_Event Engine_.**
     </p>
 
 ??? info  "Click here if you're at an *AWS event* where the *Event Engine* is being used" 
