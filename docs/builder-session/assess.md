@@ -46,7 +46,7 @@ Now that you know how to identify the instances in the environment, you need to 
 
 2.  Under the *Actions* menu on the left, click **Run Command**.  You will be taken to the AWS Systems Manager Run Command home screen.  Click the **Run a Command** button and the *Run a Command* screen will appear.
 
-3.  In the *Command document* window, enter *AmazonInspector* (no space betwen the words) into the search box.  You should see a document named *AmazonInspector-ManageAWSAgent* appear.  Click the radio button to the left of that document as shown in the figure below.
+3.  In the *Command document* window, enter *AmazonInspector* (no space betwen the words) into the search box and press Enter.  You should see a document named *AmazonInspector-ManageAWSAgent* appear.  Click the radio button to the left of that document as shown in the figure below.
 
     ![ssm-run-command](./images/assess-run-command-document.png)
 
@@ -103,6 +103,11 @@ Now that you have created an Amazon Inspector target, you will now create an Ama
 6.  In the Assessment Schedule, uncheck (turn off) the *Set up recurring assessment* runs so that the assessment template will only run a one-time assessment.
 
 7.  Scroll to the bottom and click the **Create and run** button to save the template and run the assessment.  Depending on the size of your screen, you may have to scroll down multiple windows.  If you cannot click **Create and run**, make sure you unchecked the box in the previous step and try again.  The assessment will start and will take 15 minutes to compete.
+
+!!! info "If the scan fails to start..."
+    If the scan fails to start, it may be because the Inspector agents have not finished registering with Inspector.   Wait a few minutes, delete the template, recreate it, and then retry the scan.
+
+---
 
 8.  On the Amazon Inspector menu, click **Assessment runs**.  You should see an entry for the assesment you just started.  While the assessment is running, the status will be *Collecting data*.  Periodically refresh the screen to see the current status.  When the assessment run ends, the status will change to *Analysis complete.*  The assessment will run for approximately 15 minutes. **_While you are waiting, continue with the steps below._**
 
