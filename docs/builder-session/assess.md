@@ -19,7 +19,7 @@ In this section you will do the following tasks:
 
     If the console looks different than this, you may be using a newer version of the console.  In that case, use the menu on the left and click **Previous console**.
 
-    Locate the stack you created. In this documentation, the name of the stack is *pww*.  If AWS built the stack for you, it may be a much longer name that stars with "module" with a random string after that.   Widen the Stack Name column so you can see the entire name of the stack.  Copy this stack name into a scratch file on your workstation in case you need it later.
+    Locate the stack you created. In this documentation, the name of the stack is *pww*.  If AWS built the stack for you, it may be a much longer name that stars with "module" with a random string after that.   If the stack name ends with three trailing periods ("..."), then widen the Stack Name column so you can see the entire name of the stack.  Copy this stack name into a scratch file on your workstation in case you need it later.
 
 2. Click the **check box** to the left of the stack name and then click the **Resources** tab below.  You will see a list of resources that were deployed by the stack as shown in the figure below.
 
@@ -30,11 +30,11 @@ In this section you will do the following tasks:
     In a production environment, you may have a large number of resources that spin up and spin down because the load balancer will add and remove capacity as needed..  Knowing that the tags will be the same can make it easier for you to manage the environment regardless of how many instances exist at any point in time because you can use tags to identify the resources rather than relying on values like Instance Ids which can change.. You will now learn how to look up the Amazon EC2 instances using tags.
 
 
-3.  Go to the Amazon EC2 console and look for instances having a name that begins with the stack name followed by *-node*, *pww-node* in this example.  If you cannot see them, type the instance name (*pww-node* in this case) into the search box.  Select one of them by checking the box to the left of the instance and then click on the *Tags* tab.  You should see a table like that in the figure below.
+3.  Go to the Amazon EC2 console, select **Instances** from the menu and look for instances having names that begins with the stack name followed by *-node*, *pww-node* in this example.  You should see three such instances.  If you cannot see them, type the instance name (*pww-node* in this case) into the search box.  Select one of them by checking the box to the left of the instance and then click on the *Tags* tab in the bottom section of the window.  You should see a table like that in the figure below.
 
     ![ec2-instance-list](./images/assess-ec2-instance-list.png)
 
-4.  Notice that the instance has tags reflecting the CloudFormation stack name and stack id.  These tags are added because of settings in the auto scaling group which propogate tags to newly created instances.
+4.  Notice that the instance has tags reflecting the CloudFormation stack name and stack id.  These tags are added because of settings in the auto scaling group which propogate (copies) the tags from the auto scaling group to all instances that the auto scaling group creates.
 
     You have now learned about the tags that you can use to look up AWS resources. You will take advantage of this feature when you set up Amazon Inspector later in this phase.
 
