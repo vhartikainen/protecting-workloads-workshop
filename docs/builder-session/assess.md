@@ -1,9 +1,9 @@
 # Supercharging your Workload Defenses - Assess Phase
 
-In the previous Build Phase, you either built a CloudFormation stack or you learned that AWS provided a CloudFormation stack as part of an event.
+You have either just deployed a CloudFormation stack or AWS has done so on your behalf at an event.
 The CloudFormation stack contains
 a PHP website on Amazon EC2 instances behind an application load balancer.
-You are now going to assess the posture of the site and then add an AWS WAF Web ACL to your site.
+You are now going to assess the posture of the site.
 In this section you will do the following tasks:
 
 1. Examine the stack that you built and its tags
@@ -17,7 +17,7 @@ In this section you will do the following tasks:
 
     ![cloudformation-stack-list](./images/assess-cloudformation-stacks.png)
 
-    If the console looks different than this, you may be using a newer version of the console.  In that case, click on the link that has the three horizontal bars on it and then click **Previous Console**.
+    If the console looks different than this, you may be using a newer version of the console.  In that case, use the menu on the left and click **Previous console**.
 
     Locate the stack you created. In this documentation, the name of the stack is *pww*.  If AWS built the stack for you, it may be a much longer name that stars with "module" with a random string after that.   Regardless, copy this stack name into a scratch file on your workstation in case you need it later.
 

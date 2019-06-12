@@ -13,8 +13,8 @@
 	3. Click **AWS Console**.
 	4. Click **Open Console**.
 	5. Make sure you are in the N. Virginia region (us-east-1).
-	4. Go to the CloudFormation console.
-	5. Proceed to the **[Assess phase](assess.md)**.
+	6. Go to the CloudFormation console.
+	7. Click **[here](assess.md)** to proceed to the Assess phase.
 
 ---
 
