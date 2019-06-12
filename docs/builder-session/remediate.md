@@ -1,12 +1,12 @@
 # Supercharging your Workload Defenses - Remediate Phase
 
-In the previous Phase, you identified several vulnerabilities in your web application.
-You are now going to design and implement an AWS WAF ruleset to help mitigate these vulnerabilities. In this section you will do the following tasks:
+In the previous phase, you ran a scan for host-layer vulnerabilities and identified several vulnerabilities in the network layer.
+You are now going to remediate the findings. In this section you will do the following tasks:
 
-1. Identify the WAF ACL for your site
-2. AWS WAF Rule design and considerations
-3. Console Walkthrough - Creating a WAF Condition and Rule
-4. WAF Rule Creation and Solutions
+1. Remediate the network findings by implementing WAF conditions and rules.
+2. Remediate the host layer findings by applying patches to the host operating systems.
+
+## Remediate the Network Layer Findings
 
 ## Identify the WAF ACL for your Site
 
@@ -18,7 +18,7 @@ Make sure you select the appropriate AWS Region when working in the AWS Manageme
     - Type “waf” in the AWS services panel search box and select the resulting option
     - Expand the Services drop down menu (top left on the menu bar) and choose WAF & Shield
     - Expand the All services area of the AWS services panel and choose WAF & Shield
-Once selected, you will be redirected to the AWS WAF & AWS Shield service console. You may see an initial landing page at first. Choose Go to AWS WAF:
+Once selected, you will be redirected to the AWS WAF & AWS Shield service console. You may see an initial landing page at first. Choose *Go to AWS WAF*.
 
 ![WAF Home](./images/waf-home.png)
 3. In the side bar menu on the left, pick the Web ACLs option under the AWS WAF heading. If the list of Web ACLs appears empty select the correct AWS Region as indicated on your credentials card in the Filter dropdown. If you are sharing the same account with other participants you can identify your WAF ACL by the Id in the stack outputs.
