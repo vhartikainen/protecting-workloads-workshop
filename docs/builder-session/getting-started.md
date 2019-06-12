@@ -7,8 +7,6 @@
 
 ??? info  "Click here if you're at an *AWS event* where the *Event Engine* is being used" 
 
-        <p style="font-size:16px;">AWS has already built the environment for you with CloudFormation.</p>
-        <p style="font-size:16px;">Follow the steps below to access the environment.</p>
 
 	1. Navigate to the <a href="https://dashboard.eventengine.run" target="_blank">Event Engine dashboard</a>
 	2. Enter your **team hash** code. 
