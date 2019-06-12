@@ -141,22 +141,7 @@ As an example, lets say we want to build a rule to detect and block SQL Injectio
 
     Note that there is a link in the recommendation on which you can click to see the CVE entry.
 
-4.  Now that you have run the assessment and seen the findings you are ready to perform some remediation.
-
-### Identify the stack that you built
-
-1. Go to the CloudFormation console in the same AWS region in which you created the stack in the Build Phase. You should see a list of stacks similar to the figure below. Locate the stack you created. In this documentation, the name of the stack is *pww*.  Copy this stack name into a scratch file on your workstation in case you need it later.
-
-    ![cloudformation-stack-list](./images/assess-cloudformation-stacks.png)
-
-In the previous Assess Phase, you installed Amazon Inspector on the instances that were launched as a result of the
-CloudFormation stack.  You will now use AWS Systems Manager Patch Manager to apply patches.
-You will use tags to select the instances as well.
-
-In this section you will do the following tasks:
-
-1. Use AWS Systems Manager Patch Manager to set up patching
-2. Use AWS Systems Manager Run Command to check the status of the patching
+4.  Now that you have run the assessment and seen the findings you are ready to perform some remediation.  You will use AWS Systems Manager to set up patching and then rerun the Inspector scan to see how patching affects the results.
 
 ### Use AWS Systems Manager Patch Manager
 
