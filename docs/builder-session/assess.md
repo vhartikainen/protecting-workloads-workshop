@@ -3,13 +3,18 @@
 You have either just deployed a CloudFormation stack or AWS has done so on your behalf at an event.
 The CloudFormation stack contains
 a PHP website on Amazon EC2 instances behind an application load balancer.
-You are now going to assess the posture of the site.
+You are now going to assess the posture of the site at both the host layer and at the network layer.
+
 In this section you will do the following tasks:
 
 1. Examine the stack that you built and its tags
-2. Install the Inspector Agent on the Amazon EC2 instances
-3. Use Amazon Inspector to scan the instances
-4. Use your Red Team Host to test for website vulnerabilities
+
+2. Assess the host layer.
+   a. Install the Amazon Inspector agent on the Amazon EC2 instances.
+   b. Run an Amazon Inspector scan to look for host level vulnerabilities.
+
+4. Assess the network layer.
+   a. Use your Red Team Host to test for website vulnerabilities
 
 ## Examine the stack that you built and its tags
 
