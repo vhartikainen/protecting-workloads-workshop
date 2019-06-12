@@ -836,18 +836,12 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#check-the-patching-status" title="Check the patching status" class="md-nav__link">
     Check the patching status
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#2-launch-second-inspector-assessment-run" title="2. Launch Second Inspector Assessment Run" class="md-nav__link">
@@ -1096,18 +1090,12 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#check-the-patching-status" title="Check the patching status" class="md-nav__link">
     Check the patching status
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#2-launch-second-inspector-assessment-run" title="2. Launch Second Inspector Assessment Run" class="md-nav__link">
@@ -1290,11 +1278,11 @@ You should be able to see a pre-existing rule configured to block requests and t
 <h3 id="use-aws-systems-manager-patch-manager">Use AWS Systems Manager Patch Manager</h3>
 <ol>
 <li>
-<p>Go to the Systems Manager console and select Patch Manager.  If you see the Patch Manager home screen, then click the <strong>default patch baselines</strong> link as shown below:</p>
+<p>Go to the Systems Manager console and select Patch Manager.  If you see the Patch Manager home screen, then click the <strong>View predefined patch baselines</strong> link as shown below:</p>
 <p><img alt="remediate-home-screen" src="../images/remediate-pm-home-screen.png" /></p>
 </li>
 <li>
-<p>You will now see a list of default patch baselines that are used to patch each operating system supported by Patch Manager.   The default patch baseline only patches major security issues.  You are going to crate a new Amazon Linux 2 patch baseline that will patch more things and make this new patch baseline the default.  Click <strong>Create patch baseline</strong>.</p>
+<p>You will now see a list of predefined patch baselines that are used to patch each operating system supported by Patch Manager.   The default patch baseline only patches major security issues.  You are going to crate a new Amazon Linux 2 patch baseline that will patch more things and make this new patch baseline the default.  Click <strong>Create patch baseline</strong>.</p>
 </li>
 <li>
 <p>In the <em>Name</em> field, enter a name to give the new baseline such as <strong>pww</strong>.  In the <em>Operating system</em> field, select <strong>Amazon Linux 2</strong>.  In the <em>Approval rules</em> section, check the box under <em>Include non-security updates</em>.  IMPORTANT NOTE:  Depending on the size of the screen, the box may not align with the title <em>Include non-security updates</em>.  See the figure below.</p>
@@ -1309,7 +1297,7 @@ You should be able to see a pre-existing rule configured to block requests and t
 <p><img alt="default-baseline" src="../images/remediate-pm-default-baseline-yes.png" /></p>
 </li>
 <li>
-<p>Click <strong>Configure patching</strong> In the <em>Configure patching</em> screen, go to the <em>Instances to patch</em> section and click the <strong>Enter instance tags</strong> radio button.  In the <em>Instance tags</em> field, enter <em>aws:cloudformation:stack-name</em> into the <em>Tag key</em> field.  In the <em>Tag value</em> field, enter the stack name that you created earlier.  Click <strong>Add</strong>.</p>
+<p>Click <strong>Configure patching</strong> In the <em>Configure patching</em> screen, go to the <em>Instances to patch</em> section and click the <strong>Enter instance tags</strong> radio button.  In the <em>Instance tags</em> field, enter <em>aws:cloudformation:stack-name</em> into the <em>Tag key</em> field.  In the <em>Tag value</em> field, enter the stack name that you created earlier.  Click <strong>Add tag</strong>.  <strong>If you are using copying &amp; pasting into these fields, be careful to remove any trailing spaces or the instance lookups will not work!</strong></p>
 </li>
 <li>
 <p>In the <em>Patching schedule</em> section, click the <em>Skip scheduling and patch instances now</em> radio button.</p>
@@ -1322,7 +1310,7 @@ You should be able to see a pre-existing rule configured to block requests and t
 <p>Click the <strong>Configure patching</strong> button at the bottom of the window.  You will see a message at the top of your screen saying that <em>Patch Manager</em> will use <em>Run Command</em> to patch the instances.   <em>Run Command</em> is another feature of AWS Systems Manager that runs a command across multiple Amazon EC2 instances.  Patch Manager build the commands necessary to perform the patching and is using Run Command to actually execute the commands.</p>
 </li>
 </ol>
-<h2 id="check-the-patching-status">Check the patching status</h2>
+<h3 id="check-the-patching-status">Check the patching status</h3>
 <p>You are now going to examine the status of the patching operation by using AWS Systems Manager Run Command.</p>
 <ol>
 <li>
