@@ -2,15 +2,15 @@
 
 !!! Attention
     <p style="font-size:16px;">
-      If you are attending the re:Inforce Builder Session _FND305 - Supercharging your workload defenses with AWS WAF, Amazon Inspector, and AWS Systems Manager_, AWS has already deployed the CloudFormation Stack. Click the drop down directly below for more information about the_Event Engine_.**
+      If you are attending the re:Inforce Builder Session _FND305 - Supercharging your workload defenses with AWS WAF, Amazon Inspector, and AWS Systems Manager_, AWS has already deployed the CloudFormation stack. Click the drop down directly below for more information about the Event Engine.
     </p>
 
 ??? info  "Click here if you're at an *AWS event* where the *Event Engine* is being used" 
 
 
-	1. Navigate to the <a href="https://dashboard.eventengine.run" target="_blank">Event Engine dashboard</a>
+	1. Click <a href="https://dashboard.eventengine.run" target="_blank">here</a> to open the Event Engine dashboard in a separate browser tab.
 	2. Enter your **team hash** code. 
-	3. Click **AWS Console**
+	3. Click **AWS Console**.
     4. Connect to the AWS Console via Event Engine and browse to the CloudFormation Console in the N. Virginia region (us-east-1).
 	5. Move on to **[Assess phase](assess.md)**.
 
