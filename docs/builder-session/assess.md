@@ -40,7 +40,9 @@ In this section you will do the following tasks:
 
     You have now learned about the tags that you can use to look up AWS resources. You will take advantage of this feature when you set up Amazon Inspector later in this phase.
 
-## Install the Inspector Agent on the Amazon EC2 instances
+## Assess the Host Layer
+
+### Install the Inspector Agent on the Amazon EC2 instances
 
 Now that you know how to identify the instances in the environment, you need to install the Amazon Inspector agent on them.  AWS Systems Manager provides a way for you to run commands across your Amazon EC2 instances.  The commands are defined in *documents*.  AWS provides a document that you will use to install the Amazon Inspector agent.  You will use tags to identify the instances on which to apply the document. 
 
@@ -65,8 +67,6 @@ Now that you know how to identify the instances in the environment, you need to 
     ![ssm-run-command-results](./images/assess-run-command-results.png)
 
     You have now installed the Amazon Inspector agent on the instances in the environment.
-
-## Use Amazon Inspector to scan the instances
 
 ### Configure the Amazon Inspector target
 
@@ -113,7 +113,9 @@ Now that you have created an Amazon Inspector target, you will now create an Ama
 
 8.  On the Amazon Inspector menu, click **Assessment runs**.  You should see an entry for the assesment you just started.  While the assessment is running, the status will be *Collecting data*.  Periodically refresh the screen to see the current status.  When the assessment run ends, the status will change to *Analysis complete.*  The assessment will run for approximately 15 minutes. **_While you are waiting, continue with the steps below._**
 
-## Look up the Stack Outputs for the Perimeter Layer
+## Assess the Network Layer
+
+### Identify the Application Load Balancer and Connect to the RedTeam Host
 
 1.  Go to the stack outputs and look for the website URL stored in the **albEndpoint** output value. Test access to the site by right clicking and opening in a new tab. Note the URL for your site as this will be used throughout this workshoop round.
 
@@ -122,14 +124,14 @@ Now that you have created an Amazon Inspector target, you will now create an Ama
 !!! info "AWS Systems Manager Session Manager"
     Session Manager is a fully managed AWS Systems Manager capability that lets you manage your Amazon EC2 instances through an interactive one-click browser-based shell or through the AWS CLI. Session Manager provides secure and auditable instance management without the need to open inbound ports, maintain bastion hosts, or manage SSH keys. 
 
-## Website Scanning Environment and Tools
+### Using the Scanner
 
 In order to test your AWS WAF ruleset, this lab has been configured with two scanning capabilities; a Red Team Host where you can invoke manual scanning and an automated scanner which runs from outside your lab environment. 
 
 The scanner performs 10 basic tests designed to help simulate and mitigate common web attack vectors. 
 
 1. Canary GET - This should succeed and shows that the scanner is not being blocked.
-2. Canary POST - This shoudl success and shows that the scanner is not being blocked.
+2. Canary POST - This should succeed and shows that the scanner is not being blocked.
 3. SQL Injection (SQLi) attack in Query String
 4. SQL Injection (SQLi) attack in Cookie
 5. Cross Site Scripting (XSS) attack in Query String
