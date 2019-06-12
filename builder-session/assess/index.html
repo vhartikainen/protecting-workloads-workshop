@@ -949,7 +949,7 @@ In this section you will do the following tasks:</p>
 <p><img alt="ec2-instance-list" src="../images/assess-ec2-instance-list.png" /></p>
 </li>
 <li>
-<p>Notice that the instance has tags reflecting the CloudFormation stack name and stack id.  These tags are added because of settings in the auto scaling group which propogate (copies) the tags from the auto scaling group to all instances that the auto scaling group creates.</p>
+<p>Notice that the instance has tags reflecting the CloudFormation stack name and stack id.  These tags were added because the auto scaling group propogated (copied) the tags from the auto scaling group to all instances that the auto scaling group creates.</p>
 <p>You have now learned about the tags that you can use to look up AWS resources. You will take advantage of this feature when you set up Amazon Inspector later in this phase.</p>
 </li>
 </ol>
@@ -963,7 +963,7 @@ In this section you will do the following tasks:</p>
 <p>Under the <em>Actions</em> menu on the left, click <strong>Run Command</strong>.  You will be taken to the AWS Systems Manager Run Command home screen.  Click the <strong>Run a Command</strong> button and the <em>Run a Command</em> screen will appear.</p>
 </li>
 <li>
-<p>In the <em>Command document</em> window, page through the available documents until you find the document named <em>AmazonInspector-ManageAWSAgent</em>.  Click the radio button to the left of that document as shown in the figure below.</p>
+<p>In the <em>Command document</em> window, enter <em>AmazonInspector</em> (no space betwen the words) into the search box.  You should see a document named <em>AmazonInspector-ManageAWSAgent</em> appear.  Click the radio button to the left of that document as shown in the figure below.</p>
 <p><img alt="ssm-run-command" src="../images/assess-run-command-document.png" /></p>
 </li>
 <li>
@@ -1002,7 +1002,7 @@ In this section you will do the following tasks:</p>
 <li>
 <p>Click the <strong>Save</strong> button to save the target definition.  Inspector may prompt you for permission to create a service linked role to give the Amazon Inspector service permission to retrieve information about your instances.  If you see a prompt like the one in the figure below, click <strong>Ok</strong> to create the role.</p>
 <p><img alt="inspector-service-role" src="../images/assess-inspector-slr.png" /></p>
-<p>You have now created an Amazon Inspector target that identifies the instances that would be assessed.  The target selects instances based on tag values.  In this case, the tag you are using is <em>aws:cloudformation:stack-name</em> which is set to the name of the CloudFormation stack.  In particular, the tag is added to the auto scaling launch configuration which is configured to propogate the tag to the Amazon EC2 instances that it launches.  Because of this, Amazon Inspector will automatically scan new instances that may appear over the lifetime of the environment.  This is an example of how the elasticity of the AWS cloud when combined with tagging can enable you to support dynamic environments.</p>
+<p>You have now created an Amazon Inspector target that identifies the instances that would be assessed.  The target selects instances based on tag values.  In this case, the tag you are using is <em>aws:cloudformation:stack-name</em> which is set to the name of the CloudFormation stack.  In particular, the tag is added to the auto scaling launch configuration which is configured to propagate the tag to the Amazon EC2 instances that it launches.  Because of this, Amazon Inspector will automatically scan new instances that may appear over the lifetime of the environment.  This is an example of how the elasticity of the AWS cloud when combined with tagging can enable you to support dynamic environments.</p>
 </li>
 </ol>
 <h3 id="configure-the-amazon-inspector-template-and-run-the-assessment">Configure the Amazon Inspector template and run the assessment</h3>
