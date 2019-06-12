@@ -128,12 +128,12 @@ In order to test your AWS WAF ruleset, this lab has been configured with two sca
 
 The scanner performs 10 basic tests designed to help simulate and mitigate common web attack vectors. 
 
-1. Canary GET - Should not be blocked
-2. Canary POST - Should not be blocked
-3. SQL Injection (SQLi) in Query String
-4. SQL Injection (SQLi) in Cookie
-5. Cross Site Scripting (XSS) in Query String
-6. Cross Site Scripting (XSS) in Body
+1. Canary GET - This should succeed and shows that the scanner is not being blocked.
+2. Canary POST - This shoudl success and shows that the scanner is not being blocked.
+3. SQL Injection (SQLi) attack in Query String
+4. SQL Injection (SQLi) attack in Cookie
+5. Cross Site Scripting (XSS) attack in Query String
+6. Cross Site Scripting (XSS) attack in Body
 
 !!! info "Note about Tests"
     _These basic tests are designed to provide common examples you can use to test AWS WAF functionality. You should perform thorough analysis and testing when implementing rules into your production environments._
