@@ -8,14 +8,14 @@ You are now going to remediate the findings. In this section you will do the fol
 
 ## Remediate the Network Layer Findings
 
-## Identify the WAF ACL for your Site
+### Identify the WAF ACL for your Site
 
 1. If needed, go to <a href="https://console.aws.amazon.com/console/home" target="_blank">https://console.aws.amazon.com/console/home</a>. You will be redirected to the AWS Management Console dashboard on successful login:
 ![Console Home](./images/console-home.png)
 Make sure you select the appropriate AWS Region when working in the AWS Management Console (top right corner, on the menu bar).
 
 2. From the Management Console dashboard, navigate to the AWS WAF & Shield service console. You can do that several ways:
-    - Type “waf” in the AWS services panel search box and select the resulting option
+    - Type “WAF” in the AWS services panel search box and select the resulting option
     - Expand the Services drop down menu (top left on the menu bar) and choose WAF & Shield
     - Expand the All services area of the AWS services panel and choose WAF & Shield
 Once selected, you will be redirected to the AWS WAF & AWS Shield service console. You may see an initial landing page at first. Choose *Go to AWS WAF*.
@@ -24,18 +24,18 @@ Once selected, you will be redirected to the AWS WAF & AWS Shield service consol
 3. In the side bar menu on the left, pick the Web ACLs option under the AWS WAF heading. If the list of Web ACLs appears empty select the correct AWS Region as indicated on your credentials card in the Filter dropdown. If you are sharing the same account with other participants you can identify your WAF ACL by the Id in the stack outputs.
 
 ![WAF ACL Home](./images/waf-acl-home.png)
-4. Click on the WAF Web ACL Name to select the existing Web ACL. Once the detail pane is loaded on the left of your screen, you will see 2 tabs: Requests and Rules. Toggle to Rules:
+4. Click on the WAF Web ACL Name to select the existing Web ACL. Once the detail pane is loaded on the left of your screen, you will see three tabs: Requests, Rules, and Logging. Click on **Rules**.
 
 ![WAF ACL Rules](./images/waf-acl-rules.png)
-Validate that you are able to see a pre-existing rule, configured to block requests, and that your Web ACL is associated with an Application load balancer resource. You can drill down further into the properties of the existing rule, by clicking on the rule name. You should see 2 entries into the associated IP address list for the loopback/localhost IP addresses (127.0.0.0/8, ::1/128).
+You should be able to see a pre-existing rule configured to block requests and that your Web ACL is associated with an Application load balancer resource. Click on the rule name to look at the properties of the existing rule. You should see two entries in the associated IP address list for the loopback/localhost IP addresses (127.0.0.0/8, ::1/128).
 
-##AWS WAF Rule Design and Considerations
+### AWS WAF Rule Design and Considerations
 
-###Basics
+#### Basics
 
-AWS WAF rules consist of conditions. Conditions are lists of specific filters (patterns) that are being matched against the HTTP request components processed by AWS WAF. The filters, including their attributes, are specific to the type of condition supported by AWS WAF. A condition, as a whole, is considered as _matched_, if any one of the listed filters is matched.
+AWS WAF rules consist of *conditions*. Conditions are lists of specific filters (patterns) that are matched against the HTTP request components processed by AWS WAF. The filters, including their attributes, are specific to the type of condition supported by AWS WAF. A condition, as a whole, is considered as _matched_, if any of the listed filters is matched.
 
-Rules contain one or more conditions. Each condition attached to a rule is called a predicate. Predicates are evaluated using Boolean logic. A predicate is evaluated as matched or not matched (negated predicted), and multiple predicates are evaluated using Boolean AND – all predicates must match for the rule action to be triggered.
+Each condition attached to a rule is called a *predicate*. Predicates are evaluated using Boolean logic. A predicate is evaluated as matched or not matched (negated predicted), and multiple predicates are evaluated using Boolean AND – all predicates must match for the rule action to be triggered.
 
 Web ACLs are ordered lists of rules. They are evaluated in order for each HTTP request and the action of the first matching rule is taken by the WAF engine, whether that is to allow, block or count the request. If no rule matches, the default action of the web ACL prevails.
 
@@ -46,17 +46,6 @@ Web ACLs are ordered lists of rules. They are evaluated in order for each HTTP r
 
 !!! info "Note About This Section"
     **In order to illustrate the process of creating WAF conditions and rules, we will walk through the creation of the first rule in your WAF ACL.** The complete list of threats and solutions is available in the <a href="./#waf-rule-creation-and-solutions">WAF Rule Creation and Solutions</a> section.
-
-###Rule Design Considerations:
-
-To create a rule, you have to create the relevant match conditions first. This process requires planning for effective rule building. Use the following guiding questions:
-
-1.	What is the intended purpose of the rule?
-2.	What HTTP request components apply to the purpose of the rule?
-3.	Do you already have conditions targeting those request components that you can reuse? Is that desirable?
-4.	How can you define the purpose of the rule in a Boolean logic expression?
-5.	What conditions do you need to create to implement the logic?
-6.	Are any transformations relevant to my input content type?
 
 ####AWS WAF Concepts:
 
@@ -104,7 +93,7 @@ As an example, lets say we want to build a rule to detect and block SQL Injectio
 2.	Click on **Create Condition**:
 
 ![WAF Condition Home](./images/waf-condition-home.png)
-3.	Provide **filterSQLi** for the **Name** and select the region where you deployed the stack. Add a filter (pattern) to the condition. Set the **Part of the request to filter on** to **Query string** and set the **Transformation** to **URL decode**. Click **Add filter** and then click **Create**.
+3.	Enter **filterSQLi** into the **Name** field and select the region where you deployed the stack. Add a filter (pattern) to the condition. Set the **Part of the request to filter on** to **Query string** and set the **Transformation** to **URL decode**. Click **Add filter** and then click **Create**.
 
 ![Create String Match](./images/create-sqli-match.png)
 4. With the condition created, and any additional conditions created based on need as well, you are ready to create a rule. In the AWS WAF console, select **Rules** from the side-bar menu to the left of the console, under the **AWS WAF** heading.
@@ -129,37 +118,10 @@ As an example, lets say we want to build a rule to detect and block SQL Injectio
 
 12\. Reorder the rules as appropriate for your use case.
 
-13\. Click **Update** to persist the changes.
+13\. Click **Update** to persist the changes.  Now run the scanner that you used during the previous Assess phase.  Did anything change?  Why?
 
 !!! info "Additional Resources"
     For a more comprehensive discussion of common vulnerabilities for web applications, as well as how to mitigate them using AWS WAF, and other AWS services, please refer to the <a href="https://d0.awsstatic.com/whitepapers/Security/aws-waf-owasp.pdf" target="_blank">Use AWS WAF to Mitigate OWASP’s Top 10 Web Application Vulnerabilities whitepaper</a>.
-
-## Perimeter Layer - WAF Rule Creation and Solutions
-
-In this phase, we will have a set of 6 exercises walking you through the process of building a basic mitigation rule set for common vulnerabilities. We will build these rules from scratch, so you can gain familiarity with the AWS WAF programming model and you can then write rules specific to your applications. 
-
-!!! info "Note About Excersise Solutions"
-    For the excercises below, you will find the high level description and solution configuration for your web ACL. You can test your ACL ruleset at any time using the Red Team Host.</a>.
-
-### 1. SQL Injection Mitigation
-
-Use the SQL injection as well as string matching conditions to build rules that mitigate injection attacks.
-
-Consider the following:
-- How does your web application accept end-user input (whether directly or indirectly). Which HTTP request components does that input get inserted into?
-- What kind of content encoding considerations do you need to factor in for the input format?
-- What considerations do you need to account for in regards to false positives? For example, does your application legitimately need to accept SQL statements as input?
-
-How do the requirements derived from the above questions affect your solution?
-
-??? info "Solution"
-    1.	update the **SQL injection** condition named filterSQLi with 2 additional filters
-        1. <s>query_string, url decode</s> _You should have created this filter in <a href="./#console-walkthrough-creating-a-condition-and-rule">the walk through</a>_
-        2. body, html decode
-        3. header, cookie, url decode
-    2.  create SQLi rule named matchSQLi
-    	1. type regular
-        2. does match SQLi condition: filterSQLi
 
 ## Host Layer - Examine the Inspector findings and configure Patch Manager
 
