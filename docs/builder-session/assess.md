@@ -34,7 +34,7 @@ In this section you will do the following tasks:
 
     ![ec2-instance-list](./images/assess-ec2-instance-list.png)
 
-4.  Notice that the instance has tags reflecting the CloudFormation stack name and stack id.  These tags are added because of settings in the auto scaling group which propogate (copies) the tags from the auto scaling group to all instances that the auto scaling group creates.
+4.  Notice that the instance has tags reflecting the CloudFormation stack name and stack id.  These tags were added because the auto scaling group propogated (copied) the tags from the auto scaling group to all instances that the auto scaling group creates.
 
     You have now learned about the tags that you can use to look up AWS resources. You will take advantage of this feature when you set up Amazon Inspector later in this phase.
 
@@ -46,7 +46,7 @@ Now that you know how to identify the instances in the environment, you need to 
 
 2.  Under the *Actions* menu on the left, click **Run Command**.  You will be taken to the AWS Systems Manager Run Command home screen.  Click the **Run a Command** button and the *Run a Command* screen will appear.
 
-3.  In the *Command document* window, page through the available documents until you find the document named *AmazonInspector-ManageAWSAgent*.  Click the radio button to the left of that document as shown in the figure below.
+3.  In the *Command document* window, enter *AmazonInspector* (no space betwen the words) into the search box.  You should see a document named *AmazonInspector-ManageAWSAgent* appear.  Click the radio button to the left of that document as shown in the figure below.
 
     ![ssm-run-command](./images/assess-run-command-document.png)
 
@@ -84,7 +84,7 @@ Now that you know how to identify the instances in the environment, you need to 
 
     ![inspector-service-role](./images/assess-inspector-slr.png)
 
-    You have now created an Amazon Inspector target that identifies the instances that would be assessed.  The target selects instances based on tag values.  In this case, the tag you are using is *aws:cloudformation:stack-name* which is set to the name of the CloudFormation stack.  In particular, the tag is added to the auto scaling launch configuration which is configured to propogate the tag to the Amazon EC2 instances that it launches.  Because of this, Amazon Inspector will automatically scan new instances that may appear over the lifetime of the environment.  This is an example of how the elasticity of the AWS cloud when combined with tagging can enable you to support dynamic environments.
+    You have now created an Amazon Inspector target that identifies the instances that would be assessed.  The target selects instances based on tag values.  In this case, the tag you are using is *aws:cloudformation:stack-name* which is set to the name of the CloudFormation stack.  In particular, the tag is added to the auto scaling launch configuration which is configured to propagate the tag to the Amazon EC2 instances that it launches.  Because of this, Amazon Inspector will automatically scan new instances that may appear over the lifetime of the environment.  This is an example of how the elasticity of the AWS cloud when combined with tagging can enable you to support dynamic environments.
 
 ### Configure the Amazon Inspector template and run the assessment
 
