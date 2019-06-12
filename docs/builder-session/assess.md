@@ -10,10 +10,13 @@ In this section you will do the following tasks:
 1. Examine the stack that you built and its tags
 
 2. Assess the host layer.
+
    a. Install the Amazon Inspector agent on the Amazon EC2 instances.
+
    b. Run an Amazon Inspector scan to look for host level vulnerabilities.
 
 4. Assess the network layer.
+
    a. Use your Red Team Host to test for website vulnerabilities
 
 ## Examine the stack that you built and its tags
