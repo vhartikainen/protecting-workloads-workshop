@@ -165,6 +165,8 @@ As you can see by running the script there are several vulnerabilities that need
 !!! info "Note about Testing Tool"
     The scanner.py script uses an open source <a href="https://httpie.org/" target="_blank">HTTP client called httpie</a>. HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.
 
+*This completes the Assess Phase.*
+
 ---
 
 Click [here](remediate.md) to proceed to the Remediate Phase.

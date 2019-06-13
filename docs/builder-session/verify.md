@@ -37,6 +37,11 @@ Confirm that all of the tests in the script pass. If requests (other than canary
 
 ![Final Scan Terminal](./images/final-scan-term.svg)
 
+
+__Congratulations! You have completed the Builder Session and learned how to supercharge your defenses at the network and host layers!__
+
+---
+
 ## Implement WAF monitoring dashboard using Amazon CloudWatch (Optional)
 
 If you finish early, <a href="https://aws.amazon.com/blogs/aws/cloudwatch-dashboards-create-use-customized-metrics-views/" target="_blank">use CloudWatch Dashboards to create a monitoring system for your protection layer</a>.

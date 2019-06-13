@@ -222,12 +222,7 @@ Use Cross-site scripting, as well as string matching conditions to build rules t
     4.	add rules to Web ACL
     5.  Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked
 
-
-## Examine the Second Inspector Scan REsults.
-
-1.  Go to the Inspector and look at the results of the second scan.  Did anything change?
-
-Congratulations! You have completed the Builder Session and learned how to Turbocharge your defenses at the network and host layers!
+*This completes the Remediate Phase.*
 
 ---
 
