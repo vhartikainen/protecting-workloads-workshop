@@ -118,10 +118,17 @@ As an example, lets say we want to build a rule to detect and block SQL Injectio
 
 12\. Reorder the rules as appropriate for your use case.
 
-13\. Click **Update** to persist the changes.  Now run the scanner that you used during the previous Assess phase.  Did anything change?  Why?
+13\. Click **Update** to persist the changes.
 
-!!! info "Additional Resources"
-    For a more comprehensive discussion of common vulnerabilities for web applications, as well as how to mitigate them using AWS WAF, and other AWS services, please refer to the <a href="https://d0.awsstatic.com/whitepapers/Security/aws-waf-owasp.pdf" target="_blank">Use AWS WAF to Mitigate OWASP’s Top 10 Web Application Vulnerabilities whitepaper</a>.
+14\. Create additional conditions for SQL injection mitigation:
+
+??? info "Solution"
+    1.	update the **SQL injection** condition named filterSQLi with 2 additional filters
+        1. <s>query_string, url decode</s> _You should have created this filter in <a href="./#console-walkthrough-creating-a-condition-and-rule">the walk through</a>_
+        2. body, html decode
+        3. header, cookie, url decode
+
+15\. Now run the scanner that you used during the previous Assess phase. Did anything change? Why?
 
 ## Host Layer - Examine the Inspector findings and configure Patch Manager
 
@@ -206,6 +213,8 @@ You are now going to examine the status of the patching operation by using AWS S
 While you are waiting for the second scan to complete, let's do a few more WAF remediations.
 
 Use Cross-site scripting, as well as string matching conditions to build rules that mitigate cross site scripting attacks.
+
+1\. Create conditions andrule for Cross-site scripting mitigation:
 
 ??? info "Solution"
     1.	create **Cross-site scripting** condition named filterXSS with 4 filters

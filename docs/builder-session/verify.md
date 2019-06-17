@@ -42,6 +42,9 @@ __Congratulations! You have completed the Builder Session and learned how to sup
 
 ---
 
+!!! info "Additional Resources"
+    For a more comprehensive discussion of common vulnerabilities for web applications, as well as how to mitigate them using AWS WAF, and other AWS services, please refer to the <a href="https://d0.awsstatic.com/whitepapers/Security/aws-waf-owasp.pdf" target="_blank">Use AWS WAF to Mitigate OWASP’s Top 10 Web Application Vulnerabilities whitepaper</a>.
+
 ## Implement WAF monitoring dashboard using Amazon CloudWatch (Optional)
 
 If you finish early, <a href="https://aws.amazon.com/blogs/aws/cloudwatch-dashboards-create-use-customized-metrics-views/" target="_blank">use CloudWatch Dashboards to create a monitoring system for your protection layer</a>.

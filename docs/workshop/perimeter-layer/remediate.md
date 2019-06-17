@@ -154,7 +154,7 @@ How do the requirements derived from the above questions affect your solution?
 
 ??? info "Solution"
     1.	update the **SQL injection** condition named filterSQLi with 2 additional filters
-        1. <s>query_string, url decode</s> _You should have created this filter in <a href="./#console-walkthrough-creating-a-condition-and-rule">the walk through</a>_
+        1. query_string, url decode _You should have created this filter in <a href="./#console-walkthrough-creating-a-condition-and-rule">the walk through above</a>_
         2. body, html decode
         3. header, cookie, url decode
     2.  create SQLi rule named matchSQLi
@@ -165,7 +165,7 @@ How do the requirements derived from the above questions affect your solution?
         2. body, html decode
         3. body, url decode
         4. header, cookie, url decode
-    4.	create a **String and regex matching** _String match_ condition named filterXSSPathException with 1 filter. _This demonstrates how to add an expception for the XSS rule._ 
+    4.	create a **String and regex matching** _String match_ condition named filterXSSPathException with 1 filter. _This demonstrates how to add an expception for the XSS rule_ 
 	    1. uri, starts with, no transform, _/reportBuilder/Editor.aspx_
     5.	create a rule named matchXSS
         1. type regular
