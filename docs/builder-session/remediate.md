@@ -124,7 +124,7 @@ As an example, lets say we want to build a rule to detect and block SQL Injectio
 
 ??? info "Solution"
     1.	update the **SQL injection** condition named filterSQLi with 2 additional filters
-        1. <s>query_string, url decode</s> _You should have created this filter in <a href="./#console-walkthrough-creating-a-condition-and-rule">the walk through</a>_
+        1. _query_string, url decode_ _You should have created this filter in <a href="./#console-walkthrough-creating-a-condition-and-rule">the walk through</a>_
         2. body, html decode
         3. header, cookie, url decode
 
