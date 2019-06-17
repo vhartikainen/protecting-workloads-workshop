@@ -1224,11 +1224,18 @@ You should be able to see a pre-existing rule configured to block requests and t
 <img alt="Edit Web ACL" src="../images/edit-web-acl.png" /></p>
 <p>11. In the <strong>Rules</strong> dropdown, select your rule, and click <strong>Add rule to web ACL</strong>.</p>
 <p>12. Reorder the rules as appropriate for your use case.</p>
-<p>13. Click <strong>Update</strong> to persist the changes.  Now run the scanner that you used during the previous Assess phase.  Did anything change?  Why?</p>
-<div class="admonition info">
-<p class="admonition-title">Additional Resources</p>
-<p>For a more comprehensive discussion of common vulnerabilities for web applications, as well as how to mitigate them using AWS WAF, and other AWS services, please refer to the <a href="https://d0.awsstatic.com/whitepapers/Security/aws-waf-owasp.pdf" target="_blank">Use AWS WAF to Mitigate OWASP’s Top 10 Web Application Vulnerabilities whitepaper</a>.</p>
-</div>
+<p>13. Click <strong>Update</strong> to persist the changes.</p>
+<p>14. Create additional conditions for SQL injection mitigation:</p>
+<details class="info"><summary>Solution</summary><ol>
+<li>update the <strong>SQL injection</strong> condition named filterSQLi with 2 additional filters<ol>
+<li><s>query_string, url decode</s> <em>You should have created this filter in <a href="./#console-walkthrough-creating-a-condition-and-rule">the walk through</a></em></li>
+<li>body, html decode</li>
+<li>header, cookie, url decode</li>
+</ol>
+</li>
+</ol>
+</details>
+<p>15. Now run the scanner that you used during the previous Assess phase. Did anything change? Why?</p>
 <h2 id="host-layer-examine-the-inspector-findings-and-configure-patch-manager">Host Layer - Examine the Inspector findings and configure Patch Manager</h2>
 <h3 id="examine-the-inspector-findings">Examine the Inspector findings</h3>
 <ol>
@@ -1317,6 +1324,7 @@ You should be able to see a pre-existing rule configured to block requests and t
 <h2 id="additional-waf-rule-creation">Additional WAF Rule Creation</h2>
 <p>While you are waiting for the second scan to complete, let's do a few more WAF remediations.</p>
 <p>Use Cross-site scripting, as well as string matching conditions to build rules that mitigate cross site scripting attacks.</p>
+<p>1. Create conditions andrule for Cross-site scripting mitigation:</p>
 <details class="info"><summary>Solution</summary><ol>
 <li>create <strong>Cross-site scripting</strong> condition named filterXSS with 4 filters<ol>
 <li>query_string, url decode</li>

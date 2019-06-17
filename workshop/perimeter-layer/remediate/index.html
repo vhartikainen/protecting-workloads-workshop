@@ -1271,7 +1271,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <p>How do the requirements derived from the above questions affect your solution?</p>
 <details class="info"><summary>Solution</summary><ol>
 <li>update the <strong>SQL injection</strong> condition named filterSQLi with 2 additional filters<ol>
-<li><s>query_string, url decode</s> <em>You should have created this filter in <a href="./#console-walkthrough-creating-a-condition-and-rule">the walk through</a></em></li>
+<li>query_string, url decode <em>You should have created this filter in <a href="./#console-walkthrough-creating-a-condition-and-rule">the walk through above</a></em></li>
 <li>body, html decode</li>
 <li>header, cookie, url decode</li>
 </ol>
@@ -1288,7 +1288,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <li>header, cookie, url decode</li>
 </ol>
 </li>
-<li>create a <strong>String and regex matching</strong> <em>String match</em> condition named filterXSSPathException with 1 filter. <em>This demonstrates how to add an expception for the XSS rule.</em> <ol>
+<li>create a <strong>String and regex matching</strong> <em>String match</em> condition named filterXSSPathException with 1 filter. <em>This demonstrates how to add an expception for the XSS rule</em> <ol>
 <li>uri, starts with, no transform, <em>/reportBuilder/Editor.aspx</em></li>
 </ol>
 </li>
