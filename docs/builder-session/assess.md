@@ -65,11 +65,6 @@ Now that you have created an Amazon Inspector target, you will now create an Ama
 
 7.  Scroll to the bottom and click the **Create and run** button to save the template and run the assessment.  Depending on the size of your screen, you may have to scroll down multiple windows.  If you cannot click **Create and run**, make sure you unchecked the box in the previous step and try again.  The assessment will start and will take 15 minutes to compete.
 
-!!! info "If the scan fails to start..."
-    If the scan fails to start, it may be because the Inspector agents have not finished registering with Inspector.   Wait a few minutes, delete the template, recreate it, and then retry the scan.
-
----
-
 8.  On the Amazon Inspector menu, click **Assessment runs**.  You should see an entry for the assesment you just started.  While the assessment is running, the status will be *Collecting data*.  Periodically refresh the screen to see the current status.  When the assessment run ends, the status will change to *Analysis complete.*  The assessment will run for approximately 15 minutes. **_While you are waiting, continue with the steps below._**
 
 ## Assess the Network Layer
