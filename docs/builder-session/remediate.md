@@ -138,7 +138,7 @@ As an example, lets say we want to build a rule to detect and block SQL Injectio
 
     ![assessment-runs](./images/assess-inspector-runs.png)
 
-2. On the line that represents your most recent run, make note of the number in the *Findings* column (22 in this diagram).  After you perform the remediation later in this workshop, that number should decrease.   Click on the number in the *Findings* column.  The findings associated with the run will appear as shown below.
+2. On the line that represents your most recent run, make note of the number in the *Findings* column (112 in this diagram).  After you perform the remediation later in this workshop, that number should decrease.   Click on the number in the *Findings* column.  The findings associated with the run will appear as shown below.
 
     ![assessment-findings](./images/assess-inspector-findings.png)
 

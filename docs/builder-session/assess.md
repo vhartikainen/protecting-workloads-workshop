@@ -53,7 +53,7 @@ Now that you have created an Amazon Inspector target, you will now create an Ama
 
 1.  Go to the Amazon Inspector console, click **Assessment templates** on the menu, and then click **Create**.
 
-2.  In the *Name* field, enter a name for the template.
+2.  In the *Name* field, enter a name for the template, such as **mytemplate**.
 
 3.  In the *Target name* field, select the target you previously created from the list of options.
 
