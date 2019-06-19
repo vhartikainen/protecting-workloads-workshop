@@ -969,12 +969,6 @@ You are now going to assess the posture of the site at both the host layer and a
 <p>If the console looks different than this, you may be using a newer version of the console.  In that case, use the menu on the left and click <strong>Previous console</strong>.</p>
 <p>If you built the stack yourself, you should see the name you supplied in the Stack Name column.  If AWS built the stack for you, the stack name will likely much longer name, for example it may start with "module" with a random string after that as in the figure above. Make sure you see the entire stack name.  If the stack name ends with three trailing periods ("..."), then widen the Stack Name column so you can see the entire name of the stack.  Copy the stack name into a scratch file on your workstation.</p>
 </li>
-<li>
-<p>Click the <strong>check box</strong> to the left of the stack name and then click the <strong>Resources</strong> tab below.  You will see a list of resources that were deployed by the stack as shown in the figure below.</p>
-<p><img alt="cloudformation-stack-resources" src="../images/assess-cloudformation-resources.png" /></p>
-<p>The <em>Type</em> column lists the type of the resouces.  Notice that you will not see any resources of type AWS::EC2::Instance.  The reason for this is that the CloudFormation stack did not deploy any.  The stack did, however, deploy an auto scaling group with a launch configuration that in turn launched the instances.  The auto scaling group itself has tags (special attributes) and was configured to propogate the same tags (attributes) to the instances it launches.</p>
-<p>In a production environment, you may have a large number of resources that spin up and spin down because the load balancer will add and remove capacity as needed.  Knowing that the tags will be the same can make it easier for you to manage the environment regardless of how many instances exist at any point in time because you can use tags to identify the resources rather than relying on values like Instance Ids which can change.  You will learn more about how to use tags later in this workshop.</p>
-</li>
 </ol>
 <h2 id="assess-the-host-layer">Assess the Host Layer</h2>
 <h3 id="setting-up-amazon-inspector">Setting up Amazon Inspector</h3>
@@ -991,7 +985,7 @@ You are now going to assess the posture of the site at both the host layer and a
 <p>Scroll down to the Assessment Target window.  In the <em>Name</em> field, enter a name of your choosing, such as <strong>mytargets</strong>.</p>
 </li>
 <li>
-<p>In the <em>Use Tags</em> section, select <strong>aws:cloudformation:stack-name</strong> for the key from the drop down list and select the name of the stack from the drop down value list.  The reason you can do this is that CloudFormation adds a tag named aws:cloudformation:stack-name to every resource that it builds.  Knowing this can help you select instances more easily using the tags that you know about.</p>
+<p>In the <em>Use Tags</em> section, select <strong>aws:cloudformation:stack-name</strong> for the key from the drop down list and select the name of the stack from the drop down value list.  The reason you can do this is that CloudFormation adds a tag named aws:cloudformation:stack-name to every resource that it provisions.  When you configure Amazon Inspector, rather than specifying instance IDs, you will tell Inspector to look for instances with a specific tag.  Suppose that, in a production situation, you have to add more instances to handle a higher load.  Rather than modifying your Inspector target list, you can add the tag to the new instances and the target will then be able to select them automatically.</p>
 </li>
 <li>
 <p>Make sure <em>Install Agents</em> check box is checked. This will cause Amazon Inspector to install the Inspector agent on the instances on your behalf.</p>
@@ -999,7 +993,7 @@ You are now going to assess the posture of the site at both the host layer and a
 <li>
 <p>Click the <strong>Save</strong> button to save the target definition.  Inspector may prompt you for permission to create a service linked role to give the Amazon Inspector service permission to retrieve information about your instances.  If you see a prompt like the one in the figure below, click <strong>Ok</strong> to create the role.</p>
 <p><img alt="inspector-service-role" src="../images/assess-inspector-slr.png" /></p>
-<p>You have now created an Amazon Inspector target that identifies the instances that would be assessed.  The target selects instances based on tag values.  In this case, the tag you are using is <em>aws:cloudformation:stack-name</em> which is set to the name of the CloudFormation stack.  In particular, the tag is added to the auto scaling launch configuration which is configured to propagate the tag to the Amazon EC2 instances that it launches.  Because of this, Amazon Inspector will automatically scan new instances that may appear over the lifetime of the environment.  This is an example of how the elasticity of the AWS cloud when combined with tagging can enable you to support dynamic environments.</p>
+<p>You have now created an Amazon Inspector target that identifies the instances that would be assessed.  The target selects instances based on tag values.  Again, the tag you are using is <em>aws:cloudformation:stack-name</em> which is set to the name of the CloudFormation stack.</p>
 </li>
 </ol>
 <h3 id="configure-the-amazon-inspector-template-and-run-the-assessment">Configure the Amazon Inspector template and run the assessment</h3>
