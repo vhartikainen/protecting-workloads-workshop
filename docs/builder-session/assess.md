@@ -43,13 +43,11 @@ Now that you know the name of your AWS CloudFormation stack, you will configure 
 
 2. Click **Assessment Targets** on the left menu and then click the **Create** button.
 
-3. Scroll down to the Assessment Target window.  In the *Name* field, enter a name for the target.  For example, given that the stack name in this example is *pww*, you can enter **pww targets** or another name of your choosing.
+3. Scroll down to the Assessment Target window.  In the *Name* field, enter a name of your choosing, such as **mytargets**.
 
-4. In the *Use Tags* section, select **aws:cloudformation:stack-name** for the key from the drop down list and select the name of the stack (*pww* in this example) from the drop down value list.
+4. In the *Use Tags* section, select **aws:cloudformation:stack-name** for the key from the drop down list and select the name of the stack from the drop down value list.  The reason you can do this is that CloudFormation adds a tag named aws:cloudformation:stack-name to every resource that it builds.  Knowing this can help you select instances more easily using the tags that you know about.
 
-5. Uncheck the *Install Agents* check box since we have already installed the agent. Your screen should look similar to the figure below.
-
-    ![inspector-targets](./images/assess-inspector-targets.png)
+5. Make sure *Install Agents* check box is checked. This will cause Amazon Inspector to install the Inspector agent on the instances on your behalf.
 
 6.  Click the **Save** button to save the target definition.  Inspector may prompt you for permission to create a service linked role to give the Amazon Inspector service permission to retrieve information about your instances.  If you see a prompt like the one in the figure below, click **Ok** to create the role.
 
