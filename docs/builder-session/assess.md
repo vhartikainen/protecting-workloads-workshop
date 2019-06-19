@@ -7,66 +7,35 @@ You are now going to assess the posture of the site at both the host layer and a
 
 In this section you will do the following tasks:
 
-1. Examine the stack that you built and its tags
+1. Examine the stack that you built
 
 2. Assess the host layer by installing an Amazon Inspector agent on the EC2 instances and running an Inspector scan to look for host layer vulnerabilities.
 
 4. Assess the network layer by running an external network scan using a network scanner.
 
-## Examine the stack that you built and its tags
+## Examine the stack that you built
 
-1. Go to the CloudFormation console in the same AWS region in which you created the stack in the Build Phase.  You should see a list of stacks similar to the figure below.
+1. At this point, you have either deployed a CloudFormation stack yourself or AWS has done so on your behalf.  You will need the name of this stack to proceed.  Go to the CloudFormation console.  You should see a list of stacks similar to the figure below.
 
     ![cloudformation-stack-list](./images/assess-cloudformation-stacks.png)
 
     If the console looks different than this, you may be using a newer version of the console.  In that case, use the menu on the left and click **Previous console**.
 
-    Locate the stack you created. In this documentation, the name of the stack is *pww*.  If AWS built the stack for you, it may be a much longer name that stars with "module" with a random string after that.   If the stack name ends with three trailing periods ("..."), then widen the Stack Name column so you can see the entire name of the stack.  Copy this stack name into a scratch file on your workstation in case you need it later.
+    If you built the stack yourself, you should see the name you supplied in the Stack Name column.  If AWS built the stack for you, the stack name will likely much longer name, for example it may start with "module" with a random string after that as in the figure above. Make sure you see the entire stack name.  If the stack name ends with three trailing periods ("..."), then widen the Stack Name column so you can see the entire name of the stack.  Copy the stack name into a scratch file on your workstation.
 
 2. Click the **check box** to the left of the stack name and then click the **Resources** tab below.  You will see a list of resources that were deployed by the stack as shown in the figure below.
 
     ![cloudformation-stack-resources](./images/assess-cloudformation-resources.png)
 
-    The *Type* column lists the type of the resouces.  Notice that you will not see any resources of type AWS::EC2::Instance.  The reason for this is that the CloudFormation stack did not deploy any.  The stack did, however, deploy an auto scaling group with a launch configuration that in turn launched the instances.  The auto scaling group itself has tags and was configured to propogate the same tags (attributes) to the instances it launches.
+    The *Type* column lists the type of the resouces.  Notice that you will not see any resources of type AWS::EC2::Instance.  The reason for this is that the CloudFormation stack did not deploy any.  The stack did, however, deploy an auto scaling group with a launch configuration that in turn launched the instances.  The auto scaling group itself has tags (special attributes) and was configured to propogate the same tags (attributes) to the instances it launches.
 
-    In a production environment, you may have a large number of resources that spin up and spin down because the load balancer will add and remove capacity as needed..  Knowing that the tags will be the same can make it easier for you to manage the environment regardless of how many instances exist at any point in time because you can use tags to identify the resources rather than relying on values like Instance Ids which can change.. You will now learn how to look up the Amazon EC2 instances using tags.
-
-
-3.  Go to the Amazon EC2 console, select **Instances** from the menu and look for instances having names that begins with the stack name followed by *-node*, *pww-node* in this example.  You should see three such instances.  If you cannot see them, type the instance name (*pww-node* in this case) into the search box.  Select one of them by checking the box to the left of the instance and then click on the *Tags* tab in the bottom section of the window.  You should see a table like that in the figure below.
-
-    ![ec2-instance-list](./images/assess-ec2-instance-list.png)
-
-4.  Notice that the instance has tags reflecting the CloudFormation stack name and stack id.  These tags were added because the auto scaling group propogated (copied) the tags from the auto scaling group to all instances that the auto scaling group creates.
-
-    You have now learned about the tags that you can use to look up AWS resources. You will take advantage of this feature when you set up Amazon Inspector later in this phase.
+    In a production environment, you may have a large number of resources that spin up and spin down because the load balancer will add and remove capacity as needed.  Knowing that the tags will be the same can make it easier for you to manage the environment regardless of how many instances exist at any point in time because you can use tags to identify the resources rather than relying on values like Instance Ids which can change.  You will learn more about how to use tags later in this workshop.
 
 ## Assess the Host Layer
 
-### Install the Inspector Agent on the Amazon EC2 instances
+### Setting up Amazon Inspector
 
-Now that you know how to identify the instances in the environment, you need to install the Amazon Inspector agent on them.  AWS Systems Manager provides a way for you to run commands across your Amazon EC2 instances.  The commands are defined in *documents*.  AWS provides a document that you will use to install the Amazon Inspector agent.  You will use tags to identify the instances on which to apply the document. 
-
-1.  Go to the AWS Systems Manager console.
-
-2.  Under the *Actions* menu on the left, click **Run Command**.  You will be taken to the AWS Systems Manager Run Command home screen.  Click the **Run a Command** button and the *Run a Command* screen will appear.
-
-3.  In the *Command document* window, enter *AmazonInspector* (no space betwen the words) into the search box and press Enter.  You should see a document named *AmazonInspector-ManageAWSAgent* appear.  Click the radio button to the left of that document as shown in the figure below.
-
-    ![ssm-run-command](./images/assess-run-command-document.png)
-
-4.  Scroll further down until you can see the *Targets* window.  Click the **Specifying a tag** radio button.  For the tag key, enter *aws:cloudformation:stack-name*.  For the value enter the name of the CloudFormation stack you created (*pww* in this example) and click *Add*.  Your screen should be similar to the figure below.
-
-    ![ssm-run-command-targets](./images/assess-run-command-targets.png)
-
-5.  Scroll down to the *Output options* window.  Clear the box next to *Enable writing to an S3 bucket* as shown in the figure below.
-
-    ![ssm-run-command-output](./images/assess-run-command-output.png)
-
-6.  Scroll to the bottom of the screen and click the *Run* button.  You will then be be taken to the command status window while the installation of the Amazon Inspector is running.  You can periodically update the command status by clicking on the refresh button within the window.   After the commands finish running, the *Overall status* should be *Success* as shown in the figure below.  The number of instances may vary based on the version of the template.
-
-    ![ssm-run-command-results](./images/assess-run-command-results.png)
-
-    You have now installed the Amazon Inspector agent on the instances in the environment.
+Now that you know the name of your AWS CloudFormation stack, you will configure Amazon Inspector to scan the instance for vilnerabilities.  You will first define the *target* for inspector, namely the instances that Inspector will scan.  You will then define the *template* which includes both the *target* you defined as well as the kinds of scans to run.  You will then run the scan against the template.
 
 ### Configure the Amazon Inspector target
 
@@ -90,7 +59,7 @@ Now that you know how to identify the instances in the environment, you need to 
 
 ### Configure the Amazon Inspector template and run the assessment
 
-Now that you have created an Amazon Inspector target, you will now create an Amazon Inspector tepmlate.  You use templates to define the Amazon Inspector targets and rule packages that comprise an assessment run.
+Now that you have created an Amazon Inspector target, you will now create an Amazon Inspector template.  You use templates to define the Amazon Inspector targets and rule packages that comprise an assessment run.
 
 1.  Go to the Amazon Inspector console, click **Assessment templates** on the menu, and then click **Create**.
 
@@ -117,7 +86,7 @@ Now that you have created an Amazon Inspector target, you will now create an Ama
 
 ### Identify the Application Load Balancer and Connect to the RedTeam Host
 
-1.  Go to the stack outputs and look for the website URL stored in the **albEndpoint** output value. Test access to the site by right clicking and opening in a new tab. Note the URL for your site as this will be used throughout this workshoop round.
+1.  Go to the stack outputs and look for the website URL stored in the **albEndpoint** output value. Test access to the site by right clicking and opening in a new tab. Note the URL for your site as this will be used throughout this workshp round.
 
 2. While still in stack outputs, right click the link in **RedTeamHostSession** and open in new tab. This will launch an AWS Systems Manager Session Manager to the host you will use to perform add hock scans against your site URL.
 
