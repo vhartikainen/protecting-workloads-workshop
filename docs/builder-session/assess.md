@@ -23,14 +23,6 @@ In this section you will do the following tasks:
 
     If you built the stack yourself, you should see the name you supplied in the Stack Name column.  If AWS built the stack for you, the stack name will likely much longer name, for example it may start with "module" with a random string after that as in the figure above. Make sure you see the entire stack name.  If the stack name ends with three trailing periods ("..."), then widen the Stack Name column so you can see the entire name of the stack.  Copy the stack name into a scratch file on your workstation.
 
-2. Click the **check box** to the left of the stack name and then click the **Resources** tab below.  You will see a list of resources that were deployed by the stack as shown in the figure below.
-
-    ![cloudformation-stack-resources](./images/assess-cloudformation-resources.png)
-
-    The *Type* column lists the type of the resouces.  Notice that you will not see any resources of type AWS::EC2::Instance.  The reason for this is that the CloudFormation stack did not deploy any.  The stack did, however, deploy an auto scaling group with a launch configuration that in turn launched the instances.  The auto scaling group itself has tags (special attributes) and was configured to propogate the same tags (attributes) to the instances it launches.
-
-    In a production environment, you may have a large number of resources that spin up and spin down because the load balancer will add and remove capacity as needed.  Knowing that the tags will be the same can make it easier for you to manage the environment regardless of how many instances exist at any point in time because you can use tags to identify the resources rather than relying on values like Instance Ids which can change.  You will learn more about how to use tags later in this workshop.
-
 ## Assess the Host Layer
 
 ### Setting up Amazon Inspector
@@ -45,7 +37,7 @@ Now that you know the name of your AWS CloudFormation stack, you will configure 
 
 3. Scroll down to the Assessment Target window.  In the *Name* field, enter a name of your choosing, such as **mytargets**.
 
-4. In the *Use Tags* section, select **aws:cloudformation:stack-name** for the key from the drop down list and select the name of the stack from the drop down value list.  The reason you can do this is that CloudFormation adds a tag named aws:cloudformation:stack-name to every resource that it builds.  Knowing this can help you select instances more easily using the tags that you know about.
+4. In the *Use Tags* section, select **aws:cloudformation:stack-name** for the key from the drop down list and select the name of the stack from the drop down value list.  The reason you can do this is that CloudFormation adds a tag named aws:cloudformation:stack-name to every resource that it provisions.  When you configure Amazon Inspector, rather than specifying instance IDs, you will tell Inspector to look for instances with a specific tag.  Suppose that, in a production situation, you have to add more instances to handle a higher load.  Rather than modifying your Inspector target list, you can add the tag to the new instances and the target will then be able to select them automatically.
 
 5. Make sure *Install Agents* check box is checked. This will cause Amazon Inspector to install the Inspector agent on the instances on your behalf.
 
@@ -53,7 +45,7 @@ Now that you know the name of your AWS CloudFormation stack, you will configure 
 
     ![inspector-service-role](./images/assess-inspector-slr.png)
 
-    You have now created an Amazon Inspector target that identifies the instances that would be assessed.  The target selects instances based on tag values.  In this case, the tag you are using is *aws:cloudformation:stack-name* which is set to the name of the CloudFormation stack.  In particular, the tag is added to the auto scaling launch configuration which is configured to propagate the tag to the Amazon EC2 instances that it launches.  Because of this, Amazon Inspector will automatically scan new instances that may appear over the lifetime of the environment.  This is an example of how the elasticity of the AWS cloud when combined with tagging can enable you to support dynamic environments.
+    You have now created an Amazon Inspector target that identifies the instances that would be assessed.  The target selects instances based on tag values.  Again, the tag you are using is *aws:cloudformation:stack-name* which is set to the name of the CloudFormation stack.
 
 ### Configure the Amazon Inspector template and run the assessment
 
