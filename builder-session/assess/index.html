@@ -988,14 +988,13 @@ You are now going to assess the posture of the site at both the host layer and a
 <p>Click <strong>Assessment Targets</strong> on the left menu and then click the <strong>Create</strong> button.</p>
 </li>
 <li>
-<p>Scroll down to the Assessment Target window.  In the <em>Name</em> field, enter a name for the target.  For example, given that the stack name in this example is <em>pww</em>, you can enter <strong>pww targets</strong> or another name of your choosing.</p>
+<p>Scroll down to the Assessment Target window.  In the <em>Name</em> field, enter a name of your choosing, such as <strong>mytargets</strong>.</p>
 </li>
 <li>
-<p>In the <em>Use Tags</em> section, select <strong>aws:cloudformation:stack-name</strong> for the key from the drop down list and select the name of the stack (<em>pww</em> in this example) from the drop down value list.</p>
+<p>In the <em>Use Tags</em> section, select <strong>aws:cloudformation:stack-name</strong> for the key from the drop down list and select the name of the stack from the drop down value list.  The reason you can do this is that CloudFormation adds a tag named aws:cloudformation:stack-name to every resource that it builds.  Knowing this can help you select instances more easily using the tags that you know about.</p>
 </li>
 <li>
-<p>Uncheck the <em>Install Agents</em> check box since we have already installed the agent. Your screen should look similar to the figure below.</p>
-<p><img alt="inspector-targets" src="../images/assess-inspector-targets.png" /></p>
+<p>Make sure <em>Install Agents</em> check box is checked. This will cause Amazon Inspector to install the Inspector agent on the instances on your behalf.</p>
 </li>
 <li>
 <p>Click the <strong>Save</strong> button to save the target definition.  Inspector may prompt you for permission to create a service linked role to give the Amazon Inspector service permission to retrieve information about your instances.  If you see a prompt like the one in the figure below, click <strong>Ok</strong> to create the role.</p>
