@@ -159,29 +159,31 @@ As an example, lets say we want to build a rule to detect and block SQL Injectio
 2.  You will now see a list of predefined patch baselines that are used to patch each operating system supported by Patch Manager.   The default patch baseline only patches major security issues.  You are going to crate a new Amazon Linux 2 patch baseline that will patch more things and make this new patch baseline the default.  Click **Create patch baseline**.
 
 
-3.  In the *Name* field, enter a name to give the new baseline such as **mybaseline**.  In the *Operating system* field, select **Amazon Linux 2**.  In the *Approval rules* section, check the box under *Include non-security updates*.  IMPORTANT NOTE:  Depending on the size of the screen, the box may not align with the title *Include non-security updates*.  See the figure below.
+3.  In the *Name* field, enter a name to give the new baseline such as **mybaseline**.
+
+4.  In the *Operating system* field, select **Amazon Linux 2**.
+
+5.  Check the box next to *Set this patch baseline as the default patch baseline for Amazon Linux 2 instances*.  You may see a notice appear informing you that this patch baseline will apply to all Amazon Linux 2 instances.  If you are doing this workshop in a "production" AWS account, you may wish to remove this baseline after completing this workshop.
+
+6.  In the *Approval rules* section, in the Severity field select *all* and check the box under *Include non-security updates*.  IMPORTANT NOTE:  Depending on the size of the screen, the box may not align with the title *Include non-security updates*.  Your window should look similar to the figure below.
 
     ![approval-rule](./images/remediate-pm-approval-rule.png)
 
-4.  Click the **Create patch baseline** button at the bottom of the screen.  You should now see the new patch baseline in the list of baselines.  You may need to refresh the browser window to see it.  This new patch baseline includes non-security patches.  Note at the end of the line representing the newly created patch baseine you will see *No* in the *Default Baseline* column as shown in the figure below.
-
-    ![default-baseline](./images/remediate-pm-default-baseline-no.png)
-
-5. Click the radio button on the line with the newly created patch baseline.  From the *Actions* menu at the top select **Set default patch baseline**.  You will be asked to confirm this.  You have just set the default patch baseline for Amazon Linux 2 to use the patch baseline you just created that includes non-security patches.  You should now see *Yes* at the end of the patch baseline as shown below.
+7.  Click the **Create patch baseline** button at the bottom of the screen.  You should now see the new patch baseline in the list of baselines.  You may need to refresh the browser window to see it.  This new patch baseline includes non-security patches.  Notice that your patch baseline is now set to the default baseline for Amazon Linux 2.
 
     ![default-baseline](./images/remediate-pm-default-baseline-yes.png)
 
 
-6. Click **Configure patching** towards the top of the window.  In the *Configure patching* screen, go to the *Instances to patch* section and click the **Enter instance tags** radio button.  In the *Instance tags* field, enter *aws:cloudformation:stack-name* into the *Tag key* field.  In the *Tag value* field, enter the stack name that you created earlier.  Click **Add**.  **Important: If you are using copying & pasting into these fields, be careful to remove any trailing spaces or the instance lookups will not work!**
+8. Click **Configure patching** towards the top of the window.  In the *Configure patching* screen, go to the *Instances to patch* section and click the **Enter instance tags** radio button.  In the *Instance tags* field, enter *aws:cloudformation:stack-name* into the *Tag key* field.  In the *Tag value* field, enter the stack name that you created earlier.  Click **Add**.  **Important: If you are using copying & pasting into these fields, be careful to remove any trailing spaces or the instance lookups will not work!**
 
 
-7. In the *Patching schedule* section, click the *Skip scheduling and patch instances now* radio button.
+9. In the *Patching schedule* section, click the *Skip scheduling and patch instances now* radio button.
 
-8. In the *Patching operation* section, click the *Scan and install* radio button if it is not already selected.  Your screen should look similar to the image below.
+10. In the *Patching operation* section, click the *Scan and install* radio button if it is not already selected.  Your screen should look similar to the image below.
 
     ![configure-patching](./images/remediate-pm-configure-patching.png)
 
-9.  Click the **Configure patching** button at the bottom of the window.  You will see a message at the top of your screen saying that *Patch Manager* will use *Run Command* to patch the instances.   *Run Command* is another feature of AWS Systems Manager that runs a command across multiple Amazon EC2 instances.  Patch Manager build the commands necessary to perform the patching and is using Run Command to actually execute the commands.
+11.  Click the **Configure patching** button at the bottom of the window.  You will see a message at the top of your screen saying that *Patch Manager* will use *Run Command* to patch the instances.   *Run Command* is another feature of AWS Systems Manager that runs a command across multiple Amazon EC2 instances.  Patch Manager build the commands necessary to perform the patching and is using Run Command to actually execute the commands.
 
 ### Check the patching status
 
