@@ -142,7 +142,7 @@ As an example, lets say we want to build a rule to detect and block SQL Injectio
 
     ![assessment-findings](./images/assess-inspector-findings.png)
 
-3.  You will see findings for each of the rules packages that you used in the assessment.  The number of findings often varies by the age of the AMI (Amazon Machine Image) because older AMIs typically have more vulnerabilities than newer AMIs.  Choose one of the findings associated with the Common Vulnerabilities and Exposures rule package.  An example appears below.
+3.  You will see findings for each of the rules packages that you used in the assessment.  The number of findings often varies by the age of the AMI (Amazon Machine Image) because older AMIs typically have more vulnerabilities than newer AMIs.  Expand one of the findings associated with the Common Vulnerabilities and Exposures rule package by toggling the arrow.  An example appears below.
 
     ![assessment-cve-example](./images/assess-inspector-cve.png)
 
@@ -196,7 +196,7 @@ You are now going to examine the status of the patching operation by using AWS S
 
     ![command-history](./images/remediate-command-history.png)
 
-3.  Click on the **Command ID** link to see more details about the command.  You will see a line for each target with a link referencing the Instance ID.  If you then click on the **Instance ID**, you will see each step of the command that is executed.   Note that some steps are skipped because they do not apply to the operating system of the instance.  Also, you only see the first part of the command output.  If you want to see all of the output you can configure Systems Manager to direct the output into an Amazon S3 bucket.
+3.  Click on the **Command ID** link to see more details about the command.  You will see a line for each target with a link referencing the Instance ID.  If you then click on the **Instance ID**, you will see each step of the command that is executed.   Note that some steps are skipped because they do not apply to the operating system of the instance.  Also, you only see the first part of the command output.  If you want to see all of the output you can configure Systems Manager to direct the output into an Amazon S3 bucket.  Wait for the patching operation to complete before continuing.
 
     You have now completed the patching operation.  In the Verify Phase, you will re-assess the environment with Amazon Inspector.
 
@@ -216,7 +216,7 @@ While you are waiting for the second scan to complete, let's do a few more WAF r
 
 Use Cross-site scripting, as well as string matching conditions to build rules that mitigate cross site scripting attacks.
 
-1\. Create conditions andrule for Cross-site scripting mitigation:
+1\. Create conditions and rule for Cross-site scripting mitigation:
 
 ??? info "Solution"
     1.	create **Cross-site scripting** condition named filterXSS with 4 filters

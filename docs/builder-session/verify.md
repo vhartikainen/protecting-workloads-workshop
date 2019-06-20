@@ -2,9 +2,9 @@
 
 ## Host Layer - Verify Phase
 
-Now that you have remediate the environment, you will again use Amazon Inspector to assess the environment again to see how the patching affected the overall security posture of the environment.
+Now that you have remediated the environment, you will again use Amazon Inspector to assess the environment again to see how the patching affected the overall security posture of the environment.
 
-1.  Go to the Amazon Inspector console, click **Assessment templates** on the menu.
+1.  Make sure the patches have completed installing. Go to the Amazon Inspector console, click **Assessment templates** on the menu.
 
 2.  Locate the template that you created during the Assess Phase and confirm the run has completed.
 
