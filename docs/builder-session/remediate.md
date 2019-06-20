@@ -172,12 +172,12 @@ As an example, lets say we want to build a rule to detect and block SQL Injectio
     ![default-baseline](./images/remediate-pm-default-baseline-yes.png)
 
 
-6. Click **Configure patching** In the *Configure patching* screen, go to the *Instances to patch* section and click the **Enter instance tags** radio button.  In the *Instance tags* field, enter *aws:cloudformation:stack-name* into the *Tag key* field.  In the *Tag value* field, enter the stack name that you created earlier.  Click **Add**.  **Important: If you are using copying & pasting into these fields, be careful to remove any trailing spaces or the instance lookups will not work!**
+6. Click **Configure patching** towards the top of the window.  In the *Configure patching* screen, go to the *Instances to patch* section and click the **Enter instance tags** radio button.  In the *Instance tags* field, enter *aws:cloudformation:stack-name* into the *Tag key* field.  In the *Tag value* field, enter the stack name that you created earlier.  Click **Add**.  **Important: If you are using copying & pasting into these fields, be careful to remove any trailing spaces or the instance lookups will not work!**
 
 
 7. In the *Patching schedule* section, click the *Skip scheduling and patch instances now* radio button.
 
-8. In the *Patching operation* section, click the *Scan and install* radio button if it is not alerady selected.  Your screen should look similar to the image below.
+8. In the *Patching operation* section, click the *Scan and install* radio button if it is not already selected.  Your screen should look similar to the image below.
 
     ![configure-patching](./images/remediate-pm-configure-patching.png)
 
