@@ -1028,10 +1028,10 @@ You are now going to assess the posture of the site at both the host layer and a
 <h3 id="identify-the-application-load-balancer-and-connect-to-the-redteam-host">Identify the Application Load Balancer and Connect to the RedTeam Host</h3>
 <ol>
 <li>
-<p>Go to the stack outputs and look for the website URL stored in the <strong>albEndpoint</strong> output value. Test access to the site by right clicking and opening in a new tab. Note the URL for your site as this will be used throughout this workshp round.</p>
+<p>Go to the stack outputs and look for the website URL stored in the <strong>albEndpoint</strong> output value. Test access to the site by right clicking and opening in a new tab. Note the URL for your site as this will be used throughout this workshop round.</p>
 </li>
 <li>
-<p>While still in stack outputs, right click the link in <strong>RedTeamHostSession</strong> and open in new tab. This will launch an AWS Systems Manager Session Manager to the host you will use to perform add hock scans against your site URL.</p>
+<p>While still in stack outputs, right click the link in <strong>RedTeamHostSession</strong> and open in new tab. This will launch an AWS Systems Manager Session Manager to the host you will use to perform ad hoc scans against your site URL.</p>
 </li>
 </ol>
 <div class="admonition info">
@@ -1072,7 +1072,7 @@ You are now going to assess the posture of the site at both the host layer and a
 <li><strong>Blue</strong>: 404 - Not Found</li>
 <li><strong>Yellow</strong>: 500 - Internal Server Error</li>
 </ul>
-<p>As you can see by running the script there are several vulnerabilities that need to be addressed. In the remnediate phase you will configure an AWS WAF Web ACL to block these requests. When AWS WAF blocks a web request based on the conditions that you specify, it returns HTTP status code 403 (Forbidden). For a full view of the request and response information, you can paste the <strong>Request</strong> command directly into the console and add the --debug argument.</p>
+<p>As you can see by running the script there are several vulnerabilities that need to be addressed. In the remediate phase you will configure an AWS WAF Web ACL to block these requests. When AWS WAF blocks a web request based on the conditions that you specify, it returns HTTP status code 403 (Forbidden). For a full view of the request and response information, you can paste the <strong>Request</strong> command directly into the console and add the --debug argument.</p>
 <div class="admonition info">
 <p class="admonition-title">Note about Testing Tool</p>
 <p>The scanner.py script uses an open source <a href="https://httpie.org/" target="_blank">HTTP client called httpie</a>. HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.</p>
