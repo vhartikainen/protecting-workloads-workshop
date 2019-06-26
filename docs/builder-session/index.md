@@ -17,7 +17,7 @@ Welcome to Widgets LLC! You have just joined the team and your first task is to 
 
 ## Builder Session Architecture
 
-Here is a diagram of the architecture.  As mentioned above, the environment contains two Web servers running Apache on Linux behind and Application Load Balancer.  Feel free to refer to this diagram if you have questions throughout this exercise.
+Here is a diagram of the architecture.  As mentioned above, the environment contains two Web servers running Apache on Linux behind and Application Load Balancer.  Feel free to refer to this diagram if you have questions throughout this exercise. 
 
 ![Workshop Architecture](images/pww-diagram.png)
 
