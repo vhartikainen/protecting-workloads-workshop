@@ -13,8 +13,9 @@ To setup the workshop environment, launch the CloudFormation stack below in the 
 	1. Navigate to the <a href="https://dashboard.eventengine.run" target="_blank">Event Engine dashboard</a>
 	2. Enter your **team hash** code. 
 	3. Click **AWS Console**
-    4. Connect to the AWS Console via Event Engine and browse to the CloudFormation Console in the N. Virginia region (us-east-1).
-	5. Move on to **[Assess phase](assess.md)**.
+    4. Make sure you are in the correct region.
+    5. Browse to the CloudFormation Console.
+	6. Move on to **[Assess phase](assess.md)**.
 
 ---
 
