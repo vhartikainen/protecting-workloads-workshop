@@ -12,7 +12,7 @@
 	4. Click **Open Console**.
 	5. Make sure you are in the N. Virginia region (us-east-1).
 	6. Go to the CloudFormation console.
-	7. Click **[here](assess.md)** to proceed to the Assess phase.
+	7. Click **[here](../perimeter-layer/assess/)** to proceed to the Assess phase.
 
 ---
 
