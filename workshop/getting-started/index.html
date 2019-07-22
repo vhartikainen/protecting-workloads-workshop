@@ -38,7 +38,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../assets/images/aws-favicon.ico">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.2.0">
     
     
       
@@ -46,12 +46,12 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.750b69bd.css">
       
       
     
     
-      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
     
     
       
@@ -866,11 +866,20 @@
                 
                 <h1 id="getting-started">Getting Started</h1>
 <h2 id="create-or-identify-exisitng-aws-account">Create or Identify Exisitng AWS account</h2>
-<p>In order to complete these workshops, you'll need a valid, usable <a href="https://aws.amazon.com/getting-started/" target="_blank">AWS Account</a>. Use a personal account or create a new AWS account to ensure you have the necessary access and that you do not accidentally modify corporate resources. Do <strong>not</strong> use an AWS account from the company you work for. </p>
-<div class="admonition info">
-<p class="admonition-title">Note About Workshop and AWS Account</p>
-<p><strong>We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account.</strong></p>
-</div>
+<details class="info"><summary>Click here if you're at an <em>AWS event</em> where the <em>Event Engine</em> is being used</summary><p><em>The CloudFormation Stack for this event should already be deployed.</em></p>
+<ol>
+<li>Click <a href="https://dashboard.eventengine.run" target="_blank">here</a> to open the Event Engine dashboard in a separate browser tab.</li>
+<li>Enter the <strong>team hash</strong> code that you were provided and click <strong>Proceed</strong>.. </li>
+<li>Click <strong>AWS Console</strong>.</li>
+<li>Click <strong>Open Console</strong>.</li>
+<li>Make sure you are in the N. Virginia region (us-east-1).</li>
+<li>Go to the CloudFormation console.</li>
+<li>Click <strong><a href="assess.md">here</a></strong> to proceed to the Assess phase.</li>
+</ol>
+</details>
+<hr />
+<details class="info"><summary>Click here if you're <em>not at an AWS event</em> or are using your own account</summary><p>In order to complete these workshops, you'll need a valid, usable <a href="https://aws.amazon.com/getting-started/" target="_blank">AWS Account</a>. Use a personal account or create a new AWS account to ensure you have the necessary access and that you do not accidentally modify corporate resources. Do <strong>not</strong> use an AWS account from the company you work for. <strong>We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account. If multiple participants are sharing a single account you should use unique names for the stack set and resources created in the console.</strong></p>
+</details>
 <h2 id="create-an-admin-user">Create an admin user</h2>
 <p>If you don't already have an AWS IAM user with admin permissions, please use the following instructions to create one:</p>
 <ol>
@@ -980,7 +989,7 @@
       
     </div>
     
-      <script src="../../assets/javascripts/application.b806dc00.js"></script>
+      <script src="../../assets/javascripts/application.39abc4af.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
