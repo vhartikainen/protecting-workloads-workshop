@@ -8,7 +8,7 @@
 	2. Enter the **team hash** code that you were provided and click **Proceed**.. 
 	3. Click **AWS Console**.
 	4. Click **Open Console**.
-	5. Make sure you are in the N. Virginia region (us-east-1).
+	5. Make sure you are in the correct region.
 	6. Go to the CloudFormation console.
 	7. Click **[here](/assess/)** to proceed to the Assess phase.
 
