@@ -4,8 +4,23 @@
 
 To setup the workshop environment, launch the CloudFormation stack below in the preferred AWS region using the "Deploy to AWS" links below. This will automatically take you to the console to run the template.
 
-!!! info "Note About Workshop and AWS Account"
-    __We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account. If multiple participants are sharing a single account you should use unique names for the stack set and resources created in the console.__
+??? info  "Click here if you're at an *AWS event* where the *Event Engine* is being used" 
+
+    _The CloudFormation Stack for this event should already be deployed._
+
+	1. Click <a href="https://dashboard.eventengine.run" target="_blank">here</a> to open the Event Engine dashboard in a separate browser tab.
+	2. Enter the **team hash** code that you were provided and click **Proceed**.. 
+	3. Click **AWS Console**.
+	4. Click **Open Console**.
+	5. Make sure you are in the N. Virginia region (us-east-1).
+	6. Go to the CloudFormation console.
+	7. Click **[here](assess.md)** to proceed to the Assess phase.
+
+---
+
+??? info  "Click here if you're *not at an AWS event* or are using your own account" 
+
+    In order to complete these workshops, you'll need a valid, usable <a href="https://aws.amazon.com/getting-started/" target="_blank">AWS Account</a>. Use a personal account or create a new AWS account to ensure you have the necessary access and that you do not accidentally modify corporate resources. Do **not** use an AWS account from the company you work for. __We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account. If multiple participants are sharing a single account you should use unique names for the stack set and resources created in the console.__
 
 ---
 
