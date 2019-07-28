@@ -1,0 +1,1330 @@
+---
+## Protecting Workloads Workshop
+##
+## Changelog:
+##  - Initial release
+##
+## Dependencies:
+## WAF, Inspector, Systems Manager
+
+AWSTemplateFormatVersion: '2010-09-09'
+Description: WAF Workshop Demo
+
+## Parameters
+Parameters:
+  EC2InstanceSize:
+    Default: "t2.small"
+    Description: Instance size for Web Servers.
+    Type: String
+    AllowedValues:
+      - "t2.small"
+      - "t2.medium"
+      - "t3.small"
+      - "t3.medium"
+  MyTrustedNetwork:
+    Description: Only connections from this network are allowed to your site. Enter an IP or CIDR E.g. 10.10.10.10/32. Get your current IP @ https://ifconfig.co/
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    Type: String
+    Default: 0.0.0.0/0
+  AutomatedScanner:
+    Description: Use automated scanner? Leave true for AWS cponsored event. Set false if non-AWS sponsored event or not using automated scanner.
+    Default: false
+    Type: String
+    AllowedValues: [true, false]
+  UserName:
+    Type: String
+    Description: Username to add endpoint for scanning? *Obtain from workshop team if using automated scanner*.
+    AllowedPattern: ".+"
+    Default: "waflab"
+  PassWord:
+    Type: String
+    Description: Password to add endpoint for scanning? *Obtain from workshop team if using automated scanner*.
+    AllowedPattern: ".+"
+  ScannerIP01:
+    Type: String
+    Default: 54.156.237.144/32
+    Description: Allow incoming connections from IP of scanner. Leave default.
+  ScannerIP02:
+    Type: String
+    Default: 3.208.55.167/32
+    Description: Allow incoming connections from IP of scanner. Leave default.
+  ArtifactsBucket:
+    Description: S3 bucket with artifact files (Lambda functions, templates, html files, etc.). Leave default.
+    Type: String
+    Default: protecting-workloads-workshop
+    AllowedPattern: ^[0-9a-zA-Z]+([0-9a-zA-Z-]*[0-9a-zA-Z])*$
+    ConstraintDescription: ArtifactsBucket S3 bucket name can include numbers, lowercase letters, uppercase letters, and hyphens (-).
+      It cannot start or end with a hyphen (-).
+  ArtifactsPrefix:
+    Description: Path in the S3 bucket containing artifact files. Leave default.
+    Type: String
+    Default: public
+    AllowedPattern: ^[0-9a-zA-Z-/]*$
+    ConstraintDescription: ArtifactsPrefix key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-),
+      and forward slash (/). Leave default.
+  AMIPreviousVersionIndex:
+    Description: Number of previous version of AMI to use [0=current AMI through 15]
+    Type: Number
+    Default: 8
+    MinValue: 0
+    MaxValue: 15
+
+#  AmazonLinux2AmiId:
+#    Type : 'AWS::SSM::Parameter::Value<String>'
+#    Description: Latest Amazon Linux 2 AMI ID. Leave default.
+#    Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
+
+
+## Metadata
+Metadata:
+
+## Friendly UI grouping for parameters
+#        - AmazonLinux2AmiId
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: Instance Configuration
+        Parameters:
+        - EC2InstanceSize
+        - MyTrustedNetwork
+        - AMIPreviousVersionIndex
+      - Label:
+          default: Automated Scanner
+        Parameters:
+        - AutomatedScanner
+        - UserName
+        - PassWord
+        - ScannerIP01
+        - ScannerIP02
+      - Label:
+          default: Artifact Configuration
+        Parameters:
+        - ArtifactsBucket
+        - ArtifactsPrefix
+
+    ParameterLabels:
+      EC2InstanceSize:
+        default: EC2 Instance Size
+      MyTrustedNetwork:
+        default: Trusted Network CIDR
+      AutomatedScanner:
+        default: Automated Scanner
+      UserName:
+        default: Automated Scanner Username
+      PassWord:
+        default: Automated Scanner Password
+      ScannerIP01:
+        default: Scanner IP01
+      ScannerIP02:
+        default: Scanner IP02
+      ArtifactsBucket:
+        default: S3 artifact bucket
+      ArtifactsPrefix:
+        default: S3 artifact path
+#      AmazonLinux2AmiId:
+#        default: Amazon Linux AMI Id
+
+Conditions:
+# Register with automated scanner?
+  UseAutomatedScanner: !Equals [!Ref AutomatedScanner, 'true' ]
+
+## Mappings
+Mappings:
+  EC2AMI:
+    us-east-1:
+      AmznLinux: ami-0b8d0d6ac70e5750c
+    us-east-2:
+      AmznLinux: ami-01aeea5586d1cb5e9
+    us-west-1:
+      AmznLinux: ami-01cd822533dfab45e
+    us-west-2:
+      AmznLinux: ami-0e07063c9635a53aa
+    eu-west-1:
+      AmznLinux: ami-0a166fb5b1a5d9532
+    ap-northeast-1:
+      AmznLinux: ami-0148288598227344a
+
+# Beginning of jsl changes for running first Inspector scan automatically
+
+  RulesPackagesMap: 
+    us-west-2:
+      CVE: 'arn:aws:inspector:us-west-2:758058086616:rulespackage/0-9hgA516p'
+      CIS: 'arn:aws:inspector:us-west-2:758058086616:rulespackage/0-H5hpSawc'
+      SBP: 'arn:aws:inspector:us-west-2:758058086616:rulespackage/0-JJOtZiqQ'
+      NET: 'arn:aws:inspector:us-west-2:758058086616:rulespackage/0-rD1z6dpl'
+      RBA: 'arn:aws:inspector:us-west-2:758058086616:rulespackage/0-vg5GGHSD'
+    us-east-1:
+      CVE: 'arn:aws:inspector:us-east-1:316112463485:rulespackage/0-gEjTy7T7'
+      CIS: 'arn:aws:inspector:us-east-1:316112463485:rulespackage/0-rExsr2X8'
+      NET: 'arn:aws:inspector:us-east-1:316112463485:rulespackage/0-PmNV0Tcd'
+      SBP: 'arn:aws:inspector:us-east-1:316112463485:rulespackage/0-R01qwB5Q'
+      RBA: 'arn:aws:inspector:us-east-1:316112463485:rulespackage/0-gBONHN9h'
+    us-east-2:
+      CVE: 'arn:aws:inspector:us-east-2:646659390643:rulespackage/0-JnA8Zp85'
+      CIS: 'arn:aws:inspector:us-east-2:646659390643:rulespackage/0-m8r61nnh'
+      NET: 'arn:aws:inspector:us-east-2:646659390643:rulespackage/0-cE4kTR30'
+      SBP: 'arn:aws:inspector:us-east-2:646659390643:rulespackage/0-AxKmMHPX'
+      RBA: 'arn:aws:inspector:us-east-2:646659390643:rulespackage/0-UCYZFKPV'
+    us-west-1:
+      CVE: 'arn:aws:inspector:us-west-1:166987590008:rulespackage/0-TKgzoVOa'
+      CIS: 'arn:aws:inspector:us-west-1:166987590008:rulespackage/0-xUY8iRqX'
+      NET: 'arn:aws:inspector:us-west-1:166987590008:rulespackage/0-TxmXimXF'
+      SBP: 'arn:aws:inspector:us-west-1:166987590008:rulespackage/0-byoQRFYm'
+      RBA: 'arn:aws:inspector:us-west-1:166987590008:rulespackage/0-yeYxlt0x'
+    ap-south-1:
+      CVE: 'arn:aws:inspector:ap-south-1:162588757376:rulespackage/0-LqnJE9dO'
+      CIS: 'arn:aws:inspector:ap-south-1:162588757376:rulespackage/0-PSUlX14m'
+      NET: 'arn:aws:inspector:ap-south-1:162588757376:rulespackage/0-YxKfjFu1'
+      SBP: 'arn:aws:inspector:ap-south-1:162588757376:rulespackage/0-fs0IZZBj'
+      RBA: 'arn:aws:inspector:ap-south-1:162588757376:rulespackage/0-EhMQZy6C'
+    ap-southeast-2:
+      CVE: 'arn:aws:inspector:ap-southeast-2:454640832652:rulespackage/0-D5TGAxiR'
+      CIS: 'arn:aws:inspector:ap-southeast-2:454640832652:rulespackage/0-Vkd2Vxjq'
+      NET: 'arn:aws:inspector:ap-southeast-2:454640832652:rulespackage/0-FLcuV4Gz'
+      SBP: 'arn:aws:inspector:ap-southeast-2:454640832652:rulespackage/0-asL6HRgN'
+      RBA: 'arn:aws:inspector:ap-southeast-2:454640832652:rulespackage/0-P8Tel2Xj'
+    ap-northeast-2:
+      CVE: 'arn:aws:inspector:ap-northeast-2:526946625049:rulespackage/0-PoGHMznc'
+      CIS: 'arn:aws:inspector:ap-northeast-2:526946625049:rulespackage/0-T9srhg1z'
+      NET: 'arn:aws:inspector:ap-northeast-2:526946625049:rulespackage/0-s3OmLzhL'
+      SBP: 'arn:aws:inspector:ap-northeast-2:526946625049:rulespackage/0-2WRpmi4n'
+      RBA: 'arn:aws:inspector:ap-northeast-2:526946625049:rulespackage/0-PoYq7lI7'
+    ap-northeast-1:
+      CVE: 'arn:aws:inspector:ap-northeast-1:406045910587:rulespackage/0-gHP9oWNT'
+      CIS: 'arn:aws:inspector:ap-northeast-1:406045910587:rulespackage/0-7WNjqgGu'
+      NET: 'arn:aws:inspector:ap-northeast-1:406045910587:rulespackage/0-YI95DVd7'
+      SBP: 'arn:aws:inspector:ap-northeast-1:406045910587:rulespackage/0-bBUQnxMq'
+      RBA: 'arn:aws:inspector:ap-northeast-1:406045910587:rulespackage/0-knGBhqEu'
+    eu-west-1:
+      CVE: 'arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-ubA5XvBh'
+      CIS: 'arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-sJBhCr0F'
+      NET: 'arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-SPzU33xe'
+      SBP: 'arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-SnojL3Z6'
+      RBA: 'arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-lLmwe1zd'
+    eu-west-2:
+      CVE: 'arn:aws:inspector:eu-west-2:146838936955:rulespackage/0-kZGCqcE1'
+      CIS: 'arn:aws:inspector:eu-west-2:146838936955:rulespackage/0-IeCjwf1W'
+      NET: 'arn:aws:inspector:eu-west-2:146838936955:rulespackage/0-AizSYyNq'
+      SBP: 'arn:aws:inspector:eu-west-2:146838936955:rulespackage/0-XApUiSaP'
+      RBA: 'arn:aws:inspector:eu-west-2:146838936955:rulespackage/0-S8t0UlXB'
+    eu-central-1:
+      CVE: 'arn:aws:inspector:eu-central-1:537503971621:rulespackage/0-wNqHa8M9'
+      CIS: 'arn:aws:inspector:eu-central-1:537503971621:rulespackage/0-nZrAVuv8'
+      NET: 'arn:aws:inspector:eu-central-1:537503971621:rulespackage/0-6yunpJ91'
+      SBP: 'arn:aws:inspector:eu-central-1:537503971621:rulespackage/0-ZujVHEPB'
+      RBA: 'arn:aws:inspector:eu-central-1:537503971621:rulespackage/0-0GMUM6fg'
+    us-gov-east-1:
+      CVE: 'arn:aws-us-gov:inspector:us-gov-east-1:206278770380:rulespackage/0-3IFKFuOb'
+      CIS: 'arn:aws-us-gov:inspector:us-gov-east-1:206278770380:rulespackage/0-pTLCdIww'
+      SBP: 'arn:aws-us-gov:inspector:us-gov-east-1:206278770380:rulespackage/0-vlgEGcVD'
+      RBA: 'arn:aws-us-gov:inspector:us-gov-east-1:206278770380:rulespackage/0-850TmCFX'
+    us-gov-west-1:
+      CVE: 'arn:aws-us-gov:inspector:us-gov-west-1:850862329162:rulespackage/0-4oQgcI4G'
+      CIS: 'arn:aws-us-gov:inspector:us-gov-west-1:850862329162:rulespackage/0-Ac4CFOuc'
+      SBP: 'arn:aws-us-gov:inspector:us-gov-west-1:850862329162:rulespackage/0-rOTGqe5G'
+      RBA: 'arn:aws-us-gov:inspector:us-gov-west-1:850862329162:rulespackage/0-JMyjuzoW'
+      
+# End of jsl changes for running first Inspector scan automatically
+
+## Resources
+Resources:
+
+## The VPC
+  vpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      InstanceTenancy: default
+      CidrBlock: !Sub 10.5.0.0/16
+      Tags:
+        - Key: Name
+          Value: !Join ["-" , [!Ref 'AWS::StackName', vpc]]
+
+## Create an IGW & attach it to the VPC
+  vpcIgw:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: !Join ["-" , [!Ref 'AWS::StackName', Igw]]
+  attachIgwVpc:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref vpc
+      InternetGatewayId: !Ref vpcIgw
+
+## Create a public subnet in each AZ
+  sub1Public:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref vpc
+      CidrBlock: !Sub 10.5.1.0/24
+      AvailabilityZone: !Select 
+        - 0
+        - !GetAZs 
+          Ref: 'AWS::Region'
+      MapPublicIpOnLaunch: false
+      Tags:
+      Tags:
+        - Key: Name
+          Value: !Join ["-" , [!Ref 'AWS::StackName', PubSub1]]
+  sub2Public:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref vpc
+      CidrBlock: !Sub 10.5.2.0/24
+      AvailabilityZone: !Select 
+        - 1
+        - !GetAZs 
+          Ref: 'AWS::Region'
+      MapPublicIpOnLaunch: false
+      Tags:
+      Tags:
+        - Key: Name
+          Value: !Join ["-" , [!Ref 'AWS::StackName', PubSub2]]
+
+## Associate the public subnets with a public route table
+  rtbPublic:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref vpc
+      Tags:
+        - Key: Name
+          Value: !Join ["-" , [!Ref 'AWS::StackName', PubRoutes]]
+  rteToIgw:
+    Type: AWS::EC2::Route
+    DependsOn: attachIgwVpc
+    Properties:
+      RouteTableId: !Ref rtbPublic
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref vpcIgw
+  srta1Public:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref sub1Public
+      RouteTableId: !Ref rtbPublic
+  srta2Public:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref sub2Public
+      RouteTableId: !Ref rtbPublic
+
+## Create a private subnet in each AZ
+  sub1Private:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref vpc
+      CidrBlock: !Sub 10.5.11.0/24
+      AvailabilityZone: !Select 
+        - 0
+        - !GetAZs 
+          Ref: 'AWS::Region'
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: !Join ["-" , [!Ref 'AWS::StackName', PrvSub1]]
+  sub2Private:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref vpc
+      CidrBlock: !Sub 10.5.12.0/24
+      AvailabilityZone: !Select 
+        - 1
+        - !GetAZs 
+          Ref: 'AWS::Region'
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: !Join ["-" , [!Ref 'AWS::StackName', PrvSub2]]
+
+## Create a NAT Gateway & EIP
+  natEip:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+  vpcNgw:
+    Type: AWS::EC2::NatGateway
+    DependsOn: attachIgwVpc
+    Properties:
+      AllocationId: !GetAtt natEip.AllocationId
+      SubnetId: !Ref sub2Public
+      Tags:
+        - Key: Name
+          Value: !Join ["-" , [!Ref 'AWS::StackName', Ngw]]
+
+## Associate the private subnets with a natted route table
+  rtbNat:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref vpc
+      Tags:
+        - Key: Name
+          Value: !Join ["-" , [!Ref 'AWS::StackName', NgwRoutes]]
+  rteToNgw:
+    Type: AWS::EC2::Route
+    DependsOn: vpcNgw
+    Properties:
+      RouteTableId: !Ref rtbNat
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: !Ref vpcNgw
+  srta1Ngw:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref sub1Private
+      RouteTableId: !Ref rtbNat
+  srta2Ngw:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref sub2Private
+      RouteTableId: !Ref rtbNat
+
+## Configure ALB: security group, load balancer, route 53 endpoint
+  
+  sgLoadBalancer1:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      VpcId: !Ref vpc
+      GroupDescription: Load Balancer Security Group
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: !Ref MyTrustedNetwork
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: !Join ["" , [!Ref natEip, "/32"]]
+      Tags:
+        - Key: Name
+          Value: !Join ["-" , [!Ref 'AWS::StackName', AlbSg]]
+
+  sgLoadBalancer2:
+    Condition: UseAutomatedScanner
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      VpcId: !Ref vpc
+      GroupDescription: Load Balancer Security Group
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: !Ref MyTrustedNetwork
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: !Ref ScannerIP01
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: !Ref ScannerIP02
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: !Join ["" , [!Ref natEip, "/32"]]
+      Tags:
+        - Key: Name
+          Value: !Join ["-" , [!Ref 'AWS::StackName', AlbSg]]
+
+  Alb:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Scheme: internet-facing
+      Name: !Join ["-" , [!Ref 'AWS::StackName', Alb]]
+      SecurityGroups: 
+        - !If [ UseAutomatedScanner, !Ref sgLoadBalancer2, !Ref sgLoadBalancer1 ]
+      Subnets: [ !Ref sub1Public, !Ref sub2Public ]
+      Tags:
+        - Key: Name
+          Value: !Join ["-" , [!Ref 'AWS::StackName', Alb]]
+
+  AlbTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      HealthCheckIntervalSeconds: 10
+      HealthCheckPath: /health.php
+      HealthCheckProtocol: HTTP
+      HealthCheckTimeoutSeconds: 5
+      HealthyThresholdCount: 2
+      Name: !Join ["-" , [!Ref 'AWS::StackName', TargGrp]]
+      Port: 80
+      Protocol: HTTP
+      UnhealthyThresholdCount: 2
+      VpcId: !Ref vpc
+      Tags:
+        - Key: Name
+          Value: !Join ["-" , [!Ref 'AWS::StackName', TargGrp]]
+
+  AlbListenerHttp:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    DependsOn: [ AlbTargetGroup ]
+    Properties:
+      LoadBalancerArn: !Ref Alb
+      Port: 80
+      Protocol: HTTP
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn: !Ref AlbTargetGroup
+
+## Configure the ECS ASG, security group, launch configuration, IAM role, load balancer, cloudwatch log group, route53 endpoint
+  sgEC2Sg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      VpcId: !Ref vpc
+      GroupDescription: EC2 Instance Security Group
+      Tags:
+        - Key: Name
+          Value: !Join ["-" , [!Ref 'AWS::StackName', EC2Sg]]
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 0
+          ToPort: 65535
+          SourceSecurityGroupId: 
+            !If [ UseAutomatedScanner, !Ref sgLoadBalancer2, !Ref sgLoadBalancer1 ]
+
+#        Fn::FindInMap:
+#        - EC2AMI
+#        - !Ref AWS::Region
+#        - AmznLinux
+
+#        !Ref AmazonLinux2AmiId
+
+  LaunchConfiguration:
+    Type: AWS::AutoScaling::LaunchConfiguration
+    Properties:
+      ImageId:
+        !GetAtt AMIInfo.Id
+      SecurityGroups:
+      - !GetAtt sgEC2Sg.GroupId
+      InstanceType: !Ref EC2InstanceSize
+      IamInstanceProfile:
+        Ref: EC2InstanceProfile
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash -xe
+          #yum update -y
+          yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+          curl --silent --location https://rpm.nodesource.com/setup_10.x | bash -
+          amazon-linux-extras install -y php7.2
+          yum install -y nodejs curl git httpd
+          ln -s /usr/bin/node /usr/bin/nodejs
+          node -v
+          npm install -g bower
+          /usr/bin/aws configure set region ${AWS::Region}
+          /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource LaunchConfiguration --configsets site_config --region ${AWS::Region}
+          /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource AutoScalingGroup --region ${AWS::Region}
+
+    Metadata:
+        AWS::CloudFormation::Init:
+          configSets:
+            site_config:
+            - init_site
+          init_site:
+            commands:
+              01getsite_content:
+                cwd: /tmp
+                command: "cd /tmp; curl -O https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/pww_site.zip"
+              02get_composer:
+                cwd: /tmp
+                env:
+                  COMPOSER_HOME: /composer
+                  COMPOSER_ALLOW_SUPERUSER: 1
+                  PATH: /usr/bin:/usr/local/bin:/sbin:$PATH
+                command: "curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer"
+              03putsite_content: 
+                cwd: /tmp
+                command: "unzip -qo /tmp/pww_site.zip -d /var/www/ && chmod -R 755 /var/www/*"
+              04install_frameworks:
+                cwd: /var/www/
+                env:
+                  COMPOSER_HOME: /composer
+                  COMPOSER_ALLOW_SUPERUSER: 1
+                  PATH: /usr/bin:/usr/local/bin:/sbin:$PATH
+                command: "cd /var/www/; php /usr/local/bin/composer install; bower install --allow-root; systemctl enable httpd; systemctl start httpd"
+
+
+  AutoScalingGroup:
+    DependsOn: Alb
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      VPCZoneIdentifier:
+      - !Ref sub1Private
+      - !Ref sub2Private
+      LaunchConfigurationName: !Ref LaunchConfiguration
+      MinSize: '2'
+      MaxSize: '2'
+      TargetGroupARNs:
+      - !Ref AlbTargetGroup
+      DesiredCapacity: '2'
+      HealthCheckType: ELB
+      HealthCheckGracePeriod: 120
+      Tags:
+       -
+        Key: Name
+        Value: !Join ["-" , [!Ref 'AWS::StackName', node]]
+        PropagateAtLaunch: true
+    CreationPolicy:
+      ResourceSignal:
+        Timeout: PT10M
+    UpdatePolicy:
+      AutoScalingReplacingUpdate:
+        WillReplace: 'true'
+
+## Deploy a WAF WebACL, Sample Rule, Sample IPSet
+  wafBlacklistIpSet:
+    Type: AWS::WAFRegional::IPSet
+    Properties:
+      Name: WafIpBlacklist
+      IPSetDescriptors:
+        - Type: IPV4
+          Value: 127.0.0.0/8
+        - Type: IPV6
+          Value: ::1/128
+  wafBlacklistIpRule:
+    Type: AWS::WAFRegional::Rule
+    Properties:
+      MetricName: WafIpBlacklist
+      Name: WafIpBlacklist
+      Predicates:
+        - Type: IPMatch
+          Negated: false
+          DataId: !Ref wafBlacklistIpSet
+  wafACL:
+    Type: AWS::WAFRegional::WebACL
+    Properties:
+      MetricName: PWWLabWAF
+      Name: PWWLabWAF
+      DefaultAction:
+        Type: ALLOW
+      Rules:
+        - Action:
+            Type: BLOCK
+          Priority: 10
+          RuleId: !Ref wafBlacklistIpRule
+
+## Associate WAF ACL with load balancer
+  wafALBAssociation:
+    Type: AWS::WAFRegional::WebACLAssociation
+    Properties:
+      ResourceArn: !Ref Alb
+      WebACLId: !Ref wafACL
+
+##  Configure the EC2 IAM role along with supporting resources
+  EC2InstanceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Join ["-" , [!Ref 'AWS::StackName', EC2Role]]
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - "sts:AssumeRole"
+            Principal:
+              Service:
+                - "ec2.amazonaws.com"
+                - "ssm.amazonaws.com"
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM
+      Policies:
+        - PolicyName: inline-policy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action: [ "waf-regional:GetSampledRequests", "cloudwatch:GetMetricStatistics" ]
+                Resource: "*"
+              -
+                Effect: "Allow"
+                Action:
+                  - "logs:CreateLogGroup"
+                  - "logs:CreateLogStream"
+                  - "logs:PutLogEvents"
+                  - "logs:DescribeLogStreams"
+                Resource: "arn:aws:logs:*:*:*"
+              -
+                Action:
+                  - s3:ListBucket
+                Effect: Allow
+                Resource:
+                  - !Join ['', ['arn:aws:s3:::', !Ref 'ArtifactsBucket']]
+              -
+                Action:
+                  - s3:GetObject
+                Effect: Allow
+                Resource:
+                  - !Join ['', ['arn:aws:s3:::', !Ref 'ArtifactsBucket', /, !Ref 'ArtifactsPrefix', /*]]
+
+  EC2InstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Path: /
+      Roles:
+      - Ref: EC2InstanceRole
+
+  AddScanTarg:
+    Condition: UseAutomatedScanner
+    DependsOn:
+      - "Alb"
+    Type: "Custom::AddScanTarg"
+    Version: "1.0"
+    Properties:
+      ServiceToken: !GetAtt AddScanTargFunction.Arn
+      Region: !Ref "AWS::Region"
+  AddScanTargFunction:
+    Condition: UseAutomatedScanner
+    Type: AWS::Lambda::Function
+    Properties:
+      Description: Add ALB endpoint to scanning engine
+      Handler: index.handler
+      Runtime: python3.7
+      Environment:
+        Variables:
+          APIEP: https://orhqd0jp27.execute-api.us-east-1.amazonaws.com/dev/targ
+          USERNAME: !Ref UserName
+          PASSWORD: !Ref PassWord
+          TARGID: !GetAtt Alb.DNSName
+          STACKID: !Ref AWS::StackId
+      Role: !GetAtt AddScanTargExecutionRole.Arn
+      Timeout: 60
+      Code:
+        ZipFile: |
+          import cfnresponse
+          import os
+          import boto3
+          import time
+          import json
+          import datetime
+          import logging
+          import string
+          from random import *
+          from botocore.vendored import requests 
+          from base64 import b64decode, b64encode
+          from botocore.exceptions import ClientError
+          from six.moves.urllib.parse import quote, unquote
+
+          logger = logging.getLogger()
+          logger.setLevel(logging.INFO)
+          client = boto3.client('apigateway')
+          APIEP = os.environ['APIEP']
+          TargId = os.environ['TARGID']
+          UserName = os.environ['USERNAME']
+          PassWord = os.environ['PASSWORD']
+          StackId = os.environ['STACKID']
+          class EncodeError(Exception):
+            pass
+          def encode(username, password):
+            if ':' in username:
+                raise EncodeError
+            username_password = '%s:%s' % (quote(username), quote(password))
+            return 'Basic ' + b64encode(username_password.encode()).decode()
+          def handler(event, context):
+            url = APIEP
+            AuthToken = encode(UserName, PassWord)
+            timestamp = int(time.time())
+            headers = {'content-type': 'application/json', 'authorizationToken': AuthToken }
+            logger.info('Received event: {}'.format(json.dumps(event)))
+            try:
+              responseData = {}
+              # Assume failure unless we get 200 response
+              responseStatus = cfnresponse.FAILED
+              if event['RequestType'] == 'Delete':
+                payload = { "Key": { "targid": {"S": TargId } }, "TableName": "waflab" }
+                response = requests.delete(url, data=json.dumps(payload), headers=headers)
+                responseData = {'StatusCode': response.status_code}
+                responseStatus = cfnresponse.SUCCESS
+              elif event['RequestType'] == 'Create' or event['RequestType'] == 'Update':
+                min_char = 8
+                max_char = 8
+                allchar = string.ascii_lowercase + string.digits
+                UUID = "".join(choice(allchar) for x in range(randint(min_char, max_char)))
+                EXP = timestamp + + 12 * 60 * 60
+                payload = { "Item": { "targid": {"S": TargId }, "uuid": {"S": UUID }, "stackid": {"S": StackId}, "timestamp": { "N": str(timestamp) }, "ttl": {"N": str(EXP) } }, "TableName": "waflab" }
+                response = requests.post(url, data=json.dumps(payload), headers=headers)
+                logger.info('Response Text: {}'.format(response.text))
+                responseData = {'UUID': UUID }
+                if 'deny' not in response.text:
+                  responseStatus = cfnresponse.SUCCESS
+              else:
+                responseStatus = cfnresponse.FAILED
+            except ClientError as e:
+              logger.error('Error: {}'.format(e))
+              responseStatus = cfnresponse.FAILED
+            # Log the response status
+            logger.info('Returning response status of: {}'.format(responseStatus))
+            # Send result to stack
+            cfnresponse.send(event, context, responseStatus, responseData)
+  AddScanTargExecutionRole:
+      Condition: UseAutomatedScanner
+      Type: AWS::IAM::Role
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: 2012-10-17
+          Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+        Policies:
+        - PolicyName: AddTargRole
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Effect: Allow
+              Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+              - logs:DescribeLogStreams
+              Resource: arn:aws:logs:*:*:*
+
+  # Red Team Scanner / Testing Instance
+
+#          Fn::FindInMap:
+#          - EC2AMI
+#          - Ref: AWS::Region
+#          - AmznLinux
+
+
+  AMILambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: "/"
+      Policies:
+      - PolicyName: root
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+            Resource: arn:aws:logs:*:*:*
+          - Effect: Allow
+            Action:
+            - ec2:DescribeImages
+            Resource: "*"
+
+# AMIInfoFunction - Look up an AMI based on a NameFilter
+#
+# This AWS Lambda function is used to look up an Amazon EC2 AMI based
+# on a name filter. An example of a name filter would be:
+#
+# amzn2-ami-hvm\*ebs
+#
+# After looking up the names of all images that satify the filter,
+# they are sorted in reverse by date/time stamp and the first AMI
+# ID (which corresponds to the newest AMI) is returned.
+#
+# Using a Lambda function makes it possible to look up the AMI
+# dynamically.  THe alternative would be to create a static map.
+
+  AMIInfoFunction:
+    Type: AWS::Lambda::Function
+    Properties: 
+      Description: "Look up an AMI based on a filter"
+      Handler: index.handler
+      MemorySize: 128
+      Role: !GetAtt AMILambdaExecutionRole.Arn
+      Runtime: "python3.6"
+      Timeout: 30
+      Code:
+        ZipFile: !Sub |
+          import json
+          import boto3
+          import cfnresponse
+          def handler(event, context):
+            if event['RequestType'] == 'Delete':
+              responseData = {}      
+              cfnresponse.send(event, context, cfnresponse.SUCCESS, responseData)
+              return
+            
+            ec2=boto3.client('ec2')
+            imageDescriptions=ec2.describe_images(
+              Owners=['amazon'],
+              Filters=[
+                {'Name': 'name', 'Values': [event['ResourceProperties']['NameFilter']]}
+              ],
+            )
+            
+            numImageDescriptions = len(imageDescriptions['Images'])
+            if numImageDescriptions < 2:
+              responseData = {}
+              cfnresponse.send(event, context, cfnresponse.FAILED, responseData)
+            else:
+              amiNames = sorted(imageDescriptions['Images'],
+                key=lambda x: x['CreationDate'],
+                reverse=True)
+              responseData = {}
+              responseData['Id'] = amiNames[${AMIPreviousVersionIndex}]['ImageId']
+              cfnresponse.send(event, context, cfnresponse.SUCCESS, responseData)
+            return
+
+# AMIInfo - The AWS Lambda-backed resource for looking up an Amazon EC2 AMI
+#
+# Parameters
+#
+# ServiceToken - a pointer to the AWS Lambda function
+# NameFilter - the name filter to pass to the describe_images API
+
+#            !Ref AmazonLinux2AmiId
+
+
+  AMIInfo:
+    Type: Custom::AMIInfo
+    Properties:
+      ServiceToken: !GetAtt AMIInfoFunction.Arn
+      NameFilter: 'amzn2-ami-hvm*gp2'
+
+  RedTeamHost:
+      Type: AWS::EC2::Instance
+      Metadata:
+        AWS::CloudFormation::Init:
+          configSets:
+              Scanner_Install:
+                - configure_scanner
+          configure_scanner:
+            commands:
+              download:
+                cwd: /usr/bin
+                command: "cd /usr/bin; curl -O https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/scanner.py"
+      Properties:
+        ImageId:
+          !GetAtt AMIInfo.Id
+        InstanceType: !Ref EC2InstanceSize
+        IamInstanceProfile:
+          Ref: EC2InstanceProfile
+        SubnetId:
+              Ref: sub2Private          
+        Tags:
+        - Key: Name
+          Value: !Join ["-" , [!Ref 'AWS::StackName', RedTeamHost]]
+        UserData:
+          Fn::Base64: !Sub |
+            #!/bin/bash -xe
+            # yum update -y
+            yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+            amazon-linux-extras install -y python3 
+            sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+            yum install -y curl git httpie
+            /usr/bin/aws configure set region ${AWS::Region}
+            /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource RedTeamHost --configsets Scanner_Install --region ${AWS::Region}
+            /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource RedTeamHost --region ${AWS::Region}
+      CreationPolicy:
+        ResourceSignal:
+          Timeout: PT15M
+
+# Beginning of jsl changes for running first Inspector scan automatically
+
+# ICSLRExecutionRole - The AWS Lambda execution
+# role for the custom CloudFormation resources that are used to create the
+# service-linked role.
+#
+# It must include permissions for all the API calls made by the Lambda
+# function.  This typically includes the APIsneeded to write to Amazon
+# CloudWatch Logs.  In this case, since we are using a custom resource to
+# work with service-linked role, it must include the IAM permissions to
+# call the GetRole and CreateServiceLinkedRole APIs.
+#
+# Note: ICSLR is short for Idempotent Create Service-Linked Role
+
+  ICSLRExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: '/'
+      Policies:
+      - PolicyName: root
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+            Resource: arn:aws:logs:*:*:*
+          - Effect: Allow
+            Action:
+            - iam:CreateServiceLinkedRole
+            - iam:GetRole
+            Resource: '*'
+
+# ICSLRFunction
+#
+# This Lambda function backs a custome CloudFormation resources and creates an
+# AWS service-linked role if it doesn't already exist.
+#
+# The function accepts the following parameters that are passed as properties:
+#
+# (1) The AWS service name (e.g. 'inspector.amazonaws.com')
+#
+# The function then does the following:
+#
+# (1) Looks up the corresponding default IAM role name associated with the
+#     ervice.  If it finds the role, it sets the resource response Arn and
+#     RoleId values.
+#
+# (2) If the service-linked role does not exist, create it.  If the creation is
+#     successful, return the Arn and RoleId in the resource response.
+#
+# (3) If the creation of the service-linked role fails report an error.
+#
+# Caveats:
+# 
+# (1) This function does not pass the ACID test. If multiple copies of this
+#     function are running with the same AWS service name in the same region
+#     at the same time, there could be some conflicts.
+#
+# (2) The function does not support the 'suffix' extension that allows
+#     multiple service-linked roles to exist for the same service.
+#     That is actually why this code was written.
+#
+# (3) The function ignores deletes and updates.
+#
+# Note: ICSLR is short for Idempotent Create Service-Linked Role
+
+  ICSLRFunction:
+    Type: AWS::Lambda::Function
+    Properties: 
+      Handler: index.handler
+      MemorySize: 128
+      Role: !GetAtt ICSLRExecutionRole.Arn
+      Runtime: 'python3.6'
+      Timeout: 30
+      Code:
+        ZipFile: |
+          import json
+          import boto3
+          import cfnresponse
+          import string
+          from botocore.exceptions import ClientError
+
+          def handler(event, context):
+            serviceDictionary = {
+              'inspector.amazonaws.com': 'AWSServiceRoleForAmazonInspector'
+            }
+
+            print('event =', json.dumps(event))
+
+            if event['RequestType'] in ['Delete', 'Update']:
+              responseData = {}      
+              cfnresponse.send(
+                event,
+                context,
+                cfnresponse.SUCCESS,
+                responseData
+              )
+              return
+            
+            client = boto3.client('iam')
+            awsServiceName = event['ResourceProperties']['AWSServiceName']
+
+            if not awsServiceName in serviceDictionary:
+              responseData = {}
+              cfnresponse.send(
+                event,
+                context,
+                cfnresponse.FAILED,
+                responseData
+              )
+              return
+
+            try:
+              response = client.get_role(
+                RoleName = serviceDictionary[awsServiceName]
+              )
+              roleAlreadyExists = True
+            except:
+              roleAlreadyExists = False
+
+            if roleAlreadyExists:
+              print(
+                'The service-linked role for service',
+                awsServiceName,
+                'already exists.  The Arn and RoleId will be returned.'
+              )
+              responseData = {
+                'Arn': response['Role']['Arn'],
+                'RoleId': response['Role']['RoleId']
+              }      
+              cfnresponse.send(
+                event,
+                context,
+                cfnresponse.SUCCESS,
+                responseData
+              )
+              return
+
+            try:
+              response = client.create_service_linked_role(
+                AWSServiceName=awsServiceName
+              )
+              createRoleSucceeded=True
+            except ClientError as e:
+              createRoleSucceeded=False
+
+            if createRoleSucceeded:
+              print(
+                'The service-linked role for service',
+                awsServiceName,
+                'has been created.  The Arn and RoleId will be returned.'
+              )
+
+              responseData = {
+                'Arn': response['Role']['Arn'],
+                'RoleId': response['Role']['RoleId']
+              }      
+              cfnresponse.send(
+                event,
+                context,
+                cfnresponse.SUCCESS,
+                responseData
+              )
+            else:
+              print(
+                'Unable to create the service-linked role for service',
+                awsServiceName,
+                '.'
+              )
+              print('exception =', json.dumps(e.response))
+              responseData = {}
+              cfnresponse.send(
+                event,
+                context,
+                cfnresponse.FAILED,
+                responseData
+              )
+
+  InspectorCreateServiceLinkedRole:
+    Type: Custom::InspectorCreateServiceLinkedRole
+    DeletionPolicy: Retain
+    Properties:
+      ServiceToken: !GetAtt ICSLRFunction.Arn
+      AWSServiceName: 'inspector.amazonaws.com'
+
+  InspectorResourceGroup:
+    Type: AWS::Inspector::ResourceGroup
+    Properties: 
+      ResourceGroupTags: 
+        - Key: 'aws:cloudformation:stack-name'
+          Value: !Ref 'AWS::StackName'
+
+  InspectorTarget:
+    Type: AWS::Inspector::AssessmentTarget
+    Properties: 
+      ResourceGroupArn: !GetAtt InspectorResourceGroup.Arn
+
+  InspectorTemplate:
+    Type: AWS::Inspector::AssessmentTemplate
+    Properties: 
+      AssessmentTargetArn: !GetAtt InspectorTarget.Arn
+      DurationInSeconds: 900
+      RulesPackageArns: 
+        - !FindInMap [RulesPackagesMap, !Ref 'AWS::Region', CVE]
+        - !FindInMap [RulesPackagesMap, !Ref 'AWS::Region', SBP]
+
+  InspectorInstallAgents:
+    Type: "AWS::SSM::Association"
+    DependsOn:
+    - AutoScalingGroup
+    - RedTeamHost
+    Properties: 
+      Name: AmazonInspector-ManageAWSAgent
+      Parameters:
+        Operation:
+        - Install
+      Targets:
+      - Key: 'tag:aws:cloudformation:stack-name'
+        Values:
+        - !Ref 'AWS::StackName'
+
+# InspectorRunAssessmentExecutionRole - The AWS Lambda execution
+# role for the custom CloudFormation resources that are used to
+# run the assessment.
+#
+# It must include permissions for all the API calls made by the Lambda
+# function.  This typically includes the APIsneeded to write to Amazon
+# CloudWatch Logs.  In this case, since we are using a custom resource to
+# work with service-linked role, it must include the IAM permissions to
+# call the start_assessment_run.
+
+  InspectorRunAssessmentExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: '/'
+      Policies:
+      - PolicyName: root
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+            Resource: arn:aws:logs:*:*:*
+          - Effect: Allow
+            Action:
+            - inspector:StartAssessmentRun
+            Resource: '*'
+
+# InspectorRunAssessmentFunction
+#
+# This Lambda function backs a custome CloudFormation resources and starts an
+# Amazon Inspector run.
+#
+# The function accepts the following parameters that are passed as properties:
+#
+# (1) The Amazon Inspector template ARN - REQUIRED PARAMETER
+# (2) The number of seconds to sleep before starting the assessment.  This can
+#     be useful to allow some time for the inspector agents to register with
+#     Inspector after the agents are installed. - REQUIRED PARAMETER
+#
+# The function then does the following:
+#
+# (1) Starts an Amazon Inspector run
+#
+# Caveats:
+# 
+# (1) The function ignores deletes and updates but if the underlying Inspector
+#     template is deleted, the run findings will also be deleted.
+# (2) The function is considered "complete" once the assessment is launched.
+#     The assessment will take the number of seconds specified in the
+#     assessment template.
+
+  InspectorRunAssessmentFunction:
+    Type: AWS::Lambda::Function
+    Properties: 
+      Handler: index.handler
+      MemorySize: 128
+      Role: !GetAtt InspectorRunAssessmentExecutionRole.Arn
+      Runtime: 'python3.6'
+      Timeout: 900
+      Code:
+        ZipFile: |
+          import json
+          import boto3
+          import cfnresponse
+          import string
+          import time
+
+          from botocore.exceptions import ClientError
+
+          def handler(event, context):
+            print('event =', json.dumps(event))
+
+            if event['RequestType'] in ['Delete', 'Update']:
+              responseData = {}      
+              cfnresponse.send(
+                event,
+                context,
+                cfnresponse.SUCCESS,
+                responseData
+              )
+              return
+            
+            client = boto3.client('inspector')
+            templateArn = event['ResourceProperties']['AssessmentTemplateArn']
+            initialDelaySeconds = int(
+              event['ResourceProperties']['InitialDelaySeconds']
+            )
+
+            if initialDelaySeconds < 0:
+              initialDelaySeconds = 0
+            elif initialDelaySeconds > 840:
+              initialDelaySeconds = 840
+
+            if (initialDelaySeconds > 0):
+              time.sleep(initialDelaySeconds)
+
+            try:
+              response = client.start_assessment_run(
+                assessmentTemplateArn = templateArn
+              )
+              assessmentStarted = True
+            except ClientError as e:
+              assessmentStarted = False
+
+            if assessmentStarted:
+              assessmentRunArn = response['assessmentRunArn']
+              print(
+                'Amazon Inspector assessment started, ARN =',
+                assessmentRunArn
+              )
+              responseData = {
+                'assessmentRunArn': assessmentRunArn
+              }      
+              cfnresponse.send(
+                event,
+                context,
+                cfnresponse.SUCCESS,
+                responseData
+              )
+            else:
+              responseData = { }
+              print(
+                  'unable to start Amazon Inspector assessment, exception =',
+                  json.dumps(e)
+                )
+              responseData = {}
+              cfnresponse.send(
+                event,
+                context,
+                cfnresponse.FAILED,
+                responseData
+              )
+
+  InspectorRunAssessment:
+    Type: Custom::InspectorRunAssessment
+    DependsOn: InspectorInstallAgents
+    DeletionPolicy: Retain
+    Properties:
+      ServiceToken: !GetAtt InspectorRunAssessmentFunction.Arn
+      AssessmentTemplateArn: !GetAtt InspectorTemplate.Arn
+      InitialDelaySeconds: 60
+
+# End of jsl changes for running first Inspector scan automatically
+
+## Outputs
+Outputs:
+  cfnVersion:
+    Value: 0.1
+  accountId:
+    Value: !Ref AWS::AccountId
+  albEndpoint:
+    Value: !Join ['', ['http://', !GetAtt Alb.DNSName]]
+  ScannerUID:
+    Condition: UseAutomatedScanner
+    Value: !GetAtt AddScanTarg.UUID
+  wafWebACL:
+    Value: !Ref wafACL
+  RedTeamHostSession:
+    Value: !Join ['', ['https://console.aws.amazon.com/systems-manager/session-manager/', !Ref RedTeamHost, '?', !Ref 'AWS::Region']]

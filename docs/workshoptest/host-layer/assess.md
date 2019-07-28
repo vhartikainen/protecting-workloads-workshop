@@ -89,61 +89,19 @@ In this section you will do the following tasks:
 
     Security Best Practices: The rules in this package help determine whether your systems are configured securely.  For example, one rule in this package checks to see if root login has been disabled over ssh.  You typically remediate the findings by adjusting configuration settings.
 
-5. In the *Use Tags* section, select **aws:cloudformation:stack-name** for the key from the drop down list and select the name of the stack (*pww* in this example) from the drop down value list.
+5.  On the Amazon Inspector menu, click **Assessment runs**.  You should see an entry for the assesment that was started on your behalf.  If the status is not, *Analysis complete,* then periodically refresh the screen until the status changes to *Analysis complete* as shown in the figure below.
 
-5. Uncheck the *Install Agents* check box since we have already installed the agent. Your screen should look similar to the figure below.
+    ![Amazon Inspector Runs](./images/assess-inspector-view-runs.png)
 
-    ![inspector-targets](./images/assess-inspector-targets.png)
 
-6.  Click the **Save** button to save the target definition.  Inspector may prompt you for permission to create a service linked role to give the Amazon Inspector service permission to retrieve information about your instances.  If you see a prompt like the one in the figure below, click **Ok** to create the role.
+6. On the line that represents your most recent run, make note of the number in the *Findings* column (177 in this diagram).  After you perform the remediation later in this workshop, that number should decrease.   Click on the number in the *Findings* column.  The findings associated with the run will appear as shown below.
 
-    ![inspector-service-role](./images/assess-inspector-slr.png)
+    ![Amazon Inspector Findings](./images/assess-inspector-view-findings.png)
 
-    You have now created an Amazon Inspector target that identifies the instances that would be assessed.  The target selects instances based on tag values.  In this case, the tag you are using is *aws:cloudformation:stack-name* which is set to the name of the CloudFormation stack.  In particular, the tag is added to the auto scaling launch configuration which is configured to propogate the tag to the Amazon EC2 instances that it launches.  Because of this, Amazon Inspector will automatically scan new instances that may appear over the lifetime of the environment.  This is an example of how the elasticity of the AWS cloud when combined with tagging can enable you to support dynamic environments.
+    You will see one of the findings has been expanded to reveal more details.  The middle section of the finding has been removed to save space.
 
-### Configure the Amazon Inspector template and run the assessment
 
-Now that you have created an Amazon Inspector target, you will now create an Amazon Inspector tepmlate.  You use templates to define the Amazon Inspector targets and rule packages that comprise an assessment run.
-
-1.  Go to the Amazon Inspector console, click **Assessment templates** on the menu, and then click **Create**.
-
-2.  In the *Name* field, enter a name for the template.
-
-3.  In the *Target name* field, select the target you previously created from the list of options.
-
-4.  In the *Rules packages* field, select **Common Vulnerabilities and Exposures** and **Security Best Practices**.
-
-5.   In the *Duration* field, select **15 minutes**.  Do **not** accept the default value!
-
-6.  In the Assessment Schedule, uncheck (turn off) the *Set up recurring assessment* runs so that the assessment template will only run a one-time assessment.
-
-7.  Scroll to the bottom and click the **Create and run** button to save the template and run the assessment.  Depending on the size of your screen, you may have to scroll down multiple windows.  If you cannot click **Create and run**, make sure you unchecked the box in the previous step and try again.  The assessment will start and will take 15 minutes to compete.
-
-8.  On the Amazon Inspector menu, click **Assessment runs**.  You should see an entry for the assesment you just started.  While the assessment is running, the status will be *Collecting data*.  Periodically refresh the screen to see the current status.  When the assessment run ends, the status will change to *Analysis complete.*  The assessment will run for approximately 15 minutes.   While you are waiting, continue with the steps below.
-
-### Learn more about Amazon Inspector Rules Packages
-
-1.  Amazon Inspector offers a variety of rules packages that can be included in assessments.  The applicable rules packages may vary by operating system.   The Common Vulnerabilities and Exposures assessment is based on the CVE project that is hosted at [cve.mitrei.org](https://cve.mitre.org).  Open a new tab in your browser to [cve.mitre.orf](https://cve.mitre.org).  Click on **Search CVE List**.  Enter **CVE-2018-20169** into the search field and click **Submit**.  This shows you how to research known vulnerabilities.
-
-2.  The Security Best Practices rule package examines some common configuration settings for some of the most commobn Amazon Linux settings.   You can read more about this rule package [here](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_security-best-practices.html).
-
-### Examine the findings
-
-1. After the assessment run has completed, go to the Amazon Inspector console and click **Assessment runs**.  The window should be similar to what appears below.
-
-    ![assessment-runs](./images/assess-inspector-runs.png)
-
-2. On the line that represents your most recent run, make note of the number in the *Findings* column (22 in this diagram).  After you perform the remediation later in this workshop, that number should decrease.   Click on the number in the *Findings* column.  The findings associated with the run will appear as shown below.
-
-    ![assessment-findings](./images/assess-inspector-findings.png)
-
-3.  You will see findings for each of the rules packages that you used in the assessment.  The number of findings often varies by the age of the AMI (Amazon Machine Image) because older AMIs typically have more vulnerabilities than newer AMIs.  Choose one of the findings associated with the Common Vulnerabilities and Exposures rule package.  An example appears below.
-
-    ![assessment-cve-example](./images/assess-inspector-cve.png)
-
-    Note that there is a link in the recommendation on which you can click to see the CVE entry.
-
-4.  Now that you have run the assessment and seen the findings you are ready to perform some remediation.
+7.  Now that you have run the assessment and seen the findings you are ready to perform some remediation.  You will then run another assessment to see if the number of findings has changed.
 
     Click [here](./remediate.md) to proceed to the Remediate Phase.
 
