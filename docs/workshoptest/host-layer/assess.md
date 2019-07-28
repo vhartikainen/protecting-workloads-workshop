@@ -101,7 +101,7 @@ In this section you will do the following tasks:
     You will see one of the findings has been expanded to reveal more details.  The middle section of the finding has been removed to save space.
 
 
-7.  Now that you have run the assessment and seen the findings you are ready to perform some remediation.  You will then run another assessment to see if the number of findings has changed.
+7.  Now that you have learned about Inspector assessments, you are ready to perform some remediation.  You will then run an Inspector assessment yourself to see if the number of findings has changed.
 
     Click [here](./remediate.md) to proceed to the Remediate Phase.
 
