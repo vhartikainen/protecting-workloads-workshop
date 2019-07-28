@@ -61,7 +61,7 @@ In this section you will do the following tasks:
 
     You have now learned about the tags that you can use to look up AWS resources.  You will now learn how tags can be used within Amazon Inspector to select the instances that will be assessed.
 
-## Exploring Amazon Inspector
+## Explore Amazon Inspector
 
 ### Understanding Amazon Inspector targets
 
@@ -71,21 +71,21 @@ In this section you will do the following tasks:
 
     ![Amazon Inspector Targets](./images/assess-inspector-view-targets.png)
 
-   In the figure above, notice that the *Use Tags* section contains a key/value pair with the entries *aws:cloudformation:stack-name* and *pww* respectively.  This Inspector target is configured to select all instances that were started by the CloudFormation stack.
+    In the figure above, notice that the *Use Tags* section contains a key/value pair with the entries *aws:cloudformation:stack-name* and *pww* respectively.  This Inspector target is configured to select all instances that were started by the CloudFormation stack.
 
 3. Click the **Preview Target** button.  A new window opens as shown below.
 
     ![Amazon Inspector Targets](./images/assess-inspector-preview-targets.png)
 
-   You now see there are three Instances that Inspector will assess based on the configuration of the target.
+    You now see there are three Instances that Inspector will assess based on the configuration of the target.
 
 4. Click the **Assessment Templates** on the left menu.  A list of assessment templates appears as shown below.
 
     ![Amazon Inspector Targets](./images/assess-inspector-view-templates.png)
 
-   You will see an assement template whose name begins with *AssessmentTemplate*.  Assessment templates reprsent the selection of a target and one or more rules packages.  A rules package is a collection of rules that represent security checks.   This template includes two rules packages, Security Best Practices, and Common Vulnerabilities and Exposures.  You can 
+    You will see an assement template whose name begins with *AssessmentTemplate*.  Assessment templates reprsent the selection of a target and one or more rules packages.  A rules package is a collection of rules that represent security checks.   This template includes two rules packages, Security Best Practices, and Common Vulnerabilities and Exposures.  You can 
 
-4. In the *Use Tags* section, select **aws:cloudformation:stack-name** for the key from the drop down list and select the name of the stack (*pww* in this example) from the drop down value list.
+5. In the *Use Tags* section, select **aws:cloudformation:stack-name** for the key from the drop down list and select the name of the stack (*pww* in this example) from the drop down value list.
 
 5. Uncheck the *Install Agents* check box since we have already installed the agent. Your screen should look similar to the figure below.
 
