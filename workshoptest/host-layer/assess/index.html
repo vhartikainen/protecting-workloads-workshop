@@ -927,8 +927,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exploring-amazon-inspector" title="Exploring Amazon Inspector" class="md-nav__link">
-    Exploring Amazon Inspector
+  <a href="#explore-amazon-inspector" title="Explore Amazon Inspector" class="md-nav__link">
+    Explore Amazon Inspector
   </a>
   
     <nav class="md-nav">
@@ -1088,8 +1088,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exploring-amazon-inspector" title="Exploring Amazon Inspector" class="md-nav__link">
-    Exploring Amazon Inspector
+  <a href="#explore-amazon-inspector" title="Explore Amazon Inspector" class="md-nav__link">
+    Explore Amazon Inspector
   </a>
   
     <nav class="md-nav">
@@ -1201,7 +1201,7 @@ act on them collectively.</p>
 <p>You have now learned about the tags that you can use to look up AWS resources.  You will now learn how tags can be used within Amazon Inspector to select the instances that will be assessed.</p>
 </li>
 </ol>
-<h2 id="exploring-amazon-inspector">Exploring Amazon Inspector</h2>
+<h2 id="explore-amazon-inspector">Explore Amazon Inspector</h2>
 <h3 id="understanding-amazon-inspector-targets">Understanding Amazon Inspector targets</h3>
 <ol>
 <li>
@@ -1210,24 +1210,18 @@ act on them collectively.</p>
 <li>
 <p>Click <strong>Assessment Targets</strong> on the left menu.  Assessment targets represent a group of EC2 instances that Inspector will assess.  You will see a target whose name begins with <em>InspectorTarget</em>.  Click on the arrow widget to open the target and display the details.  You should see something similar to the image below.</p>
 <p><img alt="Amazon Inspector Targets" src="../images/assess-inspector-view-targets.png" /></p>
-</li>
-</ol>
 <p>In the figure above, notice that the <em>Use Tags</em> section contains a key/value pair with the entries <em>aws:cloudformation:stack-name</em> and <em>pww</em> respectively.  This Inspector target is configured to select all instances that were started by the CloudFormation stack.</p>
-<ol>
+</li>
 <li>
 <p>Click the <strong>Preview Target</strong> button.  A new window opens as shown below.</p>
 <p><img alt="Amazon Inspector Targets" src="../images/assess-inspector-preview-targets.png" /></p>
-</li>
-</ol>
 <p>You now see there are three Instances that Inspector will assess based on the configuration of the target.</p>
-<ol>
+</li>
 <li>
 <p>Click the <strong>Assessment Templates</strong> on the left menu.  A list of assessment templates appears as shown below.</p>
 <p><img alt="Amazon Inspector Targets" src="../images/assess-inspector-view-templates.png" /></p>
-</li>
-</ol>
 <p>You will see an assement template whose name begins with <em>AssessmentTemplate</em>.  Assessment templates reprsent the selection of a target and one or more rules packages.  A rules package is a collection of rules that represent security checks.   This template includes two rules packages, Security Best Practices, and Common Vulnerabilities and Exposures.  You can </p>
-<ol>
+</li>
 <li>
 <p>In the <em>Use Tags</em> section, select <strong>aws:cloudformation:stack-name</strong> for the key from the drop down list and select the name of the stack (<em>pww</em> in this example) from the drop down value list.</p>
 </li>
