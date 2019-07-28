@@ -29,7 +29,7 @@ In this section you will do the following tasks:
 
 ## Examine the stack that you built and its tags
 
-1. Go to the CloudFormation console in the same AWS region where the stack was created..  You should see a list of stacks similar to the figure below. Locate the stack you created.  In this documentation, the name of the stack is *pww*.  If you are doing this workshop at an AWS event, the stackname may e much longer.  Make sure you can se the entire stack name.  Copy the stack name into a scratch file on your workstation in case you need it later.
+1. Go to the CloudFormation console in the same AWS region where the stack was created..  You should see a list of stacks similar to the figure below. Locate the stack you created.  In this documentation, the name of the stack is *pww*.  If you are doing this workshop at an AWS event, the stackname may be much longer.  Make sure you can se the entire stack name.  Copy the stack name into a scratch file on your workstation in case you need it later.
 
     ![cloudformation-stack-list](./images/assess-cloudformation-stacks.png)
 
@@ -83,7 +83,11 @@ In this section you will do the following tasks:
 
     ![Amazon Inspector Targets](./images/assess-inspector-view-templates.png)
 
-    You will see an assement template whose name begins with *AssessmentTemplate*.  Assessment templates reprsent the selection of a target and one or more rules packages.  A rules package is a collection of rules that represent security checks.   This template includes two rules packages, Security Best Practices, and Common Vulnerabilities and Exposures.  You can 
+    You will see an assement template whose name begins with *AssessmentTemplate*.  Assessment templates reprsent the selection of a target and one or more rules packages.  A rules package is a collection of rules that represent security checks.   This template assesses the previously mentioned target against the following two rules packages:
+
+    Common Vulnerabilities and Exposures: The rules in this package help verify whether the EC2 instances in your assessment targets are exposed to common vulnerabilities and exposures (CVEs). Attacks can exploit unpatched vulnerabilities to compromise the confidentiality, integrity, or availability of your service or data. The CVE system provides a reference method for publicly known information security vulnerabilities and exposures. For more information, see [MITRE](https://cve.mitre.org/){target=_blank}.  If a particular CVE appears in a finding that is produced by an Amazon Inspector assessment, you can search [MITRE](https://cve.mitre.org/){target=_blank} for the ID of the CVE (for example, CVE-2009-0021). The search results can provide detailed information about this CVE, its severity, and how to mitigate it.
+
+    Security Best Practices: The rules in this package help determine whether your systems are configured securely.  For example, one rule in this package checks to see if root login has been disabled over ssh.
 
 5. In the *Use Tags* section, select **aws:cloudformation:stack-name** for the key from the drop down list and select the name of the stack (*pww* in this example) from the drop down value list.
 
