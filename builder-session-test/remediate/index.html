@@ -1,0 +1,1814 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="This workshop shows how you can protect a web site using AWS Security Services">
+      
+      
+        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/builder-session-test/remediate/">
+      
+      
+        <meta name="author" content="aws-security-workshops@amazon.com">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/aws-favicon.ico">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
+    
+    
+      
+        <title>Remediate Phase - Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
+      
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#supercharging-your-workload-defenses-remediate-phase" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <!--
+  Copyright (c) 2016-2018 Martin Donath <martin.donath@squidfunk.com>
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Application header -->
+<header class="md-header" data-md-component="header">
+
+    <!-- Top-level navigation -->
+    <nav class="md-header-nav md-grid">
+      <div class="md-flex">
+  
+        <!-- Link to home -->
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <a href="https://aws.amazon.com/"
+              title="Amazon Web Services"
+              class="md-header-nav__button md-logo">
+            
+              <img src="../../assets/images/aws_smile_logo.png" width="40" height="24" />
+            
+          </a>
+        </div>
+  
+        <!-- Button to toggle drawer -->
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <label class="md-icon md-icon--menu md-header-nav__button"
+              for="__drawer"></label>
+        </div>
+  
+        <!-- Header title -->
+        <div class="md-flex__cell md-flex__cell--stretch">
+          <div class="md-flex__ellipsis md-header-nav__title"
+              data-md-component="title">
+            
+              
+                <span class="md-header-nav__topic">
+                  Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager
+                </span>
+                <span class="md-header-nav__topic">
+                  Remediate Phase
+                </span>
+              
+            
+          </div>
+        </div>
+        
+        
+        <!-- Button to open search dialogue -->
+        <!--
+        <div class="md-flex__cell md-flex__cell--shrink">
+          
+            
+              <label class="md-icon md-icon--search md-header-nav__button"
+                  for="__search"></label>
+  
+              
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+            
+          
+        </div>
+
+         -->
+         
+         <div class="md-flex__cell md-flex__cell--shrink">
+            <div class="md-flex__ellipsis md-header-nav__lang">
+                <div>
+                    <button onclick="window.location.href = 'https://awssecworkshops.com/';" class="md-lang-dropbtn fa fa-home"></button>
+                </div>
+            </div>
+        </div>
+  
+        <!-- Repository containing source -->
+        
+          <div class="md-flex__cell md-flex__cell--shrink">
+            <div class="md-header-nav__source">
+              
+
+
+  
+
+<a href="https://github.com/aws-samples/protecting-workloads-workshop/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    aws-samples/protecting-workloads-workshop
+  </div>
+</a>
+            </div>
+          </div>
+        
+      </div>
+    </nav>
+  </header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." title="Home" class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../workshop/" title="Workshop" class="md-tabs__link">
+          Workshop
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../builder-session/" title="Builder Session" class="md-tabs__link">
+          Builder Session
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../workshoptest/" title="Workshop (Test Version)" class="md-tabs__link">
+          Workshop (Test Version)
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../" title="Builder Session (Test Version)" class="md-tabs__link md-tabs__link--active">
+          Builder Session (Test Version)
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <!--
+  Copyright (c) 2016-2019 Martin Donath <martin.donath@squidfunk.com>
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Main navigation -->
+<nav class="md-nav md-nav--primary" data-md-level="0">
+
+  <!-- Site title -->
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://protecting-workloads.awssecworkshops.com/"
+        title="Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager" class="md-nav__button md-logo">
+      
+        <img src="../../assets/images/aws_smile_logo.png" width="48" height="48" />
+      
+    </a>
+    
+  </label>
+
+  <!-- Repository containing source -->
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/aws-samples/protecting-workloads-workshop/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    aws-samples/protecting-workloads-workshop
+  </div>
+</a>
+    </div>
+  
+
+  <!-- Render item list -->
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Workshop
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Workshop
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshop/" title="Scenario" class="md-nav__link">
+      Scenario
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshop/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      Perimeter Layer
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        Perimeter Layer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshop/perimeter-layer/build/" title="Build Phase" class="md-nav__link">
+      Build Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshop/perimeter-layer/assess/" title="Assess Phase" class="md-nav__link">
+      Assess Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshop/perimeter-layer/remediate/" title="Remediate Phase" class="md-nav__link">
+      Remediate Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshop/perimeter-layer/verify/" title="Verify Phase" class="md-nav__link">
+      Verify Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshop/perimeter-layer/cleanup/" title="Cleanup Phase" class="md-nav__link">
+      Cleanup Phase
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      Host Layer
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-4">
+        Host Layer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshop/host-layer/build/" title="Build Phase" class="md-nav__link">
+      Build Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshop/host-layer/assess/" title="Assess Phase" class="md-nav__link">
+      Assess Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshop/host-layer/remediate/" title="Remediate Phase" class="md-nav__link">
+      Remediate Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshop/host-layer/verify/" title="Verify Phase" class="md-nav__link">
+      Verify Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshop/host-layer/cleanup/" title="Cleanup Phase" class="md-nav__link">
+      Cleanup Phase
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshop/cleanup/" title="Cleanup" class="md-nav__link">
+      Cleanup
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Builder Session
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Builder Session
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../builder-session/" title="Scenario" class="md-nav__link">
+      Scenario
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../builder-session/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../builder-session/build/" title="Build Phase" class="md-nav__link">
+      Build Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../builder-session/assess/" title="Assess Phase" class="md-nav__link">
+      Assess Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../builder-session/remediate/" title="Remediate Phase" class="md-nav__link">
+      Remediate Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../builder-session/verify/" title="Verify Phase" class="md-nav__link">
+      Verify Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../builder-session/cleanup/" title="Cleanup Phase" class="md-nav__link">
+      Cleanup Phase
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Workshop (Test Version)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Workshop (Test Version)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshoptest/" title="Scenario" class="md-nav__link">
+      Scenario
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshoptest/getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      Perimeter Layer
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        Perimeter Layer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshoptest/perimeter-layer/build/" title="Build Phase" class="md-nav__link">
+      Build Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshoptest/perimeter-layer/assess/" title="Assess Phase" class="md-nav__link">
+      Assess Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshoptest/perimeter-layer/remediate/" title="Remediate Phase" class="md-nav__link">
+      Remediate Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshoptest/perimeter-layer/verify/" title="Verify Phase" class="md-nav__link">
+      Verify Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshoptest/perimeter-layer/cleanup/" title="Cleanup Phase" class="md-nav__link">
+      Cleanup Phase
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4">
+    
+    <label class="md-nav__link" for="nav-4-4">
+      Host Layer
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-4">
+        Host Layer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshoptest/host-layer/build/" title="Build Phase" class="md-nav__link">
+      Build Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshoptest/host-layer/assess/" title="Assess Phase" class="md-nav__link">
+      Assess Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshoptest/host-layer/remediate/" title="Remediate Phase" class="md-nav__link">
+      Remediate Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshoptest/host-layer/verify/" title="Verify Phase" class="md-nav__link">
+      Verify Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshoptest/host-layer/cleanup/" title="Cleanup Phase" class="md-nav__link">
+      Cleanup Phase
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../workshoptest/cleanup/" title="Cleanup" class="md-nav__link">
+      Cleanup
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Builder Session (Test Version)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Builder Session (Test Version)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Scenario" class="md-nav__link">
+      Scenario
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../build/" title="Build Phase" class="md-nav__link">
+      Build Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../assess/" title="Assess Phase" class="md-nav__link">
+      Assess Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Remediate Phase
+      </label>
+    
+    <a href="./" title="Remediate Phase" class="md-nav__link md-nav__link--active">
+      Remediate Phase
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#remediate-the-network-layer-findings" title="Remediate the Network Layer Findings" class="md-nav__link">
+    Remediate the Network Layer Findings
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identify-the-waf-acl-for-your-site" title="Identify the WAF ACL for your Site" class="md-nav__link">
+    Identify the WAF ACL for your Site
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-waf-rule-design-and-considerations" title="AWS WAF Rule Design and Considerations" class="md-nav__link">
+    AWS WAF Rule Design and Considerations
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basics" title="Basics" class="md-nav__link">
+    Basics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-waf-concepts" title="AWS WAF Concepts:" class="md-nav__link">
+    AWS WAF Concepts:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-rule-design-and-creation" title="Example Rule Design and Creation:" class="md-nav__link">
+    Example Rule Design and Creation:
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-rule-purpose" title="Sample Rule purpose:" class="md-nav__link">
+    Sample Rule purpose:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-request-components" title="HTTP request components:" class="md-nav__link">
+    HTTP request components:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-the-purpose-of-the-rule-using-boolean-logic" title="Define the purpose of the rule using Boolean logic:" class="md-nav__link">
+    Define the purpose of the rule using Boolean logic:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-rule-conditions-to-implement" title="Sample Rule - Conditions to implement:" class="md-nav__link">
+    Sample Rule - Conditions to implement:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relevant-transformations" title="Relevant transformations:" class="md-nav__link">
+    Relevant transformations:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rules-to-implement" title="Rules to implement:" class="md-nav__link">
+    Rules to implement:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#console-walkthrough-creating-a-condition-and-rule" title="Console Walkthrough - Creating a Condition and Rule" class="md-nav__link">
+    Console Walkthrough - Creating a Condition and Rule
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#host-layer-examine-the-inspector-findings-and-configure-patch-manager" title="Host Layer - Examine the Inspector findings and configure Patch Manager" class="md-nav__link">
+    Host Layer - Examine the Inspector findings and configure Patch Manager
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examine-the-inspector-findings" title="Examine the Inspector findings" class="md-nav__link">
+    Examine the Inspector findings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-aws-systems-manager-patch-manager" title="Use AWS Systems Manager Patch Manager" class="md-nav__link">
+    Use AWS Systems Manager Patch Manager
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-the-patching-status" title="Check the patching status" class="md-nav__link">
+    Check the patching status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#launch-second-inspector-assessment-run" title="Launch Second Inspector Assessment Run" class="md-nav__link">
+    Launch Second Inspector Assessment Run
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-waf-rule-creation" title="Additional WAF Rule Creation" class="md-nav__link">
+    Additional WAF Rule Creation
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../verify/" title="Verify Phase" class="md-nav__link">
+      Verify Phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cleanup/" title="Cleanup Phase" class="md-nav__link">
+      Cleanup Phase
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../contribute/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../license/" title="License" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#remediate-the-network-layer-findings" title="Remediate the Network Layer Findings" class="md-nav__link">
+    Remediate the Network Layer Findings
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identify-the-waf-acl-for-your-site" title="Identify the WAF ACL for your Site" class="md-nav__link">
+    Identify the WAF ACL for your Site
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-waf-rule-design-and-considerations" title="AWS WAF Rule Design and Considerations" class="md-nav__link">
+    AWS WAF Rule Design and Considerations
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basics" title="Basics" class="md-nav__link">
+    Basics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-waf-concepts" title="AWS WAF Concepts:" class="md-nav__link">
+    AWS WAF Concepts:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-rule-design-and-creation" title="Example Rule Design and Creation:" class="md-nav__link">
+    Example Rule Design and Creation:
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-rule-purpose" title="Sample Rule purpose:" class="md-nav__link">
+    Sample Rule purpose:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-request-components" title="HTTP request components:" class="md-nav__link">
+    HTTP request components:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-the-purpose-of-the-rule-using-boolean-logic" title="Define the purpose of the rule using Boolean logic:" class="md-nav__link">
+    Define the purpose of the rule using Boolean logic:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-rule-conditions-to-implement" title="Sample Rule - Conditions to implement:" class="md-nav__link">
+    Sample Rule - Conditions to implement:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relevant-transformations" title="Relevant transformations:" class="md-nav__link">
+    Relevant transformations:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rules-to-implement" title="Rules to implement:" class="md-nav__link">
+    Rules to implement:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#console-walkthrough-creating-a-condition-and-rule" title="Console Walkthrough - Creating a Condition and Rule" class="md-nav__link">
+    Console Walkthrough - Creating a Condition and Rule
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#host-layer-examine-the-inspector-findings-and-configure-patch-manager" title="Host Layer - Examine the Inspector findings and configure Patch Manager" class="md-nav__link">
+    Host Layer - Examine the Inspector findings and configure Patch Manager
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examine-the-inspector-findings" title="Examine the Inspector findings" class="md-nav__link">
+    Examine the Inspector findings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-aws-systems-manager-patch-manager" title="Use AWS Systems Manager Patch Manager" class="md-nav__link">
+    Use AWS Systems Manager Patch Manager
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-the-patching-status" title="Check the patching status" class="md-nav__link">
+    Check the patching status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#launch-second-inspector-assessment-run" title="Launch Second Inspector Assessment Run" class="md-nav__link">
+    Launch Second Inspector Assessment Run
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-waf-rule-creation" title="Additional WAF Rule Creation" class="md-nav__link">
+    Additional WAF Rule Creation
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/builder-session-test/remediate.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="supercharging-your-workload-defenses-remediate-phase">Supercharging your Workload Defenses - Remediate Phase</h1>
+<p>In the previous phase, you ran a scan for host-layer vulnerabilities and identified several vulnerabilities in the network layer.
+You are now going to remediate the findings. In this section you will do the following tasks:</p>
+<ol>
+<li>Remediate the network findings by implementing WAF conditions and rules.</li>
+<li>Remediate the host layer findings by applying patches to the host operating systems.</li>
+</ol>
+<h2 id="remediate-the-network-layer-findings">Remediate the Network Layer Findings</h2>
+<h3 id="identify-the-waf-acl-for-your-site">Identify the WAF ACL for your Site</h3>
+<ol>
+<li>
+<p>If needed, go to <a href="https://console.aws.amazon.com/console/home" target="_blank">https://console.aws.amazon.com/console/home</a>. You will be redirected to the AWS Management Console dashboard on successful login:
+<img alt="Console Home" src="../images/console-home.png" />
+Make sure you select the appropriate AWS Region when working in the AWS Management Console (top right corner, on the menu bar).</p>
+</li>
+<li>
+<p>From the Management Console dashboard, navigate to the AWS WAF &amp; Shield service console. You can do that several ways:</p>
+<ul>
+<li>Type “WAF” in the AWS services panel search box and select the resulting option</li>
+<li>Expand the Services drop down menu (top left on the menu bar) and choose WAF &amp; Shield</li>
+<li>Expand the All services area of the AWS services panel and choose WAF &amp; Shield
+Once selected, you will be redirected to the AWS WAF &amp; AWS Shield service console. You may see an initial landing page at first. Choose <em>Go to AWS WAF</em>.</li>
+</ul>
+</li>
+</ol>
+<p><img alt="WAF Home" src="../images/waf-home.png" />
+3. In the side bar menu on the left, pick the Web ACLs option under the AWS WAF heading. If the list of Web ACLs appears empty select the correct AWS Region as indicated on your credentials card in the Filter dropdown. If you are sharing the same account with other participants you can identify your WAF ACL by the Id in the stack outputs.</p>
+<p><img alt="WAF ACL Home" src="../images/waf-acl-home.png" />
+4. Click on the WAF Web ACL Name to select the existing Web ACL. Once the detail pane is loaded on the left of your screen, you will see three tabs: Requests, Rules, and Logging. Click on <strong>Rules</strong>.</p>
+<p><img alt="WAF ACL Rules" src="../images/waf-acl-rules.png" />
+You should be able to see a pre-existing rule configured to block requests and that your Web ACL is associated with an Application load balancer resource. Click on the rule name to look at the properties of the existing rule. You should see two entries in the associated IP address list for the loopback/localhost IP addresses (127.0.0.0/8, ::1/128).</p>
+<h3 id="aws-waf-rule-design-and-considerations">AWS WAF Rule Design and Considerations</h3>
+<h4 id="basics">Basics</h4>
+<p>AWS WAF rules consist of <em>conditions</em>. Conditions are lists of specific filters (patterns) that are matched against the HTTP request components processed by AWS WAF. The filters, including their attributes, are specific to the type of condition supported by AWS WAF. A condition, as a whole, is considered as <em>matched</em>, if any of the listed filters is matched.</p>
+<p>Each condition attached to a rule is called a <em>predicate</em>. Predicates are evaluated using Boolean logic. A predicate is evaluated as matched or not matched (negated predicted), and multiple predicates are evaluated using Boolean AND – all predicates must match for the rule action to be triggered.</p>
+<p>Web ACLs are ordered lists of rules. They are evaluated in order for each HTTP request and the action of the first matching rule is taken by the WAF engine, whether that is to allow, block or count the request. If no rule matches, the default action of the web ACL prevails.</p>
+<p><img alt="How AWS WAF Works" src="../images/how-waf-works.png" /></p>
+<div class="admonition info">
+<p class="admonition-title">Note About Conditions and Rules</p>
+<p>Conditions and rules are reusable resources within the region in which they are created.  You should consider the effects of changes to WAF conditions and rules in your organizations change control procedures.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Note About This Section</p>
+<p><strong>In order to illustrate the process of creating WAF conditions and rules, we will walk through the creation of the first rule in your WAF ACL.</strong> The complete list of threats and solutions is available in the <a href="./#waf-rule-creation-and-solutions">WAF Rule Creation and Solutions</a> section.</p>
+</div>
+<h4 id="aws-waf-concepts">AWS WAF Concepts:</h4>
+<p>The following illustration shows AWS WAF Conditions, Rules and Web ACL's.</p>
+<p><img alt="AWS WAF Concepts" src="../images/waf-concepts.png" /></p>
+<p>The following illustration shows how AWS WAF checks the rules and performs the actions based on those rules.</p>
+<p><img alt="AWS WAF Concepts" src="../images/web-acl-3a.png" /></p>
+<h3 id="example-rule-design-and-creation">Example Rule Design and Creation:</h3>
+<p>As an example, lets say we want to build a rule to detect and block SQL Injection in received in query strings. Let’s see how these questions help us plan the implementation of the rule. <em>This walkthrough will get you started with the ruleset required to mitigate the simulated threats in the workshop. It's purpose is to help you better understand the rule creation process. You will create the remaining rules from solution hints provided below.</em></p>
+<h4 id="sample-rule-purpose">Sample Rule purpose:</h4>
+<ul>
+<li><strong>Detect SQL Injection in query string, use ‘block’ action in Web ACL</strong></li>
+</ul>
+<h4 id="http-request-components">HTTP request components:</h4>
+<ul>
+<li><strong>Request Method</strong> – form input typically gets submitted using a GET HTTP request method</li>
+<li><strong>Query String</strong> – the SQL injection attempt is located in the query string </li>
+</ul>
+<h4 id="define-the-purpose-of-the-rule-using-boolean-logic">Define the purpose of the rule using Boolean logic:</h4>
+<ul>
+<li>If <strong>Query String contains suspected SQL Injection</strong> then <strong>block</strong></li>
+</ul>
+<h4 id="sample-rule-conditions-to-implement">Sample Rule - Conditions to implement:</h4>
+<ul>
+<li><strong>SQL injection Match Condition</strong> targeting the request <strong>Query string</strong></li>
+</ul>
+<h4 id="relevant-transformations">Relevant transformations:</h4>
+<ul>
+<li><strong>SQL Injection Match Condition</strong> query strinb is URL encoded, so we will apply the <strong>URL_DECODE</strong> transformation.</li>
+</ul>
+<h4 id="rules-to-implement">Rules to implement:</h4>
+<ul>
+<li>Rule with 1 predicate matching SQL injection condition</li>
+</ul>
+<h2 id="console-walkthrough-creating-a-condition-and-rule">Console Walkthrough - Creating a Condition and Rule</h2>
+<ol>
+<li>
+<p>In the AWS WAF console, create a SQL injection condition by selecting <strong>SQL injection</strong> matching from the side-bar menu to the left of the console, under the <strong>Conditions</strong> heading.</p>
+</li>
+<li>
+<p>Click on <strong>Create Condition</strong>:</p>
+</li>
+</ol>
+<p><img alt="WAF Condition Home" src="../images/waf-condition-home.png" />
+3.  Enter <strong>filterSQLi</strong> into the <strong>Name</strong> field and select the region where you deployed the stack. Add a filter (pattern) to the condition. Set the <strong>Part of the request to filter on</strong> to <strong>Query string</strong> and set the <strong>Transformation</strong> to <strong>URL decode</strong>. Click <strong>Add filter</strong> and then click <strong>Create</strong>.</p>
+<p><img alt="Create String Match" src="../images/create-sqli-match.png" />
+4. With the condition created, and any additional conditions created based on need as well, you are ready to create a rule. In the AWS WAF console, select <strong>Rules</strong> from the side-bar menu to the left of the console, under the <strong>AWS WAF</strong> heading.</p>
+<p>5. Click on <strong>Create Rule</strong>:</p>
+<p><img alt="Create Rule" src="../images/waf-rules-home.png" />
+6.  Provide <strong>matchSQLi</strong> for the name, metric name and sect the region where you deployed the stack. Set the <strong>rule type</strong> to <strong>Regular rule</strong>.</p>
+<p><img alt="Create Rule Detail" src="../images/create-rule-detail.png" />
+7.  Add a condition to the rule. For our rule example, choose “When a request” <strong>does</strong> (no negation) <strong>match at least one of the filters in the SQL injection match condition</strong>. Choose the SQL injection condition you have previously created.</p>
+<p><img alt="Add Conditions" src="../images/add-conditions.png" />
+8.  Click <strong>Add Condition</strong> and click <strong>Create</strong> at the bottom of the screen.</p>
+<p>9. Follow the steps in the <a href="./#identify-the-waf-acl-for-your-site">Identify the WAF ACL for your site</a> section above to go back to the Rules tab of your web ACL.</p>
+<p>10.    Click <strong>Edit web ACL</strong>.
+<img alt="Edit Web ACL" src="../images/edit-web-acl.png" /></p>
+<p>11. In the <strong>Rules</strong> dropdown, select your rule, and click <strong>Add rule to web ACL</strong>.</p>
+<p>12. Reorder the rules as appropriate for your use case.</p>
+<p>13. Click <strong>Update</strong> to persist the changes.</p>
+<p>14. Create additional conditions for SQL injection mitigation:</p>
+<details class="info"><summary>Solution</summary><ol>
+<li>update the <strong>SQL injection</strong> condition named filterSQLi with 2 additional filters<ol>
+<li><em>query_string, url decode</em> <em>You should have created this filter in <a href="./#console-walkthrough-creating-a-condition-and-rule">the walk through</a></em></li>
+<li>body, html decode</li>
+<li>header, cookie, url decode</li>
+</ol>
+</li>
+</ol>
+</details>
+<p>15. Now run the scanner that you used during the previous Assess phase. Did anything change? Why?</p>
+<h2 id="host-layer-examine-the-inspector-findings-and-configure-patch-manager">Host Layer - Examine the Inspector findings and configure Patch Manager</h2>
+<h3 id="examine-the-inspector-findings">Examine the Inspector findings</h3>
+<ol>
+<li>
+<p>After the assessment run has completed, go to the Amazon Inspector console and click <strong>Assessment runs</strong>.  The window should be similar to what appears below.</p>
+<p><img alt="assessment-runs" src="../images/assess-inspector-runs.png" /></p>
+</li>
+<li>
+<p>On the line that represents your most recent run, make note of the number in the <em>Findings</em> column (112 in this diagram).  After you perform the remediation later in this workshop, that number should decrease.   Click on the number in the <em>Findings</em> column.  The findings associated with the run will appear as shown below.</p>
+<p><img alt="assessment-findings" src="../images/assess-inspector-findings.png" /></p>
+</li>
+<li>
+<p>You will see findings for each of the rules packages that you used in the assessment.  The number of findings often varies by the age of the AMI (Amazon Machine Image) because older AMIs typically have more vulnerabilities than newer AMIs.  Expand one of the findings associated with the Common Vulnerabilities and Exposures rule package by toggling the arrow.  An example appears below.</p>
+<p><img alt="assessment-cve-example" src="../images/assess-inspector-cve.png" /></p>
+<p>Note that there is a link in the recommendation on which you can click to see the CVE entry.</p>
+</li>
+<li>
+<p>Now that you have run the assessment and seen the findings you are ready to perform some remediation.  You will use AWS Systems Manager to set up patching and then rerun the Inspector scan to see how patching affects the results.</p>
+</li>
+</ol>
+<h3 id="use-aws-systems-manager-patch-manager">Use AWS Systems Manager Patch Manager</h3>
+<ol>
+<li>
+<p>Go to the Systems Manager console and select Patch Manager.  If you see the Patch Manager home screen, then click the <strong>View predefined patch baselines</strong> link as shown below:</p>
+<p><img alt="remediate-home-screen" src="../images/remediate-pm-home-screen.png" /></p>
+</li>
+<li>
+<p>You will now see a list of predefined patch baselines that are used to patch each operating system supported by Patch Manager.   The default patch baseline only patches major security issues.  You are going to crate a new Amazon Linux 2 patch baseline that will patch more things and make this new patch baseline the default.  Click <strong>Create patch baseline</strong>.</p>
+</li>
+<li>
+<p>In the <em>Name</em> field, enter a name to give the new baseline such as <strong>mybaseline</strong>.</p>
+</li>
+<li>
+<p>In the <em>Operating system</em> field, select <strong>Amazon Linux 2</strong>.</p>
+</li>
+<li>
+<p>Check the box next to <em>Set this patch baseline as the default patch baseline for Amazon Linux 2 instances</em>.  You may see a notice appear informing you that this patch baseline will apply to all Amazon Linux 2 instances.  If you are doing this workshop in a "production" AWS account, you may wish to remove this baseline after completing this workshop.</p>
+</li>
+<li>
+<p>In the <em>Approval rules</em> section, in the Severity field select <em>all</em> and check the box under <em>Include non-security updates</em>.  IMPORTANT NOTE:  Depending on the size of the screen, the box may not align with the title <em>Include non-security updates</em>.  Your window should look similar to the figure below.</p>
+<p><img alt="approval-rule" src="../images/remediate-pm-approval-rule.png" /></p>
+</li>
+<li>
+<p>Click the <strong>Create patch baseline</strong> button at the bottom of the screen.  You should now see the new patch baseline in the list of baselines.  You may need to refresh the browser window to see it.  This new patch baseline includes non-security patches.  Notice that your patch baseline is now set to the default baseline for Amazon Linux 2.</p>
+<p><img alt="default-baseline" src="../images/remediate-pm-default-baseline-yes.png" /></p>
+</li>
+<li>
+<p>Click <strong>Configure patching</strong> towards the top of the window.  In the <em>Configure patching</em> screen, go to the <em>Instances to patch</em> section and click the <strong>Enter instance tags</strong> radio button.  In the <em>Instance tags</em> field, enter <em>aws:cloudformation:stack-name</em> into the <em>Tag key</em> field.  In the <em>Tag value</em> field, enter the stack name that you created earlier.  Click <strong>Add</strong>.  <strong>Important: If you are using copying &amp; pasting into these fields, be careful to remove any trailing spaces or the instance lookups will not work!</strong></p>
+</li>
+<li>
+<p>In the <em>Patching schedule</em> section, click the <em>Skip scheduling and patch instances now</em> radio button.</p>
+</li>
+<li>
+<p>In the <em>Patching operation</em> section, click the <em>Scan and install</em> radio button if it is not already selected.  Your screen should look similar to the image below.</p>
+<p><img alt="configure-patching" src="../images/remediate-pm-configure-patching.png" /></p>
+</li>
+<li>
+<p>Click the <strong>Configure patching</strong> button at the bottom of the window.  You will see a message at the top of your screen saying that <em>Patch Manager</em> will use <em>Run Command</em> to patch the instances.   <em>Run Command</em> is another feature of AWS Systems Manager that runs a command across multiple Amazon EC2 instances.  Patch Manager build the commands necessary to perform the patching and is using Run Command to actually execute the commands.</p>
+</li>
+</ol>
+<h3 id="check-the-patching-status">Check the patching status</h3>
+<p>You are now going to examine the status of the patching operation by using AWS Systems Manager Run Command.</p>
+<ol>
+<li>
+<p>Go to the AWS Systems Manager Console and click <strong>Run Command</strong> on the left menu.  If the patching is still running, you will see the entry in the <em>Commands</em> tab.  Wait for the command to finish.  Refresh the screen if necessary to update the display.  Once the command has finished, click on <strong>Command history</strong>.</p>
+</li>
+<li>
+<p>Look for the line containing the document name <strong>AWS-RunPatchBaseline</strong>.  That represents the Patch Manager activity.Your screen should look similar to the image below.</p>
+<p><img alt="command-history" src="../images/remediate-command-history.png" /></p>
+</li>
+<li>
+<p>Click on the <strong>Command ID</strong> link to see more details about the command.  You will see a line for each target with a link referencing the Instance ID.  If you then click on the <strong>Instance ID</strong>, you will see each step of the command that is executed.   Note that some steps are skipped because they do not apply to the operating system of the instance.  Also, you only see the first part of the command output.  If you want to see all of the output you can configure Systems Manager to direct the output into an Amazon S3 bucket.  Wait for the patching operation to complete before continuing.</p>
+<p>You have now completed the patching operation.  In the Verify Phase, you will re-assess the environment with Amazon Inspector.</p>
+</li>
+</ol>
+<h3 id="launch-second-inspector-assessment-run">Launch Second Inspector Assessment Run</h3>
+<ol>
+<li>
+<p>Go to the Amazon Inspector console, click <strong>Assessment templates</strong> on the menu.</p>
+</li>
+<li>
+<p>Locate the template that you created during the Assess Phase and check the box at the left end of that row.</p>
+</li>
+<li>
+<p>Click <strong>Run</strong>.  This will launch another assessment run. </p>
+</li>
+<li>
+<p>Click <strong>Assessmnet runs</strong> and periodically refresh the screen.  Wait until the status for the run changes to <em>Analysis complete</em>.  The run will take approximately 15 minutes to complete. <strong><em>While you are waiting, continue with the steps below.</em></strong></p>
+</li>
+</ol>
+<h2 id="additional-waf-rule-creation">Additional WAF Rule Creation</h2>
+<p>While you are waiting for the second scan to complete, let's do a few more WAF remediations.</p>
+<p>Use Cross-site scripting, as well as string matching conditions to build rules that mitigate cross site scripting attacks.</p>
+<p>1. Create conditions and rule for Cross-site scripting mitigation:</p>
+<details class="info"><summary>Solution</summary><ol>
+<li>create <strong>Cross-site scripting</strong> condition named filterXSS with 4 filters<ol>
+<li>query_string, url decode</li>
+<li>body, html decode</li>
+<li>body, url decode</li>
+<li>header, cookie, url decode</li>
+</ol>
+</li>
+<li>create a <strong>String and regex matching</strong> <em>String match</em> type condition named filterXSSPathException with 1 filter. <em>This demonstrates how to add an expception for the XSS rule.</em><ol>
+<li>uri, starts with, no transform, <em>/reportBuilder/Editor.aspx</em></li>
+</ol>
+</li>
+<li>create a rule named matchXSS<ol>
+<li>type regular</li>
+<li>does match XSS condition: filterXSS</li>
+<li>does not match string match condition: filterXSSPathException</li>
+</ol>
+</li>
+<li>add rules to Web ACL</li>
+<li>Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked</li>
+</ol>
+</details>
+<p><em>This completes the Remediate Phase.</em></p>
+<hr />
+<p>Click <a href="../verify/">here</a> to proceed to the Verify Phase.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../assess/" title="Assess Phase" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Assess Phase
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../verify/" title="Verify Phase" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Verify Phase
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            &copy; 2019, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="http://protecting-workloads.awssecworkshops.com/" class="md-footer-social__link fa fa-home"></a>
+    
+      <a href="https://aws.amazon.com/security/" class="md-footer-social__link fa fa-shield"></a>
+    
+      <a href="https://twitter.com/awssecurityinfo?lang=en" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://aws.amazon.com/blogs/security/" class="md-footer-social__link fa fa-rss"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.b806dc00.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

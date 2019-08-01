@@ -2,182 +2,217 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshop/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshop/getting-started/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshop/perimeter-layer/build/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshop/perimeter-layer/assess/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshop/perimeter-layer/remediate/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshop/perimeter-layer/verify/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshop/perimeter-layer/cleanup/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshop/host-layer/build/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshop/host-layer/assess/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshop/host-layer/remediate/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshop/host-layer/verify/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshop/host-layer/cleanup/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshop/cleanup/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/builder-session/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/builder-session/getting-started/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/builder-session/build/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/builder-session/assess/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/builder-session/remediate/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/builder-session/verify/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/builder-session/cleanup/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshoptest/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshoptest/getting-started/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshoptest/perimeter-layer/build/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshoptest/perimeter-layer/assess/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshoptest/perimeter-layer/remediate/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshoptest/perimeter-layer/verify/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshoptest/perimeter-layer/cleanup/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshoptest/host-layer/build/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshoptest/host-layer/assess/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshoptest/host-layer/remediate/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshoptest/host-layer/verify/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshoptest/host-layer/cleanup/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/workshoptest/cleanup/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://protecting-workloads.awssecworkshops.com/builder-session-test/</loc>
+     <lastmod>2019-07-31</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://protecting-workloads.awssecworkshops.com/builder-session-test/getting-started/</loc>
+     <lastmod>2019-07-31</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://protecting-workloads.awssecworkshops.com/builder-session-test/build/</loc>
+     <lastmod>2019-07-31</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://protecting-workloads.awssecworkshops.com/builder-session-test/assess/</loc>
+     <lastmod>2019-07-31</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://protecting-workloads.awssecworkshops.com/builder-session-test/remediate/</loc>
+     <lastmod>2019-07-31</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://protecting-workloads.awssecworkshops.com/builder-session-test/verify/</loc>
+     <lastmod>2019-07-31</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://protecting-workloads.awssecworkshops.com/builder-session-test/cleanup/</loc>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/contribute/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://protecting-workloads.awssecworkshops.com/license/</loc>
-     <lastmod>2019-07-27</lastmod>
+     <lastmod>2019-07-31</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
