@@ -86,5 +86,13 @@ nav:
       - 'Verify Phase': 'workshoptest/host-layer/verify.md'
       - 'Cleanup Phase': 'workshoptest/host-layer/cleanup.md'
     - Cleanup: 'workshoptest/cleanup.md'
+  - Builder Session (Test Version):
+    - Scenario: 'builder-session-test/index.md'
+    - Getting Started: 'builder-session-test/getting-started.md'
+    - Build Phase: 'builder-session-test/build.md'
+    - Assess Phase: 'builder-session-test/assess.md'
+    - Remediate Phase: 'builder-session-test/remediate.md'
+    - Verify Phase: 'builder-session-test/verify.md'
+    - Cleanup Phase: 'builder-session-test/cleanup.md'
   - Contributing: 'contribute.md'
   - License: 'license.md'
