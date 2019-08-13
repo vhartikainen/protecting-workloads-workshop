@@ -144,6 +144,88 @@ Mappings:
     ap-northeast-1:
       AmznLinux: ami-0148288598227344a
 
+# Beginning of jsl changes for running first Inspector scan automatically
+
+  RulesPackagesMap: 
+    us-west-2:
+      CVE: 'arn:aws:inspector:us-west-2:758058086616:rulespackage/0-9hgA516p'
+      CIS: 'arn:aws:inspector:us-west-2:758058086616:rulespackage/0-H5hpSawc'
+      SBP: 'arn:aws:inspector:us-west-2:758058086616:rulespackage/0-JJOtZiqQ'
+      NET: 'arn:aws:inspector:us-west-2:758058086616:rulespackage/0-rD1z6dpl'
+      RBA: 'arn:aws:inspector:us-west-2:758058086616:rulespackage/0-vg5GGHSD'
+    us-east-1:
+      CVE: 'arn:aws:inspector:us-east-1:316112463485:rulespackage/0-gEjTy7T7'
+      CIS: 'arn:aws:inspector:us-east-1:316112463485:rulespackage/0-rExsr2X8'
+      NET: 'arn:aws:inspector:us-east-1:316112463485:rulespackage/0-PmNV0Tcd'
+      SBP: 'arn:aws:inspector:us-east-1:316112463485:rulespackage/0-R01qwB5Q'
+      RBA: 'arn:aws:inspector:us-east-1:316112463485:rulespackage/0-gBONHN9h'
+    us-east-2:
+      CVE: 'arn:aws:inspector:us-east-2:646659390643:rulespackage/0-JnA8Zp85'
+      CIS: 'arn:aws:inspector:us-east-2:646659390643:rulespackage/0-m8r61nnh'
+      NET: 'arn:aws:inspector:us-east-2:646659390643:rulespackage/0-cE4kTR30'
+      SBP: 'arn:aws:inspector:us-east-2:646659390643:rulespackage/0-AxKmMHPX'
+      RBA: 'arn:aws:inspector:us-east-2:646659390643:rulespackage/0-UCYZFKPV'
+    us-west-1:
+      CVE: 'arn:aws:inspector:us-west-1:166987590008:rulespackage/0-TKgzoVOa'
+      CIS: 'arn:aws:inspector:us-west-1:166987590008:rulespackage/0-xUY8iRqX'
+      NET: 'arn:aws:inspector:us-west-1:166987590008:rulespackage/0-TxmXimXF'
+      SBP: 'arn:aws:inspector:us-west-1:166987590008:rulespackage/0-byoQRFYm'
+      RBA: 'arn:aws:inspector:us-west-1:166987590008:rulespackage/0-yeYxlt0x'
+    ap-south-1:
+      CVE: 'arn:aws:inspector:ap-south-1:162588757376:rulespackage/0-LqnJE9dO'
+      CIS: 'arn:aws:inspector:ap-south-1:162588757376:rulespackage/0-PSUlX14m'
+      NET: 'arn:aws:inspector:ap-south-1:162588757376:rulespackage/0-YxKfjFu1'
+      SBP: 'arn:aws:inspector:ap-south-1:162588757376:rulespackage/0-fs0IZZBj'
+      RBA: 'arn:aws:inspector:ap-south-1:162588757376:rulespackage/0-EhMQZy6C'
+    ap-southeast-2:
+      CVE: 'arn:aws:inspector:ap-southeast-2:454640832652:rulespackage/0-D5TGAxiR'
+      CIS: 'arn:aws:inspector:ap-southeast-2:454640832652:rulespackage/0-Vkd2Vxjq'
+      NET: 'arn:aws:inspector:ap-southeast-2:454640832652:rulespackage/0-FLcuV4Gz'
+      SBP: 'arn:aws:inspector:ap-southeast-2:454640832652:rulespackage/0-asL6HRgN'
+      RBA: 'arn:aws:inspector:ap-southeast-2:454640832652:rulespackage/0-P8Tel2Xj'
+    ap-northeast-2:
+      CVE: 'arn:aws:inspector:ap-northeast-2:526946625049:rulespackage/0-PoGHMznc'
+      CIS: 'arn:aws:inspector:ap-northeast-2:526946625049:rulespackage/0-T9srhg1z'
+      NET: 'arn:aws:inspector:ap-northeast-2:526946625049:rulespackage/0-s3OmLzhL'
+      SBP: 'arn:aws:inspector:ap-northeast-2:526946625049:rulespackage/0-2WRpmi4n'
+      RBA: 'arn:aws:inspector:ap-northeast-2:526946625049:rulespackage/0-PoYq7lI7'
+    ap-northeast-1:
+      CVE: 'arn:aws:inspector:ap-northeast-1:406045910587:rulespackage/0-gHP9oWNT'
+      CIS: 'arn:aws:inspector:ap-northeast-1:406045910587:rulespackage/0-7WNjqgGu'
+      NET: 'arn:aws:inspector:ap-northeast-1:406045910587:rulespackage/0-YI95DVd7'
+      SBP: 'arn:aws:inspector:ap-northeast-1:406045910587:rulespackage/0-bBUQnxMq'
+      RBA: 'arn:aws:inspector:ap-northeast-1:406045910587:rulespackage/0-knGBhqEu'
+    eu-west-1:
+      CVE: 'arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-ubA5XvBh'
+      CIS: 'arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-sJBhCr0F'
+      NET: 'arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-SPzU33xe'
+      SBP: 'arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-SnojL3Z6'
+      RBA: 'arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-lLmwe1zd'
+    eu-west-2:
+      CVE: 'arn:aws:inspector:eu-west-2:146838936955:rulespackage/0-kZGCqcE1'
+      CIS: 'arn:aws:inspector:eu-west-2:146838936955:rulespackage/0-IeCjwf1W'
+      NET: 'arn:aws:inspector:eu-west-2:146838936955:rulespackage/0-AizSYyNq'
+      SBP: 'arn:aws:inspector:eu-west-2:146838936955:rulespackage/0-XApUiSaP'
+      RBA: 'arn:aws:inspector:eu-west-2:146838936955:rulespackage/0-S8t0UlXB'
+    eu-central-1:
+      CVE: 'arn:aws:inspector:eu-central-1:537503971621:rulespackage/0-wNqHa8M9'
+      CIS: 'arn:aws:inspector:eu-central-1:537503971621:rulespackage/0-nZrAVuv8'
+      NET: 'arn:aws:inspector:eu-central-1:537503971621:rulespackage/0-6yunpJ91'
+      SBP: 'arn:aws:inspector:eu-central-1:537503971621:rulespackage/0-ZujVHEPB'
+      RBA: 'arn:aws:inspector:eu-central-1:537503971621:rulespackage/0-0GMUM6fg'
+    us-gov-east-1:
+      CVE: 'arn:aws-us-gov:inspector:us-gov-east-1:206278770380:rulespackage/0-3IFKFuOb'
+      CIS: 'arn:aws-us-gov:inspector:us-gov-east-1:206278770380:rulespackage/0-pTLCdIww'
+      SBP: 'arn:aws-us-gov:inspector:us-gov-east-1:206278770380:rulespackage/0-vlgEGcVD'
+      RBA: 'arn:aws-us-gov:inspector:us-gov-east-1:206278770380:rulespackage/0-850TmCFX'
+    us-gov-west-1:
+      CVE: 'arn:aws-us-gov:inspector:us-gov-west-1:850862329162:rulespackage/0-4oQgcI4G'
+      CIS: 'arn:aws-us-gov:inspector:us-gov-west-1:850862329162:rulespackage/0-Ac4CFOuc'
+      SBP: 'arn:aws-us-gov:inspector:us-gov-west-1:850862329162:rulespackage/0-rOTGqe5G'
+      RBA: 'arn:aws-us-gov:inspector:us-gov-west-1:850862329162:rulespackage/0-JMyjuzoW'
+      
+# End of jsl changes for running first Inspector scan automatically
+
 ## Resources
 Resources:
 
@@ -841,6 +923,395 @@ Resources:
       CreationPolicy:
         ResourceSignal:
           Timeout: PT15M
+
+# Beginning of jsl changes for running first Inspector scan automatically
+
+# ICSLRExecutionRole - The AWS Lambda execution
+# role for the custom CloudFormation resources that are used to create the
+# service-linked role.
+#
+# It must include permissions for all the API calls made by the Lambda
+# function.  This typically includes the APIsneeded to write to Amazon
+# CloudWatch Logs.  In this case, since we are using a custom resource to
+# work with service-linked role, it must include the IAM permissions to
+# call the GetRole and CreateServiceLinkedRole APIs.
+#
+# Note: ICSLR is short for Idempotent Create Service-Linked Role
+
+  ICSLRExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: '/'
+      Policies:
+      - PolicyName: root
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+            Resource: arn:aws:logs:*:*:*
+          - Effect: Allow
+            Action:
+            - iam:CreateServiceLinkedRole
+            - iam:GetRole
+            Resource: '*'
+
+# ICSLRFunction
+#
+# This Lambda function backs a custome CloudFormation resources and creates an
+# AWS service-linked role if it doesn't already exist.
+#
+# The function accepts the following parameters that are passed as properties:
+#
+# (1) The AWS service name (e.g. 'inspector.amazonaws.com')
+#
+# The function then does the following:
+#
+# (1) Looks up the corresponding default IAM role name associated with the
+#     ervice.  If it finds the role, it sets the resource response Arn and
+#     RoleId values.
+#
+# (2) If the service-linked role does not exist, create it.  If the creation is
+#     successful, return the Arn and RoleId in the resource response.
+#
+# (3) If the creation of the service-linked role fails report an error.
+#
+# Caveats:
+# 
+# (1) This function does not pass the ACID test. If multiple copies of this
+#     function are running with the same AWS service name in the same region
+#     at the same time, there could be some conflicts.
+#
+# (2) The function does not support the 'suffix' extension that allows
+#     multiple service-linked roles to exist for the same service.
+#     That is actually why this code was written.
+#
+# (3) The function ignores deletes and updates.
+#
+# Note: ICSLR is short for Idempotent Create Service-Linked Role
+
+  ICSLRFunction:
+    Type: AWS::Lambda::Function
+    Properties: 
+      Handler: index.handler
+      MemorySize: 128
+      Role: !GetAtt ICSLRExecutionRole.Arn
+      Runtime: 'python3.6'
+      Timeout: 30
+      Code:
+        ZipFile: |
+          import json
+          import boto3
+          import cfnresponse
+          import string
+          from botocore.exceptions import ClientError
+
+          def handler(event, context):
+            serviceDictionary = {
+              'inspector.amazonaws.com': 'AWSServiceRoleForAmazonInspector'
+            }
+
+            print('event =', json.dumps(event))
+
+            if event['RequestType'] in ['Delete', 'Update']:
+              responseData = {}      
+              cfnresponse.send(
+                event,
+                context,
+                cfnresponse.SUCCESS,
+                responseData
+              )
+              return
+            
+            client = boto3.client('iam')
+            awsServiceName = event['ResourceProperties']['AWSServiceName']
+
+            if not awsServiceName in serviceDictionary:
+              responseData = {}
+              cfnresponse.send(
+                event,
+                context,
+                cfnresponse.FAILED,
+                responseData
+              )
+              return
+
+            try:
+              response = client.get_role(
+                RoleName = serviceDictionary[awsServiceName]
+              )
+              roleAlreadyExists = True
+            except:
+              roleAlreadyExists = False
+
+            if roleAlreadyExists:
+              print(
+                'The service-linked role for service',
+                awsServiceName,
+                'already exists.  The Arn and RoleId will be returned.'
+              )
+              responseData = {
+                'Arn': response['Role']['Arn'],
+                'RoleId': response['Role']['RoleId']
+              }      
+              cfnresponse.send(
+                event,
+                context,
+                cfnresponse.SUCCESS,
+                responseData
+              )
+              return
+
+            try:
+              response = client.create_service_linked_role(
+                AWSServiceName=awsServiceName
+              )
+              createRoleSucceeded=True
+            except ClientError as e:
+              createRoleSucceeded=False
+
+            if createRoleSucceeded:
+              print(
+                'The service-linked role for service',
+                awsServiceName,
+                'has been created.  The Arn and RoleId will be returned.'
+              )
+
+              responseData = {
+                'Arn': response['Role']['Arn'],
+                'RoleId': response['Role']['RoleId']
+              }      
+              cfnresponse.send(
+                event,
+                context,
+                cfnresponse.SUCCESS,
+                responseData
+              )
+            else:
+              print(
+                'Unable to create the service-linked role for service',
+                awsServiceName,
+                '.'
+              )
+              print('exception =', json.dumps(e.response))
+              responseData = {}
+              cfnresponse.send(
+                event,
+                context,
+                cfnresponse.FAILED,
+                responseData
+              )
+
+  InspectorCreateServiceLinkedRole:
+    Type: Custom::InspectorCreateServiceLinkedRole
+    DeletionPolicy: Retain
+    Properties:
+      ServiceToken: !GetAtt ICSLRFunction.Arn
+      AWSServiceName: 'inspector.amazonaws.com'
+
+  InspectorResourceGroup:
+    Type: AWS::Inspector::ResourceGroup
+    Properties: 
+      ResourceGroupTags: 
+        - Key: 'aws:cloudformation:stack-name'
+          Value: !Ref 'AWS::StackName'
+
+  InspectorTarget:
+    Type: AWS::Inspector::AssessmentTarget
+    Properties: 
+      ResourceGroupArn: !GetAtt InspectorResourceGroup.Arn
+
+  InspectorTemplate:
+    Type: AWS::Inspector::AssessmentTemplate
+    Properties: 
+      AssessmentTargetArn: !GetAtt InspectorTarget.Arn
+      DurationInSeconds: 900
+      RulesPackageArns: 
+        - !FindInMap [RulesPackagesMap, !Ref 'AWS::Region', CVE]
+        - !FindInMap [RulesPackagesMap, !Ref 'AWS::Region', SBP]
+
+  InspectorInstallAgents:
+    Type: "AWS::SSM::Association"
+    DependsOn:
+    - AutoScalingGroup
+    - RedTeamHost
+    Properties: 
+      Name: AmazonInspector-ManageAWSAgent
+      Parameters:
+        Operation:
+        - Install
+      Targets:
+      - Key: 'tag:aws:cloudformation:stack-name'
+        Values:
+        - !Ref 'AWS::StackName'
+
+# InspectorRunAssessmentExecutionRole - The AWS Lambda execution
+# role for the custom CloudFormation resources that are used to
+# run the assessment.
+#
+# It must include permissions for all the API calls made by the Lambda
+# function.  This typically includes the APIsneeded to write to Amazon
+# CloudWatch Logs.  In this case, since we are using a custom resource to
+# work with service-linked role, it must include the IAM permissions to
+# call the start_assessment_run.
+
+  InspectorRunAssessmentExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: '/'
+      Policies:
+      - PolicyName: root
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+            Resource: arn:aws:logs:*:*:*
+          - Effect: Allow
+            Action:
+            - inspector:StartAssessmentRun
+            Resource: '*'
+
+# InspectorRunAssessmentFunction
+#
+# This Lambda function backs a custome CloudFormation resources and starts an
+# Amazon Inspector run.
+#
+# The function accepts the following parameters that are passed as properties:
+#
+# (1) The Amazon Inspector template ARN - REQUIRED PARAMETER
+# (2) The number of seconds to sleep before starting the assessment.  This can
+#     be useful to allow some time for the inspector agents to register with
+#     Inspector after the agents are installed. - REQUIRED PARAMETER
+#
+# The function then does the following:
+#
+# (1) Starts an Amazon Inspector run
+#
+# Caveats:
+# 
+# (1) The function ignores deletes and updates but if the underlying Inspector
+#     template is deleted, the run findings will also be deleted.
+# (2) The function is considered "complete" once the assessment is launched.
+#     The assessment will take the number of seconds specified in the
+#     assessment template.
+
+  InspectorRunAssessmentFunction:
+    Type: AWS::Lambda::Function
+    Properties: 
+      Handler: index.handler
+      MemorySize: 128
+      Role: !GetAtt InspectorRunAssessmentExecutionRole.Arn
+      Runtime: 'python3.6'
+      Timeout: 900
+      Code:
+        ZipFile: |
+          import json
+          import boto3
+          import cfnresponse
+          import string
+          import time
+
+          from botocore.exceptions import ClientError
+
+          def handler(event, context):
+            print('event =', json.dumps(event))
+
+            if event['RequestType'] in ['Delete', 'Update']:
+              responseData = {}      
+              cfnresponse.send(
+                event,
+                context,
+                cfnresponse.SUCCESS,
+                responseData
+              )
+              return
+            
+            client = boto3.client('inspector')
+            templateArn = event['ResourceProperties']['AssessmentTemplateArn']
+            initialDelaySeconds = int(
+              event['ResourceProperties']['InitialDelaySeconds']
+            )
+
+            if initialDelaySeconds < 0:
+              initialDelaySeconds = 0
+            elif initialDelaySeconds > 840:
+              initialDelaySeconds = 840
+
+            if (initialDelaySeconds > 0):
+              time.sleep(initialDelaySeconds)
+
+            try:
+              response = client.start_assessment_run(
+                assessmentTemplateArn = templateArn
+              )
+              assessmentStarted = True
+            except ClientError as e:
+              assessmentStarted = False
+
+            if assessmentStarted:
+              assessmentRunArn = response['assessmentRunArn']
+              print(
+                'Amazon Inspector assessment started, ARN =',
+                assessmentRunArn
+              )
+              responseData = {
+                'assessmentRunArn': assessmentRunArn
+              }      
+              cfnresponse.send(
+                event,
+                context,
+                cfnresponse.SUCCESS,
+                responseData
+              )
+            else:
+              responseData = { }
+              print(
+                  'unable to start Amazon Inspector assessment, exception =',
+                  json.dumps(e)
+                )
+              responseData = {}
+              cfnresponse.send(
+                event,
+                context,
+                cfnresponse.FAILED,
+                responseData
+              )
+
+  InspectorRunAssessment:
+    Type: Custom::InspectorRunAssessment
+    DependsOn: InspectorInstallAgents
+    DeletionPolicy: Retain
+    Properties:
+      ServiceToken: !GetAtt InspectorRunAssessmentFunction.Arn
+      AssessmentTemplateArn: !GetAtt InspectorTemplate.Arn
+      InitialDelaySeconds: 60
+
+# End of jsl changes for running first Inspector scan automatically
 
 ## Outputs
 Outputs:
