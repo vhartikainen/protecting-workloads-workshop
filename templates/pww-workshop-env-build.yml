@@ -430,7 +430,6 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
       Scheme: internet-facing
-      Name: !Join ["-" , [!Ref 'AWS::StackName', Alb]]
       SecurityGroups: 
         - !If [ UseAutomatedScanner, !Ref sgLoadBalancer2, !Ref sgLoadBalancer1 ]
       Subnets: [ !Ref sub1Public, !Ref sub2Public ]
@@ -446,7 +445,6 @@ Resources:
       HealthCheckProtocol: HTTP
       HealthCheckTimeoutSeconds: 5
       HealthyThresholdCount: 2
-      Name: !Join ["-" , [!Ref 'AWS::StackName', TargGrp]]
       Port: 80
       Protocol: HTTP
       UnhealthyThresholdCount: 2
