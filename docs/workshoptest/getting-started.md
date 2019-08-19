@@ -1,6 +1,6 @@
 # Getting Started
 
-## Create or Identify Exisitng AWS account
+## Create or Identify Existing AWS account
 
 ??? info  "Click here if you're at an *AWS event* where the *Event Engine* is being used" 
 
