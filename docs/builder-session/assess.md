@@ -1,5 +1,8 @@
 # Supercharging your Workload Defenses - Assess Phase
 
+!!! info "Important note!"
+    __We are testing out some new ideas here.  Some things may not work as expected.  We appreciate your patience.__
+
 You have either just deployed a CloudFormation stack or AWS has done so on your behalf at an event.
 The CloudFormation stack contains
 a PHP website on Amazon EC2 instances behind an application load balancer.
@@ -7,10 +10,9 @@ You are now going to assess the posture of the site at both the host layer and a
 
 In this section you will do the following tasks:
 
-1. Examine the stack that you built
-
-2. Assess the host layer by installing an Amazon Inspector agent on the EC2 instances and running an Inspector scan to look for host layer vulnerabilities.
-
+1. Examine the CloudFormation stack you built to learn about the tags that were applied by AWS CloudFormation.
+2. Learn about Amazon Inspector targets, templates, and rules packages.
+3. Examine Amazon Inspector findings
 4. Assess the network layer by running an external network scan using a network scanner.
 
 ## Examine the stack that you built

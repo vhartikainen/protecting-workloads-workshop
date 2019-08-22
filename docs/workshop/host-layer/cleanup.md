@@ -1,10 +1,5 @@
 # Identifying and Remediating Host Vulnerabilities - Host Layer Round - Cleanup Phase
 
-!!! Attention
-    <p style="font-size:16px;">
-      **For participants using an AWS provided account, you do not need to complete the Cleanup phase.**
-    </p>
-
 Now that you have completed this workshop, follow the steps below to clean up the artifacts that were created.
 
 1.  Go to the Systems Manager Patch Manager console.

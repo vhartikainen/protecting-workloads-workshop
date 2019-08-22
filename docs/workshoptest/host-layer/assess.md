@@ -24,8 +24,8 @@ act on them collectively.
 In this section you will do the following tasks:
 
 1. Examine the CloudFormation stack you built to learn about the tags that were applied by AWS CloudFormation.
-3. Learn about Amazon Inspector targets, templates, and rules packages.
-4. Examine Amazon Inspector findings
+2. Learn about Amazon Inspector targets, templates, and rules packages.
+3. Examine Amazon Inspector findings
 
 ## Examine the stack that you built and its tags
 
@@ -40,7 +40,6 @@ In this section you will do the following tasks:
     The *Type* column lists the type of the resouces.  Notice that you will not see any resources of type AWS::EC2::Instance even though there are now EC2 instances running..  The reason for this is that the CloudFormation stack did not deploy any - at least not directly.  The stack did, however, deploy an auto scaling group with a launch configuration that in turn launched the instances.  You will now look at the auto scaling group and see how it supports tagging.
 
 3.  Continue scrolling through the resources shown by CloudFormation and look for a resource named *AutoScalingGroup* as shown in the picture below.
-
 
     ![CloudFormation Auto Scaling Group](./images/assess-cloudformation-asg.png)
 
