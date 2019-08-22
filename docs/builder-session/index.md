@@ -1,4 +1,4 @@
-# Supercharging your workload defenses with AWS WAF, Amazon Inspector and AWS Systems Manager
+# Protecting workloads on AWS from the instance to the edge
 
 Welcome to the AWS Supercharging your Workload Defenses Builder Session!
 
