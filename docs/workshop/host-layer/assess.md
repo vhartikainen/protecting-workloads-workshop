@@ -26,15 +26,15 @@ In this section you will do the following tasks:
 
 ## Examine the stack that you built and its tags
 
-1. Go to the CloudFormation console in the same AWS region where the stack was created..  You should see a list of stacks similar to the figure below. Locate the stack you created.  In this documentation, the name of the stack is *pww*.  If you are doing this workshop at an AWS event, the stackname may be much longer.  Make sure you can se the entire stack name.  Copy the stack name into a scratch file on your workstation in case you need it later.
+1. Go to the CloudFormation console in the same AWS region where the stack was created.  You should see a list of stacks similar to the figure below. Your console layout may look different depending on the preferences in your account.  Locate the stack you created.  In this documentation, the name of the stack is *pww*.  If you are doing this workshop at an AWS event, the stackname may be much longer.  Make sure you can see the entire stack name.  Copy the stack name into a scratch file on your workstation in case you need it later.
 
     ![cloudformation-stack-list](./images/assess-cloudformation-stacks.png)
 
-2. Click the **check box** to the left of the stack name and then click the **Resources** tab below.  You will see a list of resources that were deployed by the stack as shown in the figure below.
+2. If you see a check box to the left of the stack name, click the **check box** to the left of the stack name and then click the **Resources** tab.  If you don't see a check box, just click the **Resources** tab.  You will see a list of resources that were deployed by the stack as shown in the figure below.
 
     ![cloudformation-stack-resources](./images/assess-cloudformation-resources.png)
 
-    The *Type* column lists the type of the resouces.  Notice that you will not see any resources of type AWS::EC2::Instance even though there are now EC2 instances running..  The reason for this is that the CloudFormation stack did not deploy any - at least not directly.  The stack did, however, deploy an auto scaling group with a launch configuration that in turn launched the instances.  You will now look at the auto scaling group and see how it supports tagging.
+    The *Type* column lists the type of the resouces.  Notice that you will not see any resources of type AWS::EC2::Instance even though there are now EC2 instances running.  The reason for this is that the CloudFormation stack did not deploy any - at least not directly.  The stack did, however, deploy an auto scaling group with a launch configuration that in turn launched the instances.  You will now look at the auto scaling group and see how it supports tagging.
 
 3.  Continue scrolling through the resources shown by CloudFormation and look for a resource named *AutoScalingGroup* as shown in the picture below.
 
