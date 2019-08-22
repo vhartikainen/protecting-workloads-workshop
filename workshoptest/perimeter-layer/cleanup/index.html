@@ -42,7 +42,7 @@
     
     
       
-        <title>Cleanup Phase - Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager</title>
+        <title>Mitigating Common Web Application Attack Vectors Using AWS WAF - Cleanup Phase - Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager</title>
       
     
     
@@ -160,7 +160,7 @@
                   Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager
                 </span>
                 <span class="md-header-nav__topic">
-                  Cleanup Phase
+                  Mitigating Common Web Application Attack Vectors Using AWS WAF - Cleanup Phase
                 </span>
               
             
@@ -248,16 +248,14 @@
       
         
 
-  
-
-<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+<nav class="md-tabs" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
         
   <li class="md-tabs__item">
     
-      <a href="../../.." title="Home" class="md-tabs__link">
+      <a href="../../.." title="Home" class="md-tabs__link md-tabs__link--active">
         Home
       </a>
     
@@ -284,32 +282,6 @@
       
         <a href="../../../builder-session/" title="Builder Session" class="md-tabs__link">
           Builder Session
-        </a>
-      
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../" title="Workshop (Test Version)" class="md-tabs__link md-tabs__link--active">
-          Workshop (Test Version)
-        </a>
-      
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../../builder-session-test/" title="Builder Session (Test Version)" class="md-tabs__link">
-          Builder Session (Test Version)
         </a>
       
     </li>
@@ -742,355 +714,6 @@
       
       
 
-  
-
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
-    
-    <label class="md-nav__link" for="nav-4">
-      Workshop (Test Version)
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
-        Workshop (Test Version)
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../" title="Scenario" class="md-nav__link">
-      Scenario
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../getting-started/" title="Getting Started" class="md-nav__link">
-      Getting Started
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3" checked>
-    
-    <label class="md-nav__link" for="nav-4-3">
-      Perimeter Layer
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-3">
-        Perimeter Layer
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../build/" title="Build Phase" class="md-nav__link">
-      Build Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../assess/" title="Assess Phase" class="md-nav__link">
-      Assess Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../remediate/" title="Remediate Phase" class="md-nav__link">
-      Remediate Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../verify/" title="Verify Phase" class="md-nav__link">
-      Verify Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="Cleanup Phase" class="md-nav__link md-nav__link--active">
-      Cleanup Phase
-    </a>
-    
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4">
-    
-    <label class="md-nav__link" for="nav-4-4">
-      Host Layer
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-4">
-        Host Layer
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../host-layer/build/" title="Build Phase" class="md-nav__link">
-      Build Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../host-layer/assess/" title="Assess Phase" class="md-nav__link">
-      Assess Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../host-layer/remediate/" title="Remediate Phase" class="md-nav__link">
-      Remediate Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../host-layer/verify/" title="Verify Phase" class="md-nav__link">
-      Verify Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../host-layer/cleanup/" title="Cleanup Phase" class="md-nav__link">
-      Cleanup Phase
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../cleanup/" title="Cleanup" class="md-nav__link">
-      Cleanup
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
-    
-    <label class="md-nav__link" for="nav-5">
-      Builder Session (Test Version)
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-5">
-        Builder Session (Test Version)
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../builder-session-test/" title="Scenario" class="md-nav__link">
-      Scenario
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../builder-session-test/getting-started/" title="Getting Started" class="md-nav__link">
-      Getting Started
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../builder-session-test/build/" title="Build Phase" class="md-nav__link">
-      Build Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../builder-session-test/assess/" title="Assess Phase" class="md-nav__link">
-      Assess Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../builder-session-test/remediate/" title="Remediate Phase" class="md-nav__link">
-      Remediate Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../builder-session-test/verify/" title="Verify Phase" class="md-nav__link">
-      Verify Phase
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../builder-session-test/cleanup/" title="Cleanup Phase" class="md-nav__link">
-      Cleanup Phase
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
 
   <li class="md-nav__item">
     <a href="../../../contribute/" title="Contributing" class="md-nav__link">
@@ -1174,41 +797,6 @@
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-          <a href="../verify/" title="Verify Phase" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Verify Phase
-              </span>
-            </div>
-          </a>
-        
-        
-          <a href="../../host-layer/build/" title="Build Phase" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Build Phase
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
