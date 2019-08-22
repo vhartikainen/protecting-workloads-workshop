@@ -1,8 +1,5 @@
 # Identifying and Remediating Host Vulnerabilities - Host Layer Round - Assess Phase
 
-!!! info "Important note!"
-    __We are testing out some new ideas here.  Some things may not work as expected.  We appreciate your patience.__
-
 In the previous Build Phase, you deployed a CloudFormation stack that contains
 some Amazon EC2 instances behind an application load balancer.
 You are now going to learn about AWS Inspector.
