@@ -11,7 +11,7 @@ In this section you will do the following tasks:
 
 ## Use AWS Systems Manager Patch Manager
 
-1. Go to the Systems Manager console and select Patch Manager.  If you see the Patch Manager home screen, then click the **default patch baselines** link as shown below:
+1. Go to the Systems Manager console and select Patch Manager.  If you see the Patch Manager home screen, then click the **View predefined patch baselines** link as shown below:
 
     ![remediate-home-screen](./images/remediate-pm-home-screen.png)
 

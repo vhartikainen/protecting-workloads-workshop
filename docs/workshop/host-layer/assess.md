@@ -40,7 +40,7 @@ In this section you will do the following tasks:
 
     ![CloudFormation Auto Scaling Group](./images/assess-cloudformation-asg.png)
 
-    Click the hyperlink next to AutoScalingGroup.  This will take you to the Amazon EC2 console and display the auto scaling group.  Click on the *Tags* tab to see how the auto scaling group handles tags.  Your console display should look similar to the picture below.
+    Click the hyperlink next to AutoScalingGroup.  This will take you to the Amazon EC2 console and display the auto scaling group.  Scroll down and click on the *Tags* tab to see how the auto scaling group handles tags.  Your console display should look similar to the picture below.
 
     ![EC2 Auto Scaling Group](./images/assess-ec2asg.png)
 
