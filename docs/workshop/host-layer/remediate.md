@@ -31,7 +31,7 @@ In this section you will do the following tasks:
     ![default-baseline](./images/remediate-pm-default-baseline-yes.png)
 
 
-6. Click **Configure patching** In the *Configure patching* screen, go to the *Instances to patch* section and click the **Enter instance tags** radio button.  In the *Instance tags* field, enter *aws:cloudformation:stack-name* into the *Tag key* field.  In the *Tag value* field, enter the stack name that you created earlier.  Click **Add**.
+6. Click **Configure patching**. In the *Configure patching* screen, go to the *Instances to patch* section and click the **Enter instance tags** radio button.  In the *Instance tags* field, enter *aws:cloudformation:stack-name* into the *Tag key* field.  In the *Tag value* field, enter the stack name that you created earlier.  Click **Add**.
 
 
 7. In the *Patching schedule* section, click the *Skip scheduling and patch instances now* radio button.
