@@ -14,6 +14,6 @@ Now that you have remediate the environment, you will again use Amazon Inspector
 
 7.  Click the number of findings for the newest run (after the patches were installed).  You will then see all of the findings that were not patched during the Remediate Phase.
 
-8.  Take a look at the entries that were not patchesd.  A common example of a finding is an instance is configured to allow users to log in with root credentials over SSH, without having to use a command authenticated by a public key.  Why would Patch Manager not patch this or the other findings?
+8.  Take a look at the entries that were not patched.  A common example of a finding is an instance is configured to allow users to log in with root credentials over SSH, without having to use a command authenticated by a public key.  Why would Patch Manager not patch this or the other findings?
 
 9.  You have now completed this round.  Click [here](./cleanup.md) to proceed to the Cleanup Phase.
