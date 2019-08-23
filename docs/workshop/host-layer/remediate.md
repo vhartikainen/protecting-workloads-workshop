@@ -40,7 +40,7 @@ In this section you will do the following tasks:
 
     ![configure-patching](./images/remediate-pm-configure-patching.png)
 
-9.  Click the **Configure patching** button at the bottom of the window.  You will see a message at the top of your screen saying that *Patch Manager* will use *Run Command* to patch the instances.   *Run Command* is another feature of AWS Systems Manager that runs a command across multiple Amazon EC2 instances.  Patch Manager build the commands necessary to perform the patching and is using Run Command to actually execute the commands.
+9.  Click the **Configure patching** button at the bottom of the window.  You will see a message at the top of your screen saying that *Patch Manager* will use *Run Command* to patch the instances.   *Run Command* is another feature of AWS Systems Manager that runs a command across multiple Amazon EC2 instances.  Patch Manager builds the commands necessary to perform the patching and is using Run Command to actually execute the commands.
 
 ## Check the patching status
 
