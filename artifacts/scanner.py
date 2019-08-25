@@ -14,13 +14,15 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+
 # validate command line
 if len(sys.argv) != 2:
 	print('Usage: scanner.py <target DNS or IP>');
 	exit(1);
 
 # set target dns
-target = sys.argv[1];
+# target = sys.argv[1];
+target = sys.argv[1].strip('/');
 
 # parse HTTP request results
 def parse_result(http_result):

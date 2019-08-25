@@ -11,7 +11,7 @@ In this section you will do the following tasks:
 
 ## Use AWS Systems Manager Patch Manager
 
-1. Go to the Systems Manager console and select Patch Manager.  If you see the Patch Manager home screen, then click the **default patch baselines** link as shown below:
+1. Go to the Systems Manager console and select Patch Manager.  If you see the Patch Manager home screen, then click the **View predefined patch baselines** link as shown below:
 
     ![remediate-home-screen](./images/remediate-pm-home-screen.png)
 
@@ -31,7 +31,7 @@ In this section you will do the following tasks:
     ![default-baseline](./images/remediate-pm-default-baseline-yes.png)
 
 
-6. Click **Configure patching** In the *Configure patching* screen, go to the *Instances to patch* section and click the **Enter instance tags** radio button.  In the *Instance tags* field, enter *aws:cloudformation:stack-name* into the *Tag key* field.  In the *Tag value* field, enter the stack name that you created earlier.  Click **Add**.
+6. Click **Configure patching**. In the *Configure patching* screen, go to the *Instances to patch* section and click the **Enter instance tags** radio button.  In the *Instance tags* field, enter *aws:cloudformation:stack-name* into the *Tag key* field.  In the *Tag value* field, enter the stack name that you created earlier (pww, following the example in this documentation).  Click **Add**.
 
 
 7. In the *Patching schedule* section, click the *Skip scheduling and patch instances now* radio button.
@@ -40,7 +40,7 @@ In this section you will do the following tasks:
 
     ![configure-patching](./images/remediate-pm-configure-patching.png)
 
-9.  Click the **Configure patching** button at the bottom of the window.  You will see a message at the top of your screen saying that *Patch Manager* will use *Run Command* to patch the instances.   *Run Command* is another feature of AWS Systems Manager that runs a command across multiple Amazon EC2 instances.  Patch Manager build the commands necessary to perform the patching and is using Run Command to actually execute the commands.
+9.  Click the **Configure patching** button at the bottom of the window.  You will see a message at the top of your screen saying that *Patch Manager* will use *Run Command* to patch the instances.   *Run Command* is another feature of AWS Systems Manager that runs a command across multiple Amazon EC2 instances.  Patch Manager builds the commands necessary to perform the patching and is using Run Command to actually execute the commands.
 
 ## Check the patching status
 

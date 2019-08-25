@@ -297,7 +297,7 @@ Resources:
       Scheme: internet-facing
       Name: !Join ["-" , [!Ref 'AWS::StackName', Alb]]
       SecurityGroups: 
-        - !If [ UseAutomatedScanner, !Ref sgLoadBalancer2, !Ref sgLoadBalancer1 ]
+        - !Ref sgLoadBalancer1
       Subnets: [ !Ref sub1Public, !Ref sub2Public ]
       Tags:
         - Key: Name
@@ -345,7 +345,7 @@ Resources:
           FromPort: 0
           ToPort: 65535
           SourceSecurityGroupId: 
-            !If [ UseAutomatedScanner, !Ref sgLoadBalancer2, !Ref sgLoadBalancer1 ]
+            !Ref sgLoadBalancer1
 
 #        Fn::FindInMap:
 #        - EC2AMI
@@ -646,7 +646,7 @@ Resources:
             commands:
               download:
                 cwd: /usr/bin
-                command: "cd /usr/bin; curl -O https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/scanner.py"
+                command: "cd /usr/bin; curl -O https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/scanner-builder.py; mv scanner-builder.py scanner.py"
       Properties:
         ImageId:
           !GetAtt AMIInfo.Id

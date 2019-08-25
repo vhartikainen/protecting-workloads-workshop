@@ -1,6 +1,6 @@
-# Supercharging your workload defenses with AWS WAF, Amazon Inspector and AWS Systems Manager
+# Protecting workloads on AWS from the instance to the edge
 
-Welcome to the AWS Supercharging your Workload Defenses Builder Session
+Welcome to the AWS Supercharging your Workload Defenses Builder Session!
 
 In this builder session, you will build an environment consisting of two Amazon Linux web servers behind an application load balancer. The web servers will be running a PHP web site that contains several vulnerabilities. You will then use AWS Web Application Firewall (WAF), Amazon Inspector and AWS Systems Manager to identify the vulnerabilities and remediate them. 
 
@@ -15,13 +15,12 @@ Welcome to Widgets LLC! You have just joined the team and your first task is to 
 * **CAF Components**: Preventive
 * **Prerequisites**: AWS Account, Admin IAM User
 
-!!! info "Before you Begin"
-    __Please review the architecture diagram below and [the getting started notes](./getting-started.md) before proceeding.__
+## Builder Session Architecture
 
-## Workshop Architecture
+Here is a diagram of the architecture.  As mentioned above, the environment contains two Web servers running Apache on Linux behind and Application Load Balancer.  Feel free to refer to this diagram if you have questions throughout this exercise. 
 
 ![Workshop Architecture](images/pww-diagram.png)
 
 ---
 
-Click [here](/builder-session/getting-started.md) to proceed to the Getting Started Phase.
+Click [here](getting-started.md) to proceed to the Getting Started phase.

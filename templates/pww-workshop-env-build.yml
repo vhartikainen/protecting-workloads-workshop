@@ -28,7 +28,7 @@ Parameters:
     Default: 0.0.0.0/0
   AutomatedScanner:
     Description: Use automated scanner? Leave true for AWS cponsored event. Set false if non-AWS sponsored event or not using automated scanner.
-    Default: false
+    Default: true
     Type: String
     AllowedValues: [true, false]
   UserName:
