@@ -28,7 +28,7 @@ Parameters:
     Default: 0.0.0.0/0
   AutomatedScanner:
     Description: Use automated scanner? Leave true for AWS cponsored event. Set false if non-AWS sponsored event or not using automated scanner.
-    Default: false
+    Default: true
     Type: String
     AllowedValues: [true, false]
   UserName:
@@ -348,7 +348,6 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
       Scheme: internet-facing
-      Name: !Join ["-" , [!Ref 'AWS::StackName', Alb]]
       SecurityGroups: 
         - !If [ UseAutomatedScanner, !Ref sgLoadBalancer2, !Ref sgLoadBalancer1 ]
       Subnets: [ !Ref sub1Public, !Ref sub2Public ]
@@ -364,7 +363,6 @@ Resources:
       HealthCheckProtocol: HTTP
       HealthCheckTimeoutSeconds: 5
       HealthyThresholdCount: 2
-      Name: !Join ["-" , [!Ref 'AWS::StackName', TargGrp]]
       Port: 80
       Protocol: HTTP
       UnhealthyThresholdCount: 2
