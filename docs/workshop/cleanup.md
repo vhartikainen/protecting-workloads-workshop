@@ -1,27 +1,31 @@
 # AWS Protecting Workloads Workshop - Cleanup
 
-Now that you have completed this workshop, follow the steps below to clean up the artifacts that were created.
+!!! info  "Do not perform cleanup if you are at an *AWS event* where the *Event Engine* is being used. This is handled automatically." 
 
-1.  Go to the Systems Manager Patch Manager console.
+??? info  "Click here if you're *not at an AWS event* or are using your own account" 
 
-2.  Click **Configure patching**.  Click on the **Patch baselines** tab.
+    Now that you have completed this workshop, follow the steps below to clean up the artifacts that were created.
 
-3.  Find the Amazon Linux 2 patch baseline that was supplied by AWS.  Click on its radio button.  From the Actions menu, click *Set default patch baseline*.  This restores the default patch baseline for Amazon Linux 2 to that which was provided by AWS.
+    1.  Go to the Systems Manager Patch Manager console.
 
-4.  Delete the custom patch baseline for Amazon Linux 2.
+    2.  Click **Configure patching**.  Click on the **Patch baselines** tab.
 
-5.  Go to the Amazon Inspector console.
+    3.  Find the Amazon Linux 2 patch baseline that was supplied by AWS.  Click on its radio button.  From the Actions menu, click *Set default patch baseline*.  This restores the default patch baseline for Amazon Linux 2 to that which was provided by AWS.
 
-6.  Click on the **Assessment runs** menu item and delete the runs you created.  You will be prompted for approval to delete the findings associdated with the runs.
+    4.  Delete the custom patch baseline for Amazon Linux 2.
 
-7.  Click on the **Assessment templates** menu item and delete the template you created.
+    5.  Go to the Amazon Inspector console.
 
-8.  Click on the **Assessment targets** and delete the assessment target you created.
+    6.  Click on the **Assessment runs** menu item and delete the runs you created.  You will be prompted for approval to delete the findings associdated with the runs.
 
-9. Go to the WAF console and remove the conditions from the rules that you created
+    7.  Click on the **Assessment templates** menu item and delete the template you created.
 
-10. Go to the WAF console and delete the conditions you created.
+    8.  Click on the **Assessment targets** and delete the assessment target you created.
 
-11. Go to the WAF console and delete the rules you created.
+    9. Go to the WAF console and remove the conditions from the rules that you created
 
-12.  Go to the CloudFormation console and delete the stack that you created.
+    10. Go to the WAF console and delete the conditions you created.
+
+    11. Go to the WAF console and delete the rules you created.
+
+    12.  Go to the CloudFormation console and delete the stack that you created.
