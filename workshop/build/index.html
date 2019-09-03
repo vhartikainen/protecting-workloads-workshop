@@ -13,7 +13,7 @@
         <meta name="description" content="This workshop shows how you can protect a web site using AWS Security Services">
       
       
-        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/workshop/perimeter-layer/">
+        <link rel="canonical" href="https://protecting-workloads.awssecworkshops.com/workshop/build/">
       
       
         <meta name="author" content="aws-security-workshops@amazon.com">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager</title>
+        <title>Build Phase - Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager</title>
       
     
     
@@ -102,7 +102,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#mitigating-common-web-application-attack-vectors-using-aws-waf" tabindex="1" class="md-skip">
+      <a href="#mitigating-common-web-application-attack-vectors-using-aws-waf-build-phase" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -160,7 +160,7 @@
                   Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager
                 </span>
                 <span class="md-header-nav__topic">
-                  Mitigating Common Web Application Attack Vectors Using AWS WAF
+                  Build Phase
                 </span>
               
             
@@ -248,14 +248,16 @@
       
         
 
-<nav class="md-tabs" data-md-component="tabs">
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
         
   <li class="md-tabs__item">
     
-      <a href="../.." title="Home" class="md-tabs__link md-tabs__link--active">
+      <a href="../.." title="Home" class="md-tabs__link">
         Home
       </a>
     
@@ -267,7 +269,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../" title="Workshop" class="md-tabs__link">
+        <a href="../" title="Workshop" class="md-tabs__link md-tabs__link--active">
           Workshop
         </a>
       
@@ -361,10 +363,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       Workshop
@@ -404,11 +408,49 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../build/" title="Build Phase" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Build Phase
+      </label>
+    
+    <a href="./" title="Build Phase" class="md-nav__link md-nav__link--active">
       Build Phase
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#environment-setup" title="Environment setup" class="md-nav__link">
+    Environment setup
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -437,7 +479,7 @@
 
 
   <li class="md-nav__item">
-    <a href="assess/" title="Assess Phase" class="md-nav__link">
+    <a href="../perimeter-layer/assess/" title="Assess Phase" class="md-nav__link">
       Assess Phase
     </a>
   </li>
@@ -449,7 +491,7 @@
 
 
   <li class="md-nav__item">
-    <a href="remediate/" title="Remediate Phase" class="md-nav__link">
+    <a href="../perimeter-layer/remediate/" title="Remediate Phase" class="md-nav__link">
       Remediate Phase
     </a>
   </li>
@@ -461,7 +503,7 @@
 
 
   <li class="md-nav__item">
-    <a href="verify/" title="Verify Phase" class="md-nav__link">
+    <a href="../perimeter-layer/verify/" title="Verify Phase" class="md-nav__link">
       Verify Phase
     </a>
   </li>
@@ -570,8 +612,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#phases-in-the-perimeter-layer-round" title="Phases in the Perimeter Layer round" class="md-nav__link">
-    Phases in the Perimeter Layer round
+  <a href="#environment-setup" title="Environment setup" class="md-nav__link">
+    Environment setup
   </a>
   
 </li>
@@ -592,18 +634,74 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/workshop/perimeter-layer/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/aws-samples/protecting-workloads-workshop/edit/master/docs/workshop/build.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="mitigating-common-web-application-attack-vectors-using-aws-waf">Mitigating Common Web Application Attack Vectors Using AWS WAF</h1>
-<p>For your initial task, you will configure AWS WAF to protect your site from common attacks such as SQL injection and cross site scripting. AWS WAF is a web application firewall that helps protect your web applications from common web exploits that could affect application availability, compromise security or consume excessive resources. </p>
-<h2 id="phases-in-the-perimeter-layer-round">Phases in the Perimeter Layer round</h2>
-<p>To begin the module, proceed to the Assess phase below.</p>
+                <h1 id="mitigating-common-web-application-attack-vectors-using-aws-waf-build-phase">Mitigating Common Web Application Attack Vectors Using AWS WAF - Build Phase</h1>
+<h2 id="environment-setup">Environment setup</h2>
+<div class="admonition info">
+<p class="admonition-title">To get started at an <em>AWS event</em> where the <em>Event Engine</em> is being used</p>
+<p><em>The CloudFormation Stack for this event should already be deployed.</em></p>
 <ol>
-<li><a href="assess/">Assess</a></li>
-<li><a href="remediate/">Remediate</a></li>
-<li><a href="verify/">Verify</a></li>
+<li>Click <a href="https://dashboard.eventengine.run" target="_blank">here</a> to open the Event Engine dashboard in a separate browser tab.</li>
+<li>Enter the <strong>team hash</strong> code that you were provided and click <strong>Proceed</strong>.. </li>
+<li>Click <strong>AWS Console</strong>.</li>
+<li>Click <strong>Open Console</strong>.</li>
+<li>Make sure you are in the correct region.</li>
+<li>Go to the CloudFormation console.</li>
+<li>Click <strong><a href="assess.md">here</a></strong> to proceed to the Assess phase.</li>
 </ol>
+</div>
+<hr />
+<details class="info"><summary>Click here if you're <em>not at an AWS event</em> or are using your own account</summary><p>To setup the workshop environment, launch the CloudFormation stack below in the preferred AWS region using the "Deploy to AWS" links below. This will automatically take you to the console to run the template. In order to complete these workshops, you'll need a valid, usable <a href="https://aws.amazon.com/getting-started/" target="_blank">AWS Account</a>. Use a personal account or create a new AWS account to ensure you have the necessary access and that you do not accidentally modify corporate resources. Do <strong>not</strong> use an AWS account from the company you work for. <strong>We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account. If multiple participants are sharing a single account you should use unique names for the stack set and resources created in the console.</strong></p>
+<hr />
+<p><strong>US West 2 (Oregon)</strong> &nbsp; &nbsp; &nbsp; &nbsp; 
+<a href="https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/workshoptest/pww-workshop-env-build.yml" target="_blank"><img alt="Deploy in us-west-2" src="/images/deploy-to-aws.png" /></a></p>
+<hr />
+<p><strong>US East 2 (Ohio)</strong> &nbsp; &nbsp; &nbsp; &nbsp;
+<a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/workshoptest/pww-workshop-env-build.yml" target="_blank"><img alt="Deploy in us-east-2" src="/images/deploy-to-aws.png" /></a></p>
+<hr />
+<p><strong>US East 1 (N. Virginia)</strong> &nbsp; &nbsp; &nbsp; &nbsp;
+<a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/workshoptest/pww-workshop-env-build.yml" target="_blank"><img alt="Deploy in us-east-1" src="/images/deploy-to-aws.png" /></a></p>
+<hr />
+<p><strong>EU West 1 (Ireland)</strong> &nbsp; &nbsp; &nbsp; &nbsp;
+<a href="https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/workshoptest/pww-workshop-env-build.yml" target="_blank"><img alt="Deploy in us-east-1" src="/images/deploy-to-aws.png" /></a></p>
+<hr />
+<p><strong>AP Southeast 2 (Sydney)</strong> &nbsp; &nbsp; &nbsp; &nbsp;
+<a href="https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-2#/stacks/new?stackName=pww&templateURL=https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/workshoptest/pww-workshop-env-build.yml" target="_blank"><img alt="Deploy in ap-southeast-2" src="/images/deploy-to-aws.png" /></a></p>
+<hr />
+<ol>
+<li>
+<p>Click <strong><em>Next</em></strong> on the Specify Template section.</p>
+</li>
+<li>
+<p>On the Specify stack details step, update the following parameters depending on how you are doing this workshop:</p>
+<p>info "Individual or an event not sponsored by AWS"</p>
+</li>
+<li>
+<p>If you are sharing an AWS account with someone else in the same region, change the name of the stack to <strong>pww-yourinitials</strong></p>
+</li>
+<li>Automated Scanner: <strong>Set to false.</strong></li>
+<li>Scanner Username: Enter <strong>null</strong></li>
+<li>Scanner Password: Enter <strong>null</strong></li>
+<li>Trusted Network CIDR: Enter a trusted IP or CIDR range you will access the site from using a web browser. You can optain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host.</li>
+<li>
+<p>Keep the defaults for the rest of the parameters.</p>
+</li>
+<li>
+<p>Click <strong><em>Next</em></strong> </p>
+</li>
+<li>
+<p>Click Next on the <strong><em>Configure stack options</em></strong> section.</p>
+</li>
+<li>
+<p>Finally, acknowledge that the template will create IAM roles under Capabilities and click <strong>Create</strong>.</p>
+</li>
+</ol>
+<p>This will bring you back to the CloudFormation console. You can refresh the page to see the stack starting to create. Before moving on, make sure the stack is in a <strong>CREATE_COMPLETE</strong> status. This should take ~8 minutes.</p>
+</details>
+<hr />
+<p>You can now proceed to the <a href="assess.md">Assess Phase</a>.</p>
                 
                   
                 
@@ -620,6 +718,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../getting-started/" title="Getting Started" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Getting Started
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../perimeter-layer/assess/" title="Assess Phase" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Assess Phase
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
