@@ -42,6 +42,9 @@ The scanner performs 10 basic tests designed to help simulate and mitigate commo
 9. Cross Site Request Forgery (CSRF) Token Invalid
 10. Path Traversal 
 
+??? info  "Workshop Architecture" 
+    ![Workshop Architecture](/images/pww-diagram.png)
+
 !!! info "Note about Tests"
     _These basic tests are designed to provide common examples you can use to test AWS WAF functionality. You should perform thorough analysis and testing when implementing rules into your production environments._
 

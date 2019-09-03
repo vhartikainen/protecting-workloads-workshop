@@ -24,6 +24,9 @@ In this section you will do the following tasks:
 2. Learn about Amazon Inspector targets, templates, and rules packages.
 3. Examine Amazon Inspector findings
 
+??? info  "Workshop Architecture" 
+    ![Workshop Architecture](/images/pww-diagram.png)
+
 ## Examine the stack that you built and its tags
 
 1. Go to the CloudFormation console in the same AWS region where the stack was created.  You should see a list of stacks similar to the figure below. Your console layout may look different depending on the preferences in your account.  Locate the stack you created.  In this documentation, the name of the stack is *pww*.  If you are doing this workshop at an AWS event, the stackname may be much longer.  Make sure you can see the entire stack name.  Copy the stack name into a scratch file on your workstation in case you need it later.
