@@ -1,6 +1,6 @@
 # Project information
 
-site_name: Protecting Workloads With AWS WAF, Amazon Inspector and AWS Systems Manager
+site_name: Protecting Workloads on AWS from the Instance to the Edge
 site_description: This workshop shows how you can protect a web site using AWS Security Services
 site_author: 'aws-security-workshops@amazon.com'
 site_url: 'https://protecting-workloads.awssecworkshops.com/'
