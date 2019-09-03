@@ -12,7 +12,7 @@
 	4. Click **Open Console**.
 	5. Make sure you are in the correct region.
 	6. Go to the CloudFormation console.
-	7. Click **[here](../perimeter-layer/assess/Min)** to proceed to the Assess phase.
+	7. Click **[here](../perimeter-layer/assess/)** to proceed to the Assess phase.
 
 ---
 
