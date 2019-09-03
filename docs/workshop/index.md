@@ -13,7 +13,6 @@ Welcome to Widgets LLC! You have just joined the team and your first task is to 
 * **Duration**: 2 hours
 * **CSF Functions**: Protect
 * **CAF Components**: Preventive
-* **Prerequisites**: AWS Account, Admin IAM User
 
 !!! info "Before you Begin"
     __Please review the architecture diagram below and [the getting started notes](./getting-started.md) before proceeding.__

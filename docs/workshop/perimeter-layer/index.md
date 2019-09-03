@@ -5,9 +5,8 @@ For your initial task, you will configure AWS WAF to protect your site from comm
 
 ## Phases in the Perimeter Layer round
 
-To begin the module, proceed to the Build phase below.
+To begin the module, proceed to the Assess phase below.
 
-1. [Build](build.md)
-2. [Assess](assess.md)
-3. [Remediate](remediate.md)
-4. [Verify](verify.md)
+1. [Assess](assess.md)
+2. [Remediate](remediate.md)
+3. [Verify](verify.md)

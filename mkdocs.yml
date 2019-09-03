@@ -49,27 +49,26 @@ nav:
   - Workshop:
     - Scenario: 'workshop/index.md'
     - Getting Started: 'workshop/getting-started.md'
+    - Build Phase: 'workshop/build.md'
     - Perimeter Layer:
-      - 'Build Phase': 'workshop/perimeter-layer/build.md'
       - 'Assess Phase': 'workshop/perimeter-layer/assess.md'
       - 'Remediate Phase': 'workshop/perimeter-layer/remediate.md'
       - 'Verify Phase': 'workshop/perimeter-layer/verify.md'
     - Host Layer:
-      - 'Build Phase': 'workshop/host-layer/build.md'
       - 'Assess Phase': 'workshop/host-layer/assess.md'
       - 'Remediate Phase': 'workshop/host-layer/remediate.md'
       - 'Verify Phase': 'workshop/host-layer/verify.md'
     - Cleanup: 'workshop/cleanup.md'
-  - Builder Session:
-    - Scenario: 'builder-session/index.md'
-    - Getting Started: 'builder-session/getting-started.md'
-    - Build Phase: 'builder-session/build.md'
-    - Assess Phase: 'builder-session/assess.md'
-    - Remediate Phase: 'builder-session/remediate.md'
-    - Verify Phase: 'builder-session/verify.md'
-    - Cleanup Phase: 'builder-session/cleanup.md'
-  - Contributing: 'contribute.md'
-  - License: 'license.md'
+#  - Builder Session:
+#    - Scenario: 'builder-session/index.md'
+#    - Getting Started: 'builder-session/getting-started.md'
+#    - Build Phase: 'builder-session/build.md'
+#    - Assess Phase: 'builder-session/assess.md'
+#    - Remediate Phase: 'builder-session/remediate.md'
+#    - Verify Phase: 'builder-session/verify.md'
+#    - Cleanup Phase: 'builder-session/cleanup.md'
+#  - Contributing: 'contribute.md'
+#  - License: 'license.md'
 # - Workshop (Test Version):
 #   - Scenario: 'workshoptest/index.md'
 #   - Getting Started: 'workshoptest/getting-started.md'
