@@ -42,8 +42,7 @@ Here are some sample of metrics that you can use. Starting from top left side, i
 
 - **ASG CPU Utilization**: identify if the attacker is not only bypassing the CloudFront/WAF but also the ELB layer, also use to identify the damage impact of an attack;
 
-
 ---
 
 This concludes the Perimeter Round.
-You can now procede to the [Host Layer round](/workshop/host-layer/)
+You can now procede to the [Host Layer round](/workshop/host-layer/assess/)
