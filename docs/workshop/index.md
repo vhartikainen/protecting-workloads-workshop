@@ -1,4 +1,4 @@
-# Protecting workloads on AWS from the instance to the edge
+# Protecting workloads on AWS from the Instance to the Edge
 
 Welcome to the AWS Protecting Workloads Workshop!
 
