@@ -35,11 +35,14 @@ Parameters:
     Type: String
     Description: Username to add endpoint for scanning? *Obtain from workshop team if using automated scanner*.
     AllowedPattern: ".+"
-    Default: "waflab"
+    Default: "null"
+    NoEcho: true
   PassWord:
     Type: String
     Description: Password to add endpoint for scanning? *Obtain from workshop team if using automated scanner*.
     AllowedPattern: ".+"
+    Default: "null"
+    NoEcho: true
   ScannerIP01:
     Type: String
     Default: 54.156.237.144/32
@@ -736,7 +739,7 @@ Resources:
                 max_char = 8
                 allchar = string.ascii_lowercase + string.digits
                 UUID = "".join(choice(allchar) for x in range(randint(min_char, max_char)))
-                EXP = timestamp + + 12 * 60 * 60
+                EXP = timestamp + + 60 * 60 * 60
                 payload = { "Item": { "targid": {"S": TargId }, "uuid": {"S": UUID }, "stackid": {"S": StackId}, "timestamp": { "N": str(timestamp) }, "ttl": {"N": str(EXP) } }, "TableName": "waflab" }
                 response = requests.post(url, data=json.dumps(payload), headers=headers)
                 logger.info('Response Text: {}'.format(response.text))
@@ -851,7 +854,8 @@ Resources:
             imageDescriptions=ec2.describe_images(
               Owners=['amazon'],
               Filters=[
-                {'Name': 'name', 'Values': [event['ResourceProperties']['NameFilter']]}
+                {'Name': 'name', 'Values': [event['ResourceProperties']['NameFilter']]},
+                {'Name': 'architecture', 'Values': ['x86_64']}
               ],
             )
             
