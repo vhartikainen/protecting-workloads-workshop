@@ -157,9 +157,7 @@ How do the requirements derived from the above questions affect your solution?
         1. query_string, url decode _You should have created this filter in <a href="./#console-walkthrough-creating-a-condition-and-rule">the walk through above</a>_
         2. body, html decode
         3. header, cookie, url decode
-    2.  create SQLi rule named matchSQLi
-    	1. type regular
-        2. does match SQLi condition: filterSQLi
+    2.  View the existing matchSQLi rule to confirm additional filters 
     3.	create **Cross-site scripting** condition named filterXSS with 4 filters
         1. query_string, url decode
         2. body, html decode
@@ -190,7 +188,7 @@ Build rules that ensure the requests your application ends up processing are val
     2.	create string match condition named filterPOSTMethod with 1 filter
         1.	uri, exactly matches, no transform, _/form.php_
     3.	create **String and regex matching** _Regex match_ condition named filterCSRFToken with 1 filter
-        1.	header x-csrf-token (_type in manually_), url decode, matches pattern: _^[0-9a-f]{40}$_
+        1.	header x-csrf-token (_type in manually_), url decode, create regex pattern set named _csrf_, matches pattern: _^[0-9a-f]{40}$_
     4.	create rule named matchCSRF
         1.	type regular
         2.	does match string condition: filterFormProcessor
