@@ -38,7 +38,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../../assets/images/aws-favicon.ico">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.2.0">
     
     
       
@@ -46,12 +46,12 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/application.982221ab.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.750b69bd.css">
       
       
     
     
-      <script src="../../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+      <script src="../../../assets/javascripts/modernizr.74668098.js"></script>
     
     
       
@@ -1091,11 +1091,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <li>header, cookie, url decode</li>
 </ol>
 </li>
-<li>create SQLi rule named matchSQLi<ol>
-<li>type regular</li>
-<li>does match SQLi condition: filterSQLi</li>
-</ol>
-</li>
+<li>View the existing matchSQLi rule to confirm additional filters </li>
 <li>create <strong>Cross-site scripting</strong> condition named filterXSS with 4 filters<ol>
 <li>query_string, url decode</li>
 <li>body, html decode</li>
@@ -1133,7 +1129,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 </ol>
 </li>
 <li>create <strong>String and regex matching</strong> <em>Regex match</em> condition named filterCSRFToken with 1 filter<ol>
-<li>header x-csrf-token (<em>type in manually</em>), url decode, matches pattern: <em>^[0-9a-f]{40}$</em></li>
+<li>header x-csrf-token (<em>type in manually</em>), url decode, create regex pattern set named <em>csrf</em>, matches pattern: <em>^[0-9a-f]{40}$</em></li>
 </ol>
 </li>
 <li>create rule named matchCSRF<ol>
@@ -1337,7 +1333,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
       
     </div>
     
-      <script src="../../../assets/javascripts/application.b806dc00.js"></script>
+      <script src="../../../assets/javascripts/application.39abc4af.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
       
