@@ -1035,7 +1035,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 </ul>
 <h4 id="relevant-transformations">Relevant transformations:</h4>
 <ul>
-<li><strong>SQL Injection Match Condition</strong> query strinb is URL encoded, so we will apply the <strong>URL_DECODE</strong> transformation.</li>
+<li><strong>SQL Injection Match Condition</strong> query string is URL encoded, so we will apply the <strong>URL_DECODE</strong> transformation.</li>
 </ul>
 <h4 id="rules-to-implement">Rules to implement:</h4>
 <ul>
@@ -1099,7 +1099,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <li>header, cookie, url decode</li>
 </ol>
 </li>
-<li>create a <strong>String and regex matching</strong> <em>String match</em> condition named filterXSSPathException with 1 filter. <em>This demonstrates how to add an expception for the XSS rule</em> <ol>
+<li>create a <strong>String and regex matching</strong> <em>String match</em> condition named filterXSSPathException with 1 filter. <em>This demonstrates how to add an exception for the XSS rule</em> <ol>
 <li>uri, starts with, no transform, <em>/reportBuilder/Editor.aspx</em></li>
 </ol>
 </li>
@@ -1182,7 +1182,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 •   Do you have administrative, management, status or health check paths and components that aren’t meant for end user access?</p>
 <p>You should consider blocking access to such elements, or limiting access to known sources, either whitelisted IP addresses or geographic locations.</p>
 <details class="info"><summary>Solution</summary><ol>
-<li>create <strong>Geo match</strong> conditon named filterAffiliates with 1 filter<ol>
+<li>create <strong>Geo match</strong> condition named filterAffiliates with 1 filter<ol>
 <li>add country US, and RO</li>
 </ol>
 </li>
@@ -1235,7 +1235,7 @@ Validate that you are able to see a pre-existing rule, configured to block reque
 <p>Reputation lists can also be maintained by third parties. The AWS WAF Security Automations allow you to implement IP-based reputation lists.</p>
 <details class="info"><summary>Solution</summary><ol>
 <li>edit the IP addresses condition named WafIpBlackList<ol>
-<li>add a test IP address <em>You can optain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host.</em></li>
+<li>add a test IP address <em>You can obtain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host.</em></li>
 </ol>
 </li>
 <li>create a <strong>String and regex matching</strong> <em>String match</em> condition named filterNoPath with 1 filter<ol>
