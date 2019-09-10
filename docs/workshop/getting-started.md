@@ -41,9 +41,4 @@
 	3.  Enter the **Security Check** and click **Redeem**.
 
 
-## Workshop Rounds
-
-1. [Mitigating Common Web Application Attack Vectors Using AWS Web Application Firewall](/workshop/perimeter-layer/)
-2. [Automating Assessment and Remediation Using Amazon Inspector and AWS Systems Manager](/workshop/host-layer/)
-
 You are now setup for the workshop!

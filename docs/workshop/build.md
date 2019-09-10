@@ -58,7 +58,7 @@
     - Automated Scanner: __Set to false.__
     - Scanner Username: Enter __null__
     - Scanner Password: Enter __null__
-    - Trusted Network CIDR: Enter a trusted IP or CIDR range you will access the site from using a web browser. You can optain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host.
+    - Trusted Network CIDR: Enter a trusted IP or CIDR range you will access the site from using a web browser. You can obtain your current IP at <a href="https://ifconfig.co/" target="_blank">Ifconfig.co</a> The entry should follow CIDR notation. i.e. 10.10.10.10/32 for a single host.
     - Keep the defaults for the rest of the parameters.
 
     3. Click ***Next*** 

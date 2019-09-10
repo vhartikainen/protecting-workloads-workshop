@@ -16,7 +16,7 @@ You are now going to assess the posture of the site and then add an AWS WAF Web 
 
 ## Look up the Stack Outputs
 
-1.  Go to the stack outputs and look for the website URL stored in the **albEndpoint** output value. Test access to the site by right clicking and opening in a new tab. Note the URL for your site as this will be used throughout this workshoop round.
+1.  Go to the stack outputs and look for the website URL stored in the **albEndpoint** output value. Test access to the site by right clicking and opening in a new tab. Note the URL for your site as this will be used throughout this workshop round.
 
 2.  For an AWS sponsored event, while in the stack outputs, note the **ScannerUID** value. This Id value will be used to identify the posture of your site within the automated scanner and the <a href="http://waflabdash.awssecworkshops.com/" target="_blank">associated dashboard</a>.
 
@@ -69,7 +69,7 @@ The logic in the scanner script color codes the response as follows:
 - __Blue__: 404 - Not Found
 - __Yellow__: 500 - Internal Server Error
 
-As you can see by running the script there are several vulnerabilities that need to be addressed. In the remnediate phase you will configure an AWS WAF Web ACL to block these requests. When AWS WAF blocks a web request based on the conditions that you specify, it returns HTTP status code 403 (Forbidden). For a full view of the request and response information, you can paste the **Request** command directly into the console and add the --debug argument.
+As you can see by running the script there are several vulnerabilities that need to be addressed. In the remediate phase you will configure an AWS WAF Web ACL to block these requests. When AWS WAF blocks a web request based on the conditions that you specify, it returns HTTP status code 403 (Forbidden). For a full view of the request and response information, you can paste the **Request** command directly into the console and add the --debug argument.
 
 !!! info "Note about Testing Tool"
     The scanner.py script uses an open source <a href="https://httpie.org/" target="_blank">HTTP client called httpie</a>. HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.
@@ -77,7 +77,7 @@ As you can see by running the script there are several vulnerabilities that need
 
 ### Website Scanning Environment and Tools - Automated Scanning
 
-For an AWS sponsored event, in addition to the ad hoc scanning, automated scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop particpants. You can identify the scanning results for your site using the Unique Id found in the CloudFormation outputs.
+For an AWS sponsored event, in addition to the ad hoc scanning, automated scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop participants. You can identify the scanning results for your site using the Unique Id found in the CloudFormation outputs.
 
 ![WAF Lab Centralized Dashboard](./images/waflabdash-pre.png)
 
