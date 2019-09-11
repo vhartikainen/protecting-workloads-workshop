@@ -71,4 +71,4 @@
 
 ---
 
-You can now proceed to the [Assess Phase](../perimeter-layer/assess/).
+You can now proceed to the [Assess Phase of the Perimeter Layer](../perimeter-layer/assess/).
