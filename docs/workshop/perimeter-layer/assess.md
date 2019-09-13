@@ -20,7 +20,7 @@ You are now going to assess the posture of the site and then add an AWS WAF Web 
 
 2.  For an AWS sponsored event, while in the stack outputs, note the **ScannerUID** value. This Id value will be used to identify the posture of your site within the automated scanner and the <a href="http://waflabdash.awssecworkshops.com/" target="_blank">associated dashboard</a>.
 
-3. While still in stack outputs, right click the link in **RedTeamHostSession** and open in new tab. This will launch an AWS Systems Manager Session Manager to the host you will use to perform ad hoc scans against your site URL. 
+3. While still in stack outputs, right click the link in **RedTeamHostSession** and open in new tab. This will launch an AWS Systems Manager Session Manager to the host you will use to perform manual scans against your site URL. 
 
 !!! info "AWS Systems Manager Session Manager"
     Session Manager is a fully managed AWS Systems Manager capability that lets you manage your Amazon EC2 instances through an interactive one-click browser-based shell or through the AWS CLI. Session Manager provides secure and auditable instance management without the need to open inbound ports, maintain bastion hosts, or manage SSH keys. 
@@ -77,7 +77,7 @@ As you can see by running the script there are several vulnerabilities that need
 
 ### Website Scanning Environment and Tools - Automated Scanning
 
-For an AWS sponsored event, in addition to the ad hoc scanning, automated scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop participants. You can identify the scanning results for your site using the Unique Id found in the CloudFormation outputs.
+For an AWS sponsored event, in addition to the manual scanning, automated scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop participants. You can identify the scanning results for your site using the Unique Id found in the CloudFormation outputs.
 
 ![WAF Lab Centralized Dashboard](./images/waflabdash-pre.png)
 
