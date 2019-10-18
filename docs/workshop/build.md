@@ -16,7 +16,7 @@
 	8. Optionally download the [Workshop Companion Guide](https://github.com/aws-samples/protecting-workloads-workshop/raw/master/artifacts/pww-companion-guide-v1.pdf).
 
 ---
-
+ 
 ??? info  "Click here if you're *not at an AWS event* or are using your own account" 
 
     To setup the workshop environment, launch the CloudFormation stack below in the preferred AWS region using the "Deploy to AWS" links below. This will automatically take you to the console to run the template. In order to complete these workshops, you'll need a valid, usable <a href="https://aws.amazon.com/getting-started/" target="_blank">AWS Account</a>. Use a personal account or create a new AWS account to ensure you have the necessary access and that you do not accidentally modify corporate resources. Do **not** use an AWS account from the company you work for. __We stronly recommend that you use a non-production AWS account for this workshop such as a training, sandbox or personal account. If multiple participants are sharing a single account you should use unique names for the stack set and resources created in the console.__
