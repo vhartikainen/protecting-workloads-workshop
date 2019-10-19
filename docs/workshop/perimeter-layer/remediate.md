@@ -29,8 +29,8 @@ Once selected, you will be redirected to the AWS WAF & AWS Shield service consol
 ![WAF ACL Rules](./images/waf-acl-rules.png)
 Validate that you are able to see a pre-existing rule, configured to block requests, and that your Web ACL is associated with an Application load balancer resource. You can drill down further into the properties of the existing rule, by clicking on the rule name. You should see 2 entries into the associated IP address list for the loopback/localhost IP addresses (127.0.0.0/8, ::1/128).
 
-!!! info "Checking Sampled requests"
-    _In the Requests tab, you can view <a href="https://docs.aws.amazon.com/waf/latest/developerguide/web-acl-testing.html#web-acl-testing-view-sample" target="_blank">a sample of the requests</a> that have been inspected by the AWS WAF. For each sampled request you can view detailed data about the request, such as the originating IP address and the headers included in the request. You also can view which rule the request matched, and whether the rule is configured to allow or block requests. You can refer to the sampled requests throughout this excersise to monitor activity and look for suspicious traffic._
+!!! info "Checking Sampled requests"
+    _In the Requests tab, you can view <a href="https://docs.aws.amazon.com/waf/latest/developerguide/web-acl-testing.html#web-acl-testing-view-sample" target="_blank">a sample of the requests</a> that have been inspected by the AWS WAF. For each sampled request you can view detailed data about the request such as the originating IP address and the headers included in the request. You also can view which rule the request matched and whether the rule is configured to allow or block request. You can refer to the sampled requests throughout this excersise to monitor activity and look for suspicious traffic._
 
 ##AWS WAF Rule Design and Considerations
 
