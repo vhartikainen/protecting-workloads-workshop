@@ -200,6 +200,11 @@ Build rules that ensure the requests your application ends up processing are val
     5.	add rules to Web ACL
     6.  Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked
 
+!!! Attention
+    <p style="font-size:16px;">
+      If you have 30 minutes or less remaining in the workshop, you should consider proceeding to the [Host Layer round](/workshop/host-layer/assess/). There will be time during the Inspector Assessment run to continue the WAF excercises.
+    </p>
+
 ### 3. Mitigate File Inclusion & Path Traversal
 
 Use the string and regex matching conditions to build rules that block specific patterns indicative of unwanted path traversal or file inclusion.
