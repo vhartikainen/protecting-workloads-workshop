@@ -49,7 +49,7 @@ While Inspector is running, you will learn about AWS Systems Manager Maintenance
     | ---------- | ----------- |
     | Target name | pww_targets |
     | Specify instance tags | Select the radio button |
-    | Tag key | aws:cloudformation\:stack-name |
+    | Tag key | aws:cloudformation:stack-name |
     | Tag value | *the stack name* (pww in this example) |
 
     Make sure you click **Add** to add the tag.  Your screen should look similar to the figure below.
