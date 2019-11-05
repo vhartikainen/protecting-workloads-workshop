@@ -530,13 +530,6 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#examine-the-stack-that-you-built-and-its-tags" title="Examine the stack that you built and its tags" class="md-nav__link">
-    Examine the stack that you built and its tags
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#explore-amazon-inspector" title="Explore Amazon Inspector" class="md-nav__link">
     Explore Amazon Inspector
   </a>
@@ -634,13 +627,6 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#examine-the-stack-that-you-built-and-its-tags" title="Examine the stack that you built and its tags" class="md-nav__link">
-    Examine the stack that you built and its tags
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#explore-amazon-inspector" title="Explore Amazon Inspector" class="md-nav__link">
     Explore Amazon Inspector
   </a>
@@ -680,57 +666,10 @@
                 
                 
                 <h1 id="identifying-and-remediating-host-vulnerabilities-host-layer-round-assess-phase">Identifying and Remediating Host Vulnerabilities - Host Layer Round - Assess Phase</h1>
-<p>In the previous Build Phase, you deployed a CloudFormation stack that contains
+<p>In the previous Build Phase, CloudFormation deployed a stack containing
 some Amazon EC2 instances behind an application load balancer.
 You are now going to learn about AWS Inspector.
-AWS Inspector assesses the instances and identifies security findings that can be remediated.</p>
-<p>To save time, the CloudFormation teamplate will run an initial Inspector assessment
-for you.  In later phases of the workshop, you will apply patches using AWS Systems Manager
-and then run another Inspector assessment to see if there is any change in the number
-of findings.</p>
-<p>Before you can assess the instances with Amazon Inspector, you need to identify
-the instances that you want to assess.
-In small environments, you can select the instance IDs from a list but in environments
-with hundreds or thousands of instance, you need an easier way to select them.
-For this reason, you are going to learn how to use <em>tags</em> to select the instances on which you will install the Amazon Inspector agent.
-Tags are labels that can be attached to AWS resources to make it easier to
-act on them collectively.</p>
-<p>In this section you will do the following tasks:</p>
-<ol>
-<li>Examine the CloudFormation stack you built to learn about the tags that were applied by AWS CloudFormation.</li>
-<li>Learn about Amazon Inspector targets, templates, and rules packages.</li>
-<li>Examine Amazon Inspector findings</li>
-</ol>
-<details class="info"><summary>Workshop Architecture</summary><p><img alt="Workshop Architecture" src="/images/pww-diagram.png" /></p>
-</details>
-<h2 id="examine-the-stack-that-you-built-and-its-tags">Examine the stack that you built and its tags</h2>
-<ol>
-<li>
-<p>Go to the CloudFormation console in the same AWS region where the stack was created.  You should see a list of stacks similar to the figure below. Your console layout may look different depending on the preferences in your account.  Locate the stack you created.  In this documentation, the name of the stack is <em>pww</em>.  If you are doing this workshop at an AWS event, the stackname may be much longer.  Make sure you can see the entire stack name.  Copy the stack name into a scratch file on your workstation in case you need it later.</p>
-<p><img alt="cloudformation-stack-list" src="../images/assess-cloudformation-stacks.png" /></p>
-</li>
-<li>
-<p>If you see a check box to the left of the stack name, click the <strong>check box</strong> to the left of the stack name and then click the <strong>Resources</strong> tab.  If you don't see a check box, just click the <strong>Resources</strong> tab.  You will see a list of resources that were deployed by the stack as shown in the figure below.</p>
-<p><img alt="cloudformation-stack-resources" src="../images/assess-cloudformation-resources.png" /></p>
-<p>The <em>Type</em> column lists the type of the resouces.  Notice that you will not see any resources of type AWS::EC2::Instance even though there are now EC2 instances running.  The reason for this is that the CloudFormation stack did not deploy any - at least not directly.  The stack did, however, deploy an auto scaling group with a launch configuration that in turn launched the instances.  You will now look at the auto scaling group and see how it supports tagging.</p>
-</li>
-<li>
-<p>Continue scrolling through the resources shown by CloudFormation and look for a resource named <em>AutoScalingGroup</em> as shown in the picture below.</p>
-<p><img alt="CloudFormation Auto Scaling Group" src="../images/assess-cloudformation-asg.png" /></p>
-<p>Click the hyperlink next to AutoScalingGroup.  This will take you to the Amazon EC2 console and display the auto scaling group.  Scroll down and click on the <em>Tags</em> tab to see how the auto scaling group handles tags.  Your console display should look similar to the picture below.</p>
-<p><img alt="EC2 Auto Scaling Group" src="../images/assess-ec2asg.png" /></p>
-<p>The picture above shows that there are four tags that are propogated to every EC2 instance created by the auto scaling group.  The tags include a <em>Name</em> tag and three additional tags that are generated by CloudFormation.  This tells us that every EC2instance that is launched by the auto scaling group will have a Name tag with the value of <em>pww-node</em>.</p>
-<p>In a production environment, you may have a large number of resources that spin up and spin down because of the elasticity that AWS offers.  If you understand how tags are applied you can more easily manage the environment regardless of how many instances exist at any point in time. You will now learn how to look up the Amazon EC2 instances using tags.</p>
-</li>
-<li>
-<p>Go to the Amazon EC2 console and look for instances having a name that begins with the stack name followed by <em>-node</em>, <em>pww-node</em> in this example.  If you cannot see them, type the instance name (<em>pww-node</em> in this case) into the search box.  Select one of them by checking the box to the left of the instance and then click on the <em>Tags</em> tab.  You should see a table like that in the figure below.</p>
-<p><img alt="ec2-instance-list" src="../images/assess-ec2-instance-list.png" /></p>
-</li>
-<li>
-<p>Notice that the instance has tags reflecting the CloudFormation stack name and stack id.  These tags are added because of settings in the auto scaling group which propogate tags to newly created instances.</p>
-<p>You have now learned about the tags that you can use to look up AWS resources.  You will now learn how tags can be used within Amazon Inspector to select the instances that will be assessed.</p>
-</li>
-</ol>
+AWS Inspector assesses the instances and identifies security findings that you will later remediate.</p>
 <h2 id="explore-amazon-inspector">Explore Amazon Inspector</h2>
 <h3 id="understanding-amazon-inspector-targets">Understanding Amazon Inspector targets</h3>
 <ol>
@@ -740,7 +679,8 @@ act on them collectively.</p>
 <li>
 <p>Click <strong>Assessment Targets</strong> on the left menu.  Assessment targets represent a group of EC2 instances that Inspector will assess.  You will see a target whose name begins with <em>InspectorTarget</em>.  Click on the arrow widget to open the target and display the details.  You should see something similar to the image below.</p>
 <p><img alt="Amazon Inspector Targets" src="../images/assess-inspector-view-targets.png" /></p>
-<p>In the figure above, notice that the <em>Use Tags</em> section contains a key/value pair with the entries <em>aws:cloudformation:stack-name</em> and <em>pww</em> respectively.  This Inspector target is configured to select all instances that were started by the CloudFormation stack.</p>
+<p>In the figure above, notice that the <em>Use Tags</em> section contains a key/value pair with the entries <em>aws:cloudformation:stack-name</em> and <em>pww</em> respectively.  If you are at an AWS event, your stack name will be something like "mod-" and be followed by some additional characters.  This means that this Inspector target is configured to select all instances that are related to the CloudFormation stack with the given stack name.</p>
+<p>Tags are labels.  They are very helpful when you are working with variable numbers of instances.  Rather than specifying individual instance ids, you can select the instances with a specific tag and then do operations on that grgroup.  In the case of instances behind a load balancer, you may not know the instance IDs, but if they all share a tag then you can work on them collectively by tag.</p>
 </li>
 <li>
 <p>Click the <strong>Preview Target</strong> button.  A new window opens as shown below.</p>
@@ -755,7 +695,7 @@ act on them collectively.</p>
 <p>Security Best Practices: The rules in this package help determine whether your systems are configured securely.  For example, one rule in this package checks to see if root login has been disabled over ssh.  You typically remediate the findings by adjusting configuration settings.</p>
 </li>
 <li>
-<p>On the Amazon Inspector menu, click <strong>Assessment runs</strong>.  You should see an entry for the assesment that was started on your behalf.  If the status is not, <em>Analysis complete,</em> then periodically refresh the screen until the status changes to <em>Analysis complete</em> as shown in the figure below.</p>
+<p>On the Amazon Inspector menu, click <strong>Assessment runs</strong>.  You should see an entry for an assesment that was started on your behalf.  CloudFormation ran this for you to save time.  If the status is not, <em>Analysis complete,</em> then periodically refresh the screen until the status changes to <em>Analysis complete</em> as shown in the figure below.</p>
 <p><img alt="Amazon Inspector Runs" src="../images/assess-inspector-view-runs.png" /></p>
 </li>
 <li>
@@ -764,7 +704,7 @@ act on them collectively.</p>
 <p>You will see one of the findings has been expanded to reveal more details.  The middle section of the finding has been removed to save space.</p>
 </li>
 <li>
-<p>Now that you have learned about Inspector assessments, you are ready to perform some remediation.  You will then run an Inspector assessment yourself to see if the number of findings has changed.</p>
+<p>Now that you have learned about Inspector assessments, you are ready to perform some remediation using AWS Systems Manager Patch Manager.  You will then run an Inspector assessment yourself to see if the number of findings has changed.</p>
 <p>Click <a href="../remediate/">here</a> to proceed to the Remediate Phase.</p>
 </li>
 </ol>
