@@ -7,6 +7,8 @@ AWS Inspector assesses the instances and identifies security findings that you w
 
 ## Explore Amazon Inspector
 
+You are now going to learn about AWS Inspector terms and explore the Inspector console.
+
 ### Understanding Amazon Inspector targets
 
 1. Go to the Amazon Inspector console.
