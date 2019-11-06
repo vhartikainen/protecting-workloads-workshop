@@ -900,6 +900,11 @@ Resources:
               download:
                 cwd: /usr/bin
                 command: "cd /usr/bin; curl -O https://s3.amazonaws.com/protecting-workloads-workshop/public/artifacts/scanner.py"
+              addtargetcmd:
+                env:
+                  SCANTARG: !Join ['', ['http://', !GetAtt Alb.DNSName]]
+                cwd: /usr/bin
+                command: "echo python3 /usr/bin/scanner.py \"$SCANTARG\" > /usr/bin/runscanner; chmod 755 /usr/bin/runscanner"
       Properties:
         ImageId:
           !GetAtt AMIInfo.Id
@@ -1323,7 +1328,8 @@ Outputs:
     Value: !Ref AWS::AccountId
   albEndpoint:
     Value: !Join ['', ['http://', !GetAtt Alb.DNSName]]
-  ScannerUID:
+  UniqueId:
+    Description: Unique Id used in the WAF Dashboard
     Condition: UseAutomatedScanner
     Value: !GetAtt AddScanTarg.UUID
   wafWebACL:
