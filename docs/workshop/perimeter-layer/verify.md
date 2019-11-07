@@ -7,10 +7,10 @@ In the previous remediation phase, you implemented an AWS WAF ruleset to protect
 
 ## Confirm malicious requests are blocked by WAF policy
 
-If needed, start a Session Manager connection to your Red Team Host, the scanner script can be invoked by typing the following command while in the _/usr/bin_ directory:
+If needed, start a Session Manager connection to your Red Team Host, the scanner script can be invoked by typing the following command:
 
 ````
-python3 scanner.py http://your-alb-endpoint
+runscanner
 ````
 
 Confirm that all of the tests in the script pass. If requests (other than canary) are not being blocked, go back to the remediate phase and confirm your conditions and rules are properly configured.

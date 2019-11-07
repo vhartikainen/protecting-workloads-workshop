@@ -1323,16 +1323,21 @@ Resources:
 ## Outputs
 Outputs:
   cfnVersion:
-    Value: 0.1
+    Value: 0.2
   accountId:
     Value: !Ref AWS::AccountId
+  Region:
+    Description: AWS Region
+    Value: !Ref AWS::Region
   albEndpoint:
+    Description: Test website
     Value: !Join ['', ['http://', !GetAtt Alb.DNSName]]
   UniqueId:
     Description: Unique Id used in the WAF Dashboard
     Condition: UseAutomatedScanner
     Value: !GetAtt AddScanTarg.UUID
   wafWebACL:
+    Description: WAF Web ACL associated with test website
     Value: !Ref wafACL
   RedTeamHostSession:
     Value: !Join ['', ['https://console.aws.amazon.com/systems-manager/session-manager/', !Ref RedTeamHost, '?', !Ref 'AWS::Region']]

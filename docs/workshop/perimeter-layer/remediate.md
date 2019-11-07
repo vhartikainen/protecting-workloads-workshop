@@ -173,7 +173,7 @@ How do the requirements derived from the above questions affect your solution?
         2. does match XSS condition: filterXSS
         3. does not match string match condition: filterXSSPathException
     6.	add rules to Web ACL
-    7.  Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked
+    7.  Re-run the WAF test script (runscanner) from your red team host to confirm requests are blocked
 
 ### 2. Enforce Request Hygiene
 
@@ -198,7 +198,7 @@ Build rules that ensure the requests your application ends up processing are val
         3.	does match string condition: filterPOSTMethod
         4.	does not match regex match condition: filterCSRFToken
     5.	add rules to Web ACL
-    6.  Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked
+    6.  Re-run the WAF test script (runscanner) from your red team host to confirm requests are blocked
 
 !!! Attention
     <p style="font-size:14px;">
@@ -227,7 +227,7 @@ Build rules that ensure the relevant HTTP request components used for input into
         1. type regular
         2. does match string condition: filterTraversal
     3.	add rules to Web ACL
-    4.  Re-run the WAF test script (scanner.py) from your red team host to confirm requests are blocked
+    4.  Re-run the WAF test script (runscanner) from your red team host to confirm requests are blocked
 
 !!! info "Note About Remaining Exercises"
     **The remaining exercises below are optional. You should proceed to the [Verify Phase](verify.md) and come back to the content below if time permits.**

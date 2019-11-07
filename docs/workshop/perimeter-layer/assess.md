@@ -49,14 +49,14 @@ The scanner performs 10 basic tests designed to help simulate and mitigate commo
     _These basic tests are designed to provide common examples you can use to test AWS WAF functionality. You should perform thorough analysis and testing when implementing rules into your production environments._
 
 ### Website Scanning Environment and Tools - Manual Scanning
-Once you have started a Session Manager connection to your Red Team Host, the scanner script can be invoked by typing the following command while in the _/usr/bin_ directory:
+Once you have started a Session Manager connection to your Red Team Host, the scanner script can be invoked by typing the following command:
 
 ````
-python3 scanner.py http://your-alb-endpoint
+runscanner
 ````
 ![Initial Scan Terminal](./images/initial-scan-term.svg)
 
-The scanner.py script will run each of the tests above and report back the following information:
+The scanner script will run each of the tests above and report back the following information:
 
 - __Request__: The HTTP request command used.
 - __Test Name__: The name of the test from list above.
@@ -72,12 +72,12 @@ The logic in the scanner script color codes the response as follows:
 What are the results of running the scanner script? Were the simulated malicious requests blocked? As you can see by running the script there are several vulnerabilities that need to be addressed. In the remediate phase you will configure an AWS WAF Web ACL to block these requests. When AWS WAF blocks a web request based on the conditions that you specify, it returns HTTP status code 403 (Forbidden). For a full view of the request and response information, you can paste the **Request** command directly into the console and add the --debug argument.
 
 !!! info "Note about Testing Tool"
-    The scanner.py script uses an open source <a href="https://httpie.org/" target="_blank">HTTP client called httpie</a>. HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.
+    The scanner script uses an open source <a href="https://httpie.org/" target="_blank">HTTP client called httpie</a>. HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.
 
 
 ### Website Scanning Environment and Tools - Automated Scanning
 
-For an AWS sponsored event, in addition to the manual scanning, automated scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop participants. You can identify the scanning results for your site using the Unique Id found in the CloudFormation outputs.
+For an AWS sponsored event, in addition to the manual scanning, automated scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop participants. You can identify the scanning results for your site using the UniqueId found in the CloudFormation outputs.
 
 ![WAF Lab Centralized Dashboard](./images/waflabdash-pre.png)
 
