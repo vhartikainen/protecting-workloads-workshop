@@ -38,7 +38,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../../assets/images/aws-favicon.ico">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.2.0">
     
     
       
@@ -46,12 +46,12 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/application.982221ab.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.750b69bd.css">
       
       
     
     
-      <script src="../../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+      <script src="../../../assets/javascripts/modernizr.74668098.js"></script>
     
     
       
@@ -761,13 +761,13 @@ You are now going to assess the posture of the site and then add an AWS WAF Web 
 <p><em>These basic tests are designed to provide common examples you can use to test AWS WAF functionality. You should perform thorough analysis and testing when implementing rules into your production environments.</em></p>
 </div>
 <h3 id="website-scanning-environment-and-tools-manual-scanning">Website Scanning Environment and Tools - Manual Scanning</h3>
-<p>Once you have started a Session Manager connection to your Red Team Host, the scanner script can be invoked by typing the following command while in the <em>/usr/bin</em> directory:</p>
-<div class="codehilite"><pre><span></span>python3 scanner.py http://your-alb-endpoint
+<p>Once you have started a Session Manager connection to your Red Team Host, the scanner script can be invoked by typing the following command:</p>
+<div class="codehilite"><pre><span></span>runscanner
 </pre></div>
 
 
 <p><img alt="Initial Scan Terminal" src="../images/initial-scan-term.svg" /></p>
-<p>The scanner.py script will run each of the tests above and report back the following information:</p>
+<p>The scanner script will run each of the tests above and report back the following information:</p>
 <ul>
 <li><strong>Request</strong>: The HTTP request command used.</li>
 <li><strong>Test Name</strong>: The name of the test from list above.</li>
@@ -783,10 +783,10 @@ You are now going to assess the posture of the site and then add an AWS WAF Web 
 <p>What are the results of running the scanner script? Were the simulated malicious requests blocked? As you can see by running the script there are several vulnerabilities that need to be addressed. In the remediate phase you will configure an AWS WAF Web ACL to block these requests. When AWS WAF blocks a web request based on the conditions that you specify, it returns HTTP status code 403 (Forbidden). For a full view of the request and response information, you can paste the <strong>Request</strong> command directly into the console and add the --debug argument.</p>
 <div class="admonition info">
 <p class="admonition-title">Note about Testing Tool</p>
-<p>The scanner.py script uses an open source <a href="https://httpie.org/" target="_blank">HTTP client called httpie</a>. HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.</p>
+<p>The scanner script uses an open source <a href="https://httpie.org/" target="_blank">HTTP client called httpie</a>. HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.</p>
 </div>
 <h3 id="website-scanning-environment-and-tools-automated-scanning">Website Scanning Environment and Tools - Automated Scanning</h3>
-<p>For an AWS sponsored event, in addition to the manual scanning, automated scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop participants. You can identify the scanning results for your site using the Unique Id found in the CloudFormation outputs.</p>
+<p>For an AWS sponsored event, in addition to the manual scanning, automated scanning is also performed against your lab website. The automated tests are similar to the manual tests but the results are posted to <a href="http://waflabdash.awssecworkshops.com/" target="_blank">a centralized scanning results dashboard</a> along with the other workshop participants. You can identify the scanning results for your site using the UniqueId found in the CloudFormation outputs.</p>
 <p><img alt="WAF Lab Centralized Dashboard" src="../images/waflabdash-pre.png" /></p>
 <hr />
 <p>You can now proceed to the <a href="../remediate/">Remediate Phase</a>.</p>
@@ -876,7 +876,7 @@ You are now going to assess the posture of the site and then add an AWS WAF Web 
       
     </div>
     
-      <script src="../../../assets/javascripts/application.b806dc00.js"></script>
+      <script src="../../../assets/javascripts/application.39abc4af.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
       
