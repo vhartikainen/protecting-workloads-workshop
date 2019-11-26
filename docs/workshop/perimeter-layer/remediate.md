@@ -8,6 +8,11 @@ You are now going to design and implement an AWS WAF ruleset to help mitigate th
 3. Console Walkthrough - Creating a WAF Condition and Rule
 4. WAF Rule Creation and Solutions
 
+!!! Attention
+    <p style="font-size:14px;">
+      Please insure you are **using the AWS WAF Classic** console experience for this workshop.
+    </p>
+
 ## Identify the WAF ACL for your Site
 
 1. If needed, go to <a href="https://console.aws.amazon.com/console/home" target="_blank">https://console.aws.amazon.com/console/home</a>. You will be redirected to the AWS Management Console dashboard on successful login:

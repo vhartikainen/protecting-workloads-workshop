@@ -25,6 +25,11 @@ You are now going to assess the posture of the site and then add an AWS WAF Web 
 !!! info "AWS Systems Manager Session Manager"
     Session Manager is a fully managed AWS Systems Manager capability that lets you manage your Amazon EC2 instances through an interactive one-click browser-based shell or through the AWS CLI. Session Manager provides secure and auditable instance management without the need to open inbound ports, maintain bastion hosts, or manage SSH keys. 
 
+!!! Attention
+    <p style="font-size:14px;">
+      Please insure you are **using the AWS WAF Classic** console experience for this workshop.
+    </p>
+
 ## Website Scanning Environment and Tools
 
 In order to test your AWS WAF ruleset, this lab has been configured with two scanning capabilities; a Red Team Host where you can invoke manual scanning and an automated scanner which runs from outside your lab environment. 
