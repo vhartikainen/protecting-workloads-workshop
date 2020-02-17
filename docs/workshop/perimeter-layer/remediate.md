@@ -10,7 +10,7 @@ You are now going to design and implement an AWS WAF ruleset to help mitigate th
 
 !!! Attention
     <p style="font-size:14px;">
-      Please insure you are **using the AWS WAF Classic** console experience for this workshop.
+      Please ensure you are **using the AWS WAF Classic** console experience for this workshop.
     </p>
 
 ## Identify the WAF ACL for your Site

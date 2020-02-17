@@ -27,7 +27,7 @@ You are now going to assess the posture of the site and then add an AWS WAF Web 
 
 !!! Attention
     <p style="font-size:14px;">
-      Please insure you are **using the AWS WAF Classic** console experience for this workshop.
+      Please ensure you are **using the AWS WAF Classic** console experience for this workshop.
     </p>
 
 ## Website Scanning Environment and Tools

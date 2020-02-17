@@ -58,7 +58,7 @@ While Inspector is running, you will learn about AWS Systems Manager Maintenance
 
 3.  Click **Register target** to register the target to the maintenance window based on the information you entered.
 
-### Register the maintannce window task
+### Register the maintenance window task
 
 1.  Click **Maintenance windows** on the left menu.
 
